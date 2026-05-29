@@ -1,0 +1,162 @@
+id: https://w3id.org/lmodel/nist-ai-600-1/instance/comprehensive
+title: NIST AI RMF Generative AI Profile (comprehensive)
+description: |-
+  A broader NIST AI 600-1 GAI Profile instance exercising multiple
+  GAI risks, suggested actions across all four Core functions, all
+  four primary considerations, and two structured-feedback methods
+  including AI red-teaming.
+
+gai_risk_catalog:
+  - id: nist_ai_600_1:risk/confabulation
+    title: Confabulation
+    gai_risk_kind: CONFABULATION
+    risk_categorization: TECHNICAL_OR_MODEL_RISKS
+    risk_scope:
+      - MODEL_OR_SYSTEM
+      - APPLICATION_OR_IMPLEMENTATION
+    risk_sources:
+      - DESIGN
+      - TRAINING
+      - MODEL_OUTPUTS
+    time_scale:
+      - IMMEDIATE
+    lifecycle_stage:
+      - DEVELOPMENT
+      - DEPLOYMENT
+      - OPERATION
+    trustworthiness_characteristic:
+      - VALID_AND_RELIABLE
+      - SAFE
+      - EXPLAINABLE_AND_INTERPRETABLE
+  - id: nist_ai_600_1:risk/data-privacy
+    title: Data Privacy
+    gai_risk_kind: DATA_PRIVACY
+    risk_categorization: TECHNICAL_OR_MODEL_RISKS
+    risk_scope:
+      - MODEL_OR_SYSTEM
+      - ECOSYSTEM
+    risk_sources:
+      - TRAINING
+      - MODEL_INPUTS
+      - MODEL_OUTPUTS
+    time_scale:
+      - IMMEDIATE
+      - PROLONGED
+    lifecycle_stage:
+      - DEVELOPMENT
+      - OPERATION
+    trustworthiness_characteristic:
+      - PRIVACY_ENHANCED
+      - SECURE_AND_RESILIENT
+  - id: nist_ai_600_1:risk/info-integrity
+    title: Information Integrity
+    gai_risk_kind: INFORMATION_INTEGRITY
+    risk_categorization: ECOSYSTEM_OR_SOCIETAL_RISKS
+    risk_scope:
+      - ECOSYSTEM
+    risk_sources:
+      - MODEL_OUTPUTS
+      - HUMAN_BEHAVIOR
+    time_scale:
+      - PROLONGED
+    lifecycle_stage:
+      - DEPLOYMENT
+      - OPERATION
+    trustworthiness_characteristic:
+      - ACCOUNTABLE_AND_TRANSPARENT
+      - FAIR_WITH_HARMFUL_BIAS_MANAGED
+
+suggested_actions:
+  - id: "nist_ai_600_1:GV-1.1-001"
+    action_id: GV-1.1-001
+    function_prefix: GV
+    applies_to_subcategory: GOVERN 1.1
+    title: Align GAI development with applicable laws and regulations
+    description: |-
+      Align GAI development and use with applicable laws and
+      regulations.
+    gai_risks:
+      - DATA_PRIVACY
+      - INTELLECTUAL_PROPERTY
+    actor_task:
+      - GOVERNANCE_AND_OVERSIGHT
+  - id: "nist_ai_600_1:MP-2.3-004"
+    action_id: MP-2.3-004
+    function_prefix: MP
+    applies_to_subcategory: MAP 2.3
+    title: Re-evaluate context of use for GAI systems
+    description: |-
+      Re-evaluate the context of use whenever GAI capabilities or
+      training data change materially.
+    gai_risks:
+      - HUMAN_AI_CONFIGURATION
+      - HARMFUL_BIAS_OR_HOMOGENIZATION
+    actor_task:
+      - AI_IMPACT_ASSESSMENT
+      - DOMAIN_EXPERTS
+  - id: "nist_ai_600_1:MS-2.7-005"
+    action_id: MS-2.7-005
+    function_prefix: MS
+    applies_to_subcategory: MEASURE 2.7
+    title: Conduct AI red-teaming on provenance mechanisms
+    gai_risks:
+      - INFORMATION_INTEGRITY
+      - INFORMATION_SECURITY
+    actor_task:
+      - TEVV
+  - id: "nist_ai_600_1:MG-2.4-002"
+    action_id: MG-2.4-002
+    function_prefix: MG
+    applies_to_subcategory: MANAGE 2.4
+    title: Establish incident response procedures for GAI
+    gai_risks:
+      - CONFABULATION
+      - DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
+    actor_task:
+      - GOVERNANCE_AND_OVERSIGHT
+      - OPERATION_AND_MONITORING
+
+primary_considerations:
+  - id: nist_ai_600_1:consideration/governance
+    title: Governance
+    consideration_kind: GOVERNANCE
+    governance_practices:
+      - AUDITING_AND_ASSESSMENT
+      - DATA_PROVENANCE
+      - IMPACT_ASSESSMENTS
+      - INCIDENT_RESPONSE
+      - STAKEHOLDER_ENGAGEMENT
+      - WHISTLEBLOWER_PROTECTIONS
+    third_party_considerations: |-
+      Third-party GAI integrations require SBOMs, SLAs, and SSAE
+      reports to cover provenance and security risks.
+  - id: nist_ai_600_1:consideration/pre-deployment-testing
+    title: Pre-Deployment Testing
+    consideration_kind: PRE_DEPLOYMENT_TESTING
+    limitations_of_current_approaches: |-
+      Current TEVV approaches may be inadequate for GAI's open-ended
+      outputs and emergent capabilities.
+  - id: nist_ai_600_1:consideration/content-provenance
+    title: Content Provenance
+    consideration_kind: CONTENT_PROVENANCE
+    provenance_techniques:
+      - DIGITAL_WATERMARKING
+      - METADATA_RECORDING
+      - DIGITAL_FINGERPRINTING
+  - id: nist_ai_600_1:consideration/incident-disclosure
+    title: Incident Disclosure
+    consideration_kind: INCIDENT_DISCLOSURE
+    ai_incident_definition: |-
+      Events where AI development, use, or malfunction directly or
+      indirectly leads to harm.
+
+structured_feedback_methods:
+  - id: nist_ai_600_1:feedback/participatory
+    title: Participatory Engagement Methods
+    feedback_method_kind: PARTICIPATORY_ENGAGEMENT_METHODS
+    description: |-
+      Soliciting feedback from civil society groups, affected
+      communities, and users.
+  - id: nist_ai_600_1:feedback/red-team-combination
+    title: Combination Red-teaming
+    feedback_method_kind: AI_RED_TEAMING

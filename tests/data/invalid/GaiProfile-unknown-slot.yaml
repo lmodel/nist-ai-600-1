@@ -1,0 +1,4 @@
+id: https://w3id.org/lmodel/nist-ai-600-1/instance/invalid-profile
+title: GaiProfile with unknown slot
+description: Should fail - 'profile_type' is not defined on GaiProfile.
+profile_type: CROSS_SECTORAL

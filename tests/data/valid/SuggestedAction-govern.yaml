@@ -1,0 +1,15 @@
+id: "nist_ai_600_1:GV-1.1-001"
+action_id: GV-1.1-001
+function_prefix: GV
+applies_to_subcategory: GOVERN 1.1
+title: Align GAI development and use with applicable laws and regulations
+description: |-
+  Align GAI development and use with applicable laws and
+  regulations, including those related to data privacy, copyright
+  and intellectual property law.
+gai_risks:
+  - DATA_PRIVACY
+  - HARMFUL_BIAS_OR_HOMOGENIZATION
+  - INTELLECTUAL_PROPERTY
+actor_task:
+  - GOVERNANCE_AND_OVERSIGHT

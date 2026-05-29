@@ -1,0 +1,8 @@
+id: nist_ai_600_1:feedback/field-testing
+title: Field Testing
+feedback_method_kind: FIELD_TESTING
+description: |-
+  Methods used to determine how people interact with, consume,
+  use, and make sense of AI-generated information (UX research,
+  usability studies, randomised experiments) - NIST AI 600-1
+  Appendix A.1.5.

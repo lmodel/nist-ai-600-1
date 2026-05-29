@@ -1,0 +1,12 @@
+id: nist_ai_600_1:consideration/content-provenance
+title: Content Provenance
+consideration_kind: CONTENT_PROVENANCE
+description: |-
+  Digital transparency mechanisms (provenance data tracking,
+  watermarking, synthetic content detection) for tracing origin
+  and history of content (NIST AI 600-1 Appendix A.1.6 - A.1.7).
+provenance_techniques:
+  - DIGITAL_WATERMARKING
+  - METADATA_RECORDING
+  - DIGITAL_FINGERPRINTING
+  - HUMAN_AUTHENTICATION

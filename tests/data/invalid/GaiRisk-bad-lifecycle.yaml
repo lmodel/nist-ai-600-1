@@ -1,0 +1,7 @@
+id: nist_ai_600_1:risk/bad-lifecycle
+title: Confabulation with bad lifecycle stage
+gai_risk_kind: CONFABULATION
+risk_categorization: TECHNICAL_OR_MODEL_RISKS
+lifecycle_stage:
+  - DEVELOPMENT
+  - BUILD_AND_USE_MODEL # not in NIST AI 600-1 AiLifecycleStageEnum (that is a 100-1 value)

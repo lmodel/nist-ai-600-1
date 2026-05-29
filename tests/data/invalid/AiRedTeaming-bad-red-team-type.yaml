@@ -1,0 +1,4 @@
+id: nist_ai_600_1:feedback/red-team-bogus
+title: Red-teaming with bad team type
+feedback_method_kind: AI_RED_TEAMING
+red_team_type: NOVICE # not in RedTeamingTypeEnum

@@ -1,0 +1,26 @@
+id: nist_ai_600_1:risk/confabulation
+title: Confabulation
+description: |-
+  The production of confidently stated but erroneous or false content
+  ("hallucinations" or "fabrications") by which users may be misled
+  or deceived.
+gai_risk_kind: CONFABULATION
+risk_categorization: TECHNICAL_OR_MODEL_RISKS
+risk_scope:
+  - MODEL_OR_SYSTEM
+  - APPLICATION_OR_IMPLEMENTATION
+risk_sources:
+  - DESIGN
+  - TRAINING
+  - MODEL_OUTPUTS
+time_scale:
+  - IMMEDIATE
+  - PROLONGED
+lifecycle_stage:
+  - DEVELOPMENT
+  - OPERATION
+trustworthiness_characteristic:
+  - FAIR_WITH_HARMFUL_BIAS_MANAGED
+  - SAFE
+  - VALID_AND_RELIABLE
+  - EXPLAINABLE_AND_INTERPRETABLE

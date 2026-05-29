@@ -1,0 +1,24 @@
+id: nist_ai_600_1:risk/cbrn
+title: CBRN Information or Capabilities
+description: |-
+  Eased access to or synthesis of materially nefarious information
+  or design capabilities related to chemical, biological,
+  radiological, or nuclear (CBRN) weapons or other dangerous
+  materials or agents (NIST AI 600-1 Section 2).
+gai_risk_kind: CBRN_INFORMATION_OR_CAPABILITIES
+risk_categorization: MISUSE_BY_HUMANS
+risk_scope:
+  - APPLICATION_OR_IMPLEMENTATION
+  - ECOSYSTEM
+risk_sources:
+  - MODEL_OUTPUTS
+  - HUMAN_BEHAVIOR
+time_scale:
+  - PROLONGED
+lifecycle_stage:
+  - DEPLOYMENT
+  - OPERATION
+trustworthiness_characteristic:
+  - SAFE
+  - SECURE_AND_RESILIENT
+  - ACCOUNTABLE_AND_TRANSPARENT

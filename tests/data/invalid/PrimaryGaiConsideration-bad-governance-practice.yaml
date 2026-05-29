@@ -1,0 +1,6 @@
+id: nist_ai_600_1:consideration/governance
+title: Governance with free-text practice
+consideration_kind: GOVERNANCE
+governance_practices:
+  - AUDITING_AND_ASSESSMENT
+  - Auditing and assessment # free-text value - not in GovernancePracticeEnum

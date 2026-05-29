@@ -1,0 +1,11 @@
+id: nist_ai_600_1:consideration/pre-deployment-testing
+title: Pre-Deployment Testing
+consideration_kind: PRE_DEPLOYMENT_TESTING
+description: |-
+  Test, evaluation, validation, and verification practices
+  appropriate for GAI prior to deployment (NIST AI 600-1 Appendix
+  A.1.4).
+limitations_of_current_approaches: |-
+  Anecdotal testing, benchmarks, and red-teaming used today are not
+  designed for GAI's open-ended outputs, can over-state robustness,
+  and may not reflect real-world adversarial conditions.

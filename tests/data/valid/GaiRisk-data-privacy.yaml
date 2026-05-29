@@ -1,0 +1,28 @@
+id: nist_ai_600_1:risk/data-privacy
+title: Data Privacy
+description: |-
+  Impacts due to leakage and unauthorized use, disclosure, or
+  de-anonymization of biometric, health, location, or other
+  personally identifiable information or sensitive data (NIST AI
+  600-1 Section 2).
+gai_risk_kind: DATA_PRIVACY
+risk_categorization: TECHNICAL_OR_MODEL_RISKS
+risk_scope:
+  - MODEL_OR_SYSTEM
+  - APPLICATION_OR_IMPLEMENTATION
+  - ECOSYSTEM
+risk_sources:
+  - TRAINING
+  - MODEL_INPUTS
+  - MODEL_OUTPUTS
+time_scale:
+  - IMMEDIATE
+  - PROLONGED
+lifecycle_stage:
+  - DEVELOPMENT
+  - DEPLOYMENT
+  - OPERATION
+trustworthiness_characteristic:
+  - PRIVACY_ENHANCED
+  - SECURE_AND_RESILIENT
+  - ACCOUNTABLE_AND_TRANSPARENT

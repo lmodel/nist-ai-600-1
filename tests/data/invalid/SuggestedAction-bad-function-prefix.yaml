@@ -1,0 +1,6 @@
+id: "nist_ai_600_1:XX-1.1-001"
+action_id: XX-1.1-001
+function_prefix: XX # not in GaiActionFunctionPrefixEnum (GV|MP|MS|MG)
+title: Invalid function prefix
+gai_risks:
+  - DATA_PRIVACY

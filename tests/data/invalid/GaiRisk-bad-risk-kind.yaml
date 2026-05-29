@@ -1,0 +1,7 @@
+id: nist_ai_600_1:risk/bogus
+title: Bogus Risk
+description: |-
+  Should fail validation: NOT_A_REAL_RISK is not in
+  GaiRiskCategoryEnum.
+gai_risk_kind: NOT_A_REAL_RISK
+risk_categorization: TECHNICAL_OR_MODEL_RISKS

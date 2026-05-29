@@ -1,0 +1,9 @@
+id: nist_ai_600_1:feedback/red-team-expert
+title: Expert AI Red-teaming
+feedback_method_kind: AI_RED_TEAMING
+red_team_type: EXPERT
+description: |-
+  Adversarial probing of a GAI system by specialists with
+  expertise in the relevant domain or red-teaming context
+  (e.g., medicine, biotech, cybersecurity) - NIST AI 600-1
+  Appendix A.1.5.

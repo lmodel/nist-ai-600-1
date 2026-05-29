@@ -1,0 +1,16 @@
+id: "nist_ai_600_1:MS-2.7-005"
+action_id: MS-2.7-005
+function_prefix: MS
+applies_to_subcategory: MEASURE 2.7
+title: Conduct AI red-teaming to assess content provenance
+description: |-
+  Conduct adversarial testing to assess resilience against
+  attacks on content-provenance mechanisms and to evaluate
+  output integrity (NIST AI 600-1 Section 3, MEASURE 2.7).
+gai_risks:
+  - INFORMATION_INTEGRITY
+  - INFORMATION_SECURITY
+  - CONFABULATION
+actor_task:
+  - TEVV
+  - AI_DEPLOYMENT

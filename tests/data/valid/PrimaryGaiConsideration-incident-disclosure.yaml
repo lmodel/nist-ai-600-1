@@ -1,0 +1,11 @@
+id: nist_ai_600_1:consideration/incident-disclosure
+title: Incident Disclosure
+consideration_kind: INCIDENT_DISCLOSURE
+description: |-
+  Documenting, reporting, and sharing information about AI
+  incidents to mitigate harm and improve risk management
+  (NIST AI 600-1 Appendix A.1.8).
+ai_incident_definition: |-
+  An event, circumstance, or series of events where the
+  development, use, or malfunction of one or more AI systems
+  directly or indirectly leads to harm.

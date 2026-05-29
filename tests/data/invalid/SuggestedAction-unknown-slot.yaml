@@ -1,0 +1,8 @@
+id: "nist_ai_600_1:GV-1.1-002"
+action_id: GV-1.1-002
+function_prefix: GV
+title: Action with unknown slot
+description: Should fail - 'severity' is not a defined slot on SuggestedAction.
+severity: HIGH
+gai_risks:
+  - DATA_PRIVACY
