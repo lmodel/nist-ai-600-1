@@ -1,0 +1,228 @@
+# metamodel_version: 1.11.0
+# version: 1.0.0
+enum AiActorTaskEnum
+  {
+    GOVERNANCE_AND_OVERSIGHT
+    AI_DESIGN
+    AI_DEVELOPMENT
+    AI_DEPLOYMENT
+    AI_IMPACT_ASSESSMENT
+    OPERATION_AND_MONITORING
+    TEVV
+    DOMAIN_EXPERTS
+    END_USERS
+    HUMAN_FACTORS
+    AFFECTED_INDIVIDUALS_AND_COMMUNITIES
+    PROCUREMENT
+    THIRD_PARTY_ENTITIES
+  }
+
+enum AiLifecycleStageEnum
+  {
+    DESIGN
+    DEVELOPMENT
+    DEPLOYMENT
+    OPERATION
+    DECOMMISSIONING
+  }
+
+enum GaiActionFunctionPrefixEnum
+  {
+    GV
+    MP
+    MS
+    MG
+  }
+
+enum GaiRiskCategorizationEnum
+  {
+    TECHNICAL_OR_MODEL_RISKS
+    MISUSE_BY_HUMANS
+    ECOSYSTEM_OR_SOCIETAL_RISKS
+  }
+
+enum GaiRiskCategoryEnum
+  {
+    CBRN_INFORMATION_OR_CAPABILITIES
+    CONFABULATION
+    DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
+    DATA_PRIVACY
+    ENVIRONMENTAL_IMPACTS
+    HARMFUL_BIAS_OR_HOMOGENIZATION
+    HUMAN_AI_CONFIGURATION
+    INFORMATION_INTEGRITY
+    INFORMATION_SECURITY
+    INTELLECTUAL_PROPERTY
+    OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT
+    VALUE_CHAIN_AND_COMPONENT_INTEGRATION
+  }
+
+enum GaiRiskScopeEnum
+  {
+    MODEL_OR_SYSTEM
+    APPLICATION_OR_IMPLEMENTATION
+    ECOSYSTEM
+  }
+
+enum GaiRiskSourceEnum
+  {
+    DESIGN
+    TRAINING
+    OPERATION
+    MODEL_INPUTS
+    MODEL_OUTPUTS
+    HUMAN_BEHAVIOR
+    HUMAN_AI_INTERACTION
+  }
+
+enum GaiRiskTimeScaleEnum
+  {
+    IMMEDIATE
+    PROLONGED
+  }
+
+enum GovernancePracticeEnum
+  {
+    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS
+    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS
+    ALIGNMENT_TO_ORGANIZATIONAL_VALUES
+    AUDITING_AND_ASSESSMENT
+    CHANGE_MANAGEMENT_CONTROLS
+    COMMERCIAL_USE
+    DATA_PROVENANCE
+    DATA_PROTECTION
+    DATA_RETENTION
+    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS
+    DECOMMISSIONING
+    DISCOURAGING_ANONYMOUS_USE
+    EDUCATION
+    IMPACT_ASSESSMENTS
+    INCIDENT_RESPONSE
+    MONITORING
+    OPT_OUTS
+    RISK_BASED_CONTROLS
+    RISK_MAPPING_AND_MEASUREMENT
+    SCIENCE_BACKED_TEVV_PRACTICES
+    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES
+    STAKEHOLDER_ENGAGEMENT
+    SYNTHETIC_CONTENT_DETECTION_AND_LABELING
+    WHISTLEBLOWER_PROTECTIONS
+    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS
+  }
+
+enum PrimaryConsiderationEnum
+  {
+    GOVERNANCE
+    PRE_DEPLOYMENT_TESTING
+    CONTENT_PROVENANCE
+    INCIDENT_DISCLOSURE
+  }
+
+enum ProvenanceTechniqueEnum
+  {
+    DIGITAL_WATERMARKING
+    METADATA_RECORDING
+    DIGITAL_FINGERPRINTING
+    HUMAN_AUTHENTICATION
+  }
+
+enum RedTeamingTypeEnum
+  {
+    GENERAL_PUBLIC
+    EXPERT
+    COMBINATION
+    HUMAN_AND_AI
+  }
+
+enum StructuredFeedbackMethodEnum
+  {
+    PARTICIPATORY_ENGAGEMENT_METHODS
+    FIELD_TESTING
+    AI_RED_TEAMING
+  }
+
+enum TrustworthinessCharacteristicEnum
+  {
+    VALID_AND_RELIABLE
+    SAFE
+    SECURE_AND_RESILIENT
+    ACCOUNTABLE_AND_TRANSPARENT
+    EXPLAINABLE_AND_INTERPRETABLE
+    PRIVACY_ENHANCED
+    FAIR_WITH_HARMFUL_BIAS_MANAGED
+  }
+
+type AiRedTeaming
+  {
+    id: String!
+    title: String
+    description: String
+    redTeamType: RedTeamingTypeEnum
+    feedbackMethodKind: StructuredFeedbackMethodEnum!
+  }
+
+type GaiProfile
+  {
+    id: String!
+    title: String
+    description: String
+    gaiRiskCatalog: [GaiRisk]
+    suggestedActions: [SuggestedAction]
+    primaryConsiderations: [PrimaryGaiConsideration]
+    structuredFeedbackMethods: [StructuredPublicFeedback]
+  }
+
+type GaiRisk
+  {
+    id: String!
+    title: String
+    description: String
+    gaiRiskKind: GaiRiskCategoryEnum
+    riskCategorization: GaiRiskCategorizationEnum
+    riskScope: [GaiRiskScopeEnum]
+    riskSources: [GaiRiskSourceEnum]
+    timeScale: [GaiRiskTimeScaleEnum]
+    lifecycleStage: [AiLifecycleStageEnum]
+    trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
+    addressedByActions: [SuggestedAction]
+  }
+
+interface NamedThing
+  {
+    id: String!
+    title: String
+    description: String
+  }
+
+type PrimaryGaiConsideration
+  {
+    id: String!
+    title: String
+    description: String
+    considerationKind: PrimaryConsiderationEnum!
+    governancePractices: [GovernancePracticeEnum]
+    thirdPartyConsiderations: String
+    limitationsOfCurrentApproaches: String
+    provenanceTechniques: [ProvenanceTechniqueEnum]
+    aiIncidentDefinition: String
+  }
+
+type StructuredPublicFeedback
+  {
+    id: String!
+    title: String
+    description: String
+    feedbackMethodKind: StructuredFeedbackMethodEnum!
+  }
+
+type SuggestedAction
+  {
+    title: String
+    actionId: GaiActionId!
+    functionPrefix: GaiActionFunctionPrefixEnum
+    appliesToSubcategory: SubcategoryCode
+    gaiRisks: [GaiRiskCategoryEnum]
+    actorTask: [AiActorTaskEnum]
+    id: String!
+    description: String
+  }

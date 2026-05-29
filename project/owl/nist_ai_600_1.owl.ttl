@@ -1,0 +1,1338 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix gist_linkml: <https://w3id.org/lmodel/gist/> .
+@prefix iso27001: <https://w3id.org/lmodel/iso27001/> .
+@prefix iso29100: <https://w3id.org/lmodel/iso29100/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix nist_ai_100_1: <https://w3id.org/lmodel/nist-ai-100-1/> .
+@prefix nist_ai_600_1: <https://w3id.org/lmodel/nist-ai-600-1/> .
+@prefix nist_csf: <https://w3id.org/lmodel/nist-csf-v2/> .
+@prefix oscal_catalog: <https://w3id.org/lmodel/oscal_catalog/> .
+@prefix oscal_profile: <https://w3id.org/lmodel/oscal_profile/> .
+@prefix owl: <http://www.w3.org/2002/07/owl#> .
+@prefix pav: <http://purl.org/pav/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix stix: <https://w3id.org/lmodel/stix/> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+<https://w3id.org/lmodel/nist-ai-600-1.owl.ttl> a owl:Ontology ;
+    rdfs:label "nist-ai-600-1" ;
+    dcterms:license "Apache-2.0" ;
+    dcterms:source <https://doi.org/10.6028/NIST.AI.600-1> ;
+    dcterms:title "NIST AI RMF Generative AI Profile (NIST AI 600-1)" ;
+    pav:version "1.0.0" ;
+    rdfs:seeAlso <https://airc.nist.gov/Home>,
+        <https://doi.org/10.6028/NIST.AI.100-1>,
+        <https://doi.org/10.6028/NIST.AI.600-1> ;
+    skos:definition """LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence
+Profile of the AI Risk Management Framework (July 2024).
+
+This is a **cross-sectoral profile** and a *companion resource* to
+NIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or
+exacerbated by the use of Generative AI (GAI) and provides a set of
+suggested actions, organised by AI RMF subcategory, that
+organisations can take to govern, map, measure, and manage those
+risks.
+
+This schema is **standalone** - it inlines the minimal AI RMF
+base scaffolding (`NamedThing`, lifecycle / trustworthiness /
+actor-task enums, `SubcategoryCode` type) needed to express the
+GAI Profile so it has no schema-level dependency on the sibling
+`nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements
+are recorded as `*_mappings` for traceability.
+
+The schema covers:
+  * 12 GAI risk categories (Section 2)
+  * Risk dimensions (lifecycle stage, scope, source, time scale)
+  * `SuggestedAction` entries (Section 3 tables) linked to AI RMF
+    subcategories
+  * Primary GAI Considerations (Appendix A): Governance,
+    Pre-Deployment Testing, Content Provenance, Incident Disclosure
+  * Structured Public Feedback methods and AI Red-teaming types""" .
+
+nist_ai_600_1:AiRedTeaming a owl:Class ;
+    rdfs:label "AiRedTeaming" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:red_team_type ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:RedTeamingTypeEnum ;
+            owl:onProperty nist_ai_600_1:red_team_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:red_team_type ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        nist_ai_600_1:StructuredPublicFeedback ;
+    skos:definition """A structured testing exercise used to probe an AI system to
+find flaws and vulnerabilities such as inaccurate, harmful, or
+discriminatory outputs, often in a controlled environment and
+in collaboration with system developers (A.1.5).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch stix:AttackPattern .
+
+nist_ai_600_1:GaiProfile a owl:Class ;
+    rdfs:label "GaiProfile" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:PrimaryGaiConsideration ;
+            owl:onProperty nist_ai_600_1:primary_considerations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRisk ;
+            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:SuggestedAction ;
+            owl:onProperty nist_ai_600_1:suggested_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:primary_considerations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:suggested_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:structured_feedback_methods ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:StructuredPublicFeedback ;
+            owl:onProperty nist_ai_600_1:structured_feedback_methods ],
+        nist_ai_600_1:NamedThing ;
+    skos:closeMatch nist_csf:CSFDocument ;
+    skos:definition """Root container that bundles the NIST AI 600-1 Generative AI
+Profile: GAI risks (Section 2), suggested actions (Section 3),
+and primary considerations (Appendix A). The GAI Profile is a
+*cross-sectoral* AI RMF profile (Section 1).""" ;
+    skos:exactMatch oscal_profile:Profile ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:AiRmfProfile .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_AND_COMMUNITIES> a owl:Class ;
+    rdfs:label "AFFECTED_INDIVIDUALS_AND_COMMUNITIES" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Individuals, groups, or communities directly or indirectly affected." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEPLOYMENT> a owl:Class ;
+    rdfs:label "AI_DEPLOYMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Contextual decisions on how the AI system is used and deployed." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DESIGN> a owl:Class ;
+    rdfs:label "AI_DESIGN" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Concept, objectives, planning, design, and data collection." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEVELOPMENT> a owl:Class ;
+    rdfs:label "AI_DEVELOPMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Model building, selection, calibration, training, and testing." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT> a owl:Class ;
+    rdfs:label "AI_IMPACT_ASSESSMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Assessing accountability, bias, impacts, safety, liability, security." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#DOMAIN_EXPERTS> a owl:Class ;
+    rdfs:label "DOMAIN_EXPERTS" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Multidisciplinary practitioners with sector or context expertise." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#END_USERS> a owl:Class ;
+    rdfs:label "END_USERS" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Individuals or groups using the AI system for specific purposes." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT> a owl:Class ;
+    rdfs:label "GOVERNANCE_AND_OVERSIGHT" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Management, fiduciary, and legal authority for the organization." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#HUMAN_FACTORS> a owl:Class ;
+    rdfs:label "HUMAN_FACTORS" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Human-centered design practices and end-user involvement." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#OPERATION_AND_MONITORING> a owl:Class ;
+    rdfs:label "OPERATION_AND_MONITORING" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Operating the AI system and assessing system output and impacts." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#PROCUREMENT> a owl:Class ;
+    rdfs:label "PROCUREMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Acquisition of AI models, products, or services from third parties." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#TEVV> a owl:Class ;
+    rdfs:label "TEVV" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Test, Evaluation, Verification, and Validation tasks." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> a owl:Class ;
+    rdfs:label "THIRD_PARTY_ENTITIES" ;
+    rdfs:subClassOf nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition "Providers, developers, vendors, and evaluators external to the deploying organization." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DECOMMISSIONING> a owl:Class ;
+    rdfs:label "DECOMMISSIONING" ;
+    rdfs:subClassOf nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition "Retiring or phasing out the GAI system." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEPLOYMENT> a owl:Class ;
+    rdfs:label "DEPLOYMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition "Placing the GAI system into a production environment." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DESIGN> a owl:Class ;
+    rdfs:label "DESIGN" ;
+    rdfs:subClassOf nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition "Articulating system concept, objectives, requirements." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEVELOPMENT> a owl:Class ;
+    rdfs:label "DEVELOPMENT" ;
+    rdfs:subClassOf nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition "Building, training, and tuning the GAI model or system." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#OPERATION> a owl:Class ;
+    rdfs:label "OPERATION" ;
+    rdfs:subClassOf nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition "Running and monitoring the GAI system in use." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#GV> a owl:Class ;
+    rdfs:label "GV" ;
+    rdfs:subClassOf nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+    skos:definition "Govern function." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MG> a owl:Class ;
+    rdfs:label "MG" ;
+    rdfs:subClassOf nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+    skos:definition "Manage function." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MP> a owl:Class ;
+    rdfs:label "MP" ;
+    rdfs:subClassOf nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+    skos:definition "Map function." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MS> a owl:Class ;
+    rdfs:label "MS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+    skos:definition "Measure function." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#ECOSYSTEM_OR_SOCIETAL_RISKS> a owl:Class ;
+    rdfs:label "ECOSYSTEM_OR_SOCIETAL_RISKS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategorizationEnum ;
+    skos:definition """Systemic risks. Examples include data privacy;
+environmental impacts; intellectual property.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#MISUSE_BY_HUMANS> a owl:Class ;
+    rdfs:label "MISUSE_BY_HUMANS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategorizationEnum ;
+    skos:definition """Risks from malicious use. Examples include CBRN information
+or capabilities; data privacy; human-AI configuration;
+obscene, degrading, and/or abusive content; information
+integrity; information security.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#TECHNICAL_OR_MODEL_RISKS> a owl:Class ;
+    rdfs:label "TECHNICAL_OR_MODEL_RISKS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategorizationEnum ;
+    skos:definition """Risks from malfunction. Examples include confabulation;
+dangerous or violent recommendations; data privacy; value
+chain and component integration; harmful bias and
+homogenization.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES> a owl:Class ;
+    rdfs:label "CBRN_INFORMATION_OR_CAPABILITIES" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Eased access to or synthesis of materially nefarious
+information or design capabilities related to chemical,
+biological, radiological, or nuclear (CBRN) weapons or
+other dangerous materials or agents.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION> a owl:Class ;
+    rdfs:label "CONFABULATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """The production of confidently stated but erroneous or
+false content (colloquially "hallucinations" or
+"fabrications") by which users may be misled or deceived.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT> a owl:Class ;
+    rdfs:label "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Eased production of and access to violent, inciting,
+radicalizing, or threatening content as well as
+recommendations to carry out self-harm or conduct illegal
+activities. Includes difficulty controlling public
+exposure to hateful and disparaging or stereotyping
+content.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DATA_PRIVACY> a owl:Class ;
+    rdfs:label "DATA_PRIVACY" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Impacts due to leakage and unauthorized use, disclosure, or
+de-anonymization of biometric, health, location, or other
+personally identifiable information or sensitive data.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS> a owl:Class ;
+    rdfs:label "ENVIRONMENTAL_IMPACTS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Impacts due to high compute resource utilization in
+training or operating GAI models, and related outcomes that
+may adversely impact ecosystems.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION> a owl:Class ;
+    rdfs:label "HARMFUL_BIAS_OR_HOMOGENIZATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Amplification and exacerbation of historical, societal,
+and systemic biases; performance disparities between
+sub-groups or languages, possibly due to non-representative
+training data, resulting in discrimination, amplification
+of biases, or incorrect presumptions about performance;
+undesired homogeneity that skews system or model outputs.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION> a owl:Class ;
+    rdfs:label "HUMAN_AI_CONFIGURATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Arrangements of or interactions between a human and an AI
+system which can result in the human inappropriately
+anthropomorphising GAI systems or experiencing algorithmic
+aversion, automation bias, over-reliance, or emotional
+entanglement with GAI systems.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY> a owl:Class ;
+    rdfs:label "INFORMATION_INTEGRITY" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Lowered barrier to entry to generate and support the
+exchange and consumption of content which may not
+distinguish fact from opinion or fiction or acknowledge
+uncertainties, or could be leveraged for large-scale
+dis- and mis-information campaigns.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY> a owl:Class ;
+    rdfs:label "INFORMATION_SECURITY" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Lowered barriers for offensive cyber capabilities,
+including via automated discovery and exploitation of
+vulnerabilities; increased attack surface for targeted
+cyberattacks, which may compromise a system's availability
+or the confidentiality or integrity of training data,
+code, or model weights.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY> a owl:Class ;
+    rdfs:label "INTELLECTUAL_PROPERTY" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Eased production or replication of alleged copyrighted,
+trademarked, or licensed content without authorization
+(possibly outside fair use); eased exposure of trade
+secrets; or plagiarism or illegal replication.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT> a owl:Class ;
+    rdfs:label "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Eased production of and access to obscene, degrading,
+and/or abusive imagery which can cause harm, including
+synthetic child sexual abuse material (CSAM) and
+nonconsensual intimate images (NCII) of adults.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> a owl:Class ;
+    rdfs:label "VALUE_CHAIN_AND_COMPONENT_INTEGRATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """Non-transparent or untraceable integration of upstream
+third-party components, including data that has been
+improperly obtained or not processed and cleaned due to
+increased automation from GAI; improper supplier vetting
+across the AI lifecycle; or other issues that diminish
+transparency or accountability for downstream users.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#APPLICATION_OR_IMPLEMENTATION> a owl:Class ;
+    rdfs:label "APPLICATION_OR_IMPLEMENTATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskScopeEnum ;
+    skos:definition """Specific application or implementation - i.e., a particular
+use case.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#ECOSYSTEM> a owl:Class ;
+    rdfs:label "ECOSYSTEM" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskScopeEnum ;
+    skos:definition """Beyond a single system or organizational context - e.g.,
+algorithmic monocultures, labor-market impacts, creative
+economies.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#MODEL_OR_SYSTEM> a owl:Class ;
+    rdfs:label "MODEL_OR_SYSTEM" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskScopeEnum ;
+    skos:definition "Individual GAI model or system level." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#DESIGN> a owl:Class ;
+    rdfs:label "DESIGN" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From decisions made during model or system design." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_AI_INTERACTION> a owl:Class ;
+    rdfs:label "HUMAN_AI_INTERACTION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From interactions between a human and the AI system." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_BEHAVIOR> a owl:Class ;
+    rdfs:label "HUMAN_BEHAVIOR" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition """From human behaviour - abuse, misuse, or unsafe repurposing
+by humans (adversarial or not).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_INPUTS> a owl:Class ;
+    rdfs:label "MODEL_INPUTS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From inputs supplied to the model at inference time." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_OUTPUTS> a owl:Class ;
+    rdfs:label "MODEL_OUTPUTS" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From the GAI system's generated outputs." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#OPERATION> a owl:Class ;
+    rdfs:label "OPERATION" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From operating the GAI model or system." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#TRAINING> a owl:Class ;
+    rdfs:label "TRAINING" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "From the training data or training process." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#IMMEDIATE> a owl:Class ;
+    rdfs:label "IMMEDIATE" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskTimeScaleEnum ;
+    skos:definition "Materialises abruptly (e.g., distribution of deepfakes)." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#PROLONGED> a owl:Class ;
+    rdfs:label "PROLONGED" ;
+    rdfs:subClassOf nist_ai_600_1:GaiRiskTimeScaleEnum ;
+    skos:definition """Materialises across extended periods (e.g., long-term
+effect of disinformation on societal trust).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS> a owl:Class ;
+    rdfs:label "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Accessibility and reasonable accommodations." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS> a owl:Class ;
+    rdfs:label "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "AI actor credentials and qualifications." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ALIGNMENT_TO_ORGANIZATIONAL_VALUES> a owl:Class ;
+    rdfs:label "ALIGNMENT_TO_ORGANIZATIONAL_VALUES" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Alignment to organizational values." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AUDITING_AND_ASSESSMENT> a owl:Class ;
+    rdfs:label "AUDITING_AND_ASSESSMENT" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Auditing and assessment." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CHANGE_MANAGEMENT_CONTROLS> a owl:Class ;
+    rdfs:label "CHANGE_MANAGEMENT_CONTROLS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Change-management controls." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#COMMERCIAL_USE> a owl:Class ;
+    rdfs:label "COMMERCIAL_USE" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Commercial use governance." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS> a owl:Class ;
+    rdfs:label "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Consistency in use of defining key terms." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROTECTION> a owl:Class ;
+    rdfs:label "DATA_PROTECTION" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Data protection." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROVENANCE> a owl:Class ;
+    rdfs:label "DATA_PROVENANCE" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Data provenance." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_RETENTION> a owl:Class ;
+    rdfs:label "DATA_RETENTION" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Data retention." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DECOMMISSIONING> a owl:Class ;
+    rdfs:label "DECOMMISSIONING" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Decommissioning practices." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DISCOURAGING_ANONYMOUS_USE> a owl:Class ;
+    rdfs:label "DISCOURAGING_ANONYMOUS_USE" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Discouraging anonymous use." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#EDUCATION> a owl:Class ;
+    rdfs:label "EDUCATION" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Education on GAI risks and responsible use." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#IMPACT_ASSESSMENTS> a owl:Class ;
+    rdfs:label "IMPACT_ASSESSMENTS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Impact assessments." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#INCIDENT_RESPONSE> a owl:Class ;
+    rdfs:label "INCIDENT_RESPONSE" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Incident response procedures." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#MONITORING> a owl:Class ;
+    rdfs:label "MONITORING" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Ongoing monitoring of GAI systems." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#OPT_OUTS> a owl:Class ;
+    rdfs:label "OPT_OUTS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "User opt-out mechanisms." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_BASED_CONTROLS> a owl:Class ;
+    rdfs:label "RISK_BASED_CONTROLS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Risk-based controls." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_MAPPING_AND_MEASUREMENT> a owl:Class ;
+    rdfs:label "RISK_MAPPING_AND_MEASUREMENT" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Risk mapping and measurement." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SCIENCE_BACKED_TEVV_PRACTICES> a owl:Class ;
+    rdfs:label "SCIENCE_BACKED_TEVV_PRACTICES" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Science-backed test, evaluation, validation, and verification practices." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SECURE_SOFTWARE_DEVELOPMENT_PRACTICES> a owl:Class ;
+    rdfs:label "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Secure software development practices." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#STAKEHOLDER_ENGAGEMENT> a owl:Class ;
+    rdfs:label "STAKEHOLDER_ENGAGEMENT" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Stakeholder engagement." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SYNTHETIC_CONTENT_DETECTION_AND_LABELING> a owl:Class ;
+    rdfs:label "SYNTHETIC_CONTENT_DETECTION_AND_LABELING" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Synthetic content detection and labeling tools and techniques." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WHISTLEBLOWER_PROTECTIONS> a owl:Class ;
+    rdfs:label "WHISTLEBLOWER_PROTECTIONS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Whistleblower protections." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS> a owl:Class ;
+    rdfs:label "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS" ;
+    rdfs:subClassOf nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition "Workforce diversity and interdisciplinary teams." .
+
+<https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#CONTENT_PROVENANCE> a owl:Class ;
+    rdfs:label "CONTENT_PROVENANCE" ;
+    rdfs:subClassOf nist_ai_600_1:PrimaryConsiderationEnum ;
+    skos:definition """Digital transparency mechanisms (provenance data tracking,
+watermarking, synthetic content detection) for tracing
+origin and history of content (A.1.6 - A.1.7).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#GOVERNANCE> a owl:Class ;
+    rdfs:label "GOVERNANCE" ;
+    rdfs:subClassOf nist_ai_600_1:PrimaryConsiderationEnum ;
+    skos:definition """How organizational governance regimes may be re-evaluated
+and adjusted for GAI contexts (A.1).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#INCIDENT_DISCLOSURE> a owl:Class ;
+    rdfs:label "INCIDENT_DISCLOSURE" ;
+    rdfs:subClassOf nist_ai_600_1:PrimaryConsiderationEnum ;
+    skos:definition """Documenting, reporting, and sharing information about AI
+incidents to mitigate harm and improve risk management
+(A.1.8).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING> a owl:Class ;
+    rdfs:label "PRE_DEPLOYMENT_TESTING" ;
+    rdfs:subClassOf nist_ai_600_1:PrimaryConsiderationEnum ;
+    skos:definition """Test, evaluation, validation, and verification practices
+appropriate for GAI prior to deployment (A.1.4).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_FINGERPRINTING> a owl:Class ;
+    rdfs:label "DIGITAL_FINGERPRINTING" ;
+    rdfs:subClassOf nist_ai_600_1:ProvenanceTechniqueEnum ;
+    skos:definition """Computing a content-derived identifier that can be matched
+against a reference store to detect known content.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_WATERMARKING> a owl:Class ;
+    rdfs:label "DIGITAL_WATERMARKING" ;
+    rdfs:subClassOf nist_ai_600_1:ProvenanceTechniqueEnum ;
+    skos:definition """Overt or covert digital watermarks embedded in content to
+allow downstream verification of origin.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#HUMAN_AUTHENTICATION> a owl:Class ;
+    rdfs:label "HUMAN_AUTHENTICATION" ;
+    rdfs:subClassOf nist_ai_600_1:ProvenanceTechniqueEnum ;
+    skos:definition """Human-mediated verification of content origin or
+authenticity.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#METADATA_RECORDING> a owl:Class ;
+    rdfs:label "METADATA_RECORDING" ;
+    rdfs:subClassOf nist_ai_600_1:ProvenanceTechniqueEnum ;
+    skos:definition """Recording metadata about content (creator, date/time,
+location, modifications, sources) for text, image, video,
+audio, or underlying datasets.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#COMBINATION> a owl:Class ;
+    rdfs:label "COMBINATION" ;
+    rdfs:subClassOf nist_ai_600_1:RedTeamingTypeEnum ;
+    skos:definition """Hybrid exercises using both expert and general-public
+participants.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#EXPERT> a owl:Class ;
+    rdfs:label "EXPERT" ;
+    rdfs:subClassOf nist_ai_600_1:RedTeamingTypeEnum ;
+    skos:definition """Performed by specialists with expertise in the domain or
+specific red-teaming context (medicine, biotech,
+cybersecurity).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#GENERAL_PUBLIC> a owl:Class ;
+    rdfs:label "GENERAL_PUBLIC" ;
+    rdfs:subClassOf nist_ai_600_1:RedTeamingTypeEnum ;
+    skos:definition """Performed by general users not necessarily having AI or
+technical expertise.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#HUMAN_AND_AI> a owl:Class ;
+    rdfs:label "HUMAN_AND_AI" ;
+    rdfs:subClassOf nist_ai_600_1:RedTeamingTypeEnum ;
+    skos:definition """Performed by GAI in combination with specialist or
+non-specialist human teams.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#AI_RED_TEAMING> a owl:Class ;
+    rdfs:label "AI_RED_TEAMING" ;
+    rdfs:subClassOf nist_ai_600_1:StructuredFeedbackMethodEnum ;
+    skos:definition """A structured testing exercise used to probe an AI system
+to find flaws and vulnerabilities such as inaccurate,
+harmful, or discriminatory outputs.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING> a owl:Class ;
+    rdfs:label "FIELD_TESTING" ;
+    rdfs:subClassOf nist_ai_600_1:StructuredFeedbackMethodEnum ;
+    skos:definition """Methods used to determine how people interact with,
+consume, use, and make sense of AI-generated information
+(UX, usability, randomised experiments).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS> a owl:Class ;
+    rdfs:label "PARTICIPATORY_ENGAGEMENT_METHODS" ;
+    rdfs:subClassOf nist_ai_600_1:StructuredFeedbackMethodEnum ;
+    skos:definition """Methods used to solicit feedback from civil society groups,
+affected communities, and users (focus groups, small user
+studies, surveys).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT> a owl:Class ;
+    rdfs:label "ACCOUNTABLE_AND_TRANSPARENT" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Trustworthy AI depends on accountability, which presupposes
+transparency about the system and its outputs.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE> a owl:Class ;
+    rdfs:label "EXPLAINABLE_AND_INTERPRETABLE" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Explainability concerns the mechanisms underlying an AI
+system's operation; interpretability concerns the meaning
+of its output in context.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED> a owl:Class ;
+    rdfs:label "FAIR_WITH_HARMFUL_BIAS_MANAGED" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Addressing equality and equity issues such as harmful bias
+and discrimination across cultures and applications.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED> a owl:Class ;
+    rdfs:label "PRIVACY_ENHANCED" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SAFE> a owl:Class ;
+    rdfs:label "SAFE" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """The system does not, under defined conditions, lead to a
+state in which human life, health, property, or the
+environment is endangered.""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT> a owl:Class ;
+    rdfs:label "SECURE_AND_RESILIENT" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """The system can withstand unexpected adverse events or
+changes (resilient) and maintain confidentiality,
+integrity, and availability (secure).""" .
+
+<https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> a owl:Class ;
+    rdfs:label "VALID_AND_RELIABLE" ;
+    rdfs:subClassOf nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Confirmation that requirements for a specific intended use
+have been fulfilled (validation) and that the system
+performs as required without failure (reliability).""" .
+
+nist_ai_600_1:actor_task a owl:ObjectProperty ;
+    rdfs:label "actor_task" ;
+    rdfs:range nist_ai_600_1:AiActorTaskEnum ;
+    skos:definition """Pertinent AI Actor Task(s) for a suggested action - i.e., the
+"AI Actor Tasks" row at the bottom of each Section 3 table.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:actor_task .
+
+nist_ai_600_1:addressed_by_actions a owl:ObjectProperty ;
+    rdfs:label "addressed_by_actions" ;
+    rdfs:range nist_ai_600_1:SuggestedAction ;
+    skos:definition """Suggested actions that address a GAI risk (back-reference
+derived from `SuggestedAction.gai_risks`).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:gai_risk_catalog a owl:ObjectProperty ;
+    rdfs:label "gai_risk_catalog" ;
+    rdfs:range nist_ai_600_1:GaiRisk ;
+    skos:definition "The catalog of GAI risks (Section 2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:gai_risks a owl:ObjectProperty ;
+    rdfs:label "gai_risks" ;
+    rdfs:range nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition """GAI risk categories addressed by a suggested action or
+considered by a primary consideration.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:governance_practices a owl:ObjectProperty ;
+    rdfs:label "governance_practices" ;
+    rdfs:range nist_ai_600_1:GovernancePracticeEnum ;
+    skos:definition """Governance plans and actions enumerated in NIST AI 600-1
+Appendix A.1.2 (Organizational Governance).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:lifecycle_stage a owl:ObjectProperty ;
+    rdfs:label "lifecycle_stage" ;
+    rdfs:range nist_ai_600_1:AiLifecycleStageEnum ;
+    skos:definition """AI lifecycle stage(s) at which a GAI risk may arise or at
+which a suggested action applies (Section 2).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:lifecycle_stage .
+
+nist_ai_600_1:primary_considerations a owl:ObjectProperty ;
+    rdfs:label "primary_considerations" ;
+    rdfs:range nist_ai_600_1:PrimaryGaiConsideration ;
+    skos:definition """The primary GAI considerations from Appendix A (Governance,
+Pre-Deployment Testing, Content Provenance, Incident
+Disclosure). Discriminated by `consideration_kind`.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:provenance_techniques a owl:ObjectProperty ;
+    rdfs:label "provenance_techniques" ;
+    rdfs:range nist_ai_600_1:ProvenanceTechniqueEnum ;
+    skos:definition """For Content Provenance: provenance data tracking techniques
+such as digital watermarking, metadata recording, digital
+fingerprinting, and human authentication (Appendix A.1.6).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:risk_scope a owl:ObjectProperty ;
+    rdfs:label "risk_scope" ;
+    rdfs:range nist_ai_600_1:GaiRiskScopeEnum ;
+    skos:definition "Scope levels at which the risk may manifest." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:risk_sources a owl:ObjectProperty ;
+    rdfs:label "risk_sources" ;
+    rdfs:range nist_ai_600_1:GaiRiskSourceEnum ;
+    skos:definition "Sources from which the risk may emerge." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:structured_feedback_methods a owl:ObjectProperty ;
+    rdfs:label "structured_feedback_methods" ;
+    rdfs:range nist_ai_600_1:StructuredPublicFeedback ;
+    skos:definition """Structured public feedback methods relevant to the profile
+(Appendix A.1.5).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:suggested_actions a owl:ObjectProperty ;
+    rdfs:label "suggested_actions" ;
+    rdfs:range nist_ai_600_1:SuggestedAction ;
+    skos:definition "Suggested actions to manage GAI risks (Section 3)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:time_scale a owl:ObjectProperty ;
+    rdfs:label "time_scale" ;
+    rdfs:range nist_ai_600_1:GaiRiskTimeScaleEnum ;
+    skos:definition "Time scales over which the risk may materialise." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:trustworthiness_characteristic a owl:ObjectProperty ;
+    rdfs:label "trustworthiness_characteristic" ;
+    rdfs:range nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+    skos:definition """Trustworthy AI Characteristic(s) most relevant to a GAI risk -
+i.e., the "Trustworthy AI Characteristics" tag at the end of
+each Section 2 risk description.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:trustworthiness_characteristic .
+
+nist_ai_600_1:GaiRisk a owl:Class ;
+    rdfs:label "GaiRisk" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:gai_risk_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:risk_categorization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:risk_sources ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:risk_scope ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskCategoryEnum ;
+            owl:onProperty nist_ai_600_1:gai_risk_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:risk_categorization ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskCategorizationEnum ;
+            owl:onProperty nist_ai_600_1:risk_categorization ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:addressed_by_actions ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskScopeEnum ;
+            owl:onProperty nist_ai_600_1:risk_scope ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:SuggestedAction ;
+            owl:onProperty nist_ai_600_1:addressed_by_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:time_scale ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:AiLifecycleStageEnum ;
+            owl:onProperty nist_ai_600_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_600_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskSourceEnum ;
+            owl:onProperty nist_ai_600_1:risk_sources ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:gai_risk_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskTimeScaleEnum ;
+            owl:onProperty nist_ai_600_1:time_scale ],
+        nist_ai_600_1:NamedThing ;
+    skos:broadMatch iso27001:Risk ;
+    skos:closeMatch nist_ai_100_1:AiSpecificRisk ;
+    skos:definition """A risk that is novel to or exacerbated by Generative AI.
+Each instance corresponds to one of the 12 risk categories
+enumerated in NIST AI 600-1 Section 2.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch iso29100:PrivacyRisk .
+
+nist_ai_600_1:PrimaryGaiConsideration a owl:Class ;
+    rdfs:label "PrimaryGaiConsideration" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:PrimaryConsiderationEnum ;
+            owl:onProperty nist_ai_600_1:consideration_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:consideration_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:ai_incident_definition ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:governance_practices ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:third_party_considerations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:consideration_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:ai_incident_definition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:third_party_considerations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:third_party_considerations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:provenance_techniques ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:ProvenanceTechniqueEnum ;
+            owl:onProperty nist_ai_600_1:provenance_techniques ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:ai_incident_definition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GovernancePracticeEnum ;
+            owl:onProperty nist_ai_600_1:governance_practices ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
+        nist_ai_600_1:NamedThing ;
+    skos:definition """An overarching consideration derived from the NIST GAI PWG
+consultation process (Appendix A). The `consideration_kind`
+attribute discriminates between the four primary
+considerations: Governance, Pre-Deployment Testing, Content
+Provenance, and Incident Disclosure.
+
+All consideration-specific attributes are optional and apply
+to the appropriate `consideration_kind`:
+  * GOVERNANCE: governance_practices, third_party_considerations
+  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
+  * CONTENT_PROVENANCE: provenance_techniques
+  * INCIDENT_DISCLOSURE: ai_incident_definition""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_csf:CSFProperty .
+
+nist_ai_600_1:action_id a owl:DatatypeProperty ;
+    rdfs:label "action_id" ;
+    rdfs:range xsd:string ;
+    skos:definition "Identifier of a Suggested Action." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:ai_incident_definition a owl:DatatypeProperty ;
+    rdfs:label "ai_incident_definition" ;
+    rdfs:range xsd:string ;
+    skos:definition """For Incident Disclosure: the definition of AI incident used
+by the organisation (Appendix A.1.8).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:applies_to_subcategory a owl:DatatypeProperty ;
+    rdfs:label "applies_to_subcategory" ;
+    rdfs:range xsd:string ;
+    skos:closeMatch oscal_profile:Profile ;
+    skos:definition "Identifier of the AI RMF subcategory the action applies to." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:consideration_kind a owl:ObjectProperty ;
+    rdfs:label "consideration_kind" ;
+    rdfs:range nist_ai_600_1:PrimaryConsiderationEnum ;
+    skos:definition "Which primary consideration this element represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:function_prefix a owl:ObjectProperty ;
+    rdfs:label "function_prefix" ;
+    rdfs:range nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+    skos:definition "Two-letter function prefix of the action's subcategory." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:gai_risk_kind a owl:ObjectProperty ;
+    rdfs:label "gai_risk_kind" ;
+    rdfs:range nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:definition "The GAI risk category this element represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:limitations_of_current_approaches a owl:DatatypeProperty ;
+    rdfs:label "limitations_of_current_approaches" ;
+    rdfs:range xsd:string ;
+    skos:definition """For Pre-Deployment Testing: free-text discussion of why
+current TEVV approaches may be inadequate (Appendix A.1.4).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:red_team_type a owl:ObjectProperty ;
+    rdfs:label "red_team_type" ;
+    rdfs:range nist_ai_600_1:RedTeamingTypeEnum ;
+    skos:definition "The type of AI red-teaming exercise." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:risk_categorization a owl:ObjectProperty ;
+    rdfs:label "risk_categorization" ;
+    rdfs:range nist_ai_600_1:GaiRiskCategorizationEnum ;
+    skos:definition """Higher-level categorisation - technical/model, misuse, or
+ecosystem/societal.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:third_party_considerations a owl:DatatypeProperty ;
+    rdfs:label "third_party_considerations" ;
+    rdfs:range xsd:string ;
+    skos:definition """Considerations for third-party GAI integrations, procurement,
+SBOMs, SLAs, and SSAE reports (Appendix A.1.3).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:title a owl:DatatypeProperty ;
+    rdfs:label "title" ;
+    rdfs:range xsd:string ;
+    skos:definition "Human-readable title." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:GaiRiskTimeScaleEnum a owl:Class ;
+    rdfs:label "GaiRiskTimeScaleEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#IMMEDIATE> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#PROLONGED> ) ;
+    skos:definition """The time scale over which a GAI risk may materialise
+(Section 2).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#IMMEDIATE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum#PROLONGED> .
+
+nist_ai_600_1:StructuredPublicFeedback a owl:Class ;
+    rdfs:label "StructuredPublicFeedback" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:StructuredFeedbackMethodEnum ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        nist_ai_600_1:NamedThing ;
+    skos:definition """Methods used to evaluate whether GAI systems are performing as
+intended and to calibrate and verify traditional measurement
+methods (A.1.5).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch iso27001:InterestedParty .
+
+nist_ai_600_1:GaiRiskCategorizationEnum a owl:Class ;
+    rdfs:label "GaiRiskCategorizationEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#TECHNICAL_OR_MODEL_RISKS> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#MISUSE_BY_HUMANS> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#ECOSYSTEM_OR_SOCIETAL_RISKS> ) ;
+    skos:definition """Higher-level grouping of GAI risks, derived from the UK's
+International Scientific Report on the Safety of Advanced AI
+(NIST AI 600-1 Section 2, footnote 5).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#ECOSYSTEM_OR_SOCIETAL_RISKS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#MISUSE_BY_HUMANS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum#TECHNICAL_OR_MODEL_RISKS> .
+
+nist_ai_600_1:GaiRiskScopeEnum a owl:Class ;
+    rdfs:label "GaiRiskScopeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#MODEL_OR_SYSTEM> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#APPLICATION_OR_IMPLEMENTATION> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#ECOSYSTEM> ) ;
+    skos:definition "The scope at which a GAI risk may manifest (Section 2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#APPLICATION_OR_IMPLEMENTATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#ECOSYSTEM>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum#MODEL_OR_SYSTEM> .
+
+nist_ai_600_1:NamedThing a owl:Class ;
+    rdfs:label "NamedThing" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:title ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ owl:unionOf ( nist_ai_600_1:GaiProfile nist_ai_600_1:GaiRisk nist_ai_600_1:PrimaryGaiConsideration nist_ai_600_1:StructuredPublicFeedback nist_ai_600_1:SuggestedAction ) ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:title ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:title ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:id ] ;
+    skos:definition """Abstract base for identifiable elements of the GAI Profile.
+Inlined here to keep this schema standalone; mirrors the
+`NamedThing` defined in NIST AI 100-1.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:NamedThing .
+
+nist_ai_600_1:StructuredFeedbackMethodEnum a owl:Class ;
+    rdfs:label "StructuredFeedbackMethodEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS> <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING> <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#AI_RED_TEAMING> ) ;
+    skos:definition """Categories of structured public feedback for GAI risk
+management (Appendix A.1.5).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#AI_RED_TEAMING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS> .
+
+nist_ai_600_1:SuggestedAction a owl:Class ;
+    rdfs:label "SuggestedAction" ;
+    rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:function_prefix ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:gai_risks ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:AiActorTaskEnum ;
+            owl:onProperty nist_ai_600_1:actor_task ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:action_id ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:function_prefix ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:action_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:action_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+            owl:onProperty nist_ai_600_1:function_prefix ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskCategoryEnum ;
+            owl:onProperty nist_ai_600_1:gai_risks ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:actor_task ],
+        nist_ai_600_1:NamedThing ;
+    skos:closeMatch stix:CourseOfAction ;
+    skos:definition """A suggested action an organisation can take to manage GAI
+risks. Each action is identified by an Action ID, linked to an
+AI RMF subcategory, and may be relevant to one or more GAI
+risks and AI actor tasks (NIST AI 600-1 Section 3).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch gist_linkml:Task,
+        oscal_catalog:Control .
+
+nist_ai_600_1:GaiActionFunctionPrefixEnum a owl:Class ;
+    rdfs:label "GaiActionFunctionPrefixEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#GV> <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MP> <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MS> <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MG> ) ;
+    skos:definition "Two-letter function prefix used in GAI Action IDs." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#GV>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MG>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MP>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MS> .
+
+nist_ai_600_1:PrimaryConsiderationEnum a owl:Class ;
+    rdfs:label "PrimaryConsiderationEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#GOVERNANCE> <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING> <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#CONTENT_PROVENANCE> <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#INCIDENT_DISCLOSURE> ) ;
+    skos:definition """The four overarching themes derived from the GAI PWG
+consultation process (Appendix A).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#CONTENT_PROVENANCE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#GOVERNANCE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#INCIDENT_DISCLOSURE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING> .
+
+nist_ai_600_1:ProvenanceTechniqueEnum a owl:Class ;
+    rdfs:label "ProvenanceTechniqueEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_WATERMARKING> <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#METADATA_RECORDING> <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_FINGERPRINTING> <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#HUMAN_AUTHENTICATION> ) ;
+    skos:definition """Provenance data tracking techniques for GAI content
+(Appendix A.1.6). "Some well-known techniques for provenance
+data tracking include digital watermarking, metadata
+recording, digital fingerprinting, and human authentication,
+among others.\"""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_FINGERPRINTING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#DIGITAL_WATERMARKING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#HUMAN_AUTHENTICATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum#METADATA_RECORDING> .
+
+nist_ai_600_1:RedTeamingTypeEnum a owl:Class ;
+    rdfs:label "RedTeamingTypeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#GENERAL_PUBLIC> <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#EXPERT> <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#COMBINATION> <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#HUMAN_AND_AI> ) ;
+    skos:definition "Types of AI red-teaming exercises (Appendix A.1.5)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#COMBINATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#EXPERT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#GENERAL_PUBLIC>,
+        <https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum#HUMAN_AND_AI> .
+
+nist_ai_600_1:description a owl:DatatypeProperty ;
+    rdfs:label "description" ;
+    rdfs:range xsd:string ;
+    skos:definition "Free-text description." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:feedback_method_kind a owl:ObjectProperty ;
+    rdfs:label "feedback_method_kind" ;
+    rdfs:range nist_ai_600_1:StructuredFeedbackMethodEnum ;
+    skos:definition "Which structured feedback method this element represents." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:id a owl:DatatypeProperty ;
+    rdfs:label "id" ;
+    rdfs:range xsd:string ;
+    skos:definition "Unique identifier for an element." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> .
+
+nist_ai_600_1:AiLifecycleStageEnum a owl:Class ;
+    rdfs:label "AiLifecycleStageEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DESIGN> <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEVELOPMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEPLOYMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#OPERATION> <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DECOMMISSIONING> ) ;
+    skos:definition """AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
+"Risks can arise during design, development, deployment,
+operation, and/or decommissioning.\"""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:AiLifecycleStageEnum ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DECOMMISSIONING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEPLOYMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DESIGN>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#DEVELOPMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum#OPERATION> .
+
+nist_ai_600_1:GaiRiskSourceEnum a owl:Class ;
+    rdfs:label "GaiRiskSourceEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#DESIGN> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#TRAINING> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#OPERATION> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_INPUTS> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_OUTPUTS> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_BEHAVIOR> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_AI_INTERACTION> ) ;
+    skos:definition "The source(s) from which a GAI risk may emerge (Section 2)." ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#DESIGN>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_AI_INTERACTION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#HUMAN_BEHAVIOR>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_INPUTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#MODEL_OUTPUTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#OPERATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum#TRAINING> .
+
+nist_ai_600_1:TrustworthinessCharacteristicEnum a owl:Class ;
+    rdfs:label "TrustworthinessCharacteristicEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SAFE> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED> <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED> ) ;
+    skos:definition """The seven characteristics of trustworthy AI from NIST AI 100-1
+(AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
+Section 2 as "Trustworthy AI Characteristics" tags on each
+GAI risk.""" ;
+    skos:exactMatch nist_ai_100_1:TrustworthinessCharacteristicEnum ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#ACCOUNTABLE_AND_TRANSPARENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#EXPLAINABLE_AND_INTERPRETABLE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#FAIR_WITH_HARMFUL_BIAS_MANAGED>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#PRIVACY_ENHANCED>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SAFE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#SECURE_AND_RESILIENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum#VALID_AND_RELIABLE> .
+
+nist_ai_600_1:AiActorTaskEnum a owl:Class ;
+    rdfs:label "AiActorTaskEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DESIGN> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEVELOPMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEPLOYMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#OPERATION_AND_MONITORING> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#TEVV> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#DOMAIN_EXPERTS> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#END_USERS> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#HUMAN_FACTORS> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_AND_COMMUNITIES> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#PROCUREMENT> <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> ) ;
+    skos:definition """AI Actor Tasks referenced by the Suggested Actions tables in
+NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
+Appendix A).""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    skos:relatedMatch nist_ai_100_1:AiActorTaskEnum ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AFFECTED_INDIVIDUALS_AND_COMMUNITIES>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEPLOYMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DESIGN>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_DEVELOPMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#AI_IMPACT_ASSESSMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#DOMAIN_EXPERTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#END_USERS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#GOVERNANCE_AND_OVERSIGHT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#HUMAN_FACTORS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#OPERATION_AND_MONITORING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#PROCUREMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#TEVV>,
+        <https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum#THIRD_PARTY_ENTITIES> .
+
+nist_ai_600_1:GaiRiskCategoryEnum a owl:Class ;
+    rdfs:label "GaiRiskCategoryEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DATA_PRIVACY> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT> <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> ) ;
+    skos:definition """The 12 risks unique to or exacerbated by Generative AI as
+enumerated in NIST AI 600-1 Section 2.""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DATA_PRIVACY>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#ENVIRONMENTAL_IMPACTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HARMFUL_BIAS_OR_HOMOGENIZATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INTELLECTUAL_PROPERTY>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> .
+
+xsd:string a rdfs:Datatype ;
+    owl:equivalentClass [ a rdfs:Datatype ;
+            owl:onDatatype xsd:string ;
+            owl:withRestrictions ( [ xsd:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ] ) ],
+        [ a rdfs:Datatype ;
+            owl:onDatatype xsd:string ;
+            owl:withRestrictions ( [ xsd:pattern "^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$" ] ) ] .
+
+nist_ai_600_1:GovernancePracticeEnum a owl:Class ;
+    rdfs:label "GovernancePracticeEnum" ;
+    owl:unionOf ( <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ALIGNMENT_TO_ORGANIZATIONAL_VALUES> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AUDITING_AND_ASSESSMENT> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CHANGE_MANAGEMENT_CONTROLS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#COMMERCIAL_USE> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROVENANCE> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROTECTION> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_RETENTION> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DECOMMISSIONING> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DISCOURAGING_ANONYMOUS_USE> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#EDUCATION> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#IMPACT_ASSESSMENTS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#INCIDENT_RESPONSE> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#MONITORING> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#OPT_OUTS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_BASED_CONTROLS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_MAPPING_AND_MEASUREMENT> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SCIENCE_BACKED_TEVV_PRACTICES> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SECURE_SOFTWARE_DEVELOPMENT_PRACTICES> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#STAKEHOLDER_ENGAGEMENT> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SYNTHETIC_CONTENT_DETECTION_AND_LABELING> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WHISTLEBLOWER_PROTECTIONS> <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS> ) ;
+    skos:definition """Governance plans and actions for GAI systems enumerated in
+NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").""" ;
+    skos:inScheme <https://w3id.org/lmodel/nist-ai-600-1> ;
+    linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#ALIGNMENT_TO_ORGANIZATIONAL_VALUES>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#AUDITING_AND_ASSESSMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CHANGE_MANAGEMENT_CONTROLS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#COMMERCIAL_USE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROTECTION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_PROVENANCE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DATA_RETENTION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DECOMMISSIONING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#DISCOURAGING_ANONYMOUS_USE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#EDUCATION>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#IMPACT_ASSESSMENTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#INCIDENT_RESPONSE>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#MONITORING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#OPT_OUTS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_BASED_CONTROLS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#RISK_MAPPING_AND_MEASUREMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SCIENCE_BACKED_TEVV_PRACTICES>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SECURE_SOFTWARE_DEVELOPMENT_PRACTICES>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#STAKEHOLDER_ENGAGEMENT>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#SYNTHETIC_CONTENT_DETECTION_AND_LABELING>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WHISTLEBLOWER_PROTECTIONS>,
+        <https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum#WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS> .
+
+

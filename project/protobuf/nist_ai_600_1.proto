@@ -1,0 +1,96 @@
+ syntax="proto3";
+ package
+// metamodel_version: 1.11.0
+// version: 1.0.0
+// A structured testing exercise used to probe an AI system to
+// find flaws and vulnerabilities such as inaccurate, harmful, or
+// discriminatory outputs, often in a controlled environment and
+// in collaboration with system developers (A.1.5).
+message AiRedTeaming
+ {
+  string id = 0
+  string title = 0
+  string description = 0
+  redTeamingTypeEnum redTeamType = 0
+  structuredFeedbackMethodEnum feedbackMethodKind = 0
+ }
+// Root container that bundles the NIST AI 600-1 Generative AI
+// Profile: GAI risks (Section 2), suggested actions (Section 3),
+// and primary considerations (Appendix A). The GAI Profile is a
+// *cross-sectoral* AI RMF profile (Section 1).
+message GaiProfile
+ {
+  string id = 0
+  string title = 0
+  string description = 0
+ repeated  gaiRisk gaiRiskCatalog = 0
+ repeated  suggestedAction suggestedActions = 0
+ repeated  primaryGaiConsideration primaryConsiderations = 0
+ repeated  structuredPublicFeedback structuredFeedbackMethods = 0
+ }
+// A risk that is novel to or exacerbated by Generative AI.
+// Each instance corresponds to one of the 12 risk categories
+// enumerated in NIST AI 600-1 Section 2.
+message GaiRisk
+ {
+  string id = 0
+  string title = 0
+  string description = 0
+  gaiRiskCategoryEnum gaiRiskKind = 0
+  gaiRiskCategorizationEnum riskCategorization = 0
+ repeated  gaiRiskScopeEnum riskScope = 0
+ repeated  gaiRiskSourceEnum riskSources = 0
+ repeated  gaiRiskTimeScaleEnum timeScale = 0
+ repeated  aiLifecycleStageEnum lifecycleStage = 0
+ repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
+ repeated  suggestedAction addressedByActions = 0
+ }
+// An overarching consideration derived from the NIST GAI PWG
+// consultation process (Appendix A). The `consideration_kind`
+// attribute discriminates between the four primary
+// considerations: Governance, Pre-Deployment Testing, Content
+// Provenance, and Incident Disclosure.
+// 
+// All consideration-specific attributes are optional and apply
+// to the appropriate `consideration_kind`:
+//   * GOVERNANCE: governance_practices, third_party_considerations
+//   * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
+//   * CONTENT_PROVENANCE: provenance_techniques
+//   * INCIDENT_DISCLOSURE: ai_incident_definition
+message PrimaryGaiConsideration
+ {
+  string id = 0
+  string title = 0
+  string description = 0
+  primaryConsiderationEnum considerationKind = 0
+ repeated  governancePracticeEnum governancePractices = 0
+  string thirdPartyConsiderations = 0
+  string limitationsOfCurrentApproaches = 0
+ repeated  provenanceTechniqueEnum provenanceTechniques = 0
+  string aiIncidentDefinition = 0
+ }
+// Methods used to evaluate whether GAI systems are performing as
+// intended and to calibrate and verify traditional measurement
+// methods (A.1.5).
+message StructuredPublicFeedback
+ {
+  string id = 0
+  string title = 0
+  string description = 0
+  structuredFeedbackMethodEnum feedbackMethodKind = 0
+ }
+// A suggested action an organisation can take to manage GAI
+// risks. Each action is identified by an Action ID, linked to an
+// AI RMF subcategory, and may be relevant to one or more GAI
+// risks and AI actor tasks (NIST AI 600-1 Section 3).
+message SuggestedAction
+ {
+  string title = 0
+  gaiActionId actionId = 0
+  gaiActionFunctionPrefixEnum functionPrefix = 0
+  subcategoryCode appliesToSubcategory = 0
+ repeated  gaiRiskCategoryEnum gaiRisks = 0
+ repeated  aiActorTaskEnum actorTask = 0
+  string id = 0
+  string description = 0
+ }

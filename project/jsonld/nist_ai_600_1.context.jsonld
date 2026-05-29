@@ -1,0 +1,205 @@
+{
+   "@context": {
+      "xsd": "http://www.w3.org/2001/XMLSchema#",
+      "dcterms": "http://purl.org/dc/terms/",
+      "doi": "https://doi.org/",
+      "gist_linkml": "https://w3id.org/lmodel/gist/",
+      "iso27001": "https://w3id.org/lmodel/iso27001/",
+      "iso29100": "https://w3id.org/lmodel/iso29100/",
+      "linkml": "https://w3id.org/linkml/",
+      "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
+      "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
+      "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
+      "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
+      "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
+      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "schema": "http://schema.org/",
+      "skos": "http://www.w3.org/2004/02/skos/core#",
+      "stix": "https://w3id.org/lmodel/stix/",
+      "@vocab": "https://w3id.org/lmodel/nist-ai-600-1/",
+      "action_id": {
+         "@id": "action_id"
+      },
+      "actor_task": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "actor_task"
+      },
+      "addressed_by_actions": {
+         "@type": "@id",
+         "@id": "addressed_by_actions"
+      },
+      "ai_incident_definition": {
+         "@id": "ai_incident_definition"
+      },
+      "applies_to_subcategory": {
+         "@id": "applies_to_subcategory"
+      },
+      "consideration_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "consideration_kind"
+      },
+      "description": {
+         "@id": "dcterms:description"
+      },
+      "feedback_method_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "feedback_method_kind"
+      },
+      "function_prefix": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "function_prefix"
+      },
+      "gai_risk_catalog": {
+         "@type": "@id",
+         "@id": "gai_risk_catalog"
+      },
+      "gai_risk_kind": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_risk_kind"
+      },
+      "gai_risks": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_risks"
+      },
+      "governance_practices": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "governance_practices"
+      },
+      "id": "@id",
+      "lifecycle_stage": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "lifecycle_stage"
+      },
+      "limitations_of_current_approaches": {
+         "@id": "limitations_of_current_approaches"
+      },
+      "primary_considerations": {
+         "@type": "@id",
+         "@id": "primary_considerations"
+      },
+      "provenance_techniques": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "provenance_techniques"
+      },
+      "red_team_type": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "red_team_type"
+      },
+      "risk_categorization": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "risk_categorization"
+      },
+      "risk_scope": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "risk_scope"
+      },
+      "risk_sources": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "risk_sources"
+      },
+      "structured_feedback_methods": {
+         "@type": "@id",
+         "@id": "structured_feedback_methods"
+      },
+      "suggested_actions": {
+         "@type": "@id",
+         "@id": "suggested_actions"
+      },
+      "third_party_considerations": {
+         "@id": "third_party_considerations"
+      },
+      "time_scale": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "time_scale"
+      },
+      "title": {
+         "@id": "dcterms:title"
+      },
+      "trustworthiness_characteristic": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "trustworthiness_characteristic"
+      },
+      "AiRedTeaming": {
+         "@id": "AiRedTeaming"
+      },
+      "GaiProfile": {
+         "@id": "GaiProfile"
+      },
+      "GaiRisk": {
+         "@id": "GaiRisk"
+      },
+      "NamedThing": {
+         "@id": "NamedThing"
+      },
+      "PrimaryGaiConsideration": {
+         "@id": "PrimaryGaiConsideration"
+      },
+      "StructuredPublicFeedback": {
+         "@id": "StructuredPublicFeedback"
+      },
+      "SuggestedAction": {
+         "@id": "SuggestedAction"
+      }
+   }
+}

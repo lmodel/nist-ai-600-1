@@ -1,0 +1,19 @@
+{
+   "dcterms": "http://purl.org/dc/terms/",
+   "doi": "https://doi.org/",
+   "gist_linkml": "https://w3id.org/lmodel/gist/",
+   "iso27001": "https://w3id.org/lmodel/iso27001/",
+   "iso29100": "https://w3id.org/lmodel/iso29100/",
+   "linkml": "https://w3id.org/linkml/",
+   "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
+   "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
+   "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
+   "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
+   "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
+   "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
+   "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+   "schema": "http://schema.org/",
+   "skos": "http://www.w3.org/2004/02/skos/core#",
+   "stix": "https://w3id.org/lmodel/stix/",
+   "xsd": "http://www.w3.org/2001/XMLSchema#"
+}

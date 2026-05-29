@@ -1,0 +1,351 @@
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix nist_ai_600_1: <https://w3id.org/lmodel/nist-ai-600-1/> .
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+
+nist_ai_600_1:AiRedTeaming a sh:NodeShape ;
+    rdfs:comment """A structured testing exercise used to probe an AI system to
+find flaws and vulnerabilities such as inaccurate, harmful, or
+discriminatory outputs, often in a controlled environment and
+in collaboration with system developers (A.1.5).""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:description ],
+        [ sh:description "The type of AI red-teaming exercise." ;
+            sh:in ( "GENERAL_PUBLIC" "EXPERT" "COMBINATION" "HUMAN_AND_AI" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:red_team_type ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:title ],
+        [ sh:defaultValue "AI_RED_TEAMING" ;
+            sh:description "Which structured feedback method this element represents." ;
+            sh:in ( "PARTICIPATORY_ENGAGEMENT_METHODS" "FIELD_TESTING" "AI_RED_TEAMING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 1 ;
+            sh:path nist_ai_600_1:feedback_method_kind ] ;
+    sh:targetClass nist_ai_600_1:AiRedTeaming .
+
+nist_ai_600_1:GaiProfile a sh:NodeShape ;
+    rdfs:comment """Root container that bundles the NIST AI 600-1 Generative AI
+Profile: GAI risks (Section 2), suggested actions (Section 3),
+and primary considerations (Appendix A). The GAI Profile is a
+*cross-sectoral* AI RMF profile (Section 1).""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 4 ;
+            sh:path dcterms:identifier ],
+        [ sh:class nist_ai_600_1:StructuredPublicFeedback ;
+            sh:description """Structured public feedback methods relevant to the profile
+(Appendix A.1.5).""" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 3 ;
+            sh:path nist_ai_600_1:structured_feedback_methods ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path dcterms:title ],
+        [ sh:class nist_ai_600_1:GaiRisk ;
+            sh:description "The catalog of GAI risks (Section 2)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:gai_risk_catalog ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:description ],
+        [ sh:class nist_ai_600_1:PrimaryGaiConsideration ;
+            sh:description """The primary GAI considerations from Appendix A (Governance,
+Pre-Deployment Testing, Content Provenance, Incident
+Disclosure). Discriminated by `consideration_kind`.""" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 2 ;
+            sh:path nist_ai_600_1:primary_considerations ],
+        [ sh:class nist_ai_600_1:SuggestedAction ;
+            sh:description "Suggested actions to manage GAI risks (Section 3)." ;
+            sh:nodeKind sh:IRI ;
+            sh:order 1 ;
+            sh:path nist_ai_600_1:suggested_actions ] ;
+    sh:targetClass nist_ai_600_1:GaiProfile .
+
+nist_ai_600_1:NamedThing a sh:NodeShape ;
+    rdfs:comment """Abstract base for identifiable elements of the GAI Profile.
+Inlined here to keep this schema standalone; mirrors the
+`NamedThing` defined in NIST AI 100-1.""" ;
+    sh:closed false ;
+    sh:ignoredProperties ( nist_ai_600_1:action_id nist_ai_600_1:time_scale nist_ai_600_1:structured_feedback_methods nist_ai_600_1:governance_practices nist_ai_600_1:consideration_kind nist_ai_600_1:feedback_method_kind nist_ai_600_1:suggested_actions nist_ai_600_1:gai_risk_kind nist_ai_600_1:lifecycle_stage nist_ai_600_1:third_party_considerations nist_ai_600_1:red_team_type nist_ai_600_1:gai_risk_catalog nist_ai_600_1:limitations_of_current_approaches nist_ai_600_1:addressed_by_actions nist_ai_600_1:gai_risks nist_ai_600_1:applies_to_subcategory nist_ai_600_1:risk_sources nist_ai_600_1:risk_scope nist_ai_600_1:actor_task nist_ai_600_1:primary_considerations rdf:type nist_ai_600_1:trustworthiness_characteristic nist_ai_600_1:ai_incident_definition nist_ai_600_1:provenance_techniques nist_ai_600_1:risk_categorization nist_ai_600_1:function_prefix ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path dcterms:identifier ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:description ] ;
+    sh:targetClass nist_ai_600_1:NamedThing .
+
+nist_ai_600_1:GaiRisk a sh:NodeShape ;
+    rdfs:comment """A risk that is novel to or exacerbated by Generative AI.
+Each instance corresponds to one of the 12 risk categories
+enumerated in NIST AI 600-1 Section 2.""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description "Time scales over which the risk may materialise." ;
+            sh:in ( "IMMEDIATE" "PROLONGED" ) ;
+            sh:order 4 ;
+            sh:path nist_ai_600_1:time_scale ],
+        [ sh:description """Higher-level categorisation - technical/model, misuse, or
+ecosystem/societal.""" ;
+            sh:in ( "TECHNICAL_OR_MODEL_RISKS" "MISUSE_BY_HUMANS" "ECOSYSTEM_OR_SOCIETAL_RISKS" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path nist_ai_600_1:risk_categorization ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path dcterms:identifier ],
+        [ sh:description "The GAI risk category this element represents." ;
+            sh:in ( "CBRN_INFORMATION_OR_CAPABILITIES" "CONFABULATION" "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT" "DATA_PRIVACY" "ENVIRONMENTAL_IMPACTS" "HARMFUL_BIAS_OR_HOMOGENIZATION" "HUMAN_AI_CONFIGURATION" "INFORMATION_INTEGRITY" "INFORMATION_SECURITY" "INTELLECTUAL_PROPERTY" "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT" "VALUE_CHAIN_AND_COMPONENT_INTEGRATION" ) ;
+            sh:maxCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:gai_risk_kind ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 10 ;
+            sh:path dcterms:description ],
+        [ sh:description "Scope levels at which the risk may manifest." ;
+            sh:in ( "MODEL_OR_SYSTEM" "APPLICATION_OR_IMPLEMENTATION" "ECOSYSTEM" ) ;
+            sh:order 2 ;
+            sh:path nist_ai_600_1:risk_scope ],
+        [ sh:description "Sources from which the risk may emerge." ;
+            sh:in ( "DESIGN" "TRAINING" "OPERATION" "MODEL_INPUTS" "MODEL_OUTPUTS" "HUMAN_BEHAVIOR" "HUMAN_AI_INTERACTION" ) ;
+            sh:order 3 ;
+            sh:path nist_ai_600_1:risk_sources ],
+        [ sh:description """AI lifecycle stage(s) at which a GAI risk may arise or at
+which a suggested action applies (Section 2).""" ;
+            sh:in ( "DESIGN" "DEVELOPMENT" "DEPLOYMENT" "OPERATION" "DECOMMISSIONING" ) ;
+            sh:order 5 ;
+            sh:path nist_ai_600_1:lifecycle_stage ],
+        [ sh:description """Trustworthy AI Characteristic(s) most relevant to a GAI risk -
+i.e., the "Trustworthy AI Characteristics" tag at the end of
+each Section 2 risk description.""" ;
+            sh:in ( "VALID_AND_RELIABLE" "SAFE" "SECURE_AND_RESILIENT" "ACCOUNTABLE_AND_TRANSPARENT" "EXPLAINABLE_AND_INTERPRETABLE" "PRIVACY_ENHANCED" "FAIR_WITH_HARMFUL_BIAS_MANAGED" ) ;
+            sh:order 6 ;
+            sh:path nist_ai_600_1:trustworthiness_characteristic ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 9 ;
+            sh:path dcterms:title ],
+        [ sh:class nist_ai_600_1:SuggestedAction ;
+            sh:description """Suggested actions that address a GAI risk (back-reference
+derived from `SuggestedAction.gai_risks`).""" ;
+            sh:nodeKind sh:IRI ;
+            sh:order 7 ;
+            sh:path nist_ai_600_1:addressed_by_actions ] ;
+    sh:targetClass nist_ai_600_1:GaiRisk .
+
+nist_ai_600_1:PrimaryGaiConsideration a sh:NodeShape ;
+    rdfs:comment """An overarching consideration derived from the NIST GAI PWG
+consultation process (Appendix A). The `consideration_kind`
+attribute discriminates between the four primary
+considerations: Governance, Pre-Deployment Testing, Content
+Provenance, and Incident Disclosure.
+
+All consideration-specific attributes are optional and apply
+to the appropriate `consideration_kind`:
+  * GOVERNANCE: governance_practices, third_party_considerations
+  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
+  * CONTENT_PROVENANCE: provenance_techniques
+  * INCIDENT_DISCLOSURE: ai_incident_definition""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:description """For Content Provenance: provenance data tracking techniques
+such as digital watermarking, metadata recording, digital
+fingerprinting, and human authentication (Appendix A.1.6).""" ;
+            sh:in ( "DIGITAL_WATERMARKING" "METADATA_RECORDING" "DIGITAL_FINGERPRINTING" "HUMAN_AUTHENTICATION" ) ;
+            sh:order 4 ;
+            sh:path nist_ai_600_1:provenance_techniques ],
+        [ sh:description """Governance plans and actions enumerated in NIST AI 600-1
+Appendix A.1.2 (Organizational Governance).""" ;
+            sh:in ( "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS" "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS" "ALIGNMENT_TO_ORGANIZATIONAL_VALUES" "AUDITING_AND_ASSESSMENT" "CHANGE_MANAGEMENT_CONTROLS" "COMMERCIAL_USE" "DATA_PROVENANCE" "DATA_PROTECTION" "DATA_RETENTION" "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS" "DECOMMISSIONING" "DISCOURAGING_ANONYMOUS_USE" "EDUCATION" "IMPACT_ASSESSMENTS" "INCIDENT_RESPONSE" "MONITORING" "OPT_OUTS" "RISK_BASED_CONTROLS" "RISK_MAPPING_AND_MEASUREMENT" "SCIENCE_BACKED_TEVV_PRACTICES" "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES" "STAKEHOLDER_ENGAGEMENT" "SYNTHETIC_CONTENT_DETECTION_AND_LABELING" "WHISTLEBLOWER_PROTECTIONS" "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS" ) ;
+            sh:order 1 ;
+            sh:path nist_ai_600_1:governance_practices ],
+        [ sh:datatype xsd:string ;
+            sh:description """For Incident Disclosure: the definition of AI incident used
+by the organisation (Appendix A.1.8).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path nist_ai_600_1:ai_incident_definition ],
+        [ sh:datatype xsd:string ;
+            sh:description """For Pre-Deployment Testing: free-text discussion of why
+current TEVV approaches may be inadequate (Appendix A.1.4).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path nist_ai_600_1:limitations_of_current_approaches ],
+        [ sh:datatype xsd:string ;
+            sh:description """Considerations for third-party GAI integrations, procurement,
+SBOMs, SLAs, and SSAE reports (Appendix A.1.3).""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path nist_ai_600_1:third_party_considerations ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 8 ;
+            sh:path dcterms:description ],
+        [ sh:description "Which primary consideration this element represents." ;
+            sh:in ( "GOVERNANCE" "PRE_DEPLOYMENT_TESTING" "CONTENT_PROVENANCE" "INCIDENT_DISCLOSURE" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:consideration_kind ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:identifier ] ;
+    sh:targetClass nist_ai_600_1:PrimaryGaiConsideration .
+
+nist_ai_600_1:StructuredPublicFeedback a sh:NodeShape ;
+    rdfs:comment """Methods used to evaluate whether GAI systems are performing as
+intended and to calibrate and verify traditional measurement
+methods (A.1.5).""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type nist_ai_600_1:red_team_type ) ;
+    sh:property [ sh:description "Which structured feedback method this element represents." ;
+            sh:in ( "PARTICIPATORY_ENGAGEMENT_METHODS" "FIELD_TESTING" "AI_RED_TEAMING" ) ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:feedback_method_kind ],
+        [ sh:datatype xsd:string ;
+            sh:description "Free-text description." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 3 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Unique identifier for an element." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 1 ;
+            sh:path dcterms:identifier ] ;
+    sh:targetClass nist_ai_600_1:StructuredPublicFeedback .
+
+nist_ai_600_1:SuggestedAction a sh:NodeShape ;
+    rdfs:comment """A suggested action an organisation can take to manage GAI
+risks. Each action is identified by an Action ID, linked to an
+AI RMF subcategory, and may be relevant to one or more GAI
+risks and AI actor tasks (NIST AI 600-1 Section 3).""" ;
+    sh:closed true ;
+    sh:ignoredProperties ( rdf:type ) ;
+    sh:property [ sh:datatype xsd:string ;
+            sh:description "Identifier of a Suggested Action." ;
+            sh:maxCount 1 ;
+            sh:minCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 0 ;
+            sh:path nist_ai_600_1:action_id ;
+            sh:pattern "^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "Human-readable title." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 6 ;
+            sh:path dcterms:title ],
+        [ sh:datatype xsd:string ;
+            sh:description "Identifier of the AI RMF subcategory the action applies to." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 2 ;
+            sh:path nist_ai_600_1:applies_to_subcategory ;
+            sh:pattern "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$" ],
+        [ sh:datatype xsd:string ;
+            sh:description "The suggested-action text itself." ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 7 ;
+            sh:path dcterms:description ],
+        [ sh:datatype xsd:string ;
+            sh:description """Identifier for the action - typically the same as the
+`action_id` (e.g., "GV-1.1-001").""" ;
+            sh:maxCount 1 ;
+            sh:nodeKind sh:Literal ;
+            sh:order 5 ;
+            sh:path dcterms:identifier ],
+        [ sh:description "Two-letter function prefix of the action's subcategory." ;
+            sh:in ( "GV" "MP" "MS" "MG" ) ;
+            sh:maxCount 1 ;
+            sh:order 1 ;
+            sh:path nist_ai_600_1:function_prefix ],
+        [ sh:description """GAI risk categories addressed by a suggested action or
+considered by a primary consideration.""" ;
+            sh:in ( "CBRN_INFORMATION_OR_CAPABILITIES" "CONFABULATION" "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT" "DATA_PRIVACY" "ENVIRONMENTAL_IMPACTS" "HARMFUL_BIAS_OR_HOMOGENIZATION" "HUMAN_AI_CONFIGURATION" "INFORMATION_INTEGRITY" "INFORMATION_SECURITY" "INTELLECTUAL_PROPERTY" "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT" "VALUE_CHAIN_AND_COMPONENT_INTEGRATION" ) ;
+            sh:order 3 ;
+            sh:path nist_ai_600_1:gai_risks ],
+        [ sh:description """Pertinent AI Actor Task(s) for a suggested action - i.e., the
+"AI Actor Tasks" row at the bottom of each Section 3 table.""" ;
+            sh:in ( "GOVERNANCE_AND_OVERSIGHT" "AI_DESIGN" "AI_DEVELOPMENT" "AI_DEPLOYMENT" "AI_IMPACT_ASSESSMENT" "OPERATION_AND_MONITORING" "TEVV" "DOMAIN_EXPERTS" "END_USERS" "HUMAN_FACTORS" "AFFECTED_INDIVIDUALS_AND_COMMUNITIES" "PROCUREMENT" "THIRD_PARTY_ENTITIES" ) ;
+            sh:order 4 ;
+            sh:path nist_ai_600_1:actor_task ] ;
+    sh:targetClass nist_ai_600_1:SuggestedAction .
+
