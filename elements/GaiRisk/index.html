@@ -303,8 +303,8 @@
 <pre class="mermaid"><code> classDiagram
     class GaiRisk
     click GaiRisk href "../GaiRisk/"
-      NamedThing &lt;|-- GaiRisk
-        click NamedThing href "../NamedThing/"
+      NamedThingGAI &lt;|-- GaiRisk
+        click NamedThingGAI href "../NamedThingGAI/"
 
       GaiRisk : addressed_by_actions
 
@@ -403,7 +403,7 @@
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><a href="../NamedThingGAI/">NamedThingGAI</a><ul>
 <li><strong>GaiRisk</strong></li>
 </ul>
 </li>
@@ -471,19 +471,19 @@
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unique identifier for an element</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 <tr>
 <td><a href="../title/">title</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Human-readable title</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Free-text description</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 </tbody>
 </table>
@@ -565,7 +565,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso29100:PrivacyRisk</span>
 <span class="nt">broad_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001:Risk</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_risk_kind</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">risk_categorization</span>
@@ -594,7 +594,7 @@
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso29100:PrivacyRisk</span>
 <span class="nt">broad_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001:Risk</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">gai_risk_kind</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_risk_kind</span>
@@ -715,7 +715,7 @@
 <span class="w">    </span><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span>
@@ -728,7 +728,7 @@
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:title</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
@@ -740,7 +740,7 @@
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:description</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>

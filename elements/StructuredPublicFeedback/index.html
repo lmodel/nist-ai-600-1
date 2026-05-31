@@ -303,8 +303,8 @@
 <pre class="mermaid"><code> classDiagram
     class StructuredPublicFeedback
     click StructuredPublicFeedback href "../StructuredPublicFeedback/"
-      NamedThing &lt;|-- StructuredPublicFeedback
-        click NamedThing href "../NamedThing/"
+      NamedThingGAI &lt;|-- StructuredPublicFeedback
+        click NamedThingGAI href "../NamedThingGAI/"
 
 
       StructuredPublicFeedback &lt;|-- AiRedTeaming
@@ -331,7 +331,7 @@
 </code></pre>
 <h2 id="inheritance">Inheritance</h2>
 <ul>
-<li><a href="../NamedThing/">NamedThing</a><ul>
+<li><a href="../NamedThingGAI/">NamedThingGAI</a><ul>
 <li><strong>StructuredPublicFeedback</strong><ul>
 <li><a href="../AiRedTeaming/">AiRedTeaming</a></li>
 </ul>
@@ -360,19 +360,19 @@
 <td><a href="../id/">id</a></td>
 <td>1 <br/> <a href="../String/">String</a></td>
 <td>Unique identifier for an element</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 <tr>
 <td><a href="../title/">title</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Human-readable title</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 <tr>
 <td><a href="../description/">description</a></td>
 <td>0..1 <br/> <a href="../String/">String</a></td>
 <td>Free-text description</td>
-<td><a href="../NamedThing/">NamedThing</a></td>
+<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
 </tr>
 </tbody>
 </table>
@@ -442,7 +442,7 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
 <span class="nt">related_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001:InterestedParty</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="nt">slots</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feedback_method_kind</span>
 </code></pre></div>
@@ -460,7 +460,7 @@
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
 <span class="nt">related_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">iso27001:InterestedParty</span>
-<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="nt">is_a</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="nt">attributes</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">feedback_method_kind</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">feedback_method_kind</span>
@@ -485,7 +485,7 @@
 <span class="w">    </span><span class="nt">identifier</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StructuredPublicFeedback</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">    </span><span class="nt">required</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 <span class="w">  </span><span class="nt">title</span><span class="p">:</span>
@@ -498,7 +498,7 @@
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:title</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StructuredPublicFeedback</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 <span class="w">  </span><span class="nt">description</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">description</span>
@@ -510,7 +510,7 @@
 <span class="w">    </span><span class="nt">slot_uri</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">dcterms:description</span>
 <span class="w">    </span><span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">StructuredPublicFeedback</span>
 <span class="w">    </span><span class="nt">domain_of</span><span class="p">:</span>
-<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThing</span>
+<span class="w">    </span><span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">NamedThingGAI</span>
 <span class="w">    </span><span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">string</span>
 </code></pre></div>
 </details>
