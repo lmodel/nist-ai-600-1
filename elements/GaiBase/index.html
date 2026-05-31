@@ -393,34 +393,6 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#classes-in-subset" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Classes in subset
-      
-    </span>
-  </a>
-  
-    <nav class="md-nav" aria-label="Classes in subset">
-      <ul class="md-nav__list">
-        
-          <li class="md-nav__item">
-  <a href="#slots-from-namedthinggai-also-in-gai_base" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots from NamedThingGAI also in gai_base
-      
-    </span>
-  </a>
-  
-</li>
-        
-      </ul>
-    </nav>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#slots-in-subset" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -464,11 +436,12 @@
 
 
 <h1 id="subset-gaibase">Subset: GaiBase</h1>
-<p><em>Minimal AI RMF base scaffolding inlined to keep this schema</em></p>
-<p><em>standalone (abstract <code>NamedThingGAI</code>, lifecycle / trustworthiness /</em></p>
-<p><em>actor-task enums, <code>SubcategoryCode</code> type). Conceptually mirrors</em></p>
-<p><em>the equivalents defined in NIST AI 100-1; see <code>*_mappings</code> for</em></p>
-<p><em>cross-references.</em></p>
+<p><em>GAI-specific base vocabulary defined locally: the divergent</em></p>
+<p><em>lifecycle and actor-task enums (<code>GaiLifecycleStageEnum</code>,</em></p>
+<p><em><code>GaiActorTaskEnum</code>). The shared base scaffolding (<code>NamedThing</code>,</em></p>
+<p><em>identifier slots, <code>SubcategoryCode</code>, <code>TrustworthinessCharacteristicEnum</code>)</em></p>
+<p><em>is imported from <code>nist_ai_rmf_common</code>; see <code>*_mappings</code> for</em></p>
+<p><em>cross-references to NIST AI 100-1.</em></p>
 <div>
 <p>URI: <a href="./">GaiBase</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
@@ -476,48 +449,6 @@
 <ul>
 <li>from schema: <a href="https://w3id.org/lmodel/nist-ai-600-1">https://w3id.org/lmodel/nist-ai-600-1</a></li>
 </ul>
-<h2 id="classes-in-subset">Classes in subset</h2>
-<table>
-<thead>
-<tr>
-<th>Class</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../NamedThingGAI/">NamedThingGAI</a></td>
-<td>Abstract base for identifiable elements of the GAI Profile</td>
-</tr>
-</tbody>
-</table>
-<h3 id="slots-from-namedthinggai-also-in-gai_base">Slots from <a href="../NamedThingGAI/">NamedThingGAI</a> also in <em>gai_base</em></h3>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Cardinality and Range</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../description/">description</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Free-text description</td>
-</tr>
-<tr>
-<td><a href="../id/">id</a></td>
-<td>1 <br/> <a href="../String/">String</a></td>
-<td>Unique identifier for an element <strong>identifier</strong></td>
-</tr>
-<tr>
-<td><a href="../title/">title</a></td>
-<td>0..1 <br/> <a href="../String/">String</a></td>
-<td>Human-readable title</td>
-</tr>
-</tbody>
-</table>
 <h2 id="slots-in-subset">Slots in subset</h2>
 <table>
 <thead>
@@ -529,27 +460,11 @@
 <tbody>
 <tr>
 <td><a href="../actor_task/">actor_task</a></td>
-<td>Pertinent AI Actor Task(s) for a suggested action - i</td>
-</tr>
-<tr>
-<td><a href="../description/">description</a></td>
-<td>Free-text description</td>
-</tr>
-<tr>
-<td><a href="../id/">id</a></td>
-<td>Unique identifier for an element</td>
+<td>Pertinent AI Actor Task(s) for the suggested action - i</td>
 </tr>
 <tr>
 <td><a href="../lifecycle_stage/">lifecycle_stage</a></td>
-<td>AI lifecycle stage(s) at which a GAI risk may arise or at</td>
-</tr>
-<tr>
-<td><a href="../title/">title</a></td>
-<td>Human-readable title</td>
-</tr>
-<tr>
-<td><a href="../trustworthiness_characteristic/">trustworthiness_characteristic</a></td>
-<td>Trustworthy AI Characteristic(s) most relevant to a GAI risk -</td>
+<td>AI lifecycle stage(s) at which the GAI risk may arise</td>
 </tr>
 </tbody>
 </table>
@@ -563,16 +478,12 @@
 </thead>
 <tbody>
 <tr>
-<td><a href="../AiActorTaskEnum/">AiActorTaskEnum</a></td>
+<td><a href="../GaiActorTaskEnum/">GaiActorTaskEnum</a></td>
 <td>AI Actor Tasks referenced by the Suggested Actions tables in</td>
 </tr>
 <tr>
-<td><a href="../AiLifecycleStageEnum/">AiLifecycleStageEnum</a></td>
+<td><a href="../GaiLifecycleStageEnum/">GaiLifecycleStageEnum</a></td>
 <td>AI lifecycle stages enumerated in NIST AI 600-1 Section 2:</td>
-</tr>
-<tr>
-<td><a href="../TrustworthinessCharacteristicEnum/">TrustworthinessCharacteristicEnum</a></td>
-<td>The seven characteristics of trustworthy AI from NIST AI 100-1</td>
 </tr>
 </tbody>
 </table>

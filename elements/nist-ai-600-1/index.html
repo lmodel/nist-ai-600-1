@@ -386,12 +386,15 @@ exacerbated by the use of Generative AI (GAI) and provides a set of
 suggested actions, organised by AI RMF subcategory, that
 organisations can take to govern, map, measure, and manage those
 risks.</p>
-<p>This schema is <strong>standalone</strong> - it inlines the minimal AI RMF
-base scaffolding (<code>NamedThingGAI</code>, lifecycle / trustworthiness /
-actor-task enums, <code>SubcategoryCode</code> type) needed to express the
-GAI Profile so it has no schema-level dependency on the sibling
-<code>nist-ai-rmf</code> schema. Cross-references to AI RMF 1.0 elements
-are recorded as <code>*_mappings</code> for traceability.</p>
+<p>Shared AI RMF base scaffolding (the abstract <code>NamedThing</code> root,
+identifier/title/description slots, the <code>SubcategoryCode</code> type, and
+the <code>TrustworthinessCharacteristicEnum</code>) is imported from the
+<code>nist_ai_rmf_common</code> module so it has a single canonical definition
+across the framework. GAI-specific lifecycle and actor-task
+vocabularies (<code>GaiLifecycleStageEnum</code>, <code>GaiActorTaskEnum</code>) are
+defined locally because they diverge from the NIST AI 100-1 enums;
+cross-references to AI RMF 1.0 elements are recorded as <code>*_mappings</code>
+for traceability.</p>
 <p>The schema covers:
   * 12 GAI risk categories (Section 2)
   * Risk dimensions (lifecycle stage, scope, source, time scale)

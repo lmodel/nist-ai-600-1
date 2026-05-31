@@ -8,7 +8,7 @@
       
       
       
-        <link rel="canonical" href="https://lmodel.github.io/nist-ai-600-1/elements/AiActorTaskEnum/">
+        <link rel="canonical" href="https://lmodel.github.io/nist-ai-600-1/elements/Base/">
       
       
       
@@ -21,7 +21,7 @@
     
     
       
-        <title>Enum: AiActorTaskEnum - nist-ai-600-1</title>
+        <title>Subset: Base - nist-ai-600-1</title>
       
     
     
@@ -74,7 +74,7 @@
     <div data-md-component="skip">
       
         
-        <a href="#enum-aiactortaskenum" class="md-skip">
+        <a href="#subset-base" class="md-skip">
           Skip to content
         </a>
       
@@ -116,7 +116,7 @@
         <div class="md-header__topic" data-md-component="header-topic">
           <span class="md-ellipsis">
             
-              Enum: AiActorTaskEnum
+              Subset: Base
             
           </span>
         </div>
@@ -365,39 +365,6 @@
     <ul class="md-nav__list" data-md-component="toc" data-md-scrollfix>
       
         <li class="md-nav__item">
-  <a href="#permissible-values" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Permissible Values
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#slots" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        Slots
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
-  <a href="#in-subsets" class="md-nav__link">
-    <span class="md-ellipsis">
-      
-        In Subsets
-      
-    </span>
-  </a>
-  
-</li>
-      
-        <li class="md-nav__item">
   <a href="#identifier-and-mapping-information" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -426,10 +393,38 @@
 </li>
       
         <li class="md-nav__item">
-  <a href="#linkml-source" class="md-nav__link">
+  <a href="#classes-in-subset" class="md-nav__link">
     <span class="md-ellipsis">
       
-        LinkML Source
+        Classes in subset
+      
+    </span>
+  </a>
+  
+    <nav class="md-nav" aria-label="Classes in subset">
+      <ul class="md-nav__list">
+        
+          <li class="md-nav__item">
+  <a href="#slots-from-namedthing-also-in-base" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots from NamedThing also in base
+      
+    </span>
+  </a>
+  
+</li>
+        
+      </ul>
+    </nav>
+  
+</li>
+      
+        <li class="md-nav__item">
+  <a href="#slots-in-subset" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Slots in subset
       
     </span>
   </a>
@@ -457,170 +452,99 @@
   
 
 
-<h1 id="enum-aiactortaskenum">Enum: AiActorTaskEnum</h1>
-<p><em>AI Actor Tasks referenced by the Suggested Actions tables in</em></p>
-<p><em>NIST AI 600-1 Section 3 (and defined in NIST AI 100-1</em></p>
-<p><em>Appendix A).</em></p>
+<h1 id="subset-base">Subset: Base</h1>
+<p><em>Schema-infrastructure elements shared across the framework:</em></p>
+<p><em>identifier slots and the abstract <code>NamedThing</code> root.</em></p>
 <div>
-<p>URI: <a href="https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum">nist_ai_600_1:AiActorTaskEnum</a></p>
-<h2 id="permissible-values">Permissible Values</h2>
-<table>
-<thead>
-<tr>
-<th>Value</th>
-<th>Meaning</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td>GOVERNANCE_AND_OVERSIGHT</td>
-<td>None</td>
-<td>Management, fiduciary, and legal authority for the organization</td>
-</tr>
-<tr>
-<td>AI_DESIGN</td>
-<td>None</td>
-<td>Concept, objectives, planning, design, and data collection</td>
-</tr>
-<tr>
-<td>AI_DEVELOPMENT</td>
-<td>None</td>
-<td>Model building, selection, calibration, training, and testing</td>
-</tr>
-<tr>
-<td>AI_DEPLOYMENT</td>
-<td>None</td>
-<td>Contextual decisions on how the AI system is used and deployed</td>
-</tr>
-<tr>
-<td>AI_IMPACT_ASSESSMENT</td>
-<td>None</td>
-<td>Assessing accountability, bias, impacts, safety, liability, security</td>
-</tr>
-<tr>
-<td>OPERATION_AND_MONITORING</td>
-<td>None</td>
-<td>Operating the AI system and assessing system output and impacts</td>
-</tr>
-<tr>
-<td>TEVV</td>
-<td>None</td>
-<td>Test, Evaluation, Verification, and Validation tasks</td>
-</tr>
-<tr>
-<td>DOMAIN_EXPERTS</td>
-<td>None</td>
-<td>Multidisciplinary practitioners with sector or context expertise</td>
-</tr>
-<tr>
-<td>END_USERS</td>
-<td>None</td>
-<td>Individuals or groups using the AI system for specific purposes</td>
-</tr>
-<tr>
-<td>HUMAN_FACTORS</td>
-<td>None</td>
-<td>Human-centered design practices and end-user involvement</td>
-</tr>
-<tr>
-<td>AFFECTED_INDIVIDUALS_AND_COMMUNITIES</td>
-<td>None</td>
-<td>Individuals, groups, or communities directly or indirectly affected</td>
-</tr>
-<tr>
-<td>PROCUREMENT</td>
-<td>None</td>
-<td>Acquisition of AI models, products, or services from third parties</td>
-</tr>
-<tr>
-<td>THIRD_PARTY_ENTITIES</td>
-<td>None</td>
-<td>Providers, developers, vendors, and evaluators external to the deploying orga...</td>
-</tr>
-</tbody>
-</table>
-<h2 id="slots">Slots</h2>
-<table>
-<thead>
-<tr>
-<th>Name</th>
-<th>Description</th>
-</tr>
-</thead>
-<tbody>
-<tr>
-<td><a href="../actor_task/">actor_task</a></td>
-<td>Pertinent AI Actor Task(s) for a suggested action - i</td>
-</tr>
-</tbody>
-</table>
-<h2 id="in-subsets">In Subsets</h2>
-<ul>
-<li><a href="../GaiBase/">GaiBase</a></li>
-</ul>
+<p>URI: <a href="./">Base</a></p>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
 <ul>
 <li>from schema: <a href="https://w3id.org/lmodel/nist-ai-600-1">https://w3id.org/lmodel/nist-ai-600-1</a></li>
 </ul>
-<h2 id="linkml-source">LinkML Source</h2>
-<details>
-<div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiActorTaskEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;AI</span><span class="nv"> </span><span class="s">Actor</span><span class="nv"> </span><span class="s">Tasks</span><span class="nv"> </span><span class="s">referenced</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">Suggested</span><span class="nv"> </span><span class="s">Actions</span><span class="nv"> </span><span class="s">tables</span><span class="nv"> </span><span class="s">in</span>
-
-<span class="w">  </span><span class="s">NIST</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">600-1</span><span class="nv"> </span><span class="s">Section</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">(and</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">NIST</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">100-1</span>
-
-<span class="w">  </span><span class="s">Appendix</span><span class="nv"> </span><span class="s">A).&#39;</span>
-<span class="nt">in_subset</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_base</span>
-<span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="nt">related_mappings</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:AiActorTaskEnum</span>
-<span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
-<span class="nt">permissible_values</span><span class="p">:</span>
-<span class="w">  </span><span class="nt">GOVERNANCE_AND_OVERSIGHT</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GOVERNANCE_AND_OVERSIGHT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Management, fiduciary, and legal authority for the organization.</span>
-<span class="w">  </span><span class="nt">AI_DESIGN</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI_DESIGN</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Concept, objectives, planning, design, and data collection.</span>
-<span class="w">  </span><span class="nt">AI_DEVELOPMENT</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI_DEVELOPMENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Model building, selection, calibration, training, and testing.</span>
-<span class="w">  </span><span class="nt">AI_DEPLOYMENT</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI_DEPLOYMENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Contextual decisions on how the AI system is used and deployed.</span>
-<span class="w">  </span><span class="nt">AI_IMPACT_ASSESSMENT</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AI_IMPACT_ASSESSMENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Assessing accountability, bias, impacts, safety, liability, security.</span>
-<span class="w">  </span><span class="nt">OPERATION_AND_MONITORING</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">OPERATION_AND_MONITORING</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Operating the AI system and assessing system output and impacts.</span>
-<span class="w">  </span><span class="nt">TEVV</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TEVV</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Test, Evaluation, Verification, and Validation tasks.</span>
-<span class="w">  </span><span class="nt">DOMAIN_EXPERTS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">DOMAIN_EXPERTS</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Multidisciplinary practitioners with sector or context expertise.</span>
-<span class="w">  </span><span class="nt">END_USERS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">END_USERS</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Individuals or groups using the AI system for specific purposes.</span>
-<span class="w">  </span><span class="nt">HUMAN_FACTORS</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">HUMAN_FACTORS</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Human-centered design practices and end-user involvement.</span>
-<span class="w">  </span><span class="nt">AFFECTED_INDIVIDUALS_AND_COMMUNITIES</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AFFECTED_INDIVIDUALS_AND_COMMUNITIES</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Individuals, groups, or communities directly or indirectly affected.</span>
-<span class="w">  </span><span class="nt">PROCUREMENT</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PROCUREMENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Acquisition of AI models, products, or services from third parties.</span>
-<span class="w">  </span><span class="nt">THIRD_PARTY_ENTITIES</span><span class="p">:</span>
-<span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">THIRD_PARTY_ENTITIES</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">Providers, developers, vendors, and evaluators external to the deploying</span>
-<span class="w">      </span><span class="l l-Scalar l-Scalar-Plain">organization.</span>
-</code></pre></div>
-</details>
+<h2 id="classes-in-subset">Classes in subset</h2>
+<table>
+<thead>
+<tr>
+<th>Class</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../NamedThing/">NamedThing</a></td>
+<td>A generic grouping for any identifiable AI RMF element</td>
+</tr>
+</tbody>
+</table>
+<h3 id="slots-from-namedthing-also-in-base">Slots from <a href="../NamedThing/">NamedThing</a> also in <em>base</em></h3>
+<table>
+<thead>
+<tr>
+<th>Name</th>
+<th>Cardinality and Range</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable description</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>1 <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>A unique identifier for an element <strong>identifier</strong></td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A short human-readable name</td>
+</tr>
+<tr>
+<td><a href="../see_also/">see_also</a></td>
+<td>* <br/> <a href="../Uriorcurie/">Uriorcurie</a></td>
+<td>Related references</td>
+</tr>
+<tr>
+<td><a href="../title/">title</a></td>
+<td>0..1 <br/> <a href="../String/">String</a></td>
+<td>A human-readable title</td>
+</tr>
+</tbody>
+</table>
+<h2 id="slots-in-subset">Slots in subset</h2>
+<table>
+<thead>
+<tr>
+<th>Slot</th>
+<th>Description</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td><a href="../description/">description</a></td>
+<td>A human-readable description</td>
+</tr>
+<tr>
+<td><a href="../id/">id</a></td>
+<td>A unique identifier for an element</td>
+</tr>
+<tr>
+<td><a href="../name/">name</a></td>
+<td>A short human-readable name</td>
+</tr>
+<tr>
+<td><a href="../see_also/">see_also</a></td>
+<td>Related references</td>
+</tr>
+<tr>
+<td><a href="../title/">title</a></td>
+<td>A human-readable title</td>
+</tr>
+</tbody>
+</table>
 </div>
 
 

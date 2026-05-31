@@ -497,8 +497,9 @@
 
 
 <h1 id="slot-actor_task">Slot: actor_task</h1>
-<p><em>Pertinent AI Actor Task(s) for a suggested action - i.e., the</em></p>
-<p><em>"AI Actor Tasks" row at the bottom of each Section 3 table.</em></p>
+<p><em>Pertinent AI Actor Task(s) for the suggested action - i.e.,</em></p>
+<p><em>the "AI Actor Tasks" row at the bottom of each Section 3</em></p>
+<p><em>table.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-600-1/actor_task">nist_ai_600_1:actor_task</a></p>
 <!-- no inheritance hierarchy -->
@@ -531,7 +532,7 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../AiActorTaskEnum/">AiActorTaskEnum</a></td>
+<td><a href="../GaiActorTaskEnum/">GaiActorTaskEnum</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
@@ -551,6 +552,24 @@
 <tr>
 <td>Multivalued</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>### Slot Characteristics</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td><a href="../SuggestedAction/">SuggestedAction</a></td>
 </tr>
 </tbody>
 </table>
@@ -589,18 +608,21 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">actor_task</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Pertinent</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">Actor</span><span class="nv"> </span><span class="s">Task(s)</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">suggested</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">i.e.,</span><span class="nv"> </span><span class="s">the</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Pertinent</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">Actor</span><span class="nv"> </span><span class="s">Task(s)</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">suggested</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">i.e.,</span>
 
-<span class="w">  </span><span class="s">&quot;AI</span><span class="nv"> </span><span class="s">Actor</span><span class="nv"> </span><span class="s">Tasks&quot;</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">bottom</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">Section</span><span class="nv"> </span><span class="s">3</span><span class="nv"> </span><span class="s">table.&#39;</span>
+<span class="w">  </span><span class="s">the</span><span class="nv"> </span><span class="s">&quot;AI</span><span class="nv"> </span><span class="s">Actor</span><span class="nv"> </span><span class="s">Tasks&quot;</span><span class="nv"> </span><span class="s">row</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">bottom</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">each</span><span class="nv"> </span><span class="s">Section</span><span class="nv"> </span><span class="s">3</span>
+
+<span class="w">  </span><span class="s">table.&#39;</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_base</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
 <span class="nt">related_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:actor_task</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SuggestedAction</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SuggestedAction</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiActorTaskEnum</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiActorTaskEnum</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>

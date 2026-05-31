@@ -458,10 +458,8 @@
 
 
 <h1 id="enum-trustworthinesscharacteristicenum">Enum: TrustworthinessCharacteristicEnum</h1>
-<p><em>The seven characteristics of trustworthy AI from NIST AI 100-1</em></p>
-<p><em>(AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1</em></p>
-<p><em>Section 2 as "Trustworthy AI Characteristics" tags on each</em></p>
-<p><em>GAI risk.</em></p>
+<p><em>The seven characteristics of trustworthy AI systems described in</em></p>
+<p><em>Figure 4 and Part 1 §3.</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum">nist_ai_600_1:TrustworthinessCharacteristicEnum</a></p>
 <h2 id="permissible-values">Permissible Values</h2>
@@ -477,17 +475,17 @@
 <tr>
 <td>VALID_AND_RELIABLE</td>
 <td>None</td>
-<td>Confirmation that requirements for a specific intended use</td>
+<td>Confirmation that requirements for a specific intended use have</td>
 </tr>
 <tr>
 <td>SAFE</td>
 <td>None</td>
-<td>The system does not, under defined conditions, lead to a</td>
+<td>The system does not, under defined conditions, lead to a state</td>
 </tr>
 <tr>
 <td>SECURE_AND_RESILIENT</td>
 <td>None</td>
-<td>The system can withstand unexpected adverse events or</td>
+<td>The system can withstand unexpected adverse events or changes</td>
 </tr>
 <tr>
 <td>ACCOUNTABLE_AND_TRANSPARENT</td>
@@ -497,7 +495,7 @@
 <tr>
 <td>EXPLAINABLE_AND_INTERPRETABLE</td>
 <td>None</td>
-<td>Explainability concerns the mechanisms underlying an AI</td>
+<td>Explainability concerns the mechanisms underlying an AI system's</td>
 </tr>
 <tr>
 <td>PRIVACY_ENHANCED</td>
@@ -507,7 +505,7 @@
 <tr>
 <td>FAIR_WITH_HARMFUL_BIAS_MANAGED</td>
 <td>None</td>
-<td>Addressing equality and equity issues such as harmful bias</td>
+<td>Concerns for equality and equity by addressing issues such as</td>
 </tr>
 </tbody>
 </table>
@@ -522,13 +520,13 @@
 <tbody>
 <tr>
 <td><a href="../trustworthiness_characteristic/">trustworthiness_characteristic</a></td>
-<td>Trustworthy AI Characteristic(s) most relevant to a GAI risk -</td>
+<td>Trustworthiness characteristic(s) the element pertains to</td>
 </tr>
 </tbody>
 </table>
 <h2 id="in-subsets">In Subsets</h2>
 <ul>
-<li><a href="../GaiBase/">GaiBase</a></li>
+<li><a href="../Trustworthiness/">Trustworthiness</a></li>
 </ul>
 <h2 id="identifier-and-mapping-information">Identifier and Mapping Information</h2>
 <h3 id="schema-source">Schema Source</h3>
@@ -538,53 +536,53 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">TrustworthinessCharacteristicEnum</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">seven</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">trustworthy</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">from</span><span class="nv"> </span><span class="s">NIST</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">100-1</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">seven</span><span class="nv"> </span><span class="s">characteristics</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">trustworthy</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">systems</span><span class="nv"> </span><span class="s">described</span><span class="nv"> </span><span class="s">in</span>
 
-<span class="w">  </span><span class="s">(AI</span><span class="nv"> </span><span class="s">RMF</span><span class="nv"> </span><span class="s">1.0)</span><span class="nv"> </span><span class="s">Part</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">§3,</span><span class="nv"> </span><span class="s">referenced</span><span class="nv"> </span><span class="s">throughout</span><span class="nv"> </span><span class="s">NIST</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">600-1</span>
-
-<span class="w">  </span><span class="s">Section</span><span class="nv"> </span><span class="s">2</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">&quot;Trustworthy</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">Characteristics&quot;</span><span class="nv"> </span><span class="s">tags</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">each</span>
-
-<span class="w">  </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risk.&#39;</span>
+<span class="w">  </span><span class="s">Figure</span><span class="nv"> </span><span class="s">4</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">Part</span><span class="nv"> </span><span class="s">1</span><span class="nv"> </span><span class="s">§3.&#39;</span>
 <span class="nt">in_subset</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_base</span>
+<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">trustworthiness</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
-<span class="nt">exact_mappings</span><span class="p">:</span>
-<span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:TrustworthinessCharacteristicEnum</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
 <span class="nt">permissible_values</span><span class="p">:</span>
 <span class="w">  </span><span class="nt">VALID_AND_RELIABLE</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">VALID_AND_RELIABLE</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Confirmation</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">requirements</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">intended</span><span class="nv"> </span><span class="s">use</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Confirmation</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">requirements</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">specific</span><span class="nv"> </span><span class="s">intended</span><span class="nv"> </span><span class="s">use</span><span class="nv"> </span><span class="s">have</span>
 
-<span class="w">      </span><span class="s">have</span><span class="nv"> </span><span class="s">been</span><span class="nv"> </span><span class="s">fulfilled</span><span class="nv"> </span><span class="s">(validation)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">system</span>
+<span class="w">      </span><span class="s">been</span><span class="nv"> </span><span class="s">fulfilled</span><span class="nv"> </span><span class="s">(validation)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">performs</span><span class="nv"> </span><span class="s">as</span>
 
-<span class="w">      </span><span class="s">performs</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">required</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">failure</span><span class="nv"> </span><span class="s">(reliability).&#39;</span>
+<span class="w">      </span><span class="s">required</span><span class="nv"> </span><span class="s">without</span><span class="nv"> </span><span class="s">failure</span><span class="nv"> </span><span class="s">(reliability).</span><span class="nv"> </span><span class="s">A</span><span class="nv"> </span><span class="s">necessary</span><span class="nv"> </span><span class="s">condition</span><span class="nv"> </span><span class="s">of</span>
+
+<span class="w">      </span><span class="s">trustworthiness</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">base</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">other</span><span class="nv"> </span><span class="s">characteristics.&#39;</span>
 <span class="w">  </span><span class="nt">SAFE</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SAFE</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not,</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">conditions,</span><span class="nv"> </span><span class="s">lead</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">does</span><span class="nv"> </span><span class="s">not,</span><span class="nv"> </span><span class="s">under</span><span class="nv"> </span><span class="s">defined</span><span class="nv"> </span><span class="s">conditions,</span><span class="nv"> </span><span class="s">lead</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">state</span>
 
-<span class="w">      </span><span class="s">state</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">life,</span><span class="nv"> </span><span class="s">health,</span><span class="nv"> </span><span class="s">property,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span>
+<span class="w">      </span><span class="s">in</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">life,</span><span class="nv"> </span><span class="s">health,</span><span class="nv"> </span><span class="s">property,</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">environment</span><span class="nv"> </span><span class="s">is</span>
 
-<span class="w">      </span><span class="s">environment</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">endangered.&#39;</span>
+<span class="w">      </span><span class="s">endangered.&#39;</span>
 <span class="w">  </span><span class="nt">SECURE_AND_RESILIENT</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">SECURE_AND_RESILIENT</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">withstand</span><span class="nv"> </span><span class="s">unexpected</span><span class="nv"> </span><span class="s">adverse</span><span class="nv"> </span><span class="s">events</span><span class="nv"> </span><span class="s">or</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;The</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">can</span><span class="nv"> </span><span class="s">withstand</span><span class="nv"> </span><span class="s">unexpected</span><span class="nv"> </span><span class="s">adverse</span><span class="nv"> </span><span class="s">events</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">changes</span>
 
-<span class="w">      </span><span class="s">changes</span><span class="nv"> </span><span class="s">(resilient)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">maintain</span><span class="nv"> </span><span class="s">confidentiality,</span>
+<span class="w">      </span><span class="s">(resilient)</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">maintain</span><span class="nv"> </span><span class="s">confidentiality,</span><span class="nv"> </span><span class="s">integrity,</span><span class="nv"> </span><span class="s">and</span>
 
-<span class="w">      </span><span class="s">integrity,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">availability</span><span class="nv"> </span><span class="s">(secure).&#39;</span>
+<span class="w">      </span><span class="s">availability</span><span class="nv"> </span><span class="s">through</span><span class="nv"> </span><span class="s">protection</span><span class="nv"> </span><span class="s">mechanisms</span><span class="nv"> </span><span class="s">(secure).&#39;</span>
 <span class="w">  </span><span class="nt">ACCOUNTABLE_AND_TRANSPARENT</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">ACCOUNTABLE_AND_TRANSPARENT</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Trustworthy</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">depends</span><span class="nv"> </span><span class="s">on</span><span class="nv"> </span><span class="s">accountability,</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">presupposes</span>
 
-<span class="w">      </span><span class="s">transparency</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">system</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">outputs.&#39;</span>
+<span class="w">      </span><span class="s">transparency</span><span class="nv"> </span><span class="s">-</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">extent</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">information</span><span class="nv"> </span><span class="s">about</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">AI</span>
+
+<span class="w">      </span><span class="s">system</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">outputs</span><span class="nv"> </span><span class="s">is</span><span class="nv"> </span><span class="s">available</span><span class="nv"> </span><span class="s">to</span><span class="nv"> </span><span class="s">those</span><span class="nv"> </span><span class="s">interacting</span><span class="nv"> </span><span class="s">with</span>
+
+<span class="w">      </span><span class="s">it.&#39;</span>
 <span class="w">  </span><span class="nt">EXPLAINABLE_AND_INTERPRETABLE</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">EXPLAINABLE_AND_INTERPRETABLE</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Explainability</span><span class="nv"> </span><span class="s">concerns</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">mechanisms</span><span class="nv"> </span><span class="s">underlying</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">AI</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Explainability</span><span class="nv"> </span><span class="s">concerns</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">mechanisms</span><span class="nv"> </span><span class="s">underlying</span><span class="nv"> </span><span class="s">an</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">system</span><span class="se">&#39;&#39;</span><span class="s">s</span>
 
-<span class="w">      </span><span class="s">system</span><span class="se">&#39;&#39;</span><span class="s">s</span><span class="nv"> </span><span class="s">operation;</span><span class="nv"> </span><span class="s">interpretability</span><span class="nv"> </span><span class="s">concerns</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">meaning</span>
+<span class="w">      </span><span class="s">operation;</span><span class="nv"> </span><span class="s">interpretability</span><span class="nv"> </span><span class="s">concerns</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">meaning</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">output</span>
 
-<span class="w">      </span><span class="s">of</span><span class="nv"> </span><span class="s">its</span><span class="nv"> </span><span class="s">output</span><span class="nv"> </span><span class="s">in</span><span class="nv"> </span><span class="s">context.&#39;</span>
+<span class="w">      </span><span class="s">in</span><span class="nv"> </span><span class="s">context.&#39;</span>
 <span class="w">  </span><span class="nt">PRIVACY_ENHANCED</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">PRIVACY_ENHANCED</span>
 <span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Norms</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">practices</span><span class="nv"> </span><span class="s">that</span><span class="nv"> </span><span class="s">help</span><span class="nv"> </span><span class="s">safeguard</span><span class="nv"> </span><span class="s">human</span><span class="nv"> </span><span class="s">autonomy,</span>
@@ -594,9 +592,13 @@
 <span class="w">      </span><span class="s">and</span><span class="nv"> </span><span class="s">control</span><span class="nv"> </span><span class="s">over</span><span class="nv"> </span><span class="s">personal</span><span class="nv"> </span><span class="s">information.&#39;</span>
 <span class="w">  </span><span class="nt">FAIR_WITH_HARMFUL_BIAS_MANAGED</span><span class="p">:</span>
 <span class="w">    </span><span class="nt">text</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">FAIR_WITH_HARMFUL_BIAS_MANAGED</span>
-<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Addressing</span><span class="nv"> </span><span class="s">equality</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">equity</span><span class="nv"> </span><span class="s">issues</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span><span class="nv"> </span><span class="s">harmful</span><span class="nv"> </span><span class="s">bias</span>
+<span class="w">    </span><span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;Concerns</span><span class="nv"> </span><span class="s">for</span><span class="nv"> </span><span class="s">equality</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">equity</span><span class="nv"> </span><span class="s">by</span><span class="nv"> </span><span class="s">addressing</span><span class="nv"> </span><span class="s">issues</span><span class="nv"> </span><span class="s">such</span><span class="nv"> </span><span class="s">as</span>
 
-<span class="w">      </span><span class="s">and</span><span class="nv"> </span><span class="s">discrimination</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">cultures</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">applications.&#39;</span>
+<span class="w">      </span><span class="s">harmful</span><span class="nv"> </span><span class="s">bias</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">discrimination,</span><span class="nv"> </span><span class="s">and</span><span class="nv"> </span><span class="s">recognising</span><span class="nv"> </span><span class="s">that</span>
+
+<span class="w">      </span><span class="s">perceptions</span><span class="nv"> </span><span class="s">of</span><span class="nv"> </span><span class="s">fairness</span><span class="nv"> </span><span class="s">differ</span><span class="nv"> </span><span class="s">across</span><span class="nv"> </span><span class="s">cultures</span><span class="nv"> </span><span class="s">and</span>
+
+<span class="w">      </span><span class="s">applications.&#39;</span>
 </code></pre></div>
 </details>
 </div>

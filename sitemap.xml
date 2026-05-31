@@ -13,15 +13,11 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-600-1/elements/AiActorTaskEnum/</loc>
-         <lastmod>2026-05-31</lastmod>
-    </url>
-    <url>
-         <loc>https://lmodel.github.io/nist-ai-600-1/elements/AiLifecycleStageEnum/</loc>
-         <lastmod>2026-05-31</lastmod>
-    </url>
-    <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/AiRedTeaming/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/Base/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -69,6 +65,10 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/GaiActorTaskEnum/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/GaiBase/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
@@ -82,6 +82,10 @@
     </url>
     <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/GaiFeedback/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/GaiLifecycleStageEnum/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -129,7 +133,7 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
-         <loc>https://lmodel.github.io/nist-ai-600-1/elements/NamedThingGAI/</loc>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/NamedThing/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -186,6 +190,10 @@
     </url>
     <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/Time/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/Trustworthiness/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
@@ -265,6 +273,10 @@
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/name/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/nist-ai-600-1/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
@@ -290,6 +302,10 @@
     </url>
     <url>
          <loc>https://lmodel.github.io/nist-ai-600-1/elements/risk_sources/</loc>
+         <lastmod>2026-05-31</lastmod>
+    </url>
+    <url>
+         <loc>https://lmodel.github.io/nist-ai-600-1/elements/see_also/</loc>
          <lastmod>2026-05-31</lastmod>
     </url>
     <url>

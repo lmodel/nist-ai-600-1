@@ -555,12 +555,15 @@ exacerbated by the use of Generative AI (GAI) and provides a set of
 suggested actions, organised by AI RMF subcategory, that
 organisations can take to govern, map, measure, and manage those
 risks.</p>
-<p>This schema is <strong>standalone</strong> - it inlines the minimal AI RMF
-base scaffolding (<code>NamedThingGAI</code>, lifecycle / trustworthiness /
-actor-task enums, <code>SubcategoryCode</code> type) needed to express the
-GAI Profile so it has no schema-level dependency on the sibling
-<code>nist-ai-rmf</code> schema. Cross-references to AI RMF 1.0 elements
-are recorded as <code>*_mappings</code> for traceability.</p>
+<p>Shared AI RMF base scaffolding (the abstract <code>NamedThing</code> root,
+identifier/title/description slots, the <code>SubcategoryCode</code> type, and
+the <code>TrustworthinessCharacteristicEnum</code>) is imported from the
+<code>nist_ai_rmf_common</code> module so it has a single canonical definition
+across the framework. GAI-specific lifecycle and actor-task
+vocabularies (<code>GaiLifecycleStageEnum</code>, <code>GaiActorTaskEnum</code>) are
+defined locally because they diverge from the NIST AI 100-1 enums;
+cross-references to AI RMF 1.0 elements are recorded as <code>*_mappings</code>
+for traceability.</p>
 <p>The schema covers:
   * 12 GAI risk categories (Section 2)
   * Risk dimensions (lifecycle stage, scope, source, time scale)
@@ -581,8 +584,8 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="NamedThingGAI/">NamedThingGAI</a></td>
-<td>Abstract base for identifiable elements of the GAI Profile</td>
+<td><a href="NamedThing/">NamedThing</a></td>
+<td>A generic grouping for any identifiable AI RMF element</td>
 </tr>
 <tr>
 <td>&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;&nbsp;<a href="GaiProfile/">GaiProfile</a></td>
@@ -625,7 +628,7 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="actor_task/">actor_task</a></td>
-<td>Pertinent AI Actor Task(s) for a suggested action - i</td>
+<td>Pertinent AI Actor Task(s) for the suggested action - i</td>
 </tr>
 <tr>
 <td><a href="addressed_by_actions/">addressed_by_actions</a></td>
@@ -645,7 +648,7 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="description/">description</a></td>
-<td>Free-text description</td>
+<td>A human-readable description</td>
 </tr>
 <tr>
 <td><a href="feedback_method_kind/">feedback_method_kind</a></td>
@@ -673,15 +676,19 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="id/">id</a></td>
-<td>Unique identifier for an element</td>
+<td>A unique identifier for an element</td>
 </tr>
 <tr>
 <td><a href="lifecycle_stage/">lifecycle_stage</a></td>
-<td>AI lifecycle stage(s) at which a GAI risk may arise or at</td>
+<td>AI lifecycle stage(s) at which the GAI risk may arise</td>
 </tr>
 <tr>
 <td><a href="limitations_of_current_approaches/">limitations_of_current_approaches</a></td>
 <td>For Pre-Deployment Testing: free-text discussion of why</td>
+</tr>
+<tr>
+<td><a href="name/">name</a></td>
+<td>A short human-readable name</td>
 </tr>
 <tr>
 <td><a href="primary_considerations/">primary_considerations</a></td>
@@ -708,6 +715,10 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 <td>Sources from which the risk may emerge</td>
 </tr>
 <tr>
+<td><a href="see_also/">see_also</a></td>
+<td>Related references</td>
+</tr>
+<tr>
 <td><a href="structured_feedback_methods/">structured_feedback_methods</a></td>
 <td>Structured public feedback methods relevant to the profile</td>
 </tr>
@@ -725,11 +736,11 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="title/">title</a></td>
-<td>Human-readable title</td>
+<td>A human-readable title</td>
 </tr>
 <tr>
 <td><a href="trustworthiness_characteristic/">trustworthiness_characteristic</a></td>
-<td>Trustworthy AI Characteristic(s) most relevant to a GAI risk -</td>
+<td>Trustworthiness characteristic(s) the element pertains to</td>
 </tr>
 </tbody>
 </table>
@@ -743,16 +754,16 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </thead>
 <tbody>
 <tr>
-<td><a href="AiActorTaskEnum/">AiActorTaskEnum</a></td>
+<td><a href="GaiActionFunctionPrefixEnum/">GaiActionFunctionPrefixEnum</a></td>
+<td>Two-letter function prefix used in GAI Action IDs</td>
+</tr>
+<tr>
+<td><a href="GaiActorTaskEnum/">GaiActorTaskEnum</a></td>
 <td>AI Actor Tasks referenced by the Suggested Actions tables in</td>
 </tr>
 <tr>
-<td><a href="AiLifecycleStageEnum/">AiLifecycleStageEnum</a></td>
+<td><a href="GaiLifecycleStageEnum/">GaiLifecycleStageEnum</a></td>
 <td>AI lifecycle stages enumerated in NIST AI 600-1 Section 2:</td>
-</tr>
-<tr>
-<td><a href="GaiActionFunctionPrefixEnum/">GaiActionFunctionPrefixEnum</a></td>
-<td>Two-letter function prefix used in GAI Action IDs</td>
 </tr>
 <tr>
 <td><a href="GaiRiskCategorizationEnum/">GaiRiskCategorizationEnum</a></td>
@@ -796,7 +807,7 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="TrustworthinessCharacteristicEnum/">TrustworthinessCharacteristicEnum</a></td>
-<td>The seven characteristics of trustworthy AI from NIST AI 100-1</td>
+<td>The seven characteristics of trustworthy AI systems described in</td>
 </tr>
 </tbody>
 </table>
@@ -879,7 +890,7 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </tr>
 <tr>
 <td><a href="SubcategoryCode/">SubcategoryCode</a></td>
-<td>Identifier for an AI RMF Core subcategory referenced by a</td>
+<td>Identifier for a Core subcategory (e</td>
 </tr>
 <tr>
 <td><a href="Time/">Time</a></td>
@@ -905,12 +916,16 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 </thead>
 <tbody>
 <tr>
+<td><a href="Base/">Base</a></td>
+<td>Schema-infrastructure elements shared across the framework:</td>
+</tr>
+<tr>
 <td><a href="GaiActions/">GaiActions</a></td>
 <td>Suggested Actions organised by AI RMF subcategory (Section 3)</td>
 </tr>
 <tr>
 <td><a href="GaiBase/">GaiBase</a></td>
-<td>Minimal AI RMF base scaffolding inlined to keep this schema</td>
+<td>GAI-specific base vocabulary defined locally: the divergent</td>
 </tr>
 <tr>
 <td><a href="GaiConsiderations/">GaiConsiderations</a></td>
@@ -923,6 +938,10 @@ are recorded as <code>*_mappings</code> for traceability.</p>
 <tr>
 <td><a href="GaiFeedback/">GaiFeedback</a></td>
 <td>Structured Public Feedback methods and AI Red-teaming</td>
+</tr>
+<tr>
+<td><a href="Trustworthiness/">Trustworthiness</a></td>
+<td>Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,</td>
 </tr>
 </tbody>
 </table>

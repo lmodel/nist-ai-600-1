@@ -392,6 +392,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#schema-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -509,6 +520,17 @@
       <ul class="md-nav__list">
         
           <li class="md-nav__item">
+  <a href="#design" class="md-nav__link">
+    <span class="md-ellipsis">
+      
+        Design
+      
+    </span>
+  </a>
+  
+</li>
+        
+          <li class="md-nav__item">
   <a href="#schema-coverage" class="md-nav__link">
     <span class="md-ellipsis">
       
@@ -601,71 +623,52 @@
 
 
 <h1 id="about-nist-ai-600-1">About nist-ai-600-1</h1>
-<p>NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0),
-Generative Artificial Intelligence Profile (NIST AI 600-1, July 2024) -
-LinkML Schema.</p>
+<p>NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0), Generative Artificial Intelligence Profile (NIST AI 600-1, July 2024) - LinkML Schema.</p>
 <h2 id="project-status">Project status</h2>
-<p>Active development. The schema is <strong>standalone</strong> (it inlines the minimal
-AI RMF 1.0 scaffolding it needs) and tracks the published NIST AI 600-1
-document.</p>
+<p>Active development, tracking the published NIST AI 600-1 document.</p>
+<h3 id="design">Design</h3>
+<p>The schema imports the shared <strong><code>nist_ai_rmf_common</code></strong> module (hosted in <a href="https://github.com/lmodel/nist-ai-100-1"><code>nist-ai-100-1</code></a>) for the framework base — the <code>NamedThing</code> root, identifier/title/description slots, <code>SubcategoryCode</code>, and <code>TrustworthinessCharacteristicEnum</code> — so those have one canonical definition shared with NIST AI 100-1 and the
+<code>nist-ai-rmf</code> umbrella. The GAI lifecycle and actor-task vocabularies genuinely diverge from AI RMF 1.0, so they are defined locally as <code>GaiLifecycleStageEnum</code> / <code>GaiActorTaskEnum</code> and attached as <strong>class-local attributes</strong> (<code>lifecycle_stage</code> on <code>GaiRisk</code>, <code>actor_task</code> on <code>SuggestedAction</code>) — keeping them out of the merged global slot namespace so they never collide with the 100-1 enums in the umbrella.</p>
 <h3 id="schema-coverage">Schema coverage</h3>
-<p>The single source schema
-<a href="https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/schema/nist_ai_600_1.yaml">src/nist_ai_600_1/schema/nist_ai_600_1.yaml</a>
-currently defines:</p>
+<p>The single source schema <a href="https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/schema/nist_ai_600_1.yaml">src/nist_ai_600_1/schema/nist_ai_600_1.yaml</a> currently defines:</p>
 <ul>
-<li><strong>7 classes</strong> - <code>NamedThingGAI</code>, <code>GaiRisk</code>, <code>SuggestedAction</code>,
+<li><strong>6 classes</strong> - <code>GaiRisk</code>, <code>SuggestedAction</code>,
   <code>PrimaryGaiConsideration</code>, <code>StructuredPublicFeedback</code>,
-  <code>AiRedTeaming</code>, and the top-level <code>GaiProfile</code> container.</li>
-<li><strong>12 enums</strong> covering AI lifecycle stages, trustworthiness
-  characteristics, AI actor tasks, GAI risk categories /
+  <code>AiRedTeaming</code>, and the top-level <code>GaiProfile</code> container (all derive
+  from the imported <code>NamedThing</code>).</li>
+<li><strong>13 enums</strong> covering GAI lifecycle stages (<code>GaiLifecycleStageEnum</code>)
+  and actor tasks (<code>GaiActorTaskEnum</code>), GAI risk categories /
   categorization / scope / sources / time scale, the
   GOVERN/MAP/MEASURE/MANAGE action function prefixes, primary
   considerations, structured-feedback methods, red-teaming types,
-  provenance techniques, and governance practices.</li>
-<li><strong>2 types</strong> - <code>GaiActionId</code> and <code>SubcategoryCode</code>.</li>
+  provenance techniques, and governance practices. The shared
+  <code>TrustworthinessCharacteristicEnum</code> is imported from common.</li>
+<li><strong>1 type</strong> - <code>GaiActionId</code> (<code>SubcategoryCode</code> is imported from common).</li>
 </ul>
 <h3 id="cross-vocabulary-mappings">Cross-vocabulary mappings</h3>
-<p>Authoritative cross-references to NIST AI 100-1, NIST CSF v2, OSCAL,
-ISO 27001 / 29100, gist, and STIX are tracked as SSSOM rows in
-<a href="https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv">src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv</a>
-(21 mappings at present). The
-<a href="https://github.com/lmodel/nist-ai-600-1/blob/main/scripts/verify_mappings.py">scripts/verify_mappings.py</a>
-checker keeps the TSV and the schema's <code>*_mappings</code> slots in sync; it
-runs as part of <code>just test</code> (and is also available as
+<p>Authoritative cross-references to NIST AI 100-1, NIST CSF v2, OSCAL, ISO 27001 / 29100, gist, and STIX are tracked as SSSOM rows in <a href="https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv">src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv</a> (21 mappings at present). The <a href="https://github.com/lmodel/nist-ai-600-1/blob/main/scripts/verify_mappings.py">scripts/verify_mappings.py</a>
+checker keeps the TSV and the schema's <code>*_mappings</code> slots in sync; it runs as part of <code>just test</code> (and is also available as
 <code>just verify-mappings</code>).</p>
 <h3 id="test-corpus">Test corpus</h3>
 <ul>
-<li><strong>12 valid</strong> fixtures under <code>tests/data/valid/</code> exercising each
-  top-level class.</li>
-<li><strong>8 invalid</strong> fixtures under <code>tests/data/invalid/</code> covering unknown
-  slots and out-of-range enum values.</li>
+<li><strong>12 valid</strong> fixtures under <code>tests/data/valid/</code> exercising each top-level class.</li>
+<li><strong>8 invalid</strong> fixtures under <code>tests/data/invalid/</code> covering unknown slots and out-of-range enum values.</li>
 <li>Loader-level tests live in <code>tests/test_data.py</code>; structural /
-  pattern rules are intended for a future <code>linkml-validate</code>-based
-  suite.</li>
+ attern rules are intended for a future <code>linkml-validate</code>-based suite.</li>
 </ul>
 <h3 id="generated-artefacts">Generated artefacts</h3>
-<p><code>just gen-project</code> produces the standard LinkML targets (Python
-dataclasses + Pydantic, JSON Schema, JSON-LD context, OWL, SHACL,
-ShEx, SQL DDL, GraphQL, Protobuf, Excel, TypeScript) under
-<a href="https://github.com/lmodel/nist-ai-600-1/tree/main/project">project/</a>,
-and <code>just gen-doc</code> produces the per-element Markdown under
-<a href="../elements/">docs/elements/</a> that backs this documentation
+<p><code>just gen-project</code> produces the standard LinkML targets (Python dataclasses + Pydantic, JSON Schema, JSON-LD context, OWL, SHACL, ShEx, SQL DDL, GraphQL, Protobuf, Excel, TypeScript) under <a href="https://github.com/lmodel/nist-ai-600-1/tree/main/project">project/</a>, and <code>just gen-doc</code> produces the per-element Markdown under <a href="../elements/">docs/elements/</a> that backs this documentation
 site.</p>
 <h2 id="roadmap">Roadmap</h2>
 <ul>
-<li>Expand the SSSOM mapping set as sibling lmodel schemas
-  (NIST AI 100-1, NIST CSF v2, OSCAL catalog / profile) stabilise.</li>
-<li>Add <code>linkml-validate</code>-based structural tests for cardinality and
-  pattern rules.</li>
-<li>Grow the valid / invalid fixture corpus to cover every enum value
-  and slot.</li>
+<li>Expand the SSSOM mapping set as sibling lmodel schemas (NIST AI 100-1, NIST CSF v2, OSCAL catalog / profile) stabilise.</li>
+<li>Add <code>linkml-validate</code>-based structural tests for cardinality and pattern rules.</li>
+<li>Grow the valid / invalid fixture corpus to cover every enum value and slot.</li>
 </ul>
 <h2 id="references">References</h2>
 <ul>
-<li>NIST AI 600-1: <em>Artificial Intelligence Risk Management Framework:
-  Generative Artificial Intelligence Profile</em> (NIST AI 600-1, July 2024).</li>
-<li>NIST AI 100-1: <em>Artificial Intelligence Risk Management Framework
-  (AI RMF 1.0)</em>.</li>
+<li>NIST AI 600-1: <em>Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile</em> (NIST AI 600-1, July 2024).</li>
+<li>NIST AI 100-1: <em>Artificial Intelligence Risk Management Framework (AI RMF 1.0)</em>.</li>
 </ul>
 
 

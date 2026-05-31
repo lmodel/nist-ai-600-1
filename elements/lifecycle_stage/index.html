@@ -497,8 +497,9 @@
 
 
 <h1 id="slot-lifecycle_stage">Slot: lifecycle_stage</h1>
-<p><em>AI lifecycle stage(s) at which a GAI risk may arise or at</em></p>
-<p><em>which a suggested action applies (Section 2).</em></p>
+<p><em>AI lifecycle stage(s) at which the GAI risk may arise</em></p>
+<p><em>(NIST AI 600-1 Section 2). Uses the GAI five-stage</em></p>
+<p><em>lifecycle (<code>GaiLifecycleStageEnum</code>).</em></p>
 <div>
 <p>URI: <a href="https://w3id.org/lmodel/nist-ai-600-1/lifecycle_stage">nist_ai_600_1:lifecycle_stage</a></p>
 <!-- no inheritance hierarchy -->
@@ -531,7 +532,7 @@
 <tbody>
 <tr>
 <td>Range</td>
-<td><a href="../AiLifecycleStageEnum/">AiLifecycleStageEnum</a></td>
+<td><a href="../GaiLifecycleStageEnum/">GaiLifecycleStageEnum</a></td>
 </tr>
 <tr>
 <td>Domain Of</td>
@@ -551,6 +552,24 @@
 <tr>
 <td>Multivalued</td>
 <td>Yes</td>
+</tr>
+<tr>
+<td>### Slot Characteristics</td>
+<td></td>
+</tr>
+</tbody>
+</table>
+<table>
+<thead>
+<tr>
+<th>Property</th>
+<th>Value</th>
+</tr>
+</thead>
+<tbody>
+<tr>
+<td>Owner</td>
+<td><a href="../GaiRisk/">GaiRisk</a></td>
 </tr>
 </tbody>
 </table>
@@ -589,18 +608,21 @@
 <h2 id="linkml-source">LinkML Source</h2>
 <details>
 <div class="highlight"><pre><span></span><code><span class="nt">name</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">lifecycle_stage</span>
-<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;AI</span><span class="nv"> </span><span class="s">lifecycle</span><span class="nv"> </span><span class="s">stage(s)</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risk</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">arise</span><span class="nv"> </span><span class="s">or</span><span class="nv"> </span><span class="s">at</span>
+<span class="nt">description</span><span class="p">:</span><span class="w"> </span><span class="s">&#39;AI</span><span class="nv"> </span><span class="s">lifecycle</span><span class="nv"> </span><span class="s">stage(s)</span><span class="nv"> </span><span class="s">at</span><span class="nv"> </span><span class="s">which</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">risk</span><span class="nv"> </span><span class="s">may</span><span class="nv"> </span><span class="s">arise</span>
 
-<span class="w">  </span><span class="s">which</span><span class="nv"> </span><span class="s">a</span><span class="nv"> </span><span class="s">suggested</span><span class="nv"> </span><span class="s">action</span><span class="nv"> </span><span class="s">applies</span><span class="nv"> </span><span class="s">(Section</span><span class="nv"> </span><span class="s">2).&#39;</span>
+<span class="w">  </span><span class="s">(NIST</span><span class="nv"> </span><span class="s">AI</span><span class="nv"> </span><span class="s">600-1</span><span class="nv"> </span><span class="s">Section</span><span class="nv"> </span><span class="s">2).</span><span class="nv"> </span><span class="s">Uses</span><span class="nv"> </span><span class="s">the</span><span class="nv"> </span><span class="s">GAI</span><span class="nv"> </span><span class="s">five-stage</span>
+
+<span class="w">  </span><span class="s">lifecycle</span><span class="nv"> </span><span class="s">(`GaiLifecycleStageEnum`).&#39;</span>
 <span class="nt">in_subset</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">gai_base</span>
 <span class="nt">from_schema</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">https://w3id.org/lmodel/nist-ai-600-1</span>
 <span class="nt">related_mappings</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">nist_ai_100_1:lifecycle_stage</span>
 <span class="nt">rank</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">1000</span>
+<span class="nt">owner</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
 <span class="nt">domain_of</span><span class="p">:</span>
 <span class="p p-Indicator">-</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiRisk</span>
-<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">AiLifecycleStageEnum</span>
+<span class="nt">range</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">GaiLifecycleStageEnum</span>
 <span class="nt">multivalued</span><span class="p">:</span><span class="w"> </span><span class="l l-Scalar l-Scalar-Plain">true</span>
 </code></pre></div>
 </details>
