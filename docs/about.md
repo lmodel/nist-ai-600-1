@@ -30,8 +30,13 @@ The single source schema [src/nist_ai_600_1/schema/nist_ai_600_1.yaml](https://g
 
 ### Cross-vocabulary mappings
 
-Authoritative cross-references to NIST AI 100-1, NIST CSF v2, OSCAL, ISO 27001 / 29100, gist, and STIX are tracked as SSSOM rows in [src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv) (21 mappings at present). The [scripts/verify_mappings.py](https://github.com/lmodel/nist-ai-600-1/blob/main/scripts/verify_mappings.py)
-checker keeps the TSV and the schema's `*_mappings` slots in sync; it runs as part of `just test` (and is also available as
+Two SSSOM TSVs live under `src/nist_ai_600_1/mappings/`:
+
+- **[`nist_ai_600_1.sssom.tsv`](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv)** (17 mappings) — the schema's own cross-references to NIST AI 100-1, NIST CSF v2, OSCAL, ISO 27001 / 29100, gist, and STIX.
+- **[`nist_ai_rmf.sssom.tsv`](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_rmf.sssom.tsv)** — the cross-framework alignment set shared with the `nist-ai-rmf` umbrella. Its `nist_ai_600_1`-owned rows bind the OWASP Agentic AI (ASI) Top 10 onto the `GaiRiskCategoryEnum` permissible values; rows whose subject belongs to a sibling schema (`nist_ai_100_1` / `nist_ai_rmf`) are reported and skipped.
+
+The [scripts/verify_mappings.py](https://github.com/lmodel/nist-ai-600-1/blob/main/scripts/verify_mappings.py)
+checker keeps every TSV row in sync with the matching schema element — top-level classes / slots / enums / types, enum permissible values, and class-local attributes — and reports `missing=0 extra=0 unknown=0` (20 sibling-schema subjects skipped). It runs as part of `just test` (and is also available as
 `just verify-mappings`).
 
 ### Test corpus

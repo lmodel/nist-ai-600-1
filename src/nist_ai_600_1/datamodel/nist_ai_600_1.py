@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_600_1.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-31T03:12:14
+# Generation date: 2026-05-31T16:35:19
 # Schema: nist-ai-600-1
 #
 # id: https://w3id.org/lmodel/nist-ai-600-1
@@ -101,6 +101,7 @@ NIST_AI_600_1 = CurieNamespace('nist_ai_600_1', 'https://w3id.org/lmodel/nist-ai
 NIST_CSF = CurieNamespace('nist_csf', 'https://w3id.org/lmodel/nist-csf-v2/')
 OSCAL_CATALOG = CurieNamespace('oscal_catalog', 'https://w3id.org/lmodel/oscal_catalog/')
 OSCAL_PROFILE = CurieNamespace('oscal_profile', 'https://w3id.org/lmodel/oscal_profile/')
+OWASP_ASI = CurieNamespace('owasp_asi', 'https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-')
 RDF = CurieNamespace('rdf', 'http://www.w3.org/1999/02/22-rdf-syntax-ns#')
 RDFS = CurieNamespace('rdfs', 'http://www.w3.org/2000/01/rdf-schema#')
 SCHEMA = CurieNamespace('schema', 'http://schema.org/')

@@ -81,6 +81,10 @@
       "prefix_reference": "https://w3id.org/lmodel/stix/"
     },
     {
+      "prefix_prefix": "owasp_asi",
+      "prefix_reference": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-"
+    },
+    {
       "prefix_prefix": "doi",
       "prefix_reference": "https://doi.org/"
     }
@@ -606,15 +610,30 @@
         },
         {
           "text": "HUMAN_AI_CONFIGURATION",
-          "description": "Arrangements of or interactions between a human and an AI\nsystem which can result in the human inappropriately\nanthropomorphising GAI systems or experiencing algorithmic\naversion, automation bias, over-reliance, or emotional\nentanglement with GAI systems."
+          "description": "Arrangements of or interactions between a human and an AI\nsystem which can result in the human inappropriately\nanthropomorphising GAI systems or experiencing algorithmic\naversion, automation bias, over-reliance, or emotional\nentanglement with GAI systems.",
+          "close_mappings": [
+            "owasp_asi:08",
+            "owasp_asi:09",
+            "owasp_asi:10"
+          ]
         },
         {
           "text": "INFORMATION_INTEGRITY",
-          "description": "Lowered barrier to entry to generate and support the\nexchange and consumption of content which may not\ndistinguish fact from opinion or fiction or acknowledge\nuncertainties, or could be leveraged for large-scale\ndis- and mis-information campaigns."
+          "description": "Lowered barrier to entry to generate and support the\nexchange and consumption of content which may not\ndistinguish fact from opinion or fiction or acknowledge\nuncertainties, or could be leveraged for large-scale\ndis- and mis-information campaigns.",
+          "close_mappings": [
+            "owasp_asi:01",
+            "owasp_asi:06"
+          ]
         },
         {
           "text": "INFORMATION_SECURITY",
-          "description": "Lowered barriers for offensive cyber capabilities,\nincluding via automated discovery and exploitation of\nvulnerabilities; increased attack surface for targeted\ncyberattacks, which may compromise a system's availability\nor the confidentiality or integrity of training data,\ncode, or model weights."
+          "description": "Lowered barriers for offensive cyber capabilities,\nincluding via automated discovery and exploitation of\nvulnerabilities; increased attack surface for targeted\ncyberattacks, which may compromise a system's availability\nor the confidentiality or integrity of training data,\ncode, or model weights.",
+          "close_mappings": [
+            "owasp_asi:02",
+            "owasp_asi:03",
+            "owasp_asi:05",
+            "owasp_asi:07"
+          ]
         },
         {
           "text": "INTELLECTUAL_PROPERTY",
@@ -626,7 +645,10 @@
         },
         {
           "text": "VALUE_CHAIN_AND_COMPONENT_INTEGRATION",
-          "description": "Non-transparent or untraceable integration of upstream\nthird-party components, including data that has been\nimproperly obtained or not processed and cleaned due to\nincreased automation from GAI; improper supplier vetting\nacross the AI lifecycle; or other issues that diminish\ntransparency or accountability for downstream users."
+          "description": "Non-transparent or untraceable integration of upstream\nthird-party components, including data that has been\nimproperly obtained or not processed and cleaned due to\nincreased automation from GAI; improper supplier vetting\nacross the AI lifecycle; or other issues that diminish\ntransparency or accountability for downstream users.",
+          "close_mappings": [
+            "owasp_asi:04"
+          ]
         }
       ]
     },
@@ -1864,9 +1886,9 @@
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_600_1.yaml",
-  "source_file_date": "2026-05-31T03:03:50",
-  "source_file_size": 33511,
-  "generation_date": "2026-05-31T03:11:43",
+  "source_file_date": "2026-05-31T16:26:14",
+  "source_file_size": 33955,
+  "generation_date": "2026-05-31T16:34:35",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_600_1.context.jsonld",

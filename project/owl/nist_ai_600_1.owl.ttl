@@ -8,6 +8,7 @@
 @prefix nist_csf: <https://w3id.org/lmodel/nist-csf-v2/> .
 @prefix oscal_catalog: <https://w3id.org/lmodel/oscal_catalog/> .
 @prefix oscal_profile: <https://w3id.org/lmodel/oscal_profile/> .
+@prefix owasp_asi: <https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-> .
 @prefix owl: <http://www.w3.org/2002/07/owl#> .
 @prefix pav: <http://purl.org/pav/> .
 @prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
@@ -58,23 +59,23 @@ The schema covers:
 nist_ai_600_1:AiRedTeaming a owl:Class ;
     rdfs:label "AiRedTeaming" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:red_team_type ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
             owl:onProperty nist_ai_600_1:feedback_method_kind ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:RedTeamingTypeEnum ;
             owl:onProperty nist_ai_600_1:red_team_type ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_600_1:feedback_method_kind ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:red_team_type ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:red_team_type ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty nist_ai_600_1:feedback_method_kind ],
         nist_ai_600_1:StructuredPublicFeedback ;
     skos:definition """A structured testing exercise used to probe an AI system to
 find flaws and vulnerabilities such as inaccurate, harmful, or
@@ -86,29 +87,29 @@ in collaboration with system developers (A.1.5).""" ;
 nist_ai_600_1:GaiProfile a owl:Class ;
     rdfs:label "GaiProfile" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:StructuredPublicFeedback ;
+            owl:onProperty nist_ai_600_1:structured_feedback_methods ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:suggested_actions ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:structured_feedback_methods ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:PrimaryGaiConsideration ;
             owl:onProperty nist_ai_600_1:primary_considerations ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:SuggestedAction ;
             owl:onProperty nist_ai_600_1:suggested_actions ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiRisk ;
-            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
+            owl:allValuesFrom nist_ai_600_1:PrimaryGaiConsideration ;
+            owl:onProperty nist_ai_600_1:primary_considerations ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:StructuredPublicFeedback ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:structured_feedback_methods ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:primary_considerations ],
+            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRisk ;
+            owl:onProperty nist_ai_600_1:gai_risk_catalog ],
         nist_ai_100_1:NamedThing ;
     skos:closeMatch nist_csf:CSFDocument ;
     skos:definition """Root container that bundles the NIST AI 600-1 Generative AI
@@ -315,6 +316,9 @@ undesired homogeneity that skews system or model outputs.""" .
 <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#HUMAN_AI_CONFIGURATION> a owl:Class ;
     rdfs:label "HUMAN_AI_CONFIGURATION" ;
     rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:closeMatch owasp_asi:08,
+        owasp_asi:09,
+        owasp_asi:10 ;
     skos:definition """Arrangements of or interactions between a human and an AI
 system which can result in the human inappropriately
 anthropomorphising GAI systems or experiencing algorithmic
@@ -324,6 +328,8 @@ entanglement with GAI systems.""" .
 <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_INTEGRITY> a owl:Class ;
     rdfs:label "INFORMATION_INTEGRITY" ;
     rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:closeMatch owasp_asi:01,
+        owasp_asi:06 ;
     skos:definition """Lowered barrier to entry to generate and support the
 exchange and consumption of content which may not
 distinguish fact from opinion or fiction or acknowledge
@@ -333,6 +339,10 @@ dis- and mis-information campaigns.""" .
 <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#INFORMATION_SECURITY> a owl:Class ;
     rdfs:label "INFORMATION_SECURITY" ;
     rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:closeMatch owasp_asi:02,
+        owasp_asi:03,
+        owasp_asi:05,
+        owasp_asi:07 ;
     skos:definition """Lowered barriers for offensive cyber capabilities,
 including via automated discovery and exploitation of
 vulnerabilities; increased attack surface for targeted
@@ -359,6 +369,7 @@ nonconsensual intimate images (NCII) of adults.""" .
 <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#VALUE_CHAIN_AND_COMPONENT_INTEGRATION> a owl:Class ;
     rdfs:label "VALUE_CHAIN_AND_COMPONENT_INTEGRATION" ;
     rdfs:subClassOf nist_ai_600_1:GaiRiskCategoryEnum ;
+    skos:closeMatch owasp_asi:04 ;
     skos:definition """Non-transparent or untraceable integration of upstream
 third-party components, including data that has been
 improperly obtained or not processed and cleaned due to
@@ -823,37 +834,46 @@ nist_ai_600_1:GaiRisk a owl:Class ;
     rdfs:label "GaiRisk" ;
     rdfs:subClassOf [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:risk_categorization ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:gai_risk_kind ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_600_1:risk_categorization ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiRiskSourceEnum ;
             owl:onProperty nist_ai_600_1:risk_sources ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:TrustworthinessCharacteristicEnum ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:time_scale ],
+            owl:onProperty nist_ai_600_1:risk_categorization ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:GaiRiskCategorizationEnum ;
             owl:onProperty nist_ai_600_1:risk_categorization ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:SuggestedAction ;
-            owl:onProperty nist_ai_600_1:addressed_by_actions ],
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:gai_risk_kind ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:GaiRiskScopeEnum ;
             owl:onProperty nist_ai_600_1:risk_scope ],
         [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:TrustworthinessCharacteristicEnum ;
+            owl:onProperty nist_ai_100_1:trustworthiness_characteristic ],
+        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:gai_risk_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiLifecycleStageEnum ;
+            owl:onProperty nist_ai_600_1:lifecycle_stage ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskTimeScaleEnum ;
+            owl:onProperty nist_ai_600_1:time_scale ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskSourceEnum ;
+            owl:onProperty nist_ai_600_1:risk_sources ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:SuggestedAction ;
+            owl:onProperty nist_ai_600_1:addressed_by_actions ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:time_scale ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:GaiRiskCategoryEnum ;
             owl:onProperty nist_ai_600_1:gai_risk_kind ],
@@ -861,20 +881,11 @@ nist_ai_600_1:GaiRisk a owl:Class ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:addressed_by_actions ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiLifecycleStageEnum ;
-            owl:onProperty nist_ai_600_1:lifecycle_stage ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:lifecycle_stage ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:risk_sources ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:risk_scope ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiRiskTimeScaleEnum ;
-            owl:onProperty nist_ai_600_1:time_scale ],
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:risk_categorization ],
         nist_ai_100_1:NamedThing ;
     skos:broadMatch iso27001:Risk ;
     skos:closeMatch nist_ai_100_1:AiSpecificRisk ;
@@ -887,53 +898,53 @@ enumerated in NIST AI 600-1 Section 2.""" ;
 nist_ai_600_1:PrimaryGaiConsideration a owl:Class ;
     rdfs:label "PrimaryGaiConsideration" ;
     rdfs:subClassOf [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:ai_incident_definition ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:consideration_kind ],
+        [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:ProvenanceTechniqueEnum ;
+            owl:onProperty nist_ai_600_1:provenance_techniques ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:third_party_considerations ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:third_party_considerations ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:governance_practices ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:provenance_techniques ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:third_party_considerations ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:allValuesFrom nist_ai_600_1:PrimaryConsiderationEnum ;
             owl:onProperty nist_ai_600_1:consideration_kind ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_600_1:consideration_kind ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:ai_incident_definition ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_600_1:ai_incident_definition ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:GovernancePracticeEnum ;
             owl:onProperty nist_ai_600_1:governance_practices ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:ai_incident_definition ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_600_1:ai_incident_definition ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:PrimaryConsiderationEnum ;
-            owl:onProperty nist_ai_600_1:consideration_kind ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_600_1:third_party_considerations ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_600_1:third_party_considerations ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:governance_practices ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_600_1:limitations_of_current_approaches ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:provenance_techniques ],
         nist_ai_100_1:NamedThing ;
     skos:definition """An overarching consideration derived from the NIST GAI PWG
 consultation process (Appendix A). The `consideration_kind`
@@ -1027,13 +1038,13 @@ nist_ai_600_1:GaiRiskTimeScaleEnum a owl:Class ;
 nist_ai_600_1:StructuredPublicFeedback a owl:Class ;
     rdfs:label "StructuredPublicFeedback" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:StructuredFeedbackMethodEnum ;
-            owl:onProperty nist_ai_600_1:feedback_method_kind ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:feedback_method_kind ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:feedback_method_kind ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:StructuredFeedbackMethodEnum ;
             owl:onProperty nist_ai_600_1:feedback_method_kind ],
         nist_ai_100_1:NamedThing ;
     skos:definition """Methods used to evaluate whether GAI systems are performing as
@@ -1045,48 +1056,48 @@ methods (A.1.5).""" ;
 nist_ai_100_1:NamedThing a owl:Class ;
     rdfs:label "NamedThing" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:title ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty nist_ai_100_1:see_also ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:anyURI ;
-            owl:onProperty nist_ai_100_1:id ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:description ],
-        [ owl:unionOf ( nist_ai_600_1:GaiProfile nist_ai_600_1:GaiRisk nist_ai_600_1:PrimaryGaiConsideration nist_ai_600_1:StructuredPublicFeedback nist_ai_600_1:SuggestedAction ) ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:description ],
+            owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
             owl:minCardinality 1 ;
             owl:onProperty nist_ai_100_1:id ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:id ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:description ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_100_1:name ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
+            owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:title ],
         [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_100_1:name ],
-        [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_100_1:name ],
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_100_1:title ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_100_1:see_also ],
         [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_100_1:title ] ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:title ],
+        [ owl:unionOf ( nist_ai_600_1:GaiProfile nist_ai_600_1:GaiRisk nist_ai_600_1:PrimaryGaiConsideration nist_ai_600_1:StructuredPublicFeedback nist_ai_600_1:SuggestedAction ) ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ a owl:Restriction ;
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_100_1:name ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:anyURI ;
+            owl:onProperty nist_ai_100_1:see_also ] ;
     skos:closeMatch schema1:Thing ;
     skos:definition "A generic grouping for any identifiable AI RMF element." ;
     skos:exactMatch schema1:Thing ;
@@ -1125,62 +1136,62 @@ management (Appendix A.1.5).""" ;
 nist_ai_600_1:SuggestedAction a owl:Class ;
     rdfs:label "SuggestedAction" ;
     rdfs:subClassOf [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
+            owl:minCardinality 1 ;
             owl:onProperty nist_ai_600_1:id ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
-        [ a owl:Restriction ;
-            owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
         [ a owl:Restriction ;
             owl:allValuesFrom nist_ai_600_1:GaiActorTaskEnum ;
             owl:onProperty nist_ai_600_1:actor_task ],
         [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty nist_ai_600_1:action_id ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiActionFunctionPrefixEnum ;
-            owl:onProperty nist_ai_600_1:function_prefix ],
-        [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_600_1:action_id ],
-        [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:description ],
         [ a owl:Restriction ;
             owl:allValuesFrom xsd:string ;
             owl:onProperty nist_ai_600_1:id ],
         [ a owl:Restriction ;
-            owl:allValuesFrom nist_ai_600_1:GaiRiskCategoryEnum ;
-            owl:onProperty nist_ai_600_1:gai_risks ],
-        [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:function_prefix ],
         [ a owl:Restriction ;
-            owl:allValuesFrom xsd:string ;
-            owl:onProperty nist_ai_600_1:description ],
-        [ a owl:Restriction ;
-            owl:maxCardinality 1 ;
-            owl:onProperty nist_ai_600_1:description ],
-        [ a owl:Restriction ;
-            owl:minCardinality 1 ;
-            owl:onProperty nist_ai_600_1:id ],
+            owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
         [ a owl:Restriction ;
             owl:minCardinality 0 ;
             owl:onProperty nist_ai_600_1:actor_task ],
         [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
+            owl:onProperty nist_ai_600_1:function_prefix ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom xsd:string ;
+            owl:onProperty nist_ai_600_1:action_id ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiRiskCategoryEnum ;
             owl:onProperty nist_ai_600_1:gai_risks ],
+        [ a owl:Restriction ;
+            owl:minCardinality 1 ;
+            owl:onProperty nist_ai_600_1:action_id ],
+        [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:description ],
+        [ a owl:Restriction ;
+            owl:allValuesFrom nist_ai_600_1:GaiActionFunctionPrefixEnum ;
+            owl:onProperty nist_ai_600_1:function_prefix ],
         [ a owl:Restriction ;
             owl:maxCardinality 1 ;
             owl:onProperty nist_ai_600_1:action_id ],
         [ a owl:Restriction ;
+            owl:maxCardinality 1 ;
+            owl:onProperty nist_ai_600_1:applies_to_subcategory ],
+        [ a owl:Restriction ;
             owl:minCardinality 0 ;
-            owl:onProperty nist_ai_600_1:function_prefix ],
+            owl:onProperty nist_ai_600_1:gai_risks ],
         nist_ai_100_1:NamedThing ;
     skos:closeMatch stix:CourseOfAction ;
     skos:definition """A suggested action an organisation can take to manage GAI

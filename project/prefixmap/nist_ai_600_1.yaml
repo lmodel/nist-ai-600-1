@@ -10,6 +10,7 @@
    "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
    "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
    "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
+   "owasp_asi": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-",
    "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
    "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
    "schema": "http://schema.org/",

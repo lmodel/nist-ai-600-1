@@ -190,8 +190,8 @@ CREATE TABLE "AiRedTeaming_see_also" (
 	PRIMARY KEY ("AiRedTeaming_id", see_also),
 	FOREIGN KEY("AiRedTeaming_id") REFERENCES "AiRedTeaming" (id)
 );
-CREATE INDEX "ix_AiRedTeaming_see_also_see_also" ON "AiRedTeaming_see_also" (see_also);
 CREATE INDEX "ix_AiRedTeaming_see_also_AiRedTeaming_id" ON "AiRedTeaming_see_also" ("AiRedTeaming_id");
+CREATE INDEX "ix_AiRedTeaming_see_also_see_also" ON "AiRedTeaming_see_also" (see_also);
 
 CREATE TABLE "GaiProfile_see_also" (
 	"GaiProfile_id" TEXT,
@@ -199,8 +199,8 @@ CREATE TABLE "GaiProfile_see_also" (
 	PRIMARY KEY ("GaiProfile_id", see_also),
 	FOREIGN KEY("GaiProfile_id") REFERENCES "GaiProfile" (id)
 );
-CREATE INDEX "ix_GaiProfile_see_also_see_also" ON "GaiProfile_see_also" (see_also);
 CREATE INDEX "ix_GaiProfile_see_also_GaiProfile_id" ON "GaiProfile_see_also" ("GaiProfile_id");
+CREATE INDEX "ix_GaiProfile_see_also_see_also" ON "GaiProfile_see_also" (see_also);
 
 CREATE TABLE "NamedThing_see_also" (
 	"NamedThing_id" TEXT,
@@ -208,8 +208,8 @@ CREATE TABLE "NamedThing_see_also" (
 	PRIMARY KEY ("NamedThing_id", see_also),
 	FOREIGN KEY("NamedThing_id") REFERENCES "NamedThing" (id)
 );
-CREATE INDEX "ix_NamedThing_see_also_NamedThing_id" ON "NamedThing_see_also" ("NamedThing_id");
 CREATE INDEX "ix_NamedThing_see_also_see_also" ON "NamedThing_see_also" (see_also);
+CREATE INDEX "ix_NamedThing_see_also_NamedThing_id" ON "NamedThing_see_also" ("NamedThing_id");
 
 CREATE TABLE "GaiRisk_risk_scope" (
 	"GaiRisk_id" TEXT,
@@ -244,8 +244,8 @@ CREATE TABLE "GaiRisk_trustworthiness_characteristic" (
 	PRIMARY KEY ("GaiRisk_id", trustworthiness_characteristic),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_trustworthiness_characteristic_GaiRisk_id" ON "GaiRisk_trustworthiness_characteristic" ("GaiRisk_id");
 CREATE INDEX "ix_GaiRisk_trustworthiness_characteristic_trustworthiness_characteristic" ON "GaiRisk_trustworthiness_characteristic" (trustworthiness_characteristic);
+CREATE INDEX "ix_GaiRisk_trustworthiness_characteristic_GaiRisk_id" ON "GaiRisk_trustworthiness_characteristic" ("GaiRisk_id");
 
 CREATE TABLE "GaiRisk_addressed_by_actions" (
 	"GaiRisk_id" TEXT,
@@ -263,8 +263,8 @@ CREATE TABLE "GaiRisk_lifecycle_stage" (
 	PRIMARY KEY ("GaiRisk_id", lifecycle_stage),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_lifecycle_stage_lifecycle_stage" ON "GaiRisk_lifecycle_stage" (lifecycle_stage);
 CREATE INDEX "ix_GaiRisk_lifecycle_stage_GaiRisk_id" ON "GaiRisk_lifecycle_stage" ("GaiRisk_id");
+CREATE INDEX "ix_GaiRisk_lifecycle_stage_lifecycle_stage" ON "GaiRisk_lifecycle_stage" (lifecycle_stage);
 
 CREATE TABLE "GaiRisk_see_also" (
 	"GaiRisk_id" TEXT,
@@ -281,8 +281,8 @@ CREATE TABLE "SuggestedAction_gai_risks" (
 	PRIMARY KEY ("SuggestedAction_id", gai_risks),
 	FOREIGN KEY("SuggestedAction_id") REFERENCES "SuggestedAction" (id)
 );
-CREATE INDEX "ix_SuggestedAction_gai_risks_SuggestedAction_id" ON "SuggestedAction_gai_risks" ("SuggestedAction_id");
 CREATE INDEX "ix_SuggestedAction_gai_risks_gai_risks" ON "SuggestedAction_gai_risks" (gai_risks);
+CREATE INDEX "ix_SuggestedAction_gai_risks_SuggestedAction_id" ON "SuggestedAction_gai_risks" ("SuggestedAction_id");
 
 CREATE TABLE "SuggestedAction_actor_task" (
 	"SuggestedAction_id" TEXT,
@@ -290,8 +290,8 @@ CREATE TABLE "SuggestedAction_actor_task" (
 	PRIMARY KEY ("SuggestedAction_id", actor_task),
 	FOREIGN KEY("SuggestedAction_id") REFERENCES "SuggestedAction" (id)
 );
-CREATE INDEX "ix_SuggestedAction_actor_task_actor_task" ON "SuggestedAction_actor_task" (actor_task);
 CREATE INDEX "ix_SuggestedAction_actor_task_SuggestedAction_id" ON "SuggestedAction_actor_task" ("SuggestedAction_id");
+CREATE INDEX "ix_SuggestedAction_actor_task_actor_task" ON "SuggestedAction_actor_task" (actor_task);
 
 CREATE TABLE "SuggestedAction_see_also" (
 	"SuggestedAction_id" TEXT,
@@ -308,8 +308,8 @@ CREATE TABLE "PrimaryGaiConsideration_governance_practices" (
 	PRIMARY KEY ("PrimaryGaiConsideration_id", governance_practices),
 	FOREIGN KEY("PrimaryGaiConsideration_id") REFERENCES "PrimaryGaiConsideration" (id)
 );
-CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_governance_practices" ON "PrimaryGaiConsideration_governance_practices" (governance_practices);
 CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_PrimaryGaiConsideration_id" ON "PrimaryGaiConsideration_governance_practices" ("PrimaryGaiConsideration_id");
+CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_governance_practices" ON "PrimaryGaiConsideration_governance_practices" (governance_practices);
 
 CREATE TABLE "PrimaryGaiConsideration_provenance_techniques" (
 	"PrimaryGaiConsideration_id" TEXT,
@@ -317,8 +317,8 @@ CREATE TABLE "PrimaryGaiConsideration_provenance_techniques" (
 	PRIMARY KEY ("PrimaryGaiConsideration_id", provenance_techniques),
 	FOREIGN KEY("PrimaryGaiConsideration_id") REFERENCES "PrimaryGaiConsideration" (id)
 );
-CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_provenance_techniques" ON "PrimaryGaiConsideration_provenance_techniques" (provenance_techniques);
 CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_PrimaryGaiConsideration_id" ON "PrimaryGaiConsideration_provenance_techniques" ("PrimaryGaiConsideration_id");
+CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_provenance_techniques" ON "PrimaryGaiConsideration_provenance_techniques" (provenance_techniques);
 
 CREATE TABLE "PrimaryGaiConsideration_see_also" (
 	"PrimaryGaiConsideration_id" TEXT,
@@ -335,5 +335,5 @@ CREATE TABLE "StructuredPublicFeedback_see_also" (
 	PRIMARY KEY ("StructuredPublicFeedback_id", see_also),
 	FOREIGN KEY("StructuredPublicFeedback_id") REFERENCES "StructuredPublicFeedback" (id)
 );
-CREATE INDEX "ix_StructuredPublicFeedback_see_also_StructuredPublicFeedback_id" ON "StructuredPublicFeedback_see_also" ("StructuredPublicFeedback_id");
 CREATE INDEX "ix_StructuredPublicFeedback_see_also_see_also" ON "StructuredPublicFeedback_see_also" (see_also);
+CREATE INDEX "ix_StructuredPublicFeedback_see_also_StructuredPublicFeedback_id" ON "StructuredPublicFeedback_see_also" ("StructuredPublicFeedback_id");

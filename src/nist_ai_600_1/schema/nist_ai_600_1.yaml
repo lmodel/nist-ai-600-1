@@ -56,6 +56,7 @@ prefixes:
   iso29100: https://w3id.org/lmodel/iso29100/
   gist_linkml: https://w3id.org/lmodel/gist/
   stix: https://w3id.org/lmodel/stix/
+  owasp_asi: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-
   doi: https://doi.org/
 
 default_prefix: nist_ai_600_1
@@ -233,6 +234,10 @@ enums:
           anthropomorphising GAI systems or experiencing algorithmic
           aversion, automation bias, over-reliance, or emotional
           entanglement with GAI systems.
+        close_mappings:
+          - owasp_asi:08
+          - owasp_asi:09
+          - owasp_asi:10
       INFORMATION_INTEGRITY:
         description: |-
           Lowered barrier to entry to generate and support the
@@ -240,6 +245,9 @@ enums:
           distinguish fact from opinion or fiction or acknowledge
           uncertainties, or could be leveraged for large-scale
           dis- and mis-information campaigns.
+        close_mappings:
+          - owasp_asi:01
+          - owasp_asi:06
       INFORMATION_SECURITY:
         description: |-
           Lowered barriers for offensive cyber capabilities,
@@ -248,6 +256,11 @@ enums:
           cyberattacks, which may compromise a system's availability
           or the confidentiality or integrity of training data,
           code, or model weights.
+        close_mappings:
+          - owasp_asi:02
+          - owasp_asi:03
+          - owasp_asi:05
+          - owasp_asi:07
       INTELLECTUAL_PROPERTY:
         description: |-
           Eased production or replication of alleged copyrighted,
@@ -268,6 +281,8 @@ enums:
           increased automation from GAI; improper supplier vetting
           across the AI lifecycle; or other issues that diminish
           transparency or accountability for downstream users.
+        close_mappings:
+          - owasp_asi:04
 
   GaiRiskCategorizationEnum:
     description: |-
