@@ -12,11 +12,11 @@ import lombok.*;
 /**
   Abstract base for identifiable elements of the GAI Profile.
 Inlined here to keep this schema standalone; mirrors the
-`NamedThing` defined in NIST AI 100-1.
+`NamedThingGAI` defined in NIST AI 100-1.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public abstract class NamedThing  {
+public abstract class NamedThingGAI  {
 
   private String id;
   private String title;

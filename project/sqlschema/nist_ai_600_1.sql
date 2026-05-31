@@ -1,4 +1,4 @@
--- # Abstract Class: NamedThing Description: Abstract base for identifiable elements of the GAI Profile.Inlined here to keep this schema standalone; mirrors the`NamedThing` defined in NIST AI 100-1.
+-- # Abstract Class: NamedThingGAI Description: Abstract base for identifiable elements of the GAI Profile.Inlined here to keep this schema standalone; mirrors the`NamedThingGAI` defined in NIST AI 100-1.
 --     * Slot: id Description: Unique identifier for an element.
 --     * Slot: title Description: Human-readable title.
 --     * Slot: description Description: Free-text description.
@@ -73,13 +73,13 @@
 --     * Slot: PrimaryGaiConsideration_id Description: Autocreated FK slot
 --     * Slot: provenance_techniques Description: For Content Provenance: provenance data tracking techniquessuch as digital watermarking, metadata recording, digitalfingerprinting, and human authentication (Appendix A.1.6).
 
-CREATE TABLE "NamedThing" (
+CREATE TABLE "NamedThingGAI" (
 	id TEXT NOT NULL,
 	title TEXT,
 	description TEXT,
 	PRIMARY KEY (id)
 );
-CREATE INDEX "ix_NamedThing_id" ON "NamedThing" (id);
+CREATE INDEX "ix_NamedThingGAI_id" ON "NamedThingGAI" (id);
 
 CREATE TABLE "AiRedTeaming" (
 	red_team_type VARCHAR(14),
@@ -182,8 +182,8 @@ CREATE TABLE "GaiRisk_lifecycle_stage" (
 	PRIMARY KEY ("GaiRisk_id", lifecycle_stage),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_lifecycle_stage_GaiRisk_id" ON "GaiRisk_lifecycle_stage" ("GaiRisk_id");
 CREATE INDEX "ix_GaiRisk_lifecycle_stage_lifecycle_stage" ON "GaiRisk_lifecycle_stage" (lifecycle_stage);
+CREATE INDEX "ix_GaiRisk_lifecycle_stage_GaiRisk_id" ON "GaiRisk_lifecycle_stage" ("GaiRisk_id");
 
 CREATE TABLE "GaiRisk_trustworthiness_characteristic" (
 	"GaiRisk_id" TEXT,
@@ -201,8 +201,8 @@ CREATE TABLE "GaiRisk_addressed_by_actions" (
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id),
 	FOREIGN KEY(addressed_by_actions_id) REFERENCES "SuggestedAction" (id)
 );
-CREATE INDEX "ix_GaiRisk_addressed_by_actions_addressed_by_actions_id" ON "GaiRisk_addressed_by_actions" (addressed_by_actions_id);
 CREATE INDEX "ix_GaiRisk_addressed_by_actions_GaiRisk_id" ON "GaiRisk_addressed_by_actions" ("GaiRisk_id");
+CREATE INDEX "ix_GaiRisk_addressed_by_actions_addressed_by_actions_id" ON "GaiRisk_addressed_by_actions" (addressed_by_actions_id);
 
 CREATE TABLE "SuggestedAction_gai_risks" (
 	"SuggestedAction_id" TEXT,
@@ -210,8 +210,8 @@ CREATE TABLE "SuggestedAction_gai_risks" (
 	PRIMARY KEY ("SuggestedAction_id", gai_risks),
 	FOREIGN KEY("SuggestedAction_id") REFERENCES "SuggestedAction" (id)
 );
-CREATE INDEX "ix_SuggestedAction_gai_risks_gai_risks" ON "SuggestedAction_gai_risks" (gai_risks);
 CREATE INDEX "ix_SuggestedAction_gai_risks_SuggestedAction_id" ON "SuggestedAction_gai_risks" ("SuggestedAction_id");
+CREATE INDEX "ix_SuggestedAction_gai_risks_gai_risks" ON "SuggestedAction_gai_risks" (gai_risks);
 
 CREATE TABLE "SuggestedAction_actor_task" (
 	"SuggestedAction_id" TEXT,
@@ -219,8 +219,8 @@ CREATE TABLE "SuggestedAction_actor_task" (
 	PRIMARY KEY ("SuggestedAction_id", actor_task),
 	FOREIGN KEY("SuggestedAction_id") REFERENCES "SuggestedAction" (id)
 );
-CREATE INDEX "ix_SuggestedAction_actor_task_actor_task" ON "SuggestedAction_actor_task" (actor_task);
 CREATE INDEX "ix_SuggestedAction_actor_task_SuggestedAction_id" ON "SuggestedAction_actor_task" ("SuggestedAction_id");
+CREATE INDEX "ix_SuggestedAction_actor_task_actor_task" ON "SuggestedAction_actor_task" (actor_task);
 
 CREATE TABLE "PrimaryGaiConsideration_governance_practices" (
 	"PrimaryGaiConsideration_id" TEXT,
@@ -228,8 +228,8 @@ CREATE TABLE "PrimaryGaiConsideration_governance_practices" (
 	PRIMARY KEY ("PrimaryGaiConsideration_id", governance_practices),
 	FOREIGN KEY("PrimaryGaiConsideration_id") REFERENCES "PrimaryGaiConsideration" (id)
 );
-CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_PrimaryGaiConsideration_id" ON "PrimaryGaiConsideration_governance_practices" ("PrimaryGaiConsideration_id");
 CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_governance_practices" ON "PrimaryGaiConsideration_governance_practices" (governance_practices);
+CREATE INDEX "ix_PrimaryGaiConsideration_governance_practices_PrimaryGaiConsideration_id" ON "PrimaryGaiConsideration_governance_practices" ("PrimaryGaiConsideration_id");
 
 CREATE TABLE "PrimaryGaiConsideration_provenance_techniques" (
 	"PrimaryGaiConsideration_id" TEXT,
@@ -237,5 +237,5 @@ CREATE TABLE "PrimaryGaiConsideration_provenance_techniques" (
 	PRIMARY KEY ("PrimaryGaiConsideration_id", provenance_techniques),
 	FOREIGN KEY("PrimaryGaiConsideration_id") REFERENCES "PrimaryGaiConsideration" (id)
 );
-CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_provenance_techniques" ON "PrimaryGaiConsideration_provenance_techniques" (provenance_techniques);
 CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_PrimaryGaiConsideration_id" ON "PrimaryGaiConsideration_provenance_techniques" ("PrimaryGaiConsideration_id");
+CREATE INDEX "ix_PrimaryGaiConsideration_provenance_techniques_provenance_techniques" ON "PrimaryGaiConsideration_provenance_techniques" (provenance_techniques);

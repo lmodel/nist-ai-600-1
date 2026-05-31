@@ -189,8 +189,8 @@
       "GaiRisk": {
          "@id": "GaiRisk"
       },
-      "NamedThing": {
-         "@id": "NamedThing"
+      "NamedThingGAI": {
+         "@id": "NamedThingGAI"
       },
       "PrimaryGaiConsideration": {
          "@id": "PrimaryGaiConsideration"

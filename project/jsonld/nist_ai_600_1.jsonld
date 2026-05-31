@@ -1,6 +1,6 @@
 {
   "name": "nist-ai-600-1",
-  "description": "LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence\nProfile of the AI Risk Management Framework (July 2024).\n\nThis is a **cross-sectoral profile** and a *companion resource* to\nNIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and provides a set of\nsuggested actions, organised by AI RMF subcategory, that\norganisations can take to govern, map, measure, and manage those\nrisks.\n\nThis schema is **standalone** - it inlines the minimal AI RMF\nbase scaffolding (`NamedThing`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type) needed to express the\nGAI Profile so it has no schema-level dependency on the sibling\n`nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements\nare recorded as `*_mappings` for traceability.\n\nThe schema covers:\n  * 12 GAI risk categories (Section 2)\n  * Risk dimensions (lifecycle stage, scope, source, time scale)\n  * `SuggestedAction` entries (Section 3 tables) linked to AI RMF\n    subcategories\n  * Primary GAI Considerations (Appendix A): Governance,\n    Pre-Deployment Testing, Content Provenance, Incident Disclosure\n  * Structured Public Feedback methods and AI Red-teaming types",
+  "description": "LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence\nProfile of the AI Risk Management Framework (July 2024).\n\nThis is a **cross-sectoral profile** and a *companion resource* to\nNIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and provides a set of\nsuggested actions, organised by AI RMF subcategory, that\norganisations can take to govern, map, measure, and manage those\nrisks.\n\nThis schema is **standalone** - it inlines the minimal AI RMF\nbase scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type) needed to express the\nGAI Profile so it has no schema-level dependency on the sibling\n`nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements\nare recorded as `*_mappings` for traceability.\n\nThe schema covers:\n  * 12 GAI risk categories (Section 2)\n  * Risk dimensions (lifecycle stage, scope, source, time scale)\n  * `SuggestedAction` entries (Section 3 tables) linked to AI RMF\n    subcategories\n  * Primary GAI Considerations (Appendix A): Governance,\n    Pre-Deployment Testing, Content Provenance, Incident Disclosure\n  * Structured Public Feedback methods and AI Red-teaming types",
   "title": "NIST AI RMF Generative AI Profile (NIST AI 600-1)",
   "source": "https://doi.org/10.6028/NIST.AI.600-1",
   "see_also": [
@@ -90,7 +90,7 @@
     {
       "name": "gai_base",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiBase",
-      "description": "Minimal AI RMF base scaffolding inlined to keep this schema\nstandalone (abstract `NamedThing`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type). Conceptually mirrors\nthe equivalents defined in NIST AI 100-1; see `*_mappings` for\ncross-references.",
+      "description": "Minimal AI RMF base scaffolding inlined to keep this schema\nstandalone (abstract `NamedThingGAI`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type). Conceptually mirrors\nthe equivalents defined in NIST AI 100-1; see `*_mappings` for\ncross-references.",
       "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     },
@@ -1021,9 +1021,9 @@
       ],
       "slot_uri": "http://purl.org/dc/terms/identifier",
       "identifier": true,
-      "owner": "NamedThing",
+      "owner": "NamedThingGAI",
       "domain_of": [
-        "NamedThing"
+        "NamedThingGAI"
       ],
       "range": "string",
       "required": true,
@@ -1041,9 +1041,9 @@
         "http://purl.org/dc/terms/title"
       ],
       "slot_uri": "http://purl.org/dc/terms/title",
-      "owner": "NamedThing",
+      "owner": "NamedThingGAI",
       "domain_of": [
-        "NamedThing"
+        "NamedThingGAI"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -1060,9 +1060,9 @@
         "http://purl.org/dc/terms/description"
       ],
       "slot_uri": "http://purl.org/dc/terms/description",
-      "owner": "NamedThing",
+      "owner": "NamedThingGAI",
       "domain_of": [
-        "NamedThing"
+        "NamedThingGAI"
       ],
       "range": "string",
       "@type": "SlotDefinition"
@@ -1580,15 +1580,15 @@
   ],
   "classes": [
     {
-      "name": "NamedThing",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThing",
-      "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThing` defined in NIST AI 100-1.",
+      "name": "NamedThingGAI",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThingGAI",
+      "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThingGAI` defined in NIST AI 100-1.",
       "in_subset": [
         "gai_base"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "related_mappings": [
-        "nist_ai_100_1:NamedThing"
+        "nist_ai_100_1:NamedThingGAI"
       ],
       "abstract": true,
       "slots": [
@@ -1597,7 +1597,7 @@
         "description"
       ],
       "slot_usage": {},
-      "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThing",
+      "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThingGAI",
       "@type": "ClassDefinition"
     },
     {
@@ -1617,7 +1617,7 @@
       "broad_mappings": [
         "iso27001:Risk"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingGAI",
       "slots": [
         "id",
         "title",
@@ -1650,7 +1650,7 @@
         "oscal_catalog:Control",
         "gist_linkml:Task"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingGAI",
       "slots": [
         "title",
         "action_id",
@@ -1676,7 +1676,7 @@
       "related_mappings": [
         "nist_csf:CSFProperty"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingGAI",
       "slots": [
         "id",
         "title",
@@ -1703,7 +1703,7 @@
       "related_mappings": [
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingGAI",
       "slots": [
         "id",
         "title",
@@ -1754,7 +1754,7 @@
       "related_mappings": [
         "nist_ai_100_1:AiRmfProfile"
       ],
-      "is_a": "NamedThing",
+      "is_a": "NamedThingGAI",
       "slots": [
         "id",
         "title",
@@ -1772,9 +1772,9 @@
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_600_1.yaml",
-  "source_file_date": "2026-05-29T08:04:02",
-  "source_file_size": 35725,
-  "generation_date": "2026-05-29T08:10:59",
+  "source_file_date": "2026-05-31T02:03:06",
+  "source_file_size": 35755,
+  "generation_date": "2026-05-31T02:03:15",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_600_1.context.jsonld",

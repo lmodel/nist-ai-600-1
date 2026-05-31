@@ -5,7 +5,7 @@ description: "LinkML schema for NIST AI 600-1, the Generative Artificial Intelli
   \ risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and\
   \ provides a set of\nsuggested actions, organised by AI RMF subcategory, that\n\
   organisations can take to govern, map, measure, and manage those\nrisks.\n\nThis\
-  \ schema is **standalone** - it inlines the minimal AI RMF\nbase scaffolding (`NamedThing`,\
+  \ schema is **standalone** - it inlines the minimal AI RMF\nbase scaffolding (`NamedThingGAI`,\
   \ lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type) needed\
   \ to express the\nGAI Profile so it has no schema-level dependency on the sibling\n\
   `nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements\nare recorded as `*_mappings`\
@@ -86,7 +86,7 @@ subsets:
     definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiBase
     description: 'Minimal AI RMF base scaffolding inlined to keep this schema
 
-      standalone (abstract `NamedThing`, lifecycle / trustworthiness /
+      standalone (abstract `NamedThingGAI`, lifecycle / trustworthiness /
 
       actor-task enums, `SubcategoryCode` type). Conceptually mirrors
 
@@ -1048,9 +1048,9 @@ slots:
     - dcterms:identifier
     slot_uri: dcterms:identifier
     identifier: true
-    owner: NamedThing
+    owner: NamedThingGAI
     domain_of:
-    - NamedThing
+    - NamedThingGAI
     range: string
     required: true
   title:
@@ -1063,9 +1063,9 @@ slots:
     mappings:
     - dcterms:title
     slot_uri: dcterms:title
-    owner: NamedThing
+    owner: NamedThingGAI
     domain_of:
-    - NamedThing
+    - NamedThingGAI
     range: string
   description:
     name: description
@@ -1077,9 +1077,9 @@ slots:
     mappings:
     - dcterms:description
     slot_uri: dcterms:description
-    owner: NamedThing
+    owner: NamedThingGAI
     domain_of:
-    - NamedThing
+    - NamedThingGAI
     range: string
   lifecycle_stage:
     name: lifecycle_stage
@@ -1508,25 +1508,25 @@ slots:
     range: StructuredFeedbackMethodEnum
     required: true
 classes:
-  NamedThing:
-    name: NamedThing
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/NamedThing
+  NamedThingGAI:
+    name: NamedThingGAI
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/NamedThingGAI
     description: 'Abstract base for identifiable elements of the GAI Profile.
 
       Inlined here to keep this schema standalone; mirrors the
 
-      `NamedThing` defined in NIST AI 100-1.'
+      `NamedThingGAI` defined in NIST AI 100-1.'
     in_subset:
     - gai_base
     from_schema: https://w3id.org/lmodel/nist-ai-600-1
     related_mappings:
-    - nist_ai_100_1:NamedThing
+    - nist_ai_100_1:NamedThingGAI
     abstract: true
     slots:
     - id
     - title
     - description
-    class_uri: nist_ai_600_1:NamedThing
+    class_uri: nist_ai_600_1:NamedThingGAI
   GaiRisk:
     name: GaiRisk
     definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRisk
@@ -1544,7 +1544,7 @@ classes:
     - iso29100:PrivacyRisk
     broad_mappings:
     - iso27001:Risk
-    is_a: NamedThing
+    is_a: NamedThingGAI
     slots:
     - id
     - title
@@ -1576,7 +1576,7 @@ classes:
     related_mappings:
     - oscal_catalog:Control
     - gist_linkml:Task
-    is_a: NamedThing
+    is_a: NamedThingGAI
     slots:
     - title
     - action_id
@@ -1612,7 +1612,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-600-1
     related_mappings:
     - nist_csf:CSFProperty
-    is_a: NamedThing
+    is_a: NamedThingGAI
     slots:
     - id
     - title
@@ -1637,7 +1637,7 @@ classes:
     from_schema: https://w3id.org/lmodel/nist-ai-600-1
     related_mappings:
     - iso27001:InterestedParty
-    is_a: NamedThing
+    is_a: NamedThingGAI
     slots:
     - id
     - title
@@ -1690,7 +1690,7 @@ classes:
     - nist_csf:CSFDocument
     related_mappings:
     - nist_ai_100_1:AiRmfProfile
-    is_a: NamedThing
+    is_a: NamedThingGAI
     slots:
     - id
     - title
@@ -1703,7 +1703,7 @@ classes:
     tree_root: true
 metamodel_version: 1.11.0
 source_file: nist_ai_600_1.yaml
-source_file_date: '2026-05-29T08:04:02'
-source_file_size: 35725
-generation_date: '2026-05-29T08:11:06'
+source_file_date: '2026-05-31T02:03:06'
+source_file_size: 35755
+generation_date: '2026-05-31T02:03:22'
 

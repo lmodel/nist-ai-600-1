@@ -14,7 +14,7 @@ description: |-
   risks.
 
   This schema is **standalone** - it inlines the minimal AI RMF
-  base scaffolding (`NamedThing`, lifecycle / trustworthiness /
+  base scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /
   actor-task enums, `SubcategoryCode` type) needed to express the
   GAI Profile so it has no schema-level dependency on the sibling
   `nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements
@@ -68,7 +68,7 @@ subsets:
   gai_base:
     description: |-
       Minimal AI RMF base scaffolding inlined to keep this schema
-      standalone (abstract `NamedThing`, lifecycle / trustworthiness /
+      standalone (abstract `NamedThingGAI`, lifecycle / trustworthiness /
       actor-task enums, `SubcategoryCode` type). Conceptually mirrors
       the equivalents defined in NIST AI 100-1; see `*_mappings` for
       cross-references.
@@ -790,25 +790,25 @@ classes:
   # --------------------------------------------------------------------------
   # AI RMF base (inlined for standalone use)
   # --------------------------------------------------------------------------
-  NamedThing:
+  NamedThingGAI:
     abstract: true
     description: |-
       Abstract base for identifiable elements of the GAI Profile.
       Inlined here to keep this schema standalone; mirrors the
-      `NamedThing` defined in NIST AI 100-1.
+      `NamedThingGAI` defined in NIST AI 100-1.
     slots:
       - id
       - title
       - description
     in_subset: [gai_base]
     related_mappings:
-      - nist_ai_100_1:NamedThing
+      - nist_ai_100_1:NamedThingGAI
 
   # --------------------------------------------------------------------------
   # GAI Risks (Section 2)
   # --------------------------------------------------------------------------
   GaiRisk:
-    is_a: NamedThing
+    is_a: NamedThingGAI
     description: |-
       A risk that is novel to or exacerbated by Generative AI.
       Each instance corresponds to one of the 12 risk categories
@@ -834,7 +834,7 @@ classes:
   # Suggested Actions (Section 3)
   # --------------------------------------------------------------------------
   SuggestedAction:
-    is_a: NamedThing
+    is_a: NamedThingGAI
     description: |-
       A suggested action an organisation can take to manage GAI
       risks. Each action is identified by an Action ID, linked to an
@@ -864,7 +864,7 @@ classes:
   # Primary GAI Considerations (Appendix A)
   # --------------------------------------------------------------------------
   PrimaryGaiConsideration:
-    is_a: NamedThing
+    is_a: NamedThingGAI
     description: |-
       An overarching consideration derived from the NIST GAI PWG
       consultation process (Appendix A). The `consideration_kind`
@@ -893,7 +893,7 @@ classes:
   # Structured Public Feedback (A.1.5)
   # --------------------------------------------------------------------------
   StructuredPublicFeedback:
-    is_a: NamedThing
+    is_a: NamedThingGAI
     description: |-
       Methods used to evaluate whether GAI systems are performing as
       intended and to calibrate and verify traditional measurement
@@ -924,7 +924,7 @@ classes:
   # GAI Profile (tree root)
   # --------------------------------------------------------------------------
   GaiProfile:
-    is_a: NamedThing
+    is_a: NamedThingGAI
     tree_root: true
     description: |-
       Root container that bundles the NIST AI 600-1 Generative AI

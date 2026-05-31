@@ -17,7 +17,7 @@ risks and AI actor tasks (NIST AI 600-1 Section 3).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class SuggestedAction extends NamedThing {
+public class SuggestedAction extends NamedThingGAI {
 
   private String actionId;
   private String functionPrefix;

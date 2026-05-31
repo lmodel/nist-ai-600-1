@@ -25,7 +25,7 @@ to the appropriate `consideration_kind`:
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class PrimaryGaiConsideration extends NamedThing {
+public class PrimaryGaiConsideration extends NamedThingGAI {
 
   private String considerationKind;
   private List<String> governancePractices;

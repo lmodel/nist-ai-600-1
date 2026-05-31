@@ -1,4 +1,4 @@
-export type NamedThingId = string;
+export type NamedThingGAIId = string;
 export type GaiRiskId = string;
 export type SuggestedActionId = string;
 export type PrimaryGaiConsiderationId = string;
@@ -393,9 +393,9 @@ export enum GovernancePracticeEnum {
 /**
  * Abstract base for identifiable elements of the GAI Profile.
 Inlined here to keep this schema standalone; mirrors the
-`NamedThing` defined in NIST AI 100-1.
+`NamedThingGAI` defined in NIST AI 100-1.
  */
-export interface NamedThing {
+export interface NamedThingGAI {
     /** Unique identifier for an element. */
     id: string,
     /** Human-readable title. */
@@ -410,7 +410,7 @@ export interface NamedThing {
 Each instance corresponds to one of the 12 risk categories
 enumerated in NIST AI 600-1 Section 2.
  */
-export interface GaiRisk extends NamedThing {
+export interface GaiRisk extends NamedThingGAI {
     /** The GAI risk category this element represents. */
     gai_risk_kind?: string,
     /** Higher-level categorisation - technical/model, misuse, or
@@ -441,7 +441,7 @@ risks. Each action is identified by an Action ID, linked to an
 AI RMF subcategory, and may be relevant to one or more GAI
 risks and AI actor tasks (NIST AI 600-1 Section 3).
  */
-export interface SuggestedAction extends NamedThing {
+export interface SuggestedAction extends NamedThingGAI {
     /** Identifier of a Suggested Action. */
     action_id: string,
     /** Two-letter function prefix of the action's subcategory. */
@@ -471,7 +471,7 @@ to the appropriate `consideration_kind`:
   * CONTENT_PROVENANCE: provenance_techniques
   * INCIDENT_DISCLOSURE: ai_incident_definition
  */
-export interface PrimaryGaiConsideration extends NamedThing {
+export interface PrimaryGaiConsideration extends NamedThingGAI {
     /** Which primary consideration this element represents. */
     consideration_kind: string,
     /** Governance plans and actions enumerated in NIST AI 600-1
@@ -498,7 +498,7 @@ by the organisation (Appendix A.1.8). */
 intended and to calibrate and verify traditional measurement
 methods (A.1.5).
  */
-export interface StructuredPublicFeedback extends NamedThing {
+export interface StructuredPublicFeedback extends NamedThingGAI {
     /** Which structured feedback method this element represents. */
     feedback_method_kind: string,
 }
@@ -522,7 +522,7 @@ Profile: GAI risks (Section 2), suggested actions (Section 3),
 and primary considerations (Appendix A). The GAI Profile is a
 *cross-sectoral* AI RMF profile (Section 1).
  */
-export interface GaiProfile extends NamedThing {
+export interface GaiProfile extends NamedThingGAI {
     /** The catalog of GAI risks (Section 2). */
     gai_risk_catalog?: GaiRisk[],
     /** Suggested actions to manage GAI risks (Section 3). */

@@ -341,9 +341,9 @@
             "title": "GovernancePracticeEnum",
             "type": "string"
         },
-        "NamedThing": {
+        "NamedThingGAI": {
             "additionalProperties": false,
-            "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThing` defined in NIST AI 100-1.",
+            "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThingGAI` defined in NIST AI 100-1.",
             "properties": {
                 "description": {
                     "description": "Free-text description.",
@@ -367,7 +367,7 @@
             "required": [
                 "id"
             ],
-            "title": "NamedThing",
+            "title": "NamedThingGAI",
             "type": "object"
         },
         "PrimaryConsiderationEnum": {

@@ -66,8 +66,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <GaiProfile> CLOSED {
-    (  $<GaiProfile_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
+    (  $<GaiProfile_tes> (  &<NamedThingGAI_tes> ;
+          rdf:type [ <NamedThingGAI> ] ? ;
           <gai_risk_catalog> @<GaiRisk> * ;
           <suggested_actions> @<SuggestedAction> * ;
           <primary_considerations> @<PrimaryGaiConsideration> * ;
@@ -78,8 +78,8 @@ linkml:Sparqlpath xsd:string
 }
 
 <GaiRisk> CLOSED {
-    (  $<GaiRisk_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
+    (  $<GaiRisk_tes> (  &<NamedThingGAI_tes> ;
+          rdf:type [ <NamedThingGAI> ] ? ;
           <gai_risk_kind> [ <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CBRN_INFORMATION_OR_CAPABILITIES>
              <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#CONFABULATION>
              <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum#DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT>
@@ -126,21 +126,21 @@ linkml:Sparqlpath xsd:string
     )
 }
 
-<NamedThing>  (
+<NamedThingGAI>  (
     @<GaiProfile> OR @<GaiRisk> OR @<PrimaryGaiConsideration> OR @<StructuredPublicFeedback> OR @<SuggestedAction>
 )
 
-<NamedThing_struct> {
-    (  $<NamedThing_tes> (  dcterms:title @linkml:String ? ;
+<NamedThingGAI_struct> {
+    (  $<NamedThingGAI_tes> (  dcterms:title @linkml:String ? ;
           dcterms:description @linkml:String ?
        ) ;
-       rdf:type [ <NamedThing> ]
+       rdf:type [ <NamedThingGAI> ]
     )
 }
 
 <PrimaryGaiConsideration> CLOSED {
-    (  $<PrimaryGaiConsideration_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
+    (  $<PrimaryGaiConsideration_tes> (  &<NamedThingGAI_tes> ;
+          rdf:type [ <NamedThingGAI> ] ? ;
           <consideration_kind> [ <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#GOVERNANCE>
              <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#PRE_DEPLOYMENT_TESTING>
              <https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum#CONTENT_PROVENANCE>
@@ -185,8 +185,8 @@ linkml:Sparqlpath xsd:string
 
 <StructuredPublicFeedback>  (
     CLOSED {
-       (  $<StructuredPublicFeedback_tes> (  &<NamedThing_tes> ;
-             rdf:type [ <NamedThing> ] ? ;
+       (  $<StructuredPublicFeedback_tes> (  &<NamedThingGAI_tes> ;
+             rdf:type [ <NamedThingGAI> ] ? ;
              <feedback_method_kind> [
                 <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#PARTICIPATORY_ENGAGEMENT_METHODS>
                 <https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum#FIELD_TESTING>
@@ -198,8 +198,8 @@ linkml:Sparqlpath xsd:string
 )
 
 <SuggestedAction> CLOSED {
-    (  $<SuggestedAction_tes> (  &<NamedThing_tes> ;
-          rdf:type [ <NamedThing> ] ? ;
+    (  $<SuggestedAction_tes> (  &<NamedThingGAI_tes> ;
+          rdf:type [ <NamedThingGAI> ] ? ;
           <action_id> @<GaiActionId> ;
           <function_prefix> [ <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#GV>
              <https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum#MP>

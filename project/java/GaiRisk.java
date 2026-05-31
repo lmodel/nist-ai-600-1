@@ -16,7 +16,7 @@ enumerated in NIST AI 600-1 Section 2.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GaiRisk extends NamedThing {
+public class GaiRisk extends NamedThingGAI {
 
   private String gaiRiskKind;
   private String riskCategorization;

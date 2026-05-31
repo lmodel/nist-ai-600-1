@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_600_1.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-29T08:11:15
+# Generation date: 2026-05-31T02:03:30
 # Schema: nist-ai-600-1
 #
 # id: https://w3id.org/lmodel/nist-ai-600-1
@@ -14,7 +14,7 @@
 #   risks.
 #
 #   This schema is **standalone** - it inlines the minimal AI RMF
-#   base scaffolding (`NamedThing`, lifecycle / trustworthiness /
+#   base scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /
 #   actor-task enums, `SubcategoryCode` type) needed to express the
 #   GAI Profile so it has no schema-level dependency on the sibling
 #   `nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements
@@ -128,23 +128,23 @@ suggested action (e.g., "GOVERN 1.1"). Mirrors the
 
 
 # Class references
-class NamedThingId(extended_str):
+class NamedThingGAIId(extended_str):
     pass
 
 
-class GaiRiskId(NamedThingId):
+class GaiRiskId(NamedThingGAIId):
     pass
 
 
-class SuggestedActionId(NamedThingId):
+class SuggestedActionId(NamedThingGAIId):
     pass
 
 
-class PrimaryGaiConsiderationId(NamedThingId):
+class PrimaryGaiConsiderationId(NamedThingGAIId):
     pass
 
 
-class StructuredPublicFeedbackId(NamedThingId):
+class StructuredPublicFeedbackId(NamedThingGAIId):
     pass
 
 
@@ -152,33 +152,33 @@ class AiRedTeamingId(StructuredPublicFeedbackId):
     pass
 
 
-class GaiProfileId(NamedThingId):
+class GaiProfileId(NamedThingGAIId):
     pass
 
 
 @dataclass(repr=False)
-class NamedThing(YAMLRoot):
+class NamedThingGAI(YAMLRoot):
     """
     Abstract base for identifiable elements of the GAI Profile.
     Inlined here to keep this schema standalone; mirrors the
-    `NamedThing` defined in NIST AI 100-1.
+    `NamedThingGAI` defined in NIST AI 100-1.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["NamedThing"]
-    class_class_curie: ClassVar[str] = "nist_ai_600_1:NamedThing"
-    class_name: ClassVar[str] = "NamedThing"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.NamedThing
+    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["NamedThingGAI"]
+    class_class_curie: ClassVar[str] = "nist_ai_600_1:NamedThingGAI"
+    class_name: ClassVar[str] = "NamedThingGAI"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.NamedThingGAI
 
-    id: Union[str, NamedThingId] = None
+    id: Union[str, NamedThingGAIId] = None
     title: Optional[str] = None
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedThingId):
-            self.id = NamedThingId(self.id)
+        if not isinstance(self.id, NamedThingGAIId):
+            self.id = NamedThingGAIId(self.id)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -190,7 +190,7 @@ class NamedThing(YAMLRoot):
 
 
 @dataclass(repr=False)
-class GaiRisk(NamedThing):
+class GaiRisk(NamedThingGAI):
     """
     A risk that is novel to or exacerbated by Generative AI.
     Each instance corresponds to one of the 12 risk categories
@@ -253,7 +253,7 @@ class GaiRisk(NamedThing):
 
 
 @dataclass(repr=False)
-class SuggestedAction(NamedThing):
+class SuggestedAction(NamedThingGAI):
     """
     A suggested action an organisation can take to manage GAI
     risks. Each action is identified by an Action ID, linked to an
@@ -307,7 +307,7 @@ class SuggestedAction(NamedThing):
 
 
 @dataclass(repr=False)
-class PrimaryGaiConsideration(NamedThing):
+class PrimaryGaiConsideration(NamedThingGAI):
     """
     An overarching consideration derived from the NIST GAI PWG
     consultation process (Appendix A). The `consideration_kind`
@@ -369,7 +369,7 @@ class PrimaryGaiConsideration(NamedThing):
 
 
 @dataclass(repr=False)
-class StructuredPublicFeedback(NamedThing):
+class StructuredPublicFeedback(NamedThingGAI):
     """
     Methods used to evaluate whether GAI systems are performing as
     intended and to calibrate and verify traditional measurement
@@ -436,7 +436,7 @@ class AiRedTeaming(StructuredPublicFeedback):
 
 
 @dataclass(repr=False)
-class GaiProfile(NamedThing):
+class GaiProfile(NamedThingGAI):
     """
     Root container that bundles the NIST AI 600-1 Generative AI
     Profile: GAI risks (Section 2), suggested actions (Section 3),

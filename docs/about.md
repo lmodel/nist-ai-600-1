@@ -16,7 +16,7 @@ The single source schema
 [src/nist_ai_600_1/schema/nist_ai_600_1.yaml](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/schema/nist_ai_600_1.yaml)
 currently defines:
 
-- **7 classes** - `NamedThing`, `GaiRisk`, `SuggestedAction`,
+- **7 classes** - `NamedThingGAI`, `GaiRisk`, `SuggestedAction`,
   `PrimaryGaiConsideration`, `StructuredPublicFeedback`,
   `AiRedTeaming`, and the top-level `GaiProfile` container.
 - **12 enums** covering AI lifecycle stages, trustworthiness

@@ -16,7 +16,7 @@ methods (A.1.5).
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class StructuredPublicFeedback extends NamedThing {
+public class StructuredPublicFeedback extends NamedThingGAI {
 
   private String feedbackMethodKind;
 
