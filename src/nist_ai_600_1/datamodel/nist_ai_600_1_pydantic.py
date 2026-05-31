@@ -83,17 +83,22 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_600_1',
                     'those\n'
                     'risks.\n'
                     '\n'
-                    'This schema is **standalone** - it inlines the minimal AI '
-                    'RMF\n'
-                    'base scaffolding (`NamedThingGAI`, lifecycle / '
-                    'trustworthiness /\n'
-                    'actor-task enums, `SubcategoryCode` type) needed to express '
+                    'Shared AI RMF base scaffolding (the abstract `NamedThing` '
+                    'root,\n'
+                    'identifier/title/description slots, the `SubcategoryCode` '
+                    'type, and\n'
+                    'the `TrustworthinessCharacteristicEnum`) is imported from '
                     'the\n'
-                    'GAI Profile so it has no schema-level dependency on the '
-                    'sibling\n'
-                    '`nist-ai-rmf` schema. Cross-references to AI RMF 1.0 '
-                    'elements\n'
-                    'are recorded as `*_mappings` for traceability.\n'
+                    '`nist_ai_rmf_common` module so it has a single canonical '
+                    'definition\n'
+                    'across the framework. GAI-specific lifecycle and actor-task\n'
+                    'vocabularies (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) '
+                    'are\n'
+                    'defined locally because they diverge from the NIST AI 100-1 '
+                    'enums;\n'
+                    'cross-references to AI RMF 1.0 elements are recorded as '
+                    '`*_mappings`\n'
+                    'for traceability.\n'
                     '\n'
                     'The schema covers:\n'
                     '  * 12 GAI risk categories (Section 2)\n'
@@ -108,7 +113,7 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_600_1',
                     '  * Structured Public Feedback methods and AI Red-teaming '
                     'types',
      'id': 'https://w3id.org/lmodel/nist-ai-600-1',
-     'imports': ['linkml:types'],
+     'imports': ['linkml:types', 'nist_ai_100_1:schema/nist_ai_rmf_common'],
      'license': 'Apache-2.0',
      'name': 'nist-ai-600-1',
      'prefixes': {'dcterms': {'prefix_prefix': 'dcterms',
@@ -154,16 +159,18 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_600_1',
                                                 'RMF subcategory (Section 3).',
                                  'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
                                  'name': 'gai_actions'},
-                 'gai_base': {'description': 'Minimal AI RMF base scaffolding '
-                                             'inlined to keep this schema\n'
-                                             'standalone (abstract '
-                                             '`NamedThingGAI`, lifecycle / '
-                                             'trustworthiness /\n'
-                                             'actor-task enums, `SubcategoryCode` '
-                                             'type). Conceptually mirrors\n'
-                                             'the equivalents defined in NIST AI '
-                                             '100-1; see `*_mappings` for\n'
-                                             'cross-references.',
+                 'gai_base': {'description': 'GAI-specific base vocabulary defined '
+                                             'locally: the divergent\n'
+                                             'lifecycle and actor-task enums '
+                                             '(`GaiLifecycleStageEnum`,\n'
+                                             '`GaiActorTaskEnum`). The shared base '
+                                             'scaffolding (`NamedThing`,\n'
+                                             'identifier slots, `SubcategoryCode`, '
+                                             '`TrustworthinessCharacteristicEnum`)\n'
+                                             'is imported from '
+                                             '`nist_ai_rmf_common`; see '
+                                             '`*_mappings` for\n'
+                                             'cross-references to NIST AI 100-1.',
                               'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
                               'name': 'gai_base'},
                  'gai_considerations': {'description': 'Primary GAI Considerations '
@@ -195,27 +202,66 @@ linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_600_1',
                                'name': 'GaiActionId',
                                'pattern': '^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$',
                                'typeof': 'string',
-                               'uri': 'xsd:string'},
-               'SubcategoryCode': {'base': 'str',
-                                   'description': 'Identifier for an AI RMF Core '
-                                                  'subcategory referenced by a\n'
-                                                  'suggested action (e.g., "GOVERN '
-                                                  '1.1"). Mirrors the\n'
-                                                  '`SubcategoryCode` type defined '
-                                                  'by NIST AI 100-1.',
-                                   'exact_mappings': ['nist_ai_100_1:SubcategoryCode'],
-                                   'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                                   'name': 'SubcategoryCode',
-                                   'pattern': '^(GOVERN|MAP|MEASURE|MANAGE) '
-                                              '[0-9]+\\.[0-9]+$',
-                                   'typeof': 'string',
-                                   'uri': 'xsd:string'}}} )
+                               'uri': 'xsd:string'}}} )
 
-class AiLifecycleStageEnum(str, Enum):
+class TrustworthinessCharacteristicEnum(str, Enum):
+    """
+    The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.
+    """
+    VALID_AND_RELIABLE = "VALID_AND_RELIABLE"
+    """
+    Confirmation that requirements for a specific intended use have
+    been fulfilled (validation) and that the system performs as
+    required without failure (reliability). A necessary condition of
+    trustworthiness and the base for other characteristics.
+    """
+    SAFE = "SAFE"
+    """
+    The system does not, under defined conditions, lead to a state
+    in which human life, health, property, or the environment is
+    endangered.
+    """
+    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT"
+    """
+    The system can withstand unexpected adverse events or changes
+    (resilient) and maintain confidentiality, integrity, and
+    availability through protection mechanisms (secure).
+    """
+    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT"
+    """
+    Trustworthy AI depends on accountability, which presupposes
+    transparency - the extent to which information about an AI
+    system and its outputs is available to those interacting with
+    it.
+    """
+    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE"
+    """
+    Explainability concerns the mechanisms underlying an AI system's
+    operation; interpretability concerns the meaning of its output
+    in context.
+    """
+    PRIVACY_ENHANCED = "PRIVACY_ENHANCED"
+    """
+    Norms and practices that help safeguard human autonomy,
+    identity, and dignity - including anonymity, confidentiality,
+    and control over personal information.
+    """
+    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED"
+    """
+    Concerns for equality and equity by addressing issues such as
+    harmful bias and discrimination, and recognising that
+    perceptions of fairness differ across cultures and
+    applications.
+    """
+
+
+class GaiLifecycleStageEnum(str, Enum):
     """
     AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
 "Risks can arise during design, development, deployment,
-operation, and/or decommissioning."
+operation, and/or decommissioning." Distinct from the six-stage
+`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
     """
     DESIGN = "DESIGN"
     """
@@ -239,56 +285,7 @@ operation, and/or decommissioning."
     """
 
 
-class TrustworthinessCharacteristicEnum(str, Enum):
-    """
-    The seven characteristics of trustworthy AI from NIST AI 100-1
-(AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
-Section 2 as "Trustworthy AI Characteristics" tags on each
-GAI risk.
-    """
-    VALID_AND_RELIABLE = "VALID_AND_RELIABLE"
-    """
-    Confirmation that requirements for a specific intended use
-    have been fulfilled (validation) and that the system
-    performs as required without failure (reliability).
-    """
-    SAFE = "SAFE"
-    """
-    The system does not, under defined conditions, lead to a
-    state in which human life, health, property, or the
-    environment is endangered.
-    """
-    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT"
-    """
-    The system can withstand unexpected adverse events or
-    changes (resilient) and maintain confidentiality,
-    integrity, and availability (secure).
-    """
-    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT"
-    """
-    Trustworthy AI depends on accountability, which presupposes
-    transparency about the system and its outputs.
-    """
-    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE"
-    """
-    Explainability concerns the mechanisms underlying an AI
-    system's operation; interpretability concerns the meaning
-    of its output in context.
-    """
-    PRIVACY_ENHANCED = "PRIVACY_ENHANCED"
-    """
-    Norms and practices that help safeguard human autonomy,
-    identity, and dignity - including anonymity, confidentiality,
-    and control over personal information.
-    """
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED"
-    """
-    Addressing equality and equity issues such as harmful bias
-    and discrimination across cultures and applications.
-    """
-
-
-class AiActorTaskEnum(str, Enum):
+class GaiActorTaskEnum(str, Enum):
     """
     AI Actor Tasks referenced by the Suggested Actions tables in
 NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
@@ -787,29 +784,30 @@ NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").
 
 
 
-class NamedThingGAI(ConfiguredBaseModel):
+class NamedThing(ConfiguredBaseModel):
     """
-    Abstract base for identifiable elements of the GAI Profile.
-    Inlined here to keep this schema standalone; mirrors the
-    `NamedThingGAI` defined in NIST AI 100-1.
+    A generic grouping for any identifiable AI RMF element.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_base'],
-         'related_mappings': ['nist_ai_100_1:NamedThingGAI']})
+         'class_uri': 'schema:Thing',
+         'close_mappings': ['schema:Thing'],
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common',
+         'in_subset': ['base']})
 
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
-class GaiRisk(NamedThingGAI):
+class GaiRisk(NamedThing):
     """
     A risk that is novel to or exacerbated by Generative AI.
     Each instance corresponds to one of the 12 risk categories
@@ -827,29 +825,28 @@ ecosystem/societal.""", json_schema_extra = { "linkml_meta": {'domain_of': ['Gai
     risk_scope: Optional[list[GaiRiskScopeEnum]] = Field(default=None, description="""Scope levels at which the risk may manifest.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
     risk_sources: Optional[list[GaiRiskSourceEnum]] = Field(default=None, description="""Sources from which the risk may emerge.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
     time_scale: Optional[list[GaiRiskTimeScaleEnum]] = Field(default=None, description="""Time scales over which the risk may materialise.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    lifecycle_stage: Optional[list[AiLifecycleStageEnum]] = Field(default=None, description="""AI lifecycle stage(s) at which a GAI risk may arise or at
-which a suggested action applies (Section 2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'],
-         'in_subset': ['gai_base'],
-         'related_mappings': ['nist_ai_100_1:lifecycle_stage']} })
-    trustworthiness_characteristic: Optional[list[TrustworthinessCharacteristicEnum]] = Field(default=None, description="""Trustworthy AI Characteristic(s) most relevant to a GAI risk -
-i.e., the \"Trustworthy AI Characteristics\" tag at the end of
-each Section 2 risk description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'],
-         'in_subset': ['gai_base'],
-         'related_mappings': ['nist_ai_100_1:trustworthiness_characteristic']} })
+    trustworthiness_characteristic: Optional[list[TrustworthinessCharacteristicEnum]] = Field(default=None, description="""Trustworthiness characteristic(s) the element pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['trustworthiness']} })
     addressed_by_actions: Optional[list[str]] = Field(default=None, description="""Suggested actions that address a GAI risk (back-reference
 derived from `SuggestedAction.gai_risks`).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
+    lifecycle_stage: Optional[list[GaiLifecycleStageEnum]] = Field(default=None, description="""AI lifecycle stage(s) at which the GAI risk may arise
+(NIST AI 600-1 Section 2). Uses the GAI five-stage
+lifecycle (`GaiLifecycleStageEnum`).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'],
          'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+         'related_mappings': ['nist_ai_100_1:lifecycle_stage']} })
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
-class SuggestedAction(NamedThingGAI):
+class SuggestedAction(NamedThing):
     """
     A suggested action an organisation can take to manage GAI
     risks. Each action is identified by an Action ID, linked to an
@@ -875,23 +872,26 @@ class SuggestedAction(NamedThingGAI):
          'in_subset': ['gai_actions']} })
     gai_risks: Optional[list[GaiRiskCategoryEnum]] = Field(default=None, description="""GAI risk categories addressed by a suggested action or
 considered by a primary consideration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'], 'in_subset': ['gai_core']} })
-    actor_task: Optional[list[AiActorTaskEnum]] = Field(default=None, description="""Pertinent AI Actor Task(s) for a suggested action - i.e., the
-\"AI Actor Tasks\" row at the bottom of each Section 3 table.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'],
+    actor_task: Optional[list[GaiActorTaskEnum]] = Field(default=None, description="""Pertinent AI Actor Task(s) for the suggested action - i.e.,
+the \"AI Actor Tasks\" row at the bottom of each Section 3
+table.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'],
          'in_subset': ['gai_base'],
          'related_mappings': ['nist_ai_100_1:actor_task']} })
     id: str = Field(default=..., description="""Identifier for the action - typically the same as the
-`action_id` (e.g., \"GV-1.1-001\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+`action_id` (e.g., \"GV-1.1-001\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The suggested-action text itself.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""The suggested-action text itself.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
-class PrimaryGaiConsideration(NamedThingGAI):
+class PrimaryGaiConsideration(NamedThing):
     """
     An overarching consideration derived from the NIST GAI PWG
     consultation process (Appendix A). The `consideration_kind`
@@ -922,18 +922,20 @@ such as digital watermarking, metadata recording, digital
 fingerprinting, and human authentication (Appendix A.1.6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
     ai_incident_definition: Optional[str] = Field(default=None, description="""For Incident Disclosure: the definition of AI incident used
 by the organisation (Appendix A.1.8).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
-class StructuredPublicFeedback(NamedThingGAI):
+class StructuredPublicFeedback(NamedThing):
     """
     Methods used to evaluate whether GAI systems are performing as
     intended and to calibrate and verify traditional measurement
@@ -944,15 +946,17 @@ class StructuredPublicFeedback(NamedThingGAI):
          'related_mappings': ['iso27001:InterestedParty']})
 
     feedback_method_kind: StructuredFeedbackMethodEnum = Field(default=..., description="""Which structured feedback method this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StructuredPublicFeedback'], 'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
 class AiRedTeaming(StructuredPublicFeedback):
@@ -972,18 +976,20 @@ class AiRedTeaming(StructuredPublicFeedback):
     feedback_method_kind: StructuredFeedbackMethodEnum = Field(default=StructuredFeedbackMethodEnum.AI_RED_TEAMING, description="""Which structured feedback method this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StructuredPublicFeedback'],
          'ifabsent': 'StructuredFeedbackMethodEnum(AI_RED_TEAMING)',
          'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
-class GaiProfile(NamedThingGAI):
+class GaiProfile(NamedThing):
     """
     Root container that bundles the NIST AI 600-1 Generative AI
     Profile: GAI risks (Section 2), suggested actions (Section 3),
@@ -1004,20 +1010,22 @@ Pre-Deployment Testing, Content Provenance, Incident
 Disclosure). Discriminated by `consideration_kind`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_considerations']} })
     structured_feedback_methods: Optional[list[StructuredPublicFeedback]] = Field(default=None, description="""Structured public feedback methods relevant to the profile
 (Appendix A.1.5).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""Unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
-         'slot_uri': 'dcterms:identifier'} })
-    title: Optional[str] = Field(default=None, description="""Human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
+         'slot_uri': 'schema:identifier'} })
+    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
+    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""Free-text description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThingGAI'],
-         'in_subset': ['gai_base'],
+    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
+         'in_subset': ['base'],
          'slot_uri': 'dcterms:description'} })
+    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
 
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-NamedThingGAI.model_rebuild()
+NamedThing.model_rebuild()
 GaiRisk.model_rebuild()
 SuggestedAction.model_rebuild()
 PrimaryGaiConsideration.model_rebuild()

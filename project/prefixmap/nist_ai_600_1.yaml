@@ -15,5 +15,8 @@
    "schema": "http://schema.org/",
    "skos": "http://www.w3.org/2004/02/skos/core#",
    "stix": "https://w3id.org/lmodel/stix/",
-   "xsd": "http://www.w3.org/2001/XMLSchema#"
+   "xsd": "http://www.w3.org/2001/XMLSchema#",
+   "NamedThing": {
+      "@id": "schema:Thing"
+   }
 }

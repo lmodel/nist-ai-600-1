@@ -1,4 +1,4 @@
-export type NamedThingGAIId = string;
+export type NamedThingId = string;
 export type GaiRiskId = string;
 export type SuggestedActionId = string;
 export type PrimaryGaiConsiderationId = string;
@@ -6,11 +6,50 @@ export type StructuredPublicFeedbackId = string;
 export type AiRedTeamingId = string;
 export type GaiProfileId = string;
 /**
+* The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.
+*/
+export enum TrustworthinessCharacteristicEnum {
+    
+    /** Confirmation that requirements for a specific intended use have
+been fulfilled (validation) and that the system performs as
+required without failure (reliability). A necessary condition of
+trustworthiness and the base for other characteristics. */
+    VALID_AND_RELIABLE = "VALID_AND_RELIABLE",
+    /** The system does not, under defined conditions, lead to a state
+in which human life, health, property, or the environment is
+endangered. */
+    SAFE = "SAFE",
+    /** The system can withstand unexpected adverse events or changes
+(resilient) and maintain confidentiality, integrity, and
+availability through protection mechanisms (secure). */
+    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT",
+    /** Trustworthy AI depends on accountability, which presupposes
+transparency - the extent to which information about an AI
+system and its outputs is available to those interacting with
+it. */
+    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT",
+    /** Explainability concerns the mechanisms underlying an AI system's
+operation; interpretability concerns the meaning of its output
+in context. */
+    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE",
+    /** Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information. */
+    PRIVACY_ENHANCED = "PRIVACY_ENHANCED",
+    /** Concerns for equality and equity by addressing issues such as
+harmful bias and discrimination, and recognising that
+perceptions of fairness differ across cultures and
+applications. */
+    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+};
+/**
 * AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
 "Risks can arise during design, development, deployment,
-operation, and/or decommissioning."
+operation, and/or decommissioning." Distinct from the six-stage
+`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
 */
-export enum AiLifecycleStageEnum {
+export enum GaiLifecycleStageEnum {
     
     /** Articulating system concept, objectives, requirements. */
     DESIGN = "DESIGN",
@@ -24,46 +63,11 @@ export enum AiLifecycleStageEnum {
     DECOMMISSIONING = "DECOMMISSIONING",
 };
 /**
-* The seven characteristics of trustworthy AI from NIST AI 100-1
-(AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
-Section 2 as "Trustworthy AI Characteristics" tags on each
-GAI risk.
-*/
-export enum TrustworthinessCharacteristicEnum {
-    
-    /** Confirmation that requirements for a specific intended use
-have been fulfilled (validation) and that the system
-performs as required without failure (reliability). */
-    VALID_AND_RELIABLE = "VALID_AND_RELIABLE",
-    /** The system does not, under defined conditions, lead to a
-state in which human life, health, property, or the
-environment is endangered. */
-    SAFE = "SAFE",
-    /** The system can withstand unexpected adverse events or
-changes (resilient) and maintain confidentiality,
-integrity, and availability (secure). */
-    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT",
-    /** Trustworthy AI depends on accountability, which presupposes
-transparency about the system and its outputs. */
-    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT",
-    /** Explainability concerns the mechanisms underlying an AI
-system's operation; interpretability concerns the meaning
-of its output in context. */
-    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE",
-    /** Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information. */
-    PRIVACY_ENHANCED = "PRIVACY_ENHANCED",
-    /** Addressing equality and equity issues such as harmful bias
-and discrimination across cultures and applications. */
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED",
-};
-/**
 * AI Actor Tasks referenced by the Suggested Actions tables in
 NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
 Appendix A).
 */
-export enum AiActorTaskEnum {
+export enum GaiActorTaskEnum {
     
     /** Management, fiduciary, and legal authority for the organization. */
     GOVERNANCE_AND_OVERSIGHT = "GOVERNANCE_AND_OVERSIGHT",
@@ -391,17 +395,19 @@ export enum GovernancePracticeEnum {
 
 
 /**
- * Abstract base for identifiable elements of the GAI Profile.
-Inlined here to keep this schema standalone; mirrors the
-`NamedThingGAI` defined in NIST AI 100-1.
+ * A generic grouping for any identifiable AI RMF element.
  */
-export interface NamedThingGAI {
-    /** Unique identifier for an element. */
+export interface NamedThing {
+    /** A unique identifier for an element. */
     id: string,
-    /** Human-readable title. */
+    /** A short human-readable name. */
+    name?: string,
+    /** A human-readable title. */
     title?: string,
-    /** Free-text description. */
+    /** A human-readable description. */
     description?: string,
+    /** Related references. */
+    see_also?: string[],
 }
 
 
@@ -410,7 +416,7 @@ export interface NamedThingGAI {
 Each instance corresponds to one of the 12 risk categories
 enumerated in NIST AI 600-1 Section 2.
  */
-export interface GaiRisk extends NamedThingGAI {
+export interface GaiRisk extends NamedThing {
     /** The GAI risk category this element represents. */
     gai_risk_kind?: string,
     /** Higher-level categorisation - technical/model, misuse, or
@@ -422,16 +428,15 @@ ecosystem/societal. */
     risk_sources?: string,
     /** Time scales over which the risk may materialise. */
     time_scale?: string,
-    /** AI lifecycle stage(s) at which a GAI risk may arise or at
-which a suggested action applies (Section 2). */
-    lifecycle_stage?: string,
-    /** Trustworthy AI Characteristic(s) most relevant to a GAI risk -
-i.e., the "Trustworthy AI Characteristics" tag at the end of
-each Section 2 risk description. */
+    /** Trustworthiness characteristic(s) the element pertains to. */
     trustworthiness_characteristic?: string,
     /** Suggested actions that address a GAI risk (back-reference
 derived from `SuggestedAction.gai_risks`). */
     addressed_by_actions?: SuggestedActionId[],
+    /** AI lifecycle stage(s) at which the GAI risk may arise
+(NIST AI 600-1 Section 2). Uses the GAI five-stage
+lifecycle (`GaiLifecycleStageEnum`). */
+    lifecycle_stage?: string,
 }
 
 
@@ -441,7 +446,7 @@ risks. Each action is identified by an Action ID, linked to an
 AI RMF subcategory, and may be relevant to one or more GAI
 risks and AI actor tasks (NIST AI 600-1 Section 3).
  */
-export interface SuggestedAction extends NamedThingGAI {
+export interface SuggestedAction extends NamedThing {
     /** Identifier of a Suggested Action. */
     action_id: string,
     /** Two-letter function prefix of the action's subcategory. */
@@ -451,8 +456,9 @@ export interface SuggestedAction extends NamedThingGAI {
     /** GAI risk categories addressed by a suggested action or
 considered by a primary consideration. */
     gai_risks?: string,
-    /** Pertinent AI Actor Task(s) for a suggested action - i.e., the
-"AI Actor Tasks" row at the bottom of each Section 3 table. */
+    /** Pertinent AI Actor Task(s) for the suggested action - i.e.,
+the "AI Actor Tasks" row at the bottom of each Section 3
+table. */
     actor_task?: string,
 }
 
@@ -471,7 +477,7 @@ to the appropriate `consideration_kind`:
   * CONTENT_PROVENANCE: provenance_techniques
   * INCIDENT_DISCLOSURE: ai_incident_definition
  */
-export interface PrimaryGaiConsideration extends NamedThingGAI {
+export interface PrimaryGaiConsideration extends NamedThing {
     /** Which primary consideration this element represents. */
     consideration_kind: string,
     /** Governance plans and actions enumerated in NIST AI 600-1
@@ -498,7 +504,7 @@ by the organisation (Appendix A.1.8). */
 intended and to calibrate and verify traditional measurement
 methods (A.1.5).
  */
-export interface StructuredPublicFeedback extends NamedThingGAI {
+export interface StructuredPublicFeedback extends NamedThing {
     /** Which structured feedback method this element represents. */
     feedback_method_kind: string,
 }
@@ -522,7 +528,7 @@ Profile: GAI risks (Section 2), suggested actions (Section 3),
 and primary considerations (Appendix A). The GAI Profile is a
 *cross-sectoral* AI RMF profile (Section 1).
  */
-export interface GaiProfile extends NamedThingGAI {
+export interface GaiProfile extends NamedThing {
     /** The catalog of GAI risks (Section 2). */
     gai_risk_catalog?: GaiRisk[],
     /** Suggested actions to manage GAI risks (Section 3). */

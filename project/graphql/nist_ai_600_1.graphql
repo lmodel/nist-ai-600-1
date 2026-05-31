@@ -1,6 +1,14 @@
 # metamodel_version: 1.11.0
 # version: 1.0.0
-enum AiActorTaskEnum
+enum GaiActionFunctionPrefixEnum
+  {
+    GV
+    MP
+    MS
+    MG
+  }
+
+enum GaiActorTaskEnum
   {
     GOVERNANCE_AND_OVERSIGHT
     AI_DESIGN
@@ -17,21 +25,13 @@ enum AiActorTaskEnum
     THIRD_PARTY_ENTITIES
   }
 
-enum AiLifecycleStageEnum
+enum GaiLifecycleStageEnum
   {
     DESIGN
     DEVELOPMENT
     DEPLOYMENT
     OPERATION
     DECOMMISSIONING
-  }
-
-enum GaiActionFunctionPrefixEnum
-  {
-    GV
-    MP
-    MS
-    MG
   }
 
 enum GaiRiskCategorizationEnum
@@ -155,8 +155,10 @@ enum TrustworthinessCharacteristicEnum
 type AiRedTeaming
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
     redTeamType: RedTeamingTypeEnum
     feedbackMethodKind: StructuredFeedbackMethodEnum!
   }
@@ -164,8 +166,10 @@ type AiRedTeaming
 type GaiProfile
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
     gaiRiskCatalog: [GaiRisk]
     suggestedActions: [SuggestedAction]
     primaryConsiderations: [PrimaryGaiConsideration]
@@ -175,30 +179,36 @@ type GaiProfile
 type GaiRisk
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
     gaiRiskKind: GaiRiskCategoryEnum
     riskCategorization: GaiRiskCategorizationEnum
     riskScope: [GaiRiskScopeEnum]
     riskSources: [GaiRiskSourceEnum]
     timeScale: [GaiRiskTimeScaleEnum]
-    lifecycleStage: [AiLifecycleStageEnum]
     trustworthinessCharacteristic: [TrustworthinessCharacteristicEnum]
     addressedByActions: [SuggestedAction]
+    lifecycleStage: [GaiLifecycleStageEnum]
   }
 
-interface NamedThingGAI
+interface NamedThing
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
   }
 
 type PrimaryGaiConsideration
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
     considerationKind: PrimaryConsiderationEnum!
     governancePractices: [GovernancePracticeEnum]
     thirdPartyConsiderations: String
@@ -210,19 +220,23 @@ type PrimaryGaiConsideration
 type StructuredPublicFeedback
   {
     id: String!
+    name: String
     title: String
     description: String
+    seeAlso: [String]
     feedbackMethodKind: StructuredFeedbackMethodEnum!
   }
 
 type SuggestedAction
   {
+    name: String
     title: String
+    seeAlso: [String]
     actionId: GaiActionId!
     functionPrefix: GaiActionFunctionPrefixEnum
     appliesToSubcategory: SubcategoryCode
     gaiRisks: [GaiRiskCategoryEnum]
-    actorTask: [AiActorTaskEnum]
+    actorTask: [GaiActorTaskEnum]
     id: String!
     description: String
   }

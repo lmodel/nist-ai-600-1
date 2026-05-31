@@ -1,6 +1,6 @@
 {
   "name": "nist-ai-600-1",
-  "description": "LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence\nProfile of the AI Risk Management Framework (July 2024).\n\nThis is a **cross-sectoral profile** and a *companion resource* to\nNIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and provides a set of\nsuggested actions, organised by AI RMF subcategory, that\norganisations can take to govern, map, measure, and manage those\nrisks.\n\nThis schema is **standalone** - it inlines the minimal AI RMF\nbase scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type) needed to express the\nGAI Profile so it has no schema-level dependency on the sibling\n`nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements\nare recorded as `*_mappings` for traceability.\n\nThe schema covers:\n  * 12 GAI risk categories (Section 2)\n  * Risk dimensions (lifecycle stage, scope, source, time scale)\n  * `SuggestedAction` entries (Section 3 tables) linked to AI RMF\n    subcategories\n  * Primary GAI Considerations (Appendix A): Governance,\n    Pre-Deployment Testing, Content Provenance, Incident Disclosure\n  * Structured Public Feedback methods and AI Red-teaming types",
+  "description": "LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence\nProfile of the AI Risk Management Framework (July 2024).\n\nThis is a **cross-sectoral profile** and a *companion resource* to\nNIST AI 100-1 (AI RMF 1.0). It defines risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and provides a set of\nsuggested actions, organised by AI RMF subcategory, that\norganisations can take to govern, map, measure, and manage those\nrisks.\n\nShared AI RMF base scaffolding (the abstract `NamedThing` root,\nidentifier/title/description slots, the `SubcategoryCode` type, and\nthe `TrustworthinessCharacteristicEnum`) is imported from the\n`nist_ai_rmf_common` module so it has a single canonical definition\nacross the framework. GAI-specific lifecycle and actor-task\nvocabularies (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) are\ndefined locally because they diverge from the NIST AI 100-1 enums;\ncross-references to AI RMF 1.0 elements are recorded as `*_mappings`\nfor traceability.\n\nThe schema covers:\n  * 12 GAI risk categories (Section 2)\n  * Risk dimensions (lifecycle stage, scope, source, time scale)\n  * `SuggestedAction` entries (Section 3 tables) linked to AI RMF\n    subcategories\n  * Primary GAI Considerations (Appendix A): Governance,\n    Pre-Deployment Testing, Content Provenance, Incident Disclosure\n  * Structured Public Feedback methods and AI Red-teaming types",
   "title": "NIST AI RMF Generative AI Profile (NIST AI 600-1)",
   "source": "https://doi.org/10.6028/NIST.AI.600-1",
   "see_also": [
@@ -11,7 +11,8 @@
   "id": "https://w3id.org/lmodel/nist-ai-600-1",
   "version": "1.0.0",
   "imports": [
-    "linkml:types"
+    "linkml:types",
+    "nist_ai_100_1:schema/nist_ai_rmf_common"
   ],
   "license": "Apache-2.0",
   "prefixes": [
@@ -90,7 +91,7 @@
     {
       "name": "gai_base",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiBase",
-      "description": "Minimal AI RMF base scaffolding inlined to keep this schema\nstandalone (abstract `NamedThingGAI`, lifecycle / trustworthiness /\nactor-task enums, `SubcategoryCode` type). Conceptually mirrors\nthe equivalents defined in NIST AI 100-1; see `*_mappings` for\ncross-references.",
+      "description": "GAI-specific base vocabulary defined locally: the divergent\nlifecycle and actor-task enums (`GaiLifecycleStageEnum`,\n`GaiActorTaskEnum`). The shared base scaffolding (`NamedThing`,\nidentifier slots, `SubcategoryCode`, `TrustworthinessCharacteristicEnum`)\nis imported from `nist_ai_rmf_common`; see `*_mappings` for\ncross-references to NIST AI 100-1.",
       "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
     },
@@ -121,6 +122,20 @@
       "description": "Structured Public Feedback methods and AI Red-teaming\n(Appendix A.1.5).",
       "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
       "@type": "SubsetDefinition"
+    },
+    {
+      "name": "base",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Base",
+      "description": "Schema-infrastructure elements shared across the framework:\nidentifier slots and the abstract `NamedThing` root.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "@type": "SubsetDefinition"
+    },
+    {
+      "name": "trustworthiness",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness",
+      "description": "Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,\n\u00a73): Valid and Reliable, Safe, Secure and Resilient, Accountable\nand Transparent, Explainable and Interpretable, Privacy-Enhanced,\nand Fair with Harmful Bias Managed.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "@type": "SubsetDefinition"
     }
   ],
   "types": [
@@ -133,20 +148,6 @@
       "base": "str",
       "uri": "http://www.w3.org/2001/XMLSchema#string",
       "pattern": "^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$",
-      "@type": "TypeDefinition"
-    },
-    {
-      "name": "SubcategoryCode",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/SubcategoryCode",
-      "description": "Identifier for an AI RMF Core subcategory referenced by a\nsuggested action (e.g., \"GOVERN 1.1\"). Mirrors the\n`SubcategoryCode` type defined by NIST AI 100-1.",
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "exact_mappings": [
-        "nist_ai_100_1:SubcategoryCode"
-      ],
-      "typeof": "string",
-      "base": "str",
-      "uri": "http://www.w3.org/2001/XMLSchema#string",
-      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
       "@type": "TypeDefinition"
     },
     {
@@ -456,13 +457,24 @@
       "uri": "http://www.w3.org/2001/XMLSchema#string",
       "repr": "str",
       "@type": "TypeDefinition"
+    },
+    {
+      "name": "SubcategoryCode",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode",
+      "description": "Identifier for a Core subcategory (e.g., \"GOVERN 1.1\").",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "typeof": "string",
+      "base": "str",
+      "uri": "http://www.w3.org/2001/XMLSchema#string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$",
+      "@type": "TypeDefinition"
     }
   ],
   "enums": [
     {
-      "name": "AiLifecycleStageEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/AiLifecycleStageEnum",
-      "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\"",
+      "name": "GaiLifecycleStageEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStageEnum",
+      "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\" Distinct from the six-stage\n`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).",
       "in_subset": [
         "gai_base"
       ],
@@ -494,50 +506,8 @@
       ]
     },
     {
-      "name": "TrustworthinessCharacteristicEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/TrustworthinessCharacteristicEnum",
-      "description": "The seven characteristics of trustworthy AI from NIST AI 100-1\n(AI RMF 1.0) Part 1 \u00a73, referenced throughout NIST AI 600-1\nSection 2 as \"Trustworthy AI Characteristics\" tags on each\nGAI risk.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "exact_mappings": [
-        "nist_ai_100_1:TrustworthinessCharacteristicEnum"
-      ],
-      "permissible_values": [
-        {
-          "text": "VALID_AND_RELIABLE",
-          "description": "Confirmation that requirements for a specific intended use\nhave been fulfilled (validation) and that the system\nperforms as required without failure (reliability)."
-        },
-        {
-          "text": "SAFE",
-          "description": "The system does not, under defined conditions, lead to a\nstate in which human life, health, property, or the\nenvironment is endangered."
-        },
-        {
-          "text": "SECURE_AND_RESILIENT",
-          "description": "The system can withstand unexpected adverse events or\nchanges (resilient) and maintain confidentiality,\nintegrity, and availability (secure)."
-        },
-        {
-          "text": "ACCOUNTABLE_AND_TRANSPARENT",
-          "description": "Trustworthy AI depends on accountability, which presupposes\ntransparency about the system and its outputs."
-        },
-        {
-          "text": "EXPLAINABLE_AND_INTERPRETABLE",
-          "description": "Explainability concerns the mechanisms underlying an AI\nsystem's operation; interpretability concerns the meaning\nof its output in context."
-        },
-        {
-          "text": "PRIVACY_ENHANCED",
-          "description": "Norms and practices that help safeguard human autonomy,\nidentity, and dignity - including anonymity, confidentiality,\nand control over personal information."
-        },
-        {
-          "text": "FAIR_WITH_HARMFUL_BIAS_MANAGED",
-          "description": "Addressing equality and equity issues such as harmful bias\nand discrimination across cultures and applications."
-        }
-      ]
-    },
-    {
-      "name": "AiActorTaskEnum",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/AiActorTaskEnum",
+      "name": "GaiActorTaskEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiActorTaskEnum",
       "description": "AI Actor Tasks referenced by the Suggested Actions tables in\nNIST AI 600-1 Section 3 (and defined in NIST AI 100-1\nAppendix A).",
       "in_subset": [
         "gai_base"
@@ -1005,128 +975,48 @@
           "description": "Workforce diversity and interdisciplinary teams."
         }
       ]
+    },
+    {
+      "name": "TrustworthinessCharacteristicEnum",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum",
+      "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "permissible_values": [
+        {
+          "text": "VALID_AND_RELIABLE",
+          "description": "Confirmation that requirements for a specific intended use have\nbeen fulfilled (validation) and that the system performs as\nrequired without failure (reliability). A necessary condition of\ntrustworthiness and the base for other characteristics."
+        },
+        {
+          "text": "SAFE",
+          "description": "The system does not, under defined conditions, lead to a state\nin which human life, health, property, or the environment is\nendangered."
+        },
+        {
+          "text": "SECURE_AND_RESILIENT",
+          "description": "The system can withstand unexpected adverse events or changes\n(resilient) and maintain confidentiality, integrity, and\navailability through protection mechanisms (secure)."
+        },
+        {
+          "text": "ACCOUNTABLE_AND_TRANSPARENT",
+          "description": "Trustworthy AI depends on accountability, which presupposes\ntransparency - the extent to which information about an AI\nsystem and its outputs is available to those interacting with\nit."
+        },
+        {
+          "text": "EXPLAINABLE_AND_INTERPRETABLE",
+          "description": "Explainability concerns the mechanisms underlying an AI system's\noperation; interpretability concerns the meaning of its output\nin context."
+        },
+        {
+          "text": "PRIVACY_ENHANCED",
+          "description": "Norms and practices that help safeguard human autonomy,\nidentity, and dignity - including anonymity, confidentiality,\nand control over personal information."
+        },
+        {
+          "text": "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+          "description": "Concerns for equality and equity by addressing issues such as\nharmful bias and discrimination, and recognising that\nperceptions of fairness differ across cultures and\napplications."
+        }
+      ]
     }
   ],
   "slots": [
-    {
-      "name": "id",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/id",
-      "description": "Unique identifier for an element.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "mappings": [
-        "http://purl.org/dc/terms/identifier"
-      ],
-      "slot_uri": "http://purl.org/dc/terms/identifier",
-      "identifier": true,
-      "owner": "NamedThingGAI",
-      "domain_of": [
-        "NamedThingGAI"
-      ],
-      "range": "string",
-      "required": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "title",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/title",
-      "description": "Human-readable title.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "mappings": [
-        "http://purl.org/dc/terms/title"
-      ],
-      "slot_uri": "http://purl.org/dc/terms/title",
-      "owner": "NamedThingGAI",
-      "domain_of": [
-        "NamedThingGAI"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "description",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/description",
-      "description": "Free-text description.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "mappings": [
-        "http://purl.org/dc/terms/description"
-      ],
-      "slot_uri": "http://purl.org/dc/terms/description",
-      "owner": "NamedThingGAI",
-      "domain_of": [
-        "NamedThingGAI"
-      ],
-      "range": "string",
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "lifecycle_stage",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/lifecycle_stage",
-      "description": "AI lifecycle stage(s) at which a GAI risk may arise or at\nwhich a suggested action applies (Section 2).",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "related_mappings": [
-        "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stage"
-      ],
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/lifecycle_stage",
-      "owner": "GaiRisk",
-      "domain_of": [
-        "GaiRisk"
-      ],
-      "range": "AiLifecycleStageEnum",
-      "multivalued": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "trustworthiness_characteristic",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/trustworthiness_characteristic",
-      "description": "Trustworthy AI Characteristic(s) most relevant to a GAI risk -\ni.e., the \"Trustworthy AI Characteristics\" tag at the end of\neach Section 2 risk description.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "related_mappings": [
-        "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic"
-      ],
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/trustworthiness_characteristic",
-      "owner": "GaiRisk",
-      "domain_of": [
-        "GaiRisk"
-      ],
-      "range": "TrustworthinessCharacteristicEnum",
-      "multivalued": true,
-      "@type": "SlotDefinition"
-    },
-    {
-      "name": "actor_task",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/actor_task",
-      "description": "Pertinent AI Actor Task(s) for a suggested action - i.e., the\n\"AI Actor Tasks\" row at the bottom of each Section 3 table.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "related_mappings": [
-        "https://w3id.org/lmodel/nist-ai-100-1/actor_task"
-      ],
-      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/actor_task",
-      "owner": "SuggestedAction",
-      "domain_of": [
-        "SuggestedAction"
-      ],
-      "range": "AiActorTaskEnum",
-      "multivalued": true,
-      "@type": "SlotDefinition"
-    },
     {
       "name": "gai_risk_kind",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_kind",
@@ -1505,19 +1395,174 @@
       "@type": "SlotDefinition"
     },
     {
-      "name": "SuggestedAction_id",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/id",
-      "description": "Identifier for the action - typically the same as the\n`action_id` (e.g., \"GV-1.1-001\").",
+      "name": "id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "A unique identifier for an element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://schema.org/identifier"
+      ],
+      "slot_uri": "http://schema.org/identifier",
+      "identifier": true,
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "required": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "name",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/name",
+      "description": "A short human-readable name.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#label"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#label",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "title",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/title",
+      "description": "A human-readable title.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://purl.org/dc/terms/title"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/title",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "description",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
+      "description": "A human-readable description.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://purl.org/dc/terms/description"
+      ],
+      "slot_uri": "http://purl.org/dc/terms/description",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "string",
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "see_also",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/see_also",
+      "description": "Related references.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "http://www.w3.org/2000/01/rdf-schema#seeAlso"
+      ],
+      "slot_uri": "http://www.w3.org/2000/01/rdf-schema#seeAlso",
+      "owner": "NamedThing",
+      "domain_of": [
+        "NamedThing"
+      ],
+      "range": "uriorcurie",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "trustworthiness_characteristic",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "description": "Trustworthiness characteristic(s) the element pertains to.",
+      "in_subset": [
+        "trustworthiness"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic",
+      "owner": "GaiRisk",
+      "domain_of": [
+        "GaiRisk"
+      ],
+      "range": "TrustworthinessCharacteristicEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "gaiRisk__lifecycle_stage",
+      "description": "AI lifecycle stage(s) at which the GAI risk may arise\n(NIST AI 600-1 Section 2). Uses the GAI five-stage\nlifecycle (`GaiLifecycleStageEnum`).",
       "in_subset": [
         "gai_base"
       ],
       "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "https://w3id.org/lmodel/nist-ai-100-1/lifecycle_stage"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/lifecycle_stage",
+      "alias": "lifecycle_stage",
+      "owner": "GaiRisk",
+      "domain_of": [
+        "GaiRisk"
+      ],
+      "range": "GaiLifecycleStageEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "suggestedAction__actor_task",
+      "description": "Pertinent AI Actor Task(s) for the suggested action - i.e.,\nthe \"AI Actor Tasks\" row at the bottom of each Section 3\ntable.",
+      "in_subset": [
+        "gai_base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "https://w3id.org/lmodel/nist-ai-100-1/actor_task"
+      ],
+      "slot_uri": "https://w3id.org/lmodel/nist-ai-600-1/actor_task",
+      "alias": "actor_task",
+      "owner": "SuggestedAction",
+      "domain_of": [
+        "SuggestedAction"
+      ],
+      "range": "GaiActorTaskEnum",
+      "multivalued": true,
+      "@type": "SlotDefinition"
+    },
+    {
+      "name": "SuggestedAction_id",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/id",
+      "description": "Identifier for the action - typically the same as the\n`action_id` (e.g., \"GV-1.1-001\").",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
       "mappings": [
-        "http://purl.org/dc/terms/identifier"
+        "http://schema.org/identifier"
       ],
       "is_a": "id",
       "domain": "SuggestedAction",
-      "slot_uri": "http://purl.org/dc/terms/identifier",
+      "slot_uri": "http://schema.org/identifier",
       "identifier": true,
       "alias": "id",
       "owner": "SuggestedAction",
@@ -1526,18 +1571,18 @@
       ],
       "is_usage_slot": true,
       "usage_slot_name": "id",
-      "range": "string",
+      "range": "uriorcurie",
       "required": true,
       "@type": "SlotDefinition"
     },
     {
       "name": "SuggestedAction_description",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/description",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/description",
       "description": "The suggested-action text itself.",
       "in_subset": [
-        "gai_base"
+        "base"
       ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
       "mappings": [
         "http://purl.org/dc/terms/description"
       ],
@@ -1580,27 +1625,6 @@
   ],
   "classes": [
     {
-      "name": "NamedThingGAI",
-      "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThingGAI",
-      "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThingGAI` defined in NIST AI 100-1.",
-      "in_subset": [
-        "gai_base"
-      ],
-      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
-      "related_mappings": [
-        "nist_ai_100_1:NamedThingGAI"
-      ],
-      "abstract": true,
-      "slots": [
-        "id",
-        "title",
-        "description"
-      ],
-      "slot_usage": {},
-      "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/NamedThingGAI",
-      "@type": "ClassDefinition"
-    },
-    {
       "name": "GaiRisk",
       "definition_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRisk",
       "description": "A risk that is novel to or exacerbated by Generative AI.\nEach instance corresponds to one of the 12 risk categories\nenumerated in NIST AI 600-1 Section 2.",
@@ -1617,21 +1641,38 @@
       "broad_mappings": [
         "iso27001:Risk"
       ],
-      "is_a": "NamedThingGAI",
+      "is_a": "NamedThing",
       "slots": [
         "id",
+        "name",
         "title",
         "description",
+        "see_also",
         "gai_risk_kind",
         "risk_categorization",
         "risk_scope",
         "risk_sources",
         "time_scale",
-        "lifecycle_stage",
         "trustworthiness_characteristic",
-        "addressed_by_actions"
+        "addressed_by_actions",
+        "gaiRisk__lifecycle_stage"
       ],
       "slot_usage": {},
+      "attributes": [
+        {
+          "name": "lifecycle_stage",
+          "description": "AI lifecycle stage(s) at which the GAI risk may arise\n(NIST AI 600-1 Section 2). Uses the GAI five-stage\nlifecycle (`GaiLifecycleStageEnum`).",
+          "in_subset": [
+            "gai_base"
+          ],
+          "related_mappings": [
+            "nist_ai_100_1:lifecycle_stage"
+          ],
+          "range": "GaiLifecycleStageEnum",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
       "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiRisk",
       "@type": "ClassDefinition"
     },
@@ -1650,18 +1691,35 @@
         "oscal_catalog:Control",
         "gist_linkml:Task"
       ],
-      "is_a": "NamedThingGAI",
+      "is_a": "NamedThing",
       "slots": [
+        "name",
         "title",
+        "see_also",
         "action_id",
         "function_prefix",
         "applies_to_subcategory",
         "gai_risks",
-        "actor_task",
+        "suggestedAction__actor_task",
         "SuggestedAction_id",
         "SuggestedAction_description"
       ],
       "slot_usage": {},
+      "attributes": [
+        {
+          "name": "actor_task",
+          "description": "Pertinent AI Actor Task(s) for the suggested action - i.e.,\nthe \"AI Actor Tasks\" row at the bottom of each Section 3\ntable.",
+          "in_subset": [
+            "gai_base"
+          ],
+          "related_mappings": [
+            "nist_ai_100_1:actor_task"
+          ],
+          "range": "GaiActorTaskEnum",
+          "multivalued": true,
+          "@type": "SlotDefinition"
+        }
+      ],
       "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/SuggestedAction",
       "@type": "ClassDefinition"
     },
@@ -1676,11 +1734,13 @@
       "related_mappings": [
         "nist_csf:CSFProperty"
       ],
-      "is_a": "NamedThingGAI",
+      "is_a": "NamedThing",
       "slots": [
         "id",
+        "name",
         "title",
         "description",
+        "see_also",
         "consideration_kind",
         "governance_practices",
         "third_party_considerations",
@@ -1703,11 +1763,13 @@
       "related_mappings": [
         "iso27001:InterestedParty"
       ],
-      "is_a": "NamedThingGAI",
+      "is_a": "NamedThing",
       "slots": [
         "id",
+        "name",
         "title",
         "description",
+        "see_also",
         "feedback_method_kind"
       ],
       "slot_usage": {},
@@ -1728,8 +1790,10 @@
       "is_a": "StructuredPublicFeedback",
       "slots": [
         "id",
+        "name",
         "title",
         "description",
+        "see_also",
         "red_team_type",
         "AiRedTeaming_feedback_method_kind"
       ],
@@ -1754,11 +1818,13 @@
       "related_mappings": [
         "nist_ai_100_1:AiRmfProfile"
       ],
-      "is_a": "NamedThingGAI",
+      "is_a": "NamedThing",
       "slots": [
         "id",
+        "name",
         "title",
         "description",
+        "see_also",
         "gai_risk_catalog",
         "suggested_actions",
         "primary_considerations",
@@ -1768,17 +1834,44 @@
       "class_uri": "https://w3id.org/lmodel/nist-ai-600-1/GaiProfile",
       "tree_root": true,
       "@type": "ClassDefinition"
+    },
+    {
+      "name": "NamedThing",
+      "definition_uri": "https://w3id.org/lmodel/nist-ai-100-1/NamedThing",
+      "description": "A generic grouping for any identifiable AI RMF element.",
+      "in_subset": [
+        "base"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common",
+      "mappings": [
+        "schema:Thing"
+      ],
+      "close_mappings": [
+        "schema:Thing"
+      ],
+      "abstract": true,
+      "slots": [
+        "id",
+        "name",
+        "title",
+        "description",
+        "see_also"
+      ],
+      "slot_usage": {},
+      "class_uri": "http://schema.org/Thing",
+      "@type": "ClassDefinition"
     }
   ],
   "metamodel_version": "1.11.0",
   "source_file": "nist_ai_600_1.yaml",
-  "source_file_date": "2026-05-31T02:03:06",
-  "source_file_size": 35755,
-  "generation_date": "2026-05-31T02:03:15",
+  "source_file_date": "2026-05-31T03:03:50",
+  "source_file_size": 33511,
+  "generation_date": "2026-05-31T03:11:43",
   "@type": "SchemaDefinition",
   "@context": [
     "project/jsonld/nist_ai_600_1.context.jsonld",
     "https://w3id.org/linkml/types.context.jsonld",
+    "https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common.context.jsonld",
     {
       "@base": "https://w3id.org/lmodel/nist-ai-600-1/"
     }

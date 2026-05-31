@@ -13,12 +13,15 @@ description: |-
   organisations can take to govern, map, measure, and manage those
   risks.
 
-  This schema is **standalone** - it inlines the minimal AI RMF
-  base scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /
-  actor-task enums, `SubcategoryCode` type) needed to express the
-  GAI Profile so it has no schema-level dependency on the sibling
-  `nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements
-  are recorded as `*_mappings` for traceability.
+  Shared AI RMF base scaffolding (the abstract `NamedThing` root,
+  identifier/title/description slots, the `SubcategoryCode` type, and
+  the `TrustworthinessCharacteristicEnum`) is imported from the
+  `nist_ai_rmf_common` module so it has a single canonical definition
+  across the framework. GAI-specific lifecycle and actor-task
+  vocabularies (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) are
+  defined locally because they diverge from the NIST AI 100-1 enums;
+  cross-references to AI RMF 1.0 elements are recorded as `*_mappings`
+  for traceability.
 
   The schema covers:
     * 12 GAI risk categories (Section 2)
@@ -60,6 +63,7 @@ default_range: string
 
 imports:
   - linkml:types
+  - nist_ai_100_1:schema/nist_ai_rmf_common
 
 # ============================================================================
 # Subsets
@@ -67,11 +71,12 @@ imports:
 subsets:
   gai_base:
     description: |-
-      Minimal AI RMF base scaffolding inlined to keep this schema
-      standalone (abstract `NamedThingGAI`, lifecycle / trustworthiness /
-      actor-task enums, `SubcategoryCode` type). Conceptually mirrors
-      the equivalents defined in NIST AI 100-1; see `*_mappings` for
-      cross-references.
+      GAI-specific base vocabulary defined locally: the divergent
+      lifecycle and actor-task enums (`GaiLifecycleStageEnum`,
+      `GaiActorTaskEnum`). The shared base scaffolding (`NamedThing`,
+      identifier slots, `SubcategoryCode`, `TrustworthinessCharacteristicEnum`)
+      is imported from `nist_ai_rmf_common`; see `*_mappings` for
+      cross-references to NIST AI 100-1.
 
   gai_core:
     description: |-
@@ -106,17 +111,7 @@ types:
       "<prefix>-<category>.<subcategory>-<seq>" - e.g., "GV-1.1-001".
       Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage).
 
-  SubcategoryCode:
-    typeof: string
-    base: str
-    uri: xsd:string
-    pattern: "^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\\.[0-9]+$"
-    description: |-
-      Identifier for an AI RMF Core subcategory referenced by a
-      suggested action (e.g., "GOVERN 1.1"). Mirrors the
-      `SubcategoryCode` type defined by NIST AI 100-1.
-    exact_mappings:
-      - nist_ai_100_1:SubcategoryCode
+# The `SubcategoryCode` type is imported from `nist_ai_rmf_common`.
 
 # ============================================================================
 # Enums
@@ -125,11 +120,12 @@ enums:
   # --------------------------------------------------------------------------
   # AI RMF base enums (inlined for standalone use)
   # --------------------------------------------------------------------------
-  AiLifecycleStageEnum:
+  GaiLifecycleStageEnum:
     description: |-
       AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
       "Risks can arise during design, development, deployment,
-      operation, and/or decommissioning."
+      operation, and/or decommissioning." Distinct from the six-stage
+      `AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
     in_subset: [gai_base]
     related_mappings:
       - nist_ai_100_1:AiLifecycleStageEnum
@@ -145,51 +141,10 @@ enums:
       DECOMMISSIONING:
         description: Retiring or phasing out the GAI system.
 
-  TrustworthinessCharacteristicEnum:
-    description: |-
-      The seven characteristics of trustworthy AI from NIST AI 100-1
-      (AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
-      Section 2 as "Trustworthy AI Characteristics" tags on each
-      GAI risk.
-    in_subset: [gai_base]
-    exact_mappings:
-      - nist_ai_100_1:TrustworthinessCharacteristicEnum
-    permissible_values:
-      VALID_AND_RELIABLE:
-        description: |-
-          Confirmation that requirements for a specific intended use
-          have been fulfilled (validation) and that the system
-          performs as required without failure (reliability).
-      SAFE:
-        description: |-
-          The system does not, under defined conditions, lead to a
-          state in which human life, health, property, or the
-          environment is endangered.
-      SECURE_AND_RESILIENT:
-        description: |-
-          The system can withstand unexpected adverse events or
-          changes (resilient) and maintain confidentiality,
-          integrity, and availability (secure).
-      ACCOUNTABLE_AND_TRANSPARENT:
-        description: |-
-          Trustworthy AI depends on accountability, which presupposes
-          transparency about the system and its outputs.
-      EXPLAINABLE_AND_INTERPRETABLE:
-        description: |-
-          Explainability concerns the mechanisms underlying an AI
-          system's operation; interpretability concerns the meaning
-          of its output in context.
-      PRIVACY_ENHANCED:
-        description: |-
-          Norms and practices that help safeguard human autonomy,
-          identity, and dignity - including anonymity, confidentiality,
-          and control over personal information.
-      FAIR_WITH_HARMFUL_BIAS_MANAGED:
-        description: |-
-          Addressing equality and equity issues such as harmful bias
-          and discrimination across cultures and applications.
+  # The `TrustworthinessCharacteristicEnum` is imported from
+  # `nist_ai_rmf_common` (its seven values are shared with NIST AI 100-1).
 
-  AiActorTaskEnum:
+  GaiActorTaskEnum:
     description: |-
       AI Actor Tasks referenced by the Suggested Actions tables in
       NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
@@ -563,58 +518,16 @@ enums:
 # ============================================================================
 slots:
   # --------------------------------------------------------------------------
-  # AI RMF base slots (inlined for standalone use)
+  # AI RMF base slots
   # --------------------------------------------------------------------------
-  id:
-    identifier: true
-    range: string
-    required: true
-    description: Unique identifier for an element.
-    slot_uri: dcterms:identifier
-    in_subset: [gai_base]
-
-  title:
-    range: string
-    description: Human-readable title.
-    slot_uri: dcterms:title
-    in_subset: [gai_base]
-
-  description:
-    range: string
-    description: Free-text description.
-    slot_uri: dcterms:description
-    in_subset: [gai_base]
-
-  lifecycle_stage:
-    range: AiLifecycleStageEnum
-    multivalued: true
-    description: |-
-      AI lifecycle stage(s) at which a GAI risk may arise or at
-      which a suggested action applies (Section 2).
-    in_subset: [gai_base]
-    related_mappings:
-      - nist_ai_100_1:lifecycle_stage
-
-  trustworthiness_characteristic:
-    range: TrustworthinessCharacteristicEnum
-    multivalued: true
-    description: |-
-      Trustworthy AI Characteristic(s) most relevant to a GAI risk -
-      i.e., the "Trustworthy AI Characteristics" tag at the end of
-      each Section 2 risk description.
-    in_subset: [gai_base]
-    related_mappings:
-      - nist_ai_100_1:trustworthiness_characteristic
-
-  actor_task:
-    range: AiActorTaskEnum
-    multivalued: true
-    description: |-
-      Pertinent AI Actor Task(s) for a suggested action - i.e., the
-      "AI Actor Tasks" row at the bottom of each Section 3 table.
-    in_subset: [gai_base]
-    related_mappings:
-      - nist_ai_100_1:actor_task
+  # `id`, `title`, `description`, and `trustworthiness_characteristic` are
+  # imported from `nist_ai_rmf_common`. The GAI-specific `lifecycle_stage`
+  # and `actor_task` properties are defined as inline `attributes` on the
+  # `GaiRisk` and `SuggestedAction` classes respectively, because their
+  # ranges (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) diverge from the
+  # like-named NIST AI 100-1 enums; keeping them class-local avoids a
+  # name collision when both schemas are merged in the `nist-ai-rmf`
+  # umbrella.
 
   # --------------------------------------------------------------------------
   # GAI Profile slots
@@ -788,27 +701,15 @@ slots:
 # ============================================================================
 classes:
   # --------------------------------------------------------------------------
-  # AI RMF base (inlined for standalone use)
+  # AI RMF base
   # --------------------------------------------------------------------------
-  NamedThingGAI:
-    abstract: true
-    description: |-
-      Abstract base for identifiable elements of the GAI Profile.
-      Inlined here to keep this schema standalone; mirrors the
-      `NamedThingGAI` defined in NIST AI 100-1.
-    slots:
-      - id
-      - title
-      - description
-    in_subset: [gai_base]
-    related_mappings:
-      - nist_ai_100_1:NamedThingGAI
+  # The abstract `NamedThing` base is imported from `nist_ai_rmf_common`.
 
   # --------------------------------------------------------------------------
   # GAI Risks (Section 2)
   # --------------------------------------------------------------------------
   GaiRisk:
-    is_a: NamedThingGAI
+    is_a: NamedThing
     description: |-
       A risk that is novel to or exacerbated by Generative AI.
       Each instance corresponds to one of the 12 risk categories
@@ -819,9 +720,19 @@ classes:
       - risk_scope
       - risk_sources
       - time_scale
-      - lifecycle_stage
       - trustworthiness_characteristic
       - addressed_by_actions
+    attributes:
+      lifecycle_stage:
+        range: GaiLifecycleStageEnum
+        multivalued: true
+        description: |-
+          AI lifecycle stage(s) at which the GAI risk may arise
+          (NIST AI 600-1 Section 2). Uses the GAI five-stage
+          lifecycle (`GaiLifecycleStageEnum`).
+        in_subset: [gai_base]
+        related_mappings:
+          - nist_ai_100_1:lifecycle_stage
     in_subset: [gai_core]
     close_mappings:
       - nist_ai_100_1:AiSpecificRisk
@@ -834,7 +745,7 @@ classes:
   # Suggested Actions (Section 3)
   # --------------------------------------------------------------------------
   SuggestedAction:
-    is_a: NamedThingGAI
+    is_a: NamedThing
     description: |-
       A suggested action an organisation can take to manage GAI
       risks. Each action is identified by an Action ID, linked to an
@@ -845,7 +756,17 @@ classes:
       - function_prefix
       - applies_to_subcategory
       - gai_risks
-      - actor_task
+    attributes:
+      actor_task:
+        range: GaiActorTaskEnum
+        multivalued: true
+        description: |-
+          Pertinent AI Actor Task(s) for the suggested action - i.e.,
+          the "AI Actor Tasks" row at the bottom of each Section 3
+          table.
+        in_subset: [gai_base]
+        related_mappings:
+          - nist_ai_100_1:actor_task
     slot_usage:
       id:
         description: |-
@@ -864,7 +785,7 @@ classes:
   # Primary GAI Considerations (Appendix A)
   # --------------------------------------------------------------------------
   PrimaryGaiConsideration:
-    is_a: NamedThingGAI
+    is_a: NamedThing
     description: |-
       An overarching consideration derived from the NIST GAI PWG
       consultation process (Appendix A). The `consideration_kind`
@@ -893,7 +814,7 @@ classes:
   # Structured Public Feedback (A.1.5)
   # --------------------------------------------------------------------------
   StructuredPublicFeedback:
-    is_a: NamedThingGAI
+    is_a: NamedThing
     description: |-
       Methods used to evaluate whether GAI systems are performing as
       intended and to calibrate and verify traditional measurement
@@ -924,7 +845,7 @@ classes:
   # GAI Profile (tree root)
   # --------------------------------------------------------------------------
   GaiProfile:
-    is_a: NamedThingGAI
+    is_a: NamedThing
     tree_root: true
     description: |-
       Root container that bundles the NIST AI 600-1 Generative AI

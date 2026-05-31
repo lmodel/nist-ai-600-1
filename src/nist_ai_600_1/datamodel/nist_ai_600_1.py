@@ -1,5 +1,5 @@
 # Auto generated from nist_ai_600_1.yaml by pythongen.py version: 0.0.1
-# Generation date: 2026-05-31T02:03:30
+# Generation date: 2026-05-31T03:12:14
 # Schema: nist-ai-600-1
 #
 # id: https://w3id.org/lmodel/nist-ai-600-1
@@ -13,12 +13,15 @@
 #   organisations can take to govern, map, measure, and manage those
 #   risks.
 #
-#   This schema is **standalone** - it inlines the minimal AI RMF
-#   base scaffolding (`NamedThingGAI`, lifecycle / trustworthiness /
-#   actor-task enums, `SubcategoryCode` type) needed to express the
-#   GAI Profile so it has no schema-level dependency on the sibling
-#   `nist-ai-rmf` schema. Cross-references to AI RMF 1.0 elements
-#   are recorded as `*_mappings` for traceability.
+#   Shared AI RMF base scaffolding (the abstract `NamedThing` root,
+#   identifier/title/description slots, the `SubcategoryCode` type, and
+#   the `TrustworthinessCharacteristicEnum`) is imported from the
+#   `nist_ai_rmf_common` module so it has a single canonical definition
+#   across the framework. GAI-specific lifecycle and actor-task
+#   vocabularies (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) are
+#   defined locally because they diverge from the NIST AI 100-1 enums;
+#   cross-references to AI RMF 1.0 elements are recorded as `*_mappings`
+#   for traceability.
 #
 #   The schema covers:
 #     * 12 GAI risk categories (Section 2)
@@ -80,7 +83,8 @@ from rdflib import (
     URIRef
 )
 
-from linkml_runtime.linkml_model.types import String
+from linkml_runtime.linkml_model.types import String, Uriorcurie
+from linkml_runtime.utils.metamodelcore import URIorCURIE
 
 metamodel_version = "1.11.0"
 version = "1.0.0"
@@ -118,9 +122,7 @@ Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage). """
 
 
 class SubcategoryCode(String):
-    """ Identifier for an AI RMF Core subcategory referenced by a
-suggested action (e.g., "GOVERN 1.1"). Mirrors the
-`SubcategoryCode` type defined by NIST AI 100-1. """
+    """ Identifier for a Core subcategory (e.g., "GOVERN 1.1"). """
     type_class_uri = XSD["string"]
     type_class_curie = "xsd:string"
     type_name = "SubcategoryCode"
@@ -128,23 +130,23 @@ suggested action (e.g., "GOVERN 1.1"). Mirrors the
 
 
 # Class references
-class NamedThingGAIId(extended_str):
+class NamedThingId(URIorCURIE):
     pass
 
 
-class GaiRiskId(NamedThingGAIId):
+class GaiRiskId(NamedThingId):
     pass
 
 
-class SuggestedActionId(NamedThingGAIId):
+class SuggestedActionId(NamedThingId):
     pass
 
 
-class PrimaryGaiConsiderationId(NamedThingGAIId):
+class PrimaryGaiConsiderationId(NamedThingId):
     pass
 
 
-class StructuredPublicFeedbackId(NamedThingGAIId):
+class StructuredPublicFeedbackId(NamedThingId):
     pass
 
 
@@ -152,33 +154,36 @@ class AiRedTeamingId(StructuredPublicFeedbackId):
     pass
 
 
-class GaiProfileId(NamedThingGAIId):
+class GaiProfileId(NamedThingId):
     pass
 
 
 @dataclass(repr=False)
-class NamedThingGAI(YAMLRoot):
+class NamedThing(YAMLRoot):
     """
-    Abstract base for identifiable elements of the GAI Profile.
-    Inlined here to keep this schema standalone; mirrors the
-    `NamedThingGAI` defined in NIST AI 100-1.
+    A generic grouping for any identifiable AI RMF element.
     """
     _inherited_slots: ClassVar[list[str]] = []
 
-    class_class_uri: ClassVar[URIRef] = NIST_AI_600_1["NamedThingGAI"]
-    class_class_curie: ClassVar[str] = "nist_ai_600_1:NamedThingGAI"
-    class_name: ClassVar[str] = "NamedThingGAI"
-    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.NamedThingGAI
+    class_class_uri: ClassVar[URIRef] = SCHEMA["Thing"]
+    class_class_curie: ClassVar[str] = "schema:Thing"
+    class_name: ClassVar[str] = "NamedThing"
+    class_model_uri: ClassVar[URIRef] = NIST_AI_600_1.NamedThing
 
-    id: Union[str, NamedThingGAIId] = None
+    id: Union[str, NamedThingId] = None
+    name: Optional[str] = None
     title: Optional[str] = None
     description: Optional[str] = None
+    see_also: Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
             self.MissingRequiredField("id")
-        if not isinstance(self.id, NamedThingGAIId):
-            self.id = NamedThingGAIId(self.id)
+        if not isinstance(self.id, NamedThingId):
+            self.id = NamedThingId(self.id)
+
+        if self.name is not None and not isinstance(self.name, str):
+            self.name = str(self.name)
 
         if self.title is not None and not isinstance(self.title, str):
             self.title = str(self.title)
@@ -186,11 +191,15 @@ class NamedThingGAI(YAMLRoot):
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
 
+        if not isinstance(self.see_also, list):
+            self.see_also = [self.see_also] if self.see_also is not None else []
+        self.see_also = [v if isinstance(v, URIorCURIE) else URIorCURIE(v) for v in self.see_also]
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class GaiRisk(NamedThingGAI):
+class GaiRisk(NamedThing):
     """
     A risk that is novel to or exacerbated by Generative AI.
     Each instance corresponds to one of the 12 risk categories
@@ -209,9 +218,9 @@ class GaiRisk(NamedThingGAI):
     risk_scope: Optional[Union[Union[str, "GaiRiskScopeEnum"], list[Union[str, "GaiRiskScopeEnum"]]]] = empty_list()
     risk_sources: Optional[Union[Union[str, "GaiRiskSourceEnum"], list[Union[str, "GaiRiskSourceEnum"]]]] = empty_list()
     time_scale: Optional[Union[Union[str, "GaiRiskTimeScaleEnum"], list[Union[str, "GaiRiskTimeScaleEnum"]]]] = empty_list()
-    lifecycle_stage: Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]] = empty_list()
     trustworthiness_characteristic: Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]] = empty_list()
     addressed_by_actions: Optional[Union[Union[str, SuggestedActionId], list[Union[str, SuggestedActionId]]]] = empty_list()
+    lifecycle_stage: Optional[Union[Union[str, "GaiLifecycleStageEnum"], list[Union[str, "GaiLifecycleStageEnum"]]]] = empty_list()
 
     def __post_init__(self, *_: str, **kwargs: Any):
         if self._is_empty(self.id):
@@ -237,10 +246,6 @@ class GaiRisk(NamedThingGAI):
             self.time_scale = [self.time_scale] if self.time_scale is not None else []
         self.time_scale = [v if isinstance(v, GaiRiskTimeScaleEnum) else GaiRiskTimeScaleEnum(v) for v in self.time_scale]
 
-        if not isinstance(self.lifecycle_stage, list):
-            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
-        self.lifecycle_stage = [v if isinstance(v, AiLifecycleStageEnum) else AiLifecycleStageEnum(v) for v in self.lifecycle_stage]
-
         if not isinstance(self.trustworthiness_characteristic, list):
             self.trustworthiness_characteristic = [self.trustworthiness_characteristic] if self.trustworthiness_characteristic is not None else []
         self.trustworthiness_characteristic = [v if isinstance(v, TrustworthinessCharacteristicEnum) else TrustworthinessCharacteristicEnum(v) for v in self.trustworthiness_characteristic]
@@ -249,11 +254,15 @@ class GaiRisk(NamedThingGAI):
             self.addressed_by_actions = [self.addressed_by_actions] if self.addressed_by_actions is not None else []
         self.addressed_by_actions = [v if isinstance(v, SuggestedActionId) else SuggestedActionId(v) for v in self.addressed_by_actions]
 
+        if not isinstance(self.lifecycle_stage, list):
+            self.lifecycle_stage = [self.lifecycle_stage] if self.lifecycle_stage is not None else []
+        self.lifecycle_stage = [v if isinstance(v, GaiLifecycleStageEnum) else GaiLifecycleStageEnum(v) for v in self.lifecycle_stage]
+
         super().__post_init__(**kwargs)
 
 
 @dataclass(repr=False)
-class SuggestedAction(NamedThingGAI):
+class SuggestedAction(NamedThing):
     """
     A suggested action an organisation can take to manage GAI
     risks. Each action is identified by an Action ID, linked to an
@@ -272,7 +281,7 @@ class SuggestedAction(NamedThingGAI):
     function_prefix: Optional[Union[str, "GaiActionFunctionPrefixEnum"]] = None
     applies_to_subcategory: Optional[Union[str, SubcategoryCode]] = None
     gai_risks: Optional[Union[Union[str, "GaiRiskCategoryEnum"], list[Union[str, "GaiRiskCategoryEnum"]]]] = empty_list()
-    actor_task: Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]] = empty_list()
+    actor_task: Optional[Union[Union[str, "GaiActorTaskEnum"], list[Union[str, "GaiActorTaskEnum"]]]] = empty_list()
     description: Optional[str] = None
 
     def __post_init__(self, *_: str, **kwargs: Any):
@@ -298,7 +307,7 @@ class SuggestedAction(NamedThingGAI):
 
         if not isinstance(self.actor_task, list):
             self.actor_task = [self.actor_task] if self.actor_task is not None else []
-        self.actor_task = [v if isinstance(v, AiActorTaskEnum) else AiActorTaskEnum(v) for v in self.actor_task]
+        self.actor_task = [v if isinstance(v, GaiActorTaskEnum) else GaiActorTaskEnum(v) for v in self.actor_task]
 
         if self.description is not None and not isinstance(self.description, str):
             self.description = str(self.description)
@@ -307,7 +316,7 @@ class SuggestedAction(NamedThingGAI):
 
 
 @dataclass(repr=False)
-class PrimaryGaiConsideration(NamedThingGAI):
+class PrimaryGaiConsideration(NamedThing):
     """
     An overarching consideration derived from the NIST GAI PWG
     consultation process (Appendix A). The `consideration_kind`
@@ -369,7 +378,7 @@ class PrimaryGaiConsideration(NamedThingGAI):
 
 
 @dataclass(repr=False)
-class StructuredPublicFeedback(NamedThingGAI):
+class StructuredPublicFeedback(NamedThing):
     """
     Methods used to evaluate whether GAI systems are performing as
     intended and to calibrate and verify traditional measurement
@@ -436,7 +445,7 @@ class AiRedTeaming(StructuredPublicFeedback):
 
 
 @dataclass(repr=False)
-class GaiProfile(NamedThingGAI):
+class GaiProfile(NamedThing):
     """
     Root container that bundles the NIST AI 600-1 Generative AI
     Profile: GAI risks (Section 2), suggested actions (Section 3),
@@ -474,11 +483,12 @@ class GaiProfile(NamedThingGAI):
 
 
 # Enumerations
-class AiLifecycleStageEnum(EnumDefinitionImpl):
+class GaiLifecycleStageEnum(EnumDefinitionImpl):
     """
     AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
     "Risks can arise during design, development, deployment,
-    operation, and/or decommissioning."
+    operation, and/or decommissioning." Distinct from the six-stage
+    `AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
     """
     DESIGN = PermissibleValue(
         text="DESIGN",
@@ -497,62 +507,14 @@ class AiLifecycleStageEnum(EnumDefinitionImpl):
         description="Retiring or phasing out the GAI system.")
 
     _defn = EnumDefinition(
-        name="AiLifecycleStageEnum",
+        name="GaiLifecycleStageEnum",
         description="""AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
 \"Risks can arise during design, development, deployment,
-operation, and/or decommissioning.\"""",
+operation, and/or decommissioning.\" Distinct from the six-stage
+`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).""",
     )
 
-class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
-    """
-    The seven characteristics of trustworthy AI from NIST AI 100-1
-    (AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
-    Section 2 as "Trustworthy AI Characteristics" tags on each
-    GAI risk.
-    """
-    VALID_AND_RELIABLE = PermissibleValue(
-        text="VALID_AND_RELIABLE",
-        description="""Confirmation that requirements for a specific intended use
-have been fulfilled (validation) and that the system
-performs as required without failure (reliability).""")
-    SAFE = PermissibleValue(
-        text="SAFE",
-        description="""The system does not, under defined conditions, lead to a
-state in which human life, health, property, or the
-environment is endangered.""")
-    SECURE_AND_RESILIENT = PermissibleValue(
-        text="SECURE_AND_RESILIENT",
-        description="""The system can withstand unexpected adverse events or
-changes (resilient) and maintain confidentiality,
-integrity, and availability (secure).""")
-    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
-        text="ACCOUNTABLE_AND_TRANSPARENT",
-        description="""Trustworthy AI depends on accountability, which presupposes
-transparency about the system and its outputs.""")
-    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
-        text="EXPLAINABLE_AND_INTERPRETABLE",
-        description="""Explainability concerns the mechanisms underlying an AI
-system's operation; interpretability concerns the meaning
-of its output in context.""")
-    PRIVACY_ENHANCED = PermissibleValue(
-        text="PRIVACY_ENHANCED",
-        description="""Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information.""")
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
-        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
-        description="""Addressing equality and equity issues such as harmful bias
-and discrimination across cultures and applications.""")
-
-    _defn = EnumDefinition(
-        name="TrustworthinessCharacteristicEnum",
-        description="""The seven characteristics of trustworthy AI from NIST AI 100-1
-(AI RMF 1.0) Part 1 §3, referenced throughout NIST AI 600-1
-Section 2 as \"Trustworthy AI Characteristics\" tags on each
-GAI risk.""",
-    )
-
-class AiActorTaskEnum(EnumDefinitionImpl):
+class GaiActorTaskEnum(EnumDefinitionImpl):
     """
     AI Actor Tasks referenced by the Suggested Actions tables in
     NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
@@ -599,7 +561,7 @@ class AiActorTaskEnum(EnumDefinitionImpl):
         description="Providers, developers, vendors, and evaluators external to the deploying organization.")
 
     _defn = EnumDefinition(
-        name="AiActorTaskEnum",
+        name="GaiActorTaskEnum",
         description="""AI Actor Tasks referenced by the Suggested Actions tables in
 NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
 Appendix A).""",
@@ -1027,27 +989,59 @@ class GovernancePracticeEnum(EnumDefinitionImpl):
 NIST AI 600-1 Appendix A.1.2 (\"Organizational Governance\").""",
     )
 
+class TrustworthinessCharacteristicEnum(EnumDefinitionImpl):
+    """
+    The seven characteristics of trustworthy AI systems described in
+    Figure 4 and Part 1 §3.
+    """
+    VALID_AND_RELIABLE = PermissibleValue(
+        text="VALID_AND_RELIABLE",
+        description="""Confirmation that requirements for a specific intended use have
+been fulfilled (validation) and that the system performs as
+required without failure (reliability). A necessary condition of
+trustworthiness and the base for other characteristics.""")
+    SAFE = PermissibleValue(
+        text="SAFE",
+        description="""The system does not, under defined conditions, lead to a state
+in which human life, health, property, or the environment is
+endangered.""")
+    SECURE_AND_RESILIENT = PermissibleValue(
+        text="SECURE_AND_RESILIENT",
+        description="""The system can withstand unexpected adverse events or changes
+(resilient) and maintain confidentiality, integrity, and
+availability through protection mechanisms (secure).""")
+    ACCOUNTABLE_AND_TRANSPARENT = PermissibleValue(
+        text="ACCOUNTABLE_AND_TRANSPARENT",
+        description="""Trustworthy AI depends on accountability, which presupposes
+transparency - the extent to which information about an AI
+system and its outputs is available to those interacting with
+it.""")
+    EXPLAINABLE_AND_INTERPRETABLE = PermissibleValue(
+        text="EXPLAINABLE_AND_INTERPRETABLE",
+        description="""Explainability concerns the mechanisms underlying an AI system's
+operation; interpretability concerns the meaning of its output
+in context.""")
+    PRIVACY_ENHANCED = PermissibleValue(
+        text="PRIVACY_ENHANCED",
+        description="""Norms and practices that help safeguard human autonomy,
+identity, and dignity - including anonymity, confidentiality,
+and control over personal information.""")
+    FAIR_WITH_HARMFUL_BIAS_MANAGED = PermissibleValue(
+        text="FAIR_WITH_HARMFUL_BIAS_MANAGED",
+        description="""Concerns for equality and equity by addressing issues such as
+harmful bias and discrimination, and recognising that
+perceptions of fairness differ across cultures and
+applications.""")
+
+    _defn = EnumDefinition(
+        name="TrustworthinessCharacteristicEnum",
+        description="""The seven characteristics of trustworthy AI systems described in
+Figure 4 and Part 1 §3.""",
+    )
+
 # Slots
 class slots:
     pass
-
-slots.id = Slot(uri=DCTERMS.identifier, name="id", curie=DCTERMS.curie('identifier'),
-                   model_uri=NIST_AI_600_1.id, domain=None, range=URIRef)
-
-slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
-                   model_uri=NIST_AI_600_1.title, domain=None, range=Optional[str])
-
-slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
-                   model_uri=NIST_AI_600_1.description, domain=None, range=Optional[str])
-
-slots.lifecycle_stage = Slot(uri=NIST_AI_600_1.lifecycle_stage, name="lifecycle_stage", curie=NIST_AI_600_1.curie('lifecycle_stage'),
-                   model_uri=NIST_AI_600_1.lifecycle_stage, domain=None, range=Optional[Union[Union[str, "AiLifecycleStageEnum"], list[Union[str, "AiLifecycleStageEnum"]]]])
-
-slots.trustworthiness_characteristic = Slot(uri=NIST_AI_600_1.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_600_1.curie('trustworthiness_characteristic'),
-                   model_uri=NIST_AI_600_1.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
-
-slots.actor_task = Slot(uri=NIST_AI_600_1.actor_task, name="actor_task", curie=NIST_AI_600_1.curie('actor_task'),
-                   model_uri=NIST_AI_600_1.actor_task, domain=None, range=Optional[Union[Union[str, "AiActorTaskEnum"], list[Union[str, "AiActorTaskEnum"]]]])
 
 slots.gai_risk_kind = Slot(uri=NIST_AI_600_1.gai_risk_kind, name="gai_risk_kind", curie=NIST_AI_600_1.curie('gai_risk_kind'),
                    model_uri=NIST_AI_600_1.gai_risk_kind, domain=None, range=Optional[Union[str, "GaiRiskCategoryEnum"]])
@@ -1115,7 +1109,31 @@ slots.primary_considerations = Slot(uri=NIST_AI_600_1.primary_considerations, na
 slots.structured_feedback_methods = Slot(uri=NIST_AI_600_1.structured_feedback_methods, name="structured_feedback_methods", curie=NIST_AI_600_1.curie('structured_feedback_methods'),
                    model_uri=NIST_AI_600_1.structured_feedback_methods, domain=None, range=Optional[Union[dict[Union[str, StructuredPublicFeedbackId], Union[dict, StructuredPublicFeedback]], list[Union[dict, StructuredPublicFeedback]]]])
 
-slots.SuggestedAction_id = Slot(uri=DCTERMS.identifier, name="SuggestedAction_id", curie=DCTERMS.curie('identifier'),
+slots.id = Slot(uri=SCHEMA.identifier, name="id", curie=SCHEMA.curie('identifier'),
+                   model_uri=NIST_AI_600_1.id, domain=None, range=URIRef)
+
+slots.name = Slot(uri=RDFS.label, name="name", curie=RDFS.curie('label'),
+                   model_uri=NIST_AI_600_1.name, domain=None, range=Optional[str])
+
+slots.title = Slot(uri=DCTERMS.title, name="title", curie=DCTERMS.curie('title'),
+                   model_uri=NIST_AI_600_1.title, domain=None, range=Optional[str])
+
+slots.description = Slot(uri=DCTERMS.description, name="description", curie=DCTERMS.curie('description'),
+                   model_uri=NIST_AI_600_1.description, domain=None, range=Optional[str])
+
+slots.see_also = Slot(uri=RDFS.seeAlso, name="see_also", curie=RDFS.curie('seeAlso'),
+                   model_uri=NIST_AI_600_1.see_also, domain=None, range=Optional[Union[Union[str, URIorCURIE], list[Union[str, URIorCURIE]]]])
+
+slots.trustworthiness_characteristic = Slot(uri=NIST_AI_100_1.trustworthiness_characteristic, name="trustworthiness_characteristic", curie=NIST_AI_100_1.curie('trustworthiness_characteristic'),
+                   model_uri=NIST_AI_600_1.trustworthiness_characteristic, domain=None, range=Optional[Union[Union[str, "TrustworthinessCharacteristicEnum"], list[Union[str, "TrustworthinessCharacteristicEnum"]]]])
+
+slots.gaiRisk__lifecycle_stage = Slot(uri=NIST_AI_600_1.lifecycle_stage, name="gaiRisk__lifecycle_stage", curie=NIST_AI_600_1.curie('lifecycle_stage'),
+                   model_uri=NIST_AI_600_1.gaiRisk__lifecycle_stage, domain=None, range=Optional[Union[Union[str, "GaiLifecycleStageEnum"], list[Union[str, "GaiLifecycleStageEnum"]]]])
+
+slots.suggestedAction__actor_task = Slot(uri=NIST_AI_600_1.actor_task, name="suggestedAction__actor_task", curie=NIST_AI_600_1.curie('actor_task'),
+                   model_uri=NIST_AI_600_1.suggestedAction__actor_task, domain=None, range=Optional[Union[Union[str, "GaiActorTaskEnum"], list[Union[str, "GaiActorTaskEnum"]]]])
+
+slots.SuggestedAction_id = Slot(uri=SCHEMA.identifier, name="SuggestedAction_id", curie=SCHEMA.curie('identifier'),
                    model_uri=NIST_AI_600_1.SuggestedAction_id, domain=SuggestedAction, range=Union[str, SuggestedActionId])
 
 slots.SuggestedAction_description = Slot(uri=DCTERMS.description, name="SuggestedAction_description", curie=DCTERMS.curie('description'),

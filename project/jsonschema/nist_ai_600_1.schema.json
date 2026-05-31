@@ -1,43 +1,11 @@
 {
     "$defs": {
-        "AiActorTaskEnum": {
-            "description": "AI Actor Tasks referenced by the Suggested Actions tables in\nNIST AI 600-1 Section 3 (and defined in NIST AI 100-1\nAppendix A).",
-            "enum": [
-                "GOVERNANCE_AND_OVERSIGHT",
-                "AI_DESIGN",
-                "AI_DEVELOPMENT",
-                "AI_DEPLOYMENT",
-                "AI_IMPACT_ASSESSMENT",
-                "OPERATION_AND_MONITORING",
-                "TEVV",
-                "DOMAIN_EXPERTS",
-                "END_USERS",
-                "HUMAN_FACTORS",
-                "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
-                "PROCUREMENT",
-                "THIRD_PARTY_ENTITIES"
-            ],
-            "title": "AiActorTaskEnum",
-            "type": "string"
-        },
-        "AiLifecycleStageEnum": {
-            "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\"",
-            "enum": [
-                "DESIGN",
-                "DEVELOPMENT",
-                "DEPLOYMENT",
-                "OPERATION",
-                "DECOMMISSIONING"
-            ],
-            "title": "AiLifecycleStageEnum",
-            "type": "string"
-        },
         "AiRedTeaming": {
             "additionalProperties": false,
             "description": "A structured testing exercise used to probe an AI system to\nfind flaws and vulnerabilities such as inaccurate, harmful, or\ndiscriminatory outputs, often in a controlled environment and\nin collaboration with system developers (A.1.5).",
             "properties": {
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
@@ -48,15 +16,32 @@
                     "description": "Which structured feedback method this element represents."
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
+                },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "red_team_type": {
                     "$ref": "#/$defs/RedTeamingTypeEnum",
                     "description": "The type of AI red-teaming exercise."
                 },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -81,12 +66,44 @@
             "title": "GaiActionFunctionPrefixEnum",
             "type": "string"
         },
+        "GaiActorTaskEnum": {
+            "description": "AI Actor Tasks referenced by the Suggested Actions tables in\nNIST AI 600-1 Section 3 (and defined in NIST AI 100-1\nAppendix A).",
+            "enum": [
+                "GOVERNANCE_AND_OVERSIGHT",
+                "AI_DESIGN",
+                "AI_DEVELOPMENT",
+                "AI_DEPLOYMENT",
+                "AI_IMPACT_ASSESSMENT",
+                "OPERATION_AND_MONITORING",
+                "TEVV",
+                "DOMAIN_EXPERTS",
+                "END_USERS",
+                "HUMAN_FACTORS",
+                "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
+                "PROCUREMENT",
+                "THIRD_PARTY_ENTITIES"
+            ],
+            "title": "GaiActorTaskEnum",
+            "type": "string"
+        },
+        "GaiLifecycleStageEnum": {
+            "description": "AI lifecycle stages enumerated in NIST AI 600-1 Section 2:\n\"Risks can arise during design, development, deployment,\noperation, and/or decommissioning.\" Distinct from the six-stage\n`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).",
+            "enum": [
+                "DESIGN",
+                "DEVELOPMENT",
+                "DEPLOYMENT",
+                "OPERATION",
+                "DECOMMISSIONING"
+            ],
+            "title": "GaiLifecycleStageEnum",
+            "type": "string"
+        },
         "GaiProfile": {
             "additionalProperties": false,
             "description": "Root container that bundles the NIST AI 600-1 Generative AI\nProfile: GAI risks (Section 2), suggested actions (Section 3),\nand primary considerations (Appendix A). The GAI Profile is a\n*cross-sectoral* AI RMF profile (Section 1).",
             "properties": {
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
@@ -103,13 +120,30 @@
                     ]
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
+                },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
                 },
                 "primary_considerations": {
                     "description": "The primary GAI considerations from Appendix A (Governance,\nPre-Deployment Testing, Content Provenance, Incident\nDisclosure). Discriminated by `consideration_kind`.",
                     "items": {
                         "$ref": "#/$defs/PrimaryGaiConsideration"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
                     },
                     "type": [
                         "array",
@@ -137,7 +171,7 @@
                     ]
                 },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -165,7 +199,7 @@
                     ]
                 },
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
@@ -176,16 +210,23 @@
                     "description": "The GAI risk category this element represents."
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
                 },
                 "lifecycle_stage": {
-                    "description": "AI lifecycle stage(s) at which a GAI risk may arise or at\nwhich a suggested action applies (Section 2).",
+                    "description": "AI lifecycle stage(s) at which the GAI risk may arise\n(NIST AI 600-1 Section 2). Uses the GAI five-stage\nlifecycle (`GaiLifecycleStageEnum`).",
                     "items": {
-                        "$ref": "#/$defs/AiLifecycleStageEnum"
+                        "$ref": "#/$defs/GaiLifecycleStageEnum"
                     },
                     "type": [
                         "array",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
                         "null"
                     ]
                 },
@@ -213,6 +254,16 @@
                         "null"
                     ]
                 },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "time_scale": {
                     "description": "Time scales over which the risk may materialise.",
                     "items": {
@@ -224,14 +275,14 @@
                     ]
                 },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "trustworthiness_characteristic": {
-                    "description": "Trustworthy AI Characteristic(s) most relevant to a GAI risk -\ni.e., the \"Trustworthy AI Characteristics\" tag at the end of\neach Section 2 risk description.",
+                    "description": "Trustworthiness characteristic(s) the element pertains to.",
                     "items": {
                         "$ref": "#/$defs/TrustworthinessCharacteristicEnum"
                     },
@@ -341,23 +392,40 @@
             "title": "GovernancePracticeEnum",
             "type": "string"
         },
-        "NamedThingGAI": {
+        "NamedThing": {
             "additionalProperties": false,
-            "description": "Abstract base for identifiable elements of the GAI Profile.\nInlined here to keep this schema standalone; mirrors the\n`NamedThingGAI` defined in NIST AI 100-1.",
+            "description": "A generic grouping for any identifiable AI RMF element.",
             "properties": {
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
                     ]
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
                 },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -367,7 +435,7 @@
             "required": [
                 "id"
             ],
-            "title": "NamedThingGAI",
+            "title": "NamedThing",
             "type": "object"
         },
         "PrimaryConsiderationEnum": {
@@ -397,7 +465,7 @@
                     "description": "Which primary consideration this element represents."
                 },
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
@@ -414,11 +482,18 @@
                     ]
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
                 },
                 "limitations_of_current_approaches": {
                     "description": "For Pre-Deployment Testing: free-text discussion of why\ncurrent TEVV approaches may be inadequate (Appendix A.1.4).",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "name": {
+                    "description": "A short human-readable name.",
                     "type": [
                         "string",
                         "null"
@@ -434,6 +509,16 @@
                         "null"
                     ]
                 },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "third_party_considerations": {
                     "description": "Considerations for third-party GAI integrations, procurement,\nSBOMs, SLAs, and SSAE reports (Appendix A.1.3).",
                     "type": [
@@ -442,7 +527,7 @@
                     ]
                 },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -493,7 +578,7 @@
             "description": "Methods used to evaluate whether GAI systems are performing as\nintended and to calibrate and verify traditional measurement\nmethods (A.1.5).",
             "properties": {
                 "description": {
-                    "description": "Free-text description.",
+                    "description": "A human-readable description.",
                     "type": [
                         "string",
                         "null"
@@ -504,11 +589,28 @@
                     "description": "Which structured feedback method this element represents."
                 },
                 "id": {
-                    "description": "Unique identifier for an element.",
+                    "description": "A unique identifier for an element.",
                     "type": "string"
                 },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -532,9 +634,9 @@
                     "type": "string"
                 },
                 "actor_task": {
-                    "description": "Pertinent AI Actor Task(s) for a suggested action - i.e., the\n\"AI Actor Tasks\" row at the bottom of each Section 3 table.",
+                    "description": "Pertinent AI Actor Task(s) for the suggested action - i.e.,\nthe \"AI Actor Tasks\" row at the bottom of each Section 3\ntable.",
                     "items": {
-                        "$ref": "#/$defs/AiActorTaskEnum"
+                        "$ref": "#/$defs/GaiActorTaskEnum"
                     },
                     "type": [
                         "array",
@@ -574,8 +676,25 @@
                     "description": "Identifier for the action - typically the same as the\n`action_id` (e.g., \"GV-1.1-001\").",
                     "type": "string"
                 },
+                "name": {
+                    "description": "A short human-readable name.",
+                    "type": [
+                        "string",
+                        "null"
+                    ]
+                },
+                "see_also": {
+                    "description": "Related references.",
+                    "items": {
+                        "type": "string"
+                    },
+                    "type": [
+                        "array",
+                        "null"
+                    ]
+                },
                 "title": {
-                    "description": "Human-readable title.",
+                    "description": "A human-readable title.",
                     "type": [
                         "string",
                         "null"
@@ -590,7 +709,7 @@
             "type": "object"
         },
         "TrustworthinessCharacteristicEnum": {
-            "description": "The seven characteristics of trustworthy AI from NIST AI 100-1\n(AI RMF 1.0) Part 1 \u00a73, referenced throughout NIST AI 600-1\nSection 2 as \"Trustworthy AI Characteristics\" tags on each\nGAI risk.",
+            "description": "The seven characteristics of trustworthy AI systems described in\nFigure 4 and Part 1 \u00a73.",
             "enum": [
                 "VALID_AND_RELIABLE",
                 "SAFE",
@@ -611,7 +730,7 @@
     "metamodel_version": "1.11.0",
     "properties": {
         "description": {
-            "description": "Free-text description.",
+            "description": "A human-readable description.",
             "type": [
                 "string",
                 "null"
@@ -628,13 +747,30 @@
             ]
         },
         "id": {
-            "description": "Unique identifier for an element.",
+            "description": "A unique identifier for an element.",
             "type": "string"
+        },
+        "name": {
+            "description": "A short human-readable name.",
+            "type": [
+                "string",
+                "null"
+            ]
         },
         "primary_considerations": {
             "description": "The primary GAI considerations from Appendix A (Governance,\nPre-Deployment Testing, Content Provenance, Incident\nDisclosure). Discriminated by `consideration_kind`.",
             "items": {
                 "$ref": "#/$defs/PrimaryGaiConsideration"
+            },
+            "type": [
+                "array",
+                "null"
+            ]
+        },
+        "see_also": {
+            "description": "Related references.",
+            "items": {
+                "type": "string"
             },
             "type": [
                 "array",
@@ -662,7 +798,7 @@
             ]
         },
         "title": {
-            "description": "Human-readable title.",
+            "description": "A human-readable title.",
             "type": [
                 "string",
                 "null"

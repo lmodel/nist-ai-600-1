@@ -73,23 +73,31 @@ def expected_mappings(rows: list[dict[str, str]]) -> dict[str, dict[str, set[str
     return expected
 
 
-def actual_mappings(schema: dict, name: str) -> dict[str, set[str]]:
-    """Read mapping fields off the schema element."""
+def find_element(schema: dict, name: str) -> tuple[str, dict] | None:
+    """Locate an element by local name.
+
+    Searches the top-level ``classes``/``slots``/``enums``/``types``
+    sections first, then inline ``attributes`` defined on a class
+    (which LinkML treats as locally-scoped slots). Returns
+    ``(location, element)`` or ``None`` if not found.
+    """
     for section in ELEMENT_SECTIONS:
         element = (schema.get(section) or {}).get(name)
         if element is not None:
-            return {
-                field: set(element.get(field) or [])
-                for field in PREDICATE_TO_FIELD.values()
-            }
-    return {}
-
-
-def find_section(schema: dict, name: str) -> str | None:
-    for section in ELEMENT_SECTIONS:
-        if name in (schema.get(section) or {}):
-            return section
+            return section, element
+    for class_name, cls in (schema.get("classes") or {}).items():
+        attrs = (cls or {}).get("attributes") or {}
+        if name in attrs:
+            return f"classes.{class_name}.attributes", attrs[name]
     return None
+
+
+def element_mappings(element: dict) -> dict[str, set[str]]:
+    """Read mapping fields off a schema element."""
+    return {
+        field: set(element.get(field) or [])
+        for field in PREDICATE_TO_FIELD.values()
+    }
 
 
 def main(argv: list[str] | None = None) -> int:
@@ -122,13 +130,14 @@ def main(argv: list[str] | None = None) -> int:
             schema = yaml.safe_load(schema_path.read_text())
             expected = expected_mappings(schema_rows)
             for name, fields in sorted(expected.items()):
-                section = find_section(schema, name)
-                if section is None:
+                found = find_element(schema, name)
+                if found is None:
                     msg = f"{schema_path.name}: element {name!r} not found in schema"
                     overall_unknown.append(msg)
                     print(f"  MISSING-ELEMENT: {msg}")
                     continue
-                actual = actual_mappings(schema, name)
+                section, element = found
+                actual = element_mappings(element)
                 for field, exp_set in fields.items():
                     act_set = actual.get(field, set())
                     missing = exp_set - act_set

@@ -16,16 +16,16 @@ enumerated in NIST AI 600-1 Section 2.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GaiRisk extends NamedThingGAI {
+public class GaiRisk extends NamedThing {
 
   private String gaiRiskKind;
   private String riskCategorization;
   private List<String> riskScope;
   private List<String> riskSources;
   private List<String> timeScale;
-  private List<String> lifecycleStage;
   private List<String> trustworthinessCharacteristic;
   private List<SuggestedAction> addressedByActions;
+  private List<String> lifecycleStage;
 
 
 }

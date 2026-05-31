@@ -17,7 +17,7 @@ and primary considerations (Appendix A). The GAI Profile is a
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GaiProfile extends NamedThingGAI {
+public class GaiProfile extends NamedThing {
 
   private List<GaiRisk> gaiRiskCatalog;
   private List<SuggestedAction> suggestedActions;
