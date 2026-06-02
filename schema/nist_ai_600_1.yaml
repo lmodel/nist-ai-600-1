@@ -1810,7 +1810,7 @@ classes:
     class_uri: schema:Thing
 metamodel_version: 1.11.0
 source_file: nist_ai_600_1.yaml
-source_file_date: '2026-05-31T15:36:58'
+source_file_date: '2026-06-02T17:03:48'
 source_file_size: 33955
-generation_date: '2026-05-31T15:37:09'
+generation_date: '2026-06-02T17:03:56'
 
