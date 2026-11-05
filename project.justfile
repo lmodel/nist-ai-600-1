@@ -4,7 +4,36 @@
 # name in this file is not possible until a known issue in just is fixed,
 # https://github.com/casey/just/issues/2540
 
-# Verify that LinkML schemas reflect the SSSOM mapping TSV files.
+# ============ The catalogue ============
+
+# Write the tables of section 3 into src/nist_ai_600_1/data/ai-600-1.yaml from upstream/
 [group('model development')]
-verify-mappings:
-    uv run python scripts/verify_mappings.py
+build-catalogue:
+  uv run python scripts/build_catalogue.py
+
+# Fail when the catalogue's tables differ from what upstream/ gives
+[group('model development')]
+check-catalogue:
+  uv run python scripts/build_catalogue.py --check
+
+# ============ Knowledge bundle: the adapted domain schema ============
+
+# `.lokf/nist-ai-600-1.yaml` is the copy `lokf adapt` writes from the schema so
+# that it can sit beside `.lokf/lokf.yaml` (`lokf adapt --help` lists the
+# moves). The roots are the classes a knowledge concept may use as its `type`:
+# a risk, a table of section 3, a primary consideration, a kind of structured
+# feedback, and AiRmfRecord for a profile. The recipes run the `lokf` the
+# sidecar's floor pins (0.9.0 or later); LOKF_CMD runs another, such as a checkout:
+# LOKF_CMD="uv run --project ../lokf lokf" just lokf-adapt
+lokf_cmd := env_var_or_default("LOKF_CMD", "uv run --project .lokf lokf")
+lokf_adapt_roots := "--root GaiRisk --root GaiSubcategory --root GaiPrimaryConsideration --root GaiStructuredFeedback --root AiRmfRecord"
+
+# Rewrite .lokf/nist-ai-600-1.yaml from the schema (run after every schema change)
+[group('knowledge bundle')]
+lokf-adapt:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/nist-ai-600-1.yaml
+
+# Fail when .lokf/nist-ai-600-1.yaml is stale against the schema or .lokf/lokf.yaml
+[group('knowledge bundle')]
+lokf-adapt-check:
+  {{lokf_cmd}} adapt {{source_schema_path}} {{lokf_adapt_roots}} --lokf .lokf/lokf.yaml -o .lokf/nist-ai-600-1.yaml --check
