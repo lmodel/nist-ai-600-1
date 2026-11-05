@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.0] - 2026-11-05
+
 ### Added
 
 - **The whole Profile as records** in `src/nist_ai_600_1/data/ai-600-1.yaml`: the 12 risks with their definitions and characteristics, the 49 tables with their 212 suggested actions, and the four primary considerations. `scripts/build_catalogue.py` writes the tables from the publication.
