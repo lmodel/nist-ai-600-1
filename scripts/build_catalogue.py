@@ -113,6 +113,8 @@ def section_three() -> list[dict]:
             }
             records.append(current)
             in_head = True
+        elif current is None:
+            raise ValueError(f"a row before the first table: {cells}")
         elif first == "Action ID":
             in_head = False
         elif in_head:
