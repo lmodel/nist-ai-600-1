@@ -12,6 +12,7 @@ see_also:
   - https://lmodel.github.io/nist-ai-600-1
 prefixes:
   linkml: https://w3id.org/linkml/
+  nist_ai_100_1: https://w3id.org/lmodel/nist-ai-100-1/
   nist_ai_600_1: https://w3id.org/lmodel/nist-ai-600-1/
   oscal: https://w3id.org/lmodel/oscal/
   stix: https://w3id.org/lmodel/stix/
@@ -44,6 +45,8 @@ classes:
   GaiSubcategory:
     class_uri: nist_ai_600_1:Subcategory
     description: An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
+    related_mappings:
+      - nist_ai_100_1:Subcategory
     slots:
       - ai_rmf_subcategory_id
       - description
@@ -74,6 +77,7 @@ classes:
     broad_mappings:
       - oscal:Part
     related_mappings:
+      - nist_ai_100_1:SuggestedAction
       - stix:StixCourseOfAction
     slots:
       - gai_action_id

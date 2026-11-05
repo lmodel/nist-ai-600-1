@@ -1849,6 +1849,9 @@
       "exact_mappings": [
         "nist_ai_600_1:Subcategory"
       ],
+      "related_mappings": [
+        "nist_ai_100_1:Subcategory"
+      ],
       "slots": [
         "ai_rmf_subcategory_id",
         "GaiSubcategory_description",
@@ -1888,6 +1891,7 @@
         "nist_ai_600_1:SuggestedAction"
       ],
       "related_mappings": [
+        "nist_ai_100_1:SuggestedAction",
         "stix:StixCourseOfAction"
       ],
       "broad_mappings": [

@@ -680,7 +680,8 @@ nist_ai_600_1:GaiSubcategory a owl:Class ;
 	rdfs:subClassOf _:c14n111 , _:c14n126 , _:c14n153 , _:c14n174 , _:c14n191 , _:c14n211 , _:c14n45 , _:c14n59 , _:c14n75 , _:c14n8 ;
 	skos:definition "An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72." ;
 	skos:exactMatch nist_ai_600_1:Subcategory ;
-	skos:inScheme nist_ai_600_1:nist_ai_600_1_actions .
+	skos:inScheme nist_ai_600_1:nist_ai_600_1_actions ;
+	skos:relatedMatch nist_ai_100_1:Subcategory .
 nist_ai_600_1:GaiSuggestedAction a owl:Class ;
 	rdfs:label "GaiSuggestedAction" ;
 	rdfs:subClassOf _:c14n113 , _:c14n128 , _:c14n160 , _:c14n194 , _:c14n50 , _:c14n68 , _:c14n87 , _:c14n9 ;
@@ -688,7 +689,7 @@ nist_ai_600_1:GaiSuggestedAction a owl:Class ;
 	skos:definition "A step an organization or AI actor can take to manage GAI risks, which one row of a table states." ;
 	skos:exactMatch nist_ai_600_1:SuggestedAction ;
 	skos:inScheme nist_ai_600_1:nist_ai_600_1_actions ;
-	skos:relatedMatch <https://w3id.org/lmodel/stix/StixCourseOfAction> .
+	skos:relatedMatch nist_ai_100_1:SuggestedAction , <https://w3id.org/lmodel/stix/StixCourseOfAction> .
 nist_ai_600_1:GaiThirdPartyControl\#acquisition_and_procurement_due_diligence dcterms:title "Acquisition and procurement due diligence" ;
 	a owl:Class ;
 	rdfs:label "acquisition_and_procurement_due_diligence" ;

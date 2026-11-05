@@ -135,6 +135,8 @@ classes:
     class_uri: nist_ai_600_1:Subcategory
     description: An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only
       some of the 72.
+    related_mappings:
+    - nist_ai_100_1:Subcategory
     slots:
     - ai_rmf_subcategory_id
     - description
@@ -166,6 +168,7 @@ classes:
     broad_mappings:
     - oscal:Part
     related_mappings:
+    - nist_ai_100_1:SuggestedAction
     - stix:StixCourseOfAction
     slots:
     - gai_action_id

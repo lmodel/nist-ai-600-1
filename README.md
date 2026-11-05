@@ -20,7 +20,7 @@ The schema renders [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1) of Jul
 
 ## Mappings
 
-* **[lmodel/nist-ai-100-1](https://github.com/lmodel/nist-ai-100-1)**: `is_a` from the Profile to `AiRmfProfile`, and `related_mappings` from a risk to its risk. `tests/test_schema_rules.py` checks it against that repository's copy.
+* **[lmodel/nist-ai-100-1](https://github.com/lmodel/nist-ai-100-1)**: `is_a` from the Profile to `AiRmfProfile`, and `related_mappings` from a risk, a table and an action to its risk, subcategory and suggested action. `tests/test_schema_rules.py` checks it against that repository's copy.
 * **[lmodel/oscal](https://github.com/lmodel/oscal)**: `broad_mappings` from a suggested action to a part. `tests/test_schema_rules.py` checks it against the released copy.
 * **[lmodel/stix](https://github.com/lmodel/stix)**: `related_mappings` from a suggested action to a course of action. `tests/test_schema_rules.py` checks it.
 * **[lmodel/spdx](https://github.com/lmodel/spdx)**: `related_mappings` from the third-party control of asking for a software bill of materials to `Sbom`. `tests/test_schema_rules.py` checks it.

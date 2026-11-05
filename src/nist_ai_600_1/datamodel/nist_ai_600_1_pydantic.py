@@ -632,6 +632,7 @@ class GaiSubcategory(ConfiguredBaseModel):
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:Subcategory',
          'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions',
+         'related_mappings': ['nist_ai_100_1:Subcategory'],
          'slot_usage': {'description': {'description': "The subcategory's statement as "
                                                        'the table restates it.',
                                         'name': 'description',
@@ -673,7 +674,8 @@ class GaiSuggestedAction(ConfiguredBaseModel):
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['oscal:Part'],
          'class_uri': 'nist_ai_600_1:SuggestedAction',
          'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions',
-         'related_mappings': ['stix:StixCourseOfAction'],
+         'related_mappings': ['nist_ai_100_1:SuggestedAction',
+                              'stix:StixCourseOfAction'],
          'slot_usage': {'description': {'description': "The action's text in the "
                                                        'table.',
                                         'name': 'description',
