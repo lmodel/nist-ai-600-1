@@ -68,6 +68,22 @@ def _publication_letters():
     return _letters(text)
 
 
+def _words(text):
+    """A text's words, lower-cased and each between spaces, so a title matches whole
+    words and line breaks and hyphens fall away."""
+    text = re.sub(r"-\n", "", text.lower().translate(_builder().LIGATURES))
+    return " " + " ".join(re.findall(r"[a-z0-9]+", text)) + " "
+
+
+@lru_cache(maxsize=1)
+def _publication_words():
+    """The publication's words."""
+    import pdfplumber
+
+    with pdfplumber.open(PDF) as pdf:
+        return _words("\n".join(page.extract_text() or "" for page in pdf.pages))
+
+
 def _actions():
     for record in _doc()["gai_subcategories"]:
         yield from record["gai_subcategory_actions"]
@@ -214,9 +230,9 @@ def test_footnote_five_lists_data_privacy_under_all_three_groups():
 )
 def test_titles_are_the_publications(enum):
     """Each title is the publication's wording, so a typing slip fails here."""
-    letters = _publication_letters()
+    words = _publication_words()
     for value, entry in _view().get_enum(enum).permissible_values.items():
-        assert _letters(entry.title) in letters, (enum, value)
+        assert _words(entry.title) in words, (enum, value)
 
 
 def test_governance_plans_are_the_publications():
