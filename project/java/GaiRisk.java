@@ -1,6 +1,6 @@
-package None;
+package example;
 
-/* metamodel_version: 1.11.0 */
+/* metamodel_version: 1.12.0 */
 /* version: 1.0.0 */
 import java.net.URI;
 import java.time.LocalDate;
@@ -10,22 +10,21 @@ import java.util.List;
 import lombok.*;
 
 /**
-  A risk that is novel to or exacerbated by Generative AI.
-Each instance corresponds to one of the 12 risk categories
-enumerated in NIST AI 600-1 Section 2.
+  A risk that section 2 defines as unique to or made worse by the development and use of GAI.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GaiRisk extends NamedThing {
+public class GaiRisk  {
 
-  private String gaiRiskKind;
-  private String riskCategorization;
-  private List<String> riskScope;
-  private List<String> riskSources;
-  private List<String> timeScale;
-  private List<String> trustworthinessCharacteristic;
-  private List<SuggestedAction> addressedByActions;
-  private List<String> lifecycleStage;
+  private String description;
+  private String gaiRiskName;
+  private String gaiRiskSection;
+  private List<String> gaiRiskCharacteristics;
+  private List<String> gaiRiskGroupings;
+  private List<String> gaiRiskLifecycleStages;
+  private List<String> gaiRiskScopes;
+  private List<String> gaiRiskSources;
+  private List<String> gaiRiskTimeScales;
 
 
 }

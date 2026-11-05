@@ -1,215 +1,228 @@
 {
    "@context": {
       "xsd": "http://www.w3.org/2001/XMLSchema#",
-      "dcterms": "http://purl.org/dc/terms/",
-      "doi": "https://doi.org/",
-      "gist_linkml": "https://w3id.org/lmodel/gist/",
-      "iso27001": "https://w3id.org/lmodel/iso27001/",
-      "iso29100": "https://w3id.org/lmodel/iso29100/",
       "linkml": "https://w3id.org/linkml/",
       "nist_ai_100_1": "https://w3id.org/lmodel/nist-ai-100-1/",
       "nist_ai_600_1": "https://w3id.org/lmodel/nist-ai-600-1/",
-      "nist_csf": "https://w3id.org/lmodel/nist-csf-v2/",
-      "oscal_catalog": "https://w3id.org/lmodel/oscal_catalog/",
-      "oscal_profile": "https://w3id.org/lmodel/oscal_profile/",
-      "owasp_asi": {
-         "@id": "https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-",
-         "@prefix": true
-      },
-      "rdf": "http://www.w3.org/1999/02/22-rdf-syntax-ns#",
-      "rdfs": "http://www.w3.org/2000/01/rdf-schema#",
+      "oscal": "https://w3id.org/lmodel/oscal/",
       "schema": "http://schema.org/",
       "skos": "http://www.w3.org/2004/02/skos/core#",
       "stix": "https://w3id.org/lmodel/stix/",
       "@vocab": "https://w3id.org/lmodel/nist-ai-600-1/",
-      "action_id": {
-         "@id": "action_id"
+      "ai_rmf_id": "@id",
+      "ai_rmf_subcategory_id": {
+         "@id": "nist_ai_100_1:ai_rmf_subcategory_id"
       },
-      "addressed_by_actions": {
-         "@type": "@id",
-         "@id": "addressed_by_actions"
-      },
-      "ai_incident_definition": {
-         "@id": "ai_incident_definition"
-      },
-      "applies_to_subcategory": {
-         "@id": "applies_to_subcategory"
-      },
-      "consideration_kind": {
+      "ai_rmf_profile_kinds": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "consideration_kind"
+         "@id": "nist_ai_100_1:ai_rmf_profile_kinds"
+      },
+      "ai_rmf_profile_setting": {
+         "@id": "nist_ai_100_1:ai_rmf_profile_setting"
+      },
+      "ai_rmf_profile_subcategories": {
+         "@id": "nist_ai_100_1:ai_rmf_profile_subcategories"
       },
       "description": {
-         "@id": "dcterms:description"
+         "@id": "schema:description"
       },
-      "feedback_method_kind": {
+      "gai_action_id": {
+         "@id": "gai_action_id"
+      },
+      "gai_consideration_type": {
+         "@id": "gai_consideration_type"
+      },
+      "gai_feedback_type": {
+         "@id": "gai_feedback_type"
+      },
+      "gai_red_teaming_types": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "feedback_method_kind"
+         "@id": "gai_red_teaming_types"
       },
-      "function_prefix": {
+      "gai_provenance_techniques": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "function_prefix"
+         "@id": "gai_provenance_techniques"
       },
-      "gai_risk_catalog": {
+      "gai_governance_plans": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_governance_plans"
+      },
+      "gai_third_party_controls": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_third_party_controls"
+      },
+      "gai_incident_harms": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_incident_harms"
+      },
+      "gai_structured_feedback": {
          "@type": "@id",
-         "@id": "gai_risk_catalog"
+         "@id": "gai_structured_feedback"
       },
-      "gai_risk_kind": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "gai_risk_kind"
+      "gai_consideration_sections": {
+         "@id": "gai_consideration_sections"
+      },
+      "gai_primary_considerations": {
+         "@type": "@id",
+         "@id": "gai_primary_considerations"
       },
       "gai_risks": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
+         "@type": "@id",
          "@id": "gai_risks"
       },
-      "lifecycle_stage": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "lifecycle_stage"
-      },
-      "governance_practices": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "governance_practices"
-      },
-      "id": "@id",
-      "limitations_of_current_approaches": {
-         "@id": "limitations_of_current_approaches"
-      },
-      "name": {
-         "@id": "rdfs:label"
-      },
-      "primary_considerations": {
+      "gai_subcategories": {
          "@type": "@id",
-         "@id": "primary_considerations"
+         "@id": "gai_subcategories"
       },
-      "provenance_techniques": {
+      "gai_risk_characteristics": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "provenance_techniques"
+         "@id": "gai_risk_characteristics"
       },
-      "red_team_type": {
+      "gai_risk_groupings": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "red_team_type"
+         "@id": "gai_risk_groupings"
       },
-      "risk_categorization": {
+      "gai_risk_lifecycle_stages": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "risk_categorization"
+         "@id": "gai_risk_lifecycle_stages"
       },
-      "risk_scope": {
+      "gai_risk_name": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "risk_scope"
+         "@id": "gai_risk_name"
       },
-      "risk_sources": {
+      "gai_risk_scopes": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "risk_sources"
+         "@id": "gai_risk_scopes"
       },
-      "see_also": {
-         "@type": "xsd:anyURI",
-         "@id": "rdfs:seeAlso"
+      "gai_risk_section": {
+         "@id": "gai_risk_section"
       },
-      "structured_feedback_methods": {
+      "gai_risk_sources": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_risk_sources"
+      },
+      "gai_risk_time_scales": {
+         "@context": {
+            "text": "skos:notation",
+            "description": "skos:prefLabel",
+            "meaning": "@id"
+         },
+         "@id": "gai_risk_time_scales"
+      },
+      "gai_subcategory_actions": {
          "@type": "@id",
-         "@id": "structured_feedback_methods"
+         "@id": "gai_subcategory_actions"
       },
-      "suggested_actions": {
-         "@type": "@id",
-         "@id": "suggested_actions"
-      },
-      "actor_task": {
+      "gai_subcategory_actor_tasks": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "actor_task"
+         "@id": "gai_subcategory_actor_tasks"
       },
-      "third_party_considerations": {
-         "@id": "third_party_considerations"
-      },
-      "time_scale": {
+      "gai_action_risks": {
          "@context": {
             "text": "skos:notation",
             "description": "skos:prefLabel",
             "meaning": "@id"
          },
-         "@id": "time_scale"
+         "@id": "gai_action_risks"
       },
       "title": {
-         "@id": "dcterms:title"
+         "@id": "schema:name"
       },
-      "trustworthiness_characteristic": {
-         "@context": {
-            "text": "skos:notation",
-            "description": "skos:prefLabel",
-            "meaning": "@id"
-         },
-         "@id": "nist_ai_100_1:trustworthiness_characteristic"
+      "AiRmfProfile": {
+         "@id": "nist_ai_100_1:Profile"
       },
-      "AiRedTeaming": {
+      "AiRmfRecord": {
+         "@id": "nist_ai_100_1:Record"
+      },
+      "GaiAiRedTeaming": {
          "@id": "AiRedTeaming"
       },
+      "GaiContentProvenanceConsideration": {
+         "@id": "ContentProvenanceConsideration"
+      },
+      "GaiFieldTesting": {
+         "@id": "FieldTesting"
+      },
+      "GaiGovernanceConsideration": {
+         "@id": "GovernanceConsideration"
+      },
+      "GaiIncidentDisclosureConsideration": {
+         "@id": "IncidentDisclosureConsideration"
+      },
+      "GaiParticipatoryEngagement": {
+         "@id": "ParticipatoryEngagement"
+      },
+      "GaiPreDeploymentTestingConsideration": {
+         "@id": "PreDeploymentTestingConsideration"
+      },
+      "GaiPrimaryConsideration": {
+         "@id": "PrimaryConsideration"
+      },
       "GaiProfile": {
-         "@id": "GaiProfile"
+         "@id": "Profile"
       },
       "GaiRisk": {
-         "@id": "GaiRisk"
+         "@id": "Risk"
       },
-      "NamedThing": {
-         "@id": "schema:Thing"
+      "GaiStructuredFeedback": {
+         "@id": "StructuredFeedback"
       },
-      "PrimaryGaiConsideration": {
-         "@id": "PrimaryGaiConsideration"
+      "GaiSubcategory": {
+         "@id": "Subcategory"
       },
-      "StructuredPublicFeedback": {
-         "@id": "StructuredPublicFeedback"
-      },
-      "SuggestedAction": {
+      "GaiSuggestedAction": {
          "@id": "SuggestedAction"
       }
    }

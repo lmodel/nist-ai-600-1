@@ -1,108 +1,349 @@
- syntax="proto3";
- package
-// metamodel_version: 1.11.0
+syntax = "proto3";
+package nist_ai_n600_n1;
+// metamodel_version: 1.12.0
 // version: 1.0.0
-// A structured testing exercise used to probe an AI system to
-// find flaws and vulnerabilities such as inaccurate, harmful, or
-// discriminatory outputs, often in a controlled environment and
-// in collaboration with system developers (A.1.5).
-message AiRedTeaming
- {
-  uriorcurie id = 0
-  string name = 0
-  string title = 0
-  string description = 0
- repeated  uriorcurie seeAlso = 0
-  redTeamingTypeEnum redTeamType = 0
-  structuredFeedbackMethodEnum feedbackMethodKind = 0
- }
-// Root container that bundles the NIST AI 600-1 Generative AI
-// Profile: GAI risks (Section 2), suggested actions (Section 3),
-// and primary considerations (Appendix A). The GAI Profile is a
-// *cross-sectoral* AI RMF profile (Section 1).
-message GaiProfile
- {
-  uriorcurie id = 0
-  string name = 0
-  string title = 0
-  string description = 0
- repeated  uriorcurie seeAlso = 0
- repeated  gaiRisk gaiRiskCatalog = 0
- repeated  suggestedAction suggestedActions = 0
- repeated  primaryGaiConsideration primaryConsiderations = 0
- repeated  structuredPublicFeedback structuredFeedbackMethods = 0
- }
-// A risk that is novel to or exacerbated by Generative AI.
-// Each instance corresponds to one of the 12 risk categories
-// enumerated in NIST AI 600-1 Section 2.
-message GaiRisk
- {
-  uriorcurie id = 0
-  string name = 0
-  string title = 0
-  string description = 0
- repeated  uriorcurie seeAlso = 0
-  gaiRiskCategoryEnum gaiRiskKind = 0
-  gaiRiskCategorizationEnum riskCategorization = 0
- repeated  gaiRiskScopeEnum riskScope = 0
- repeated  gaiRiskSourceEnum riskSources = 0
- repeated  gaiRiskTimeScaleEnum timeScale = 0
- repeated  trustworthinessCharacteristicEnum trustworthinessCharacteristic = 0
- repeated  suggestedAction addressedByActions = 0
- repeated  gaiLifecycleStageEnum lifecycleStage = 0
- }
-// An overarching consideration derived from the NIST GAI PWG
-// consultation process (Appendix A). The `consideration_kind`
-// attribute discriminates between the four primary
-// considerations: Governance, Pre-Deployment Testing, Content
-// Provenance, and Incident Disclosure.
-// 
-// All consideration-specific attributes are optional and apply
-// to the appropriate `consideration_kind`:
-//   * GOVERNANCE: governance_practices, third_party_considerations
-//   * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
-//   * CONTENT_PROVENANCE: provenance_techniques
-//   * INCIDENT_DISCLOSURE: ai_incident_definition
-message PrimaryGaiConsideration
- {
-  uriorcurie id = 0
-  string name = 0
-  string title = 0
-  string description = 0
- repeated  uriorcurie seeAlso = 0
-  primaryConsiderationEnum considerationKind = 0
- repeated  governancePracticeEnum governancePractices = 0
-  string thirdPartyConsiderations = 0
-  string limitationsOfCurrentApproaches = 0
- repeated  provenanceTechniqueEnum provenanceTechniques = 0
-  string aiIncidentDefinition = 0
- }
-// Methods used to evaluate whether GAI systems are performing as
-// intended and to calibrate and verify traditional measurement
-// methods (A.1.5).
-message StructuredPublicFeedback
- {
-  uriorcurie id = 0
-  string name = 0
-  string title = 0
-  string description = 0
- repeated  uriorcurie seeAlso = 0
-  structuredFeedbackMethodEnum feedbackMethodKind = 0
- }
-// A suggested action an organisation can take to manage GAI
-// risks. Each action is identified by an Action ID, linked to an
-// AI RMF subcategory, and may be relevant to one or more GAI
-// risks and AI actor tasks (NIST AI 600-1 Section 3).
-message SuggestedAction
- {
-  string name = 0
-  string title = 0
- repeated  uriorcurie seeAlso = 0
-  gaiActionId actionId = 0
-  gaiActionFunctionPrefixEnum functionPrefix = 0
-  subcategoryCode appliesToSubcategory = 0
- repeated  gaiRiskCategoryEnum gaiRisks = 0
- repeated  gaiActorTaskEnum actorTask = 0
-  uriorcurie id = 0
-  string description = 0
- }
+// An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.
+message AiRmfProfile {
+  // The identifier an adopter gives a record of its own.
+  string ai_rmf_id = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // Which of the publication's kinds of profile this is. A current profile for one use case is both.
+  repeated AiRmfProfileKind ai_rmf_profile_kinds = 4;
+  // The sector, industry, technology, organization or end use the profile covers, such as hiring.
+  string ai_rmf_profile_setting = 5;
+  // The subcategories the profile selects. An adopter may select from them rather than apply all.
+  repeated string ai_rmf_profile_subcategories = 6;
+}
+// The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.
+message AiRmfRecord {
+  // The identifier an adopter gives a record of its own.
+  string ai_rmf_id = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+}
+// A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.
+message GaiAiRedTeaming {
+  // Which of the three classes this record is.
+  string gai_feedback_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The kinds of AI red-teaming that may suit the use case.
+  repeated GaiRedTeamingType gai_red_teaming_types = 4;
+}
+// How tracking the origin and history of content helps tell authentic content from synthetic content.
+message GaiContentProvenanceConsideration {
+  // Which of the four classes this record is.
+  string gai_consideration_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The subsections of Appendix A that discuss the consideration, such as A.1.2.
+  repeated string gai_consideration_sections = 4;
+  // The well-known techniques for provenance data tracking that section A.1.6 names.
+  repeated GaiProvenanceTechnique gai_provenance_techniques = 5;
+}
+// Structured settings that show how people interact with and use AI-generated information.
+message GaiFieldTesting {
+  // Which of the three classes this record is.
+  string gai_feedback_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+}
+// How an organization's governance can be revisited for GAI, including across the AI value chain.
+message GaiGovernanceConsideration {
+  // Which of the four classes this record is.
+  string gai_consideration_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The subsections of Appendix A that discuss the consideration, such as A.1.2.
+  repeated string gai_consideration_sections = 4;
+  // The plans and actions that section A.1.2 lists from other AI governance.
+  repeated GaiGovernancePlan gai_governance_plans = 5;
+  // The existing controls that section A.1.3 says can apply to third-party GAI.
+  repeated GaiThirdPartyControl gai_third_party_controls = 6;
+}
+// How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.
+message GaiIncidentDisclosureConsideration {
+  // Which of the four classes this record is.
+  string gai_consideration_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The subsections of Appendix A that discuss the consideration, such as A.1.2.
+  repeated string gai_consideration_sections = 4;
+  // The kinds of harm that section A.1.8's definition of an AI incident names.
+  repeated GaiIncidentHarm gai_incident_harms = 5;
+}
+// Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.
+message GaiParticipatoryEngagement {
+  // Which of the three classes this record is.
+  string gai_feedback_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+}
+// How GAI can be tested before deployment while better approaches mature, and where current tests fall short.
+message GaiPreDeploymentTestingConsideration {
+  // Which of the four classes this record is.
+  string gai_consideration_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The subsections of Appendix A that discuss the consideration, such as A.1.2.
+  repeated string gai_consideration_sections = 4;
+  // The kinds of structured public feedback section A.1.5 gives as examples.
+  repeated GaiStructuredFeedback gai_structured_feedback = 5;
+}
+// One of the four primary considerations of Appendix A, which also inform the suggested actions.
+message GaiPrimaryConsideration {
+  // Which of the four classes this record is.
+  string gai_consideration_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // The subsections of Appendix A that discuss the consideration, such as A.1.2.
+  repeated string gai_consideration_sections = 4;
+}
+// The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.
+message GaiProfile {
+  // The identifier an adopter gives a record of its own.
+  string ai_rmf_id = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+  // Which of the publication's kinds of profile this is. A current profile for one use case is both.
+  repeated AiRmfProfileKind ai_rmf_profile_kinds = 4;
+  // The sector, industry, technology, organization or end use the profile covers, such as hiring.
+  string ai_rmf_profile_setting = 5;
+  // The subcategories the profile selects. An adopter may select from them rather than apply all.
+  repeated string ai_rmf_profile_subcategories = 6;
+  // The 12 risks of section 2.
+  repeated GaiRisk gai_risks = 7;
+  // The tables of section 3, in the publication's order.
+  repeated GaiSubcategory gai_subcategories = 8;
+  // The four primary considerations of Appendix A.
+  repeated GaiPrimaryConsideration gai_primary_considerations = 9;
+}
+// A risk that section 2 defines as unique to or made worse by the development and use of GAI.
+message GaiRisk {
+  // The risk's definition in section 2.
+  string description = 1;
+  // Which of the 12 risks this is.
+  GaiRiskName gai_risk_name = 2;
+  // The subsection of section 2 that discusses the risk, such as 2.1.
+  string gai_risk_section = 3;
+  // The AI RMF's trustworthiness characteristics that the subsection names for the risk.
+  repeated AiRmfCharacteristicName gai_risk_characteristics = 4;
+  // The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three.
+  repeated GaiRiskGrouping gai_risk_groupings = 5;
+  // The lifecycle stages where the risk can arise for the adopter's model, system or use case.
+  repeated GaiLifecycleStage gai_risk_lifecycle_stages = 6;
+  // The levels where the risk exists for the adopter's model, system or use case.
+  repeated GaiRiskScope gai_risk_scopes = 7;
+  // Where the risk comes from for the adopter's model, system or use case.
+  repeated GaiRiskSource gai_risk_sources = 8;
+  // How the risk materializes over time for the adopter's model, system or use case.
+  repeated GaiRiskTimeScale gai_risk_time_scales = 9;
+}
+// A way of using structured public feedback to evaluate whether GAI systems perform as intended.
+message GaiStructuredFeedback {
+  // Which of the three classes this record is.
+  string gai_feedback_type = 1;
+  // The element's name.
+  string title = 2;
+  // What the element says or is.
+  string description = 3;
+}
+// An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
+message GaiSubcategory {
+  // The subcategory's identifier, such as GOVERN 1.1.
+  string ai_rmf_subcategory_id = 1;
+  // The subcategory's statement as the table restates it.
+  string description = 2;
+  // The suggested actions the table lists.
+  repeated GaiSuggestedAction gai_subcategory_actions = 3;
+  // The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action.
+  repeated AiRmfActorTaskName gai_subcategory_actor_tasks = 4;
+}
+// A step an organization or AI actor can take to manage GAI risks, which one row of a table states.
+message GaiSuggestedAction {
+  // The action's identifier, such as GV-1.1-001.
+  string gai_action_id = 1;
+  // The action's text in the table.
+  string description = 2;
+  // The GAI risks the row tags the action with.
+  repeated GaiRiskName gai_action_risks = 3;
+}
+
+// The ten AI actor tasks and five additional AI actors of Appendix A.
+enum AiRmfActorTaskName {
+  AI_RMF_ACTOR_TASK_NAME_UNSPECIFIED = 0;
+  AI_RMF_ACTOR_TASK_NAME_AI_DESIGN = 1;
+  AI_RMF_ACTOR_TASK_NAME_AI_DEVELOPMENT = 2;
+  AI_RMF_ACTOR_TASK_NAME_AI_DEPLOYMENT = 3;
+  AI_RMF_ACTOR_TASK_NAME_OPERATION_AND_MONITORING = 4;
+  AI_RMF_ACTOR_TASK_NAME_TEVV = 5;
+  AI_RMF_ACTOR_TASK_NAME_HUMAN_FACTORS = 6;
+  AI_RMF_ACTOR_TASK_NAME_DOMAIN_EXPERT = 7;
+  AI_RMF_ACTOR_TASK_NAME_AI_IMPACT_ASSESSMENT = 8;
+  AI_RMF_ACTOR_TASK_NAME_PROCUREMENT = 9;
+  AI_RMF_ACTOR_TASK_NAME_GOVERNANCE_AND_OVERSIGHT = 10;
+  AI_RMF_ACTOR_TASK_NAME_THIRD_PARTY_ENTITIES = 11;
+  AI_RMF_ACTOR_TASK_NAME_END_USERS = 12;
+  AI_RMF_ACTOR_TASK_NAME_AFFECTED_INDIVIDUALS_AND_COMMUNITIES = 13;
+  AI_RMF_ACTOR_TASK_NAME_OTHER_AI_ACTORS = 14;
+  AI_RMF_ACTOR_TASK_NAME_GENERAL_PUBLIC = 15;
+}
+// The seven characteristics of trustworthy AI systems in section 3 of the publication.
+enum AiRmfCharacteristicName {
+  AI_RMF_CHARACTERISTIC_NAME_UNSPECIFIED = 0;
+  AI_RMF_CHARACTERISTIC_NAME_VALID_AND_RELIABLE = 1;
+  AI_RMF_CHARACTERISTIC_NAME_SAFE = 2;
+  AI_RMF_CHARACTERISTIC_NAME_SECURE_AND_RESILIENT = 3;
+  AI_RMF_CHARACTERISTIC_NAME_ACCOUNTABLE_AND_TRANSPARENT = 4;
+  AI_RMF_CHARACTERISTIC_NAME_EXPLAINABLE_AND_INTERPRETABLE = 5;
+  AI_RMF_CHARACTERISTIC_NAME_PRIVACY_ENHANCED = 6;
+  AI_RMF_CHARACTERISTIC_NAME_FAIR_WITH_HARMFUL_BIAS_MANAGED = 7;
+}
+// The kinds of AI RMF profile that section 6 names.
+enum AiRmfProfileKind {
+  AI_RMF_PROFILE_KIND_UNSPECIFIED = 0;
+  AI_RMF_PROFILE_KIND_USE_CASE = 1;
+  AI_RMF_PROFILE_KIND_CURRENT = 2;
+  AI_RMF_PROFILE_KIND_TARGET = 3;
+  AI_RMF_PROFILE_KIND_CROSS_SECTORAL = 4;
+}
+// The plans and actions that section A.1.2 says apply to GAI from other AI governance.
+enum GaiGovernancePlan {
+  GAI_GOVERNANCE_PLAN_UNSPECIFIED = 0;
+  GAI_GOVERNANCE_PLAN_ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS = 1;
+  GAI_GOVERNANCE_PLAN_AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS = 2;
+  GAI_GOVERNANCE_PLAN_ALIGNMENT_TO_ORGANIZATIONAL_VALUES = 3;
+  GAI_GOVERNANCE_PLAN_AUDITING_AND_ASSESSMENT = 4;
+  GAI_GOVERNANCE_PLAN_CHANGE_MANAGEMENT_CONTROLS = 5;
+  GAI_GOVERNANCE_PLAN_COMMERCIAL_USE = 6;
+  GAI_GOVERNANCE_PLAN_DATA_PROVENANCE = 7;
+  GAI_GOVERNANCE_PLAN_DATA_PROTECTION = 8;
+  GAI_GOVERNANCE_PLAN_DATA_RETENTION = 9;
+  GAI_GOVERNANCE_PLAN_CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS = 10;
+  GAI_GOVERNANCE_PLAN_DECOMMISSIONING = 11;
+  GAI_GOVERNANCE_PLAN_DISCOURAGING_ANONYMOUS_USE = 12;
+  GAI_GOVERNANCE_PLAN_EDUCATION = 13;
+  GAI_GOVERNANCE_PLAN_IMPACT_ASSESSMENTS = 14;
+  GAI_GOVERNANCE_PLAN_INCIDENT_RESPONSE = 15;
+  GAI_GOVERNANCE_PLAN_MONITORING = 16;
+  GAI_GOVERNANCE_PLAN_OPT_OUTS = 17;
+  GAI_GOVERNANCE_PLAN_RISK_BASED_CONTROLS = 18;
+  GAI_GOVERNANCE_PLAN_RISK_MAPPING_AND_MEASUREMENT = 19;
+  GAI_GOVERNANCE_PLAN_SCIENCE_BACKED_TEVV_PRACTICES = 20;
+  GAI_GOVERNANCE_PLAN_SECURE_SOFTWARE_DEVELOPMENT_PRACTICES = 21;
+  GAI_GOVERNANCE_PLAN_STAKEHOLDER_ENGAGEMENT = 22;
+  GAI_GOVERNANCE_PLAN_SYNTHETIC_CONTENT_DETECTION_AND_LABELING_TOOLS_AND_TECHNIQUES = 23;
+  GAI_GOVERNANCE_PLAN_WHISTLEBLOWER_PROTECTIONS = 24;
+  GAI_GOVERNANCE_PLAN_WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS = 25;
+}
+// The kinds of harm that section A.1.8's definition of an AI incident names.
+enum GaiIncidentHarm {
+  GAI_INCIDENT_HARM_UNSPECIFIED = 0;
+  GAI_INCIDENT_HARM_INJURY_OR_HARM_TO_HEALTH = 1;
+  GAI_INCIDENT_HARM_CRITICAL_INFRASTRUCTURE_DISRUPTION = 2;
+  GAI_INCIDENT_HARM_RIGHTS_VIOLATIONS = 3;
+  GAI_INCIDENT_HARM_HARM_TO_PROPERTY_COMMUNITIES_OR_ENVIRONMENT = 4;
+}
+// The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.
+enum GaiLifecycleStage {
+  GAI_LIFECYCLE_STAGE_UNSPECIFIED = 0;
+  GAI_LIFECYCLE_STAGE_DESIGN = 1;
+  GAI_LIFECYCLE_STAGE_DEVELOPMENT = 2;
+  GAI_LIFECYCLE_STAGE_DEPLOYMENT = 3;
+  GAI_LIFECYCLE_STAGE_OPERATION = 4;
+  GAI_LIFECYCLE_STAGE_DECOMMISSIONING = 5;
+}
+// The techniques for provenance data tracking in section A.1.6.
+enum GaiProvenanceTechnique {
+  GAI_PROVENANCE_TECHNIQUE_UNSPECIFIED = 0;
+  GAI_PROVENANCE_TECHNIQUE_DIGITAL_WATERMARKING = 1;
+  GAI_PROVENANCE_TECHNIQUE_METADATA_RECORDING = 2;
+  GAI_PROVENANCE_TECHNIQUE_DIGITAL_FINGERPRINTING = 3;
+  GAI_PROVENANCE_TECHNIQUE_HUMAN_AUTHENTICATION = 4;
+}
+// The types of AI red-teaming in section A.1.5.
+enum GaiRedTeamingType {
+  GAI_RED_TEAMING_TYPE_UNSPECIFIED = 0;
+  GAI_RED_TEAMING_TYPE_GENERAL_PUBLIC = 1;
+  GAI_RED_TEAMING_TYPE_EXPERT = 2;
+  GAI_RED_TEAMING_TYPE_COMBINATION = 3;
+  GAI_RED_TEAMING_TYPE_HUMAN_AI = 4;
+}
+// The three groups into which footnote 5 says an organization could sort the risks, as one possible way.
+enum GaiRiskGrouping {
+  GAI_RISK_GROUPING_UNSPECIFIED = 0;
+  GAI_RISK_GROUPING_TECHNICAL_OR_MODEL = 1;
+  GAI_RISK_GROUPING_MISUSE_BY_HUMANS = 2;
+  GAI_RISK_GROUPING_ECOSYSTEM_OR_SOCIETAL = 3;
+}
+// The 12 risks of section 2.
+enum GaiRiskName {
+  GAI_RISK_NAME_UNSPECIFIED = 0;
+  GAI_RISK_NAME_CBRN_INFORMATION_OR_CAPABILITIES = 1;
+  GAI_RISK_NAME_CONFABULATION = 2;
+  GAI_RISK_NAME_DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT = 3;
+  GAI_RISK_NAME_DATA_PRIVACY = 4;
+  GAI_RISK_NAME_ENVIRONMENTAL_IMPACTS = 5;
+  GAI_RISK_NAME_HARMFUL_BIAS_OR_HOMOGENIZATION = 6;
+  GAI_RISK_NAME_HUMAN_AI_CONFIGURATION = 7;
+  GAI_RISK_NAME_INFORMATION_INTEGRITY = 8;
+  GAI_RISK_NAME_INFORMATION_SECURITY = 9;
+  GAI_RISK_NAME_INTELLECTUAL_PROPERTY = 10;
+  GAI_RISK_NAME_OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT = 11;
+  GAI_RISK_NAME_VALUE_CHAIN_AND_COMPONENT_INTEGRATION = 12;
+}
+// The levels where section 2 says a risk may exist.
+enum GaiRiskScope {
+  GAI_RISK_SCOPE_UNSPECIFIED = 0;
+  GAI_RISK_SCOPE_MODEL_OR_SYSTEM = 1;
+  GAI_RISK_SCOPE_APPLICATION_OR_IMPLEMENTATION = 2;
+  GAI_RISK_SCOPE_ECOSYSTEM = 3;
+}
+// Where section 2 says a risk may come from.
+enum GaiRiskSource {
+  GAI_RISK_SOURCE_UNSPECIFIED = 0;
+  GAI_RISK_SOURCE_DESIGN = 1;
+  GAI_RISK_SOURCE_TRAINING = 2;
+  GAI_RISK_SOURCE_OPERATION = 3;
+  GAI_RISK_SOURCE_INPUTS = 4;
+  GAI_RISK_SOURCE_OUTPUTS = 5;
+  GAI_RISK_SOURCE_HUMAN_BEHAVIOR = 6;
+  GAI_RISK_SOURCE_HUMAN_AI_INTERACTION = 7;
+}
+// How section 2 says a risk may materialize over time.
+enum GaiRiskTimeScale {
+  GAI_RISK_TIME_SCALE_UNSPECIFIED = 0;
+  GAI_RISK_TIME_SCALE_ABRUPT = 1;
+  GAI_RISK_TIME_SCALE_EXTENDED = 2;
+}
+// The existing controls that section A.1.3 says can apply to third-party GAI.
+enum GaiThirdPartyControl {
+  GAI_THIRD_PARTY_CONTROL_UNSPECIFIED = 0;
+  GAI_THIRD_PARTY_CONTROL_ACQUISITION_AND_PROCUREMENT_DUE_DILIGENCE = 1;
+  GAI_THIRD_PARTY_CONTROL_SOFTWARE_BILLS_OF_MATERIALS = 2;
+  GAI_THIRD_PARTY_CONTROL_SERVICE_LEVEL_AGREEMENTS = 3;
+  GAI_THIRD_PARTY_CONTROL_SSAE_REPORTS = 4;
+}

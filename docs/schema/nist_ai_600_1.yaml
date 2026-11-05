@@ -1,162 +1,54 @@
-name: nist-ai-600-1
-description: "LinkML schema for NIST AI 600-1, the Generative Artificial Intelligence\n\
-  Profile of the AI Risk Management Framework (July 2024).\n\nThis is a **cross-sectoral\
-  \ profile** and a *companion resource* to\nNIST AI 100-1 (AI RMF 1.0). It defines\
-  \ risks that are novel to or\nexacerbated by the use of Generative AI (GAI) and\
-  \ provides a set of\nsuggested actions, organised by AI RMF subcategory, that\n\
-  organisations can take to govern, map, measure, and manage those\nrisks.\n\nShared\
-  \ AI RMF base scaffolding (the abstract `NamedThing` root,\nidentifier/title/description\
-  \ slots, the `SubcategoryCode` type, and\nthe `TrustworthinessCharacteristicEnum`)\
-  \ is imported from the\n`nist_ai_rmf_common` module so it has a single canonical\
-  \ definition\nacross the framework. GAI-specific lifecycle and actor-task\nvocabularies\
-  \ (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) are\ndefined locally because they\
-  \ diverge from the NIST AI 100-1 enums;\ncross-references to AI RMF 1.0 elements\
-  \ are recorded as `*_mappings`\nfor traceability.\n\nThe schema covers:\n  * 12\
-  \ GAI risk categories (Section 2)\n  * Risk dimensions (lifecycle stage, scope,\
-  \ source, time scale)\n  * `SuggestedAction` entries (Section 3 tables) linked to\
-  \ AI RMF\n    subcategories\n  * Primary GAI Considerations (Appendix A): Governance,\n\
-  \    Pre-Deployment Testing, Content Provenance, Incident Disclosure\n  * Structured\
-  \ Public Feedback methods and AI Red-teaming types"
+name: nist_ai_600_1
+annotations:
+  publication_date:
+    tag: publication_date
+    value: 2024-07
+  publication_approved:
+    tag: publication_approved
+    value: '2024-07-25'
+description: 'A LinkML model of NIST AI 600-1, the Generative Artificial Intelligence
+  Profile of the AI Risk Management Framework: its 12 risks, the suggested actions
+  its tables list under AI RMF subcategories, and its four primary considerations.'
 title: NIST AI RMF Generative AI Profile (NIST AI 600-1)
+comments:
+- The publication has no version number of its own, so the version is the 1.0.0 of
+  the AI RMF it profiles, and source is the publication's digital object identifier.
+  The release tags are the schema's own versions, and scripts/check_upstream_release.py
+  reports when NIST changes the file.
+- It imports the base and profiles modules of lmodel/nist-ai-100-1, vendored under
+  nist_ai_100_1/, so it needs no network. tests/test_schema_rules.py holds them to
+  their hashes.
+- The publication is a work of the United States Government. NOTICE says what it allows.
+  The schema's descriptions are this project's own words; NIST's text is in src/nist_ai_600_1/data/.
 source: https://doi.org/10.6028/NIST.AI.600-1
 see_also:
-- https://doi.org/10.6028/NIST.AI.600-1
+- https://lmodel.github.io/nist-ai-600-1
 - https://airc.nist.gov/Home
 - https://doi.org/10.6028/NIST.AI.100-1
 id: https://w3id.org/lmodel/nist-ai-600-1
 version: 1.0.0
 imports:
 - linkml:types
-- nist_ai_100_1:schema/nist_ai_rmf_common
+- ./nist_ai_100_1/nist_ai_100_1_base
+- ./nist_ai_100_1/nist_ai_100_1_profiles
+- ./nist_ai_600_1_risks
+- ./nist_ai_600_1_actions
+- ./nist_ai_600_1_considerations
+- nist_ai_100_1/nist_ai_100_1_base
 license: Apache-2.0
 prefixes:
-  nist_ai_600_1:
-    prefix_prefix: nist_ai_600_1
-    prefix_reference: https://w3id.org/lmodel/nist-ai-600-1/
-  nist_ai_100_1:
-    prefix_prefix: nist_ai_100_1
-    prefix_reference: https://w3id.org/lmodel/nist-ai-100-1/
   linkml:
     prefix_prefix: linkml
     prefix_reference: https://w3id.org/linkml/
-  rdf:
-    prefix_prefix: rdf
-    prefix_reference: http://www.w3.org/1999/02/22-rdf-syntax-ns#
-  rdfs:
-    prefix_prefix: rdfs
-    prefix_reference: http://www.w3.org/2000/01/rdf-schema#
-  skos:
-    prefix_prefix: skos
-    prefix_reference: http://www.w3.org/2004/02/skos/core#
-  schema:
-    prefix_prefix: schema
-    prefix_reference: http://schema.org/
-  dcterms:
-    prefix_prefix: dcterms
-    prefix_reference: http://purl.org/dc/terms/
-  xsd:
-    prefix_prefix: xsd
-    prefix_reference: http://www.w3.org/2001/XMLSchema#
-  nist_csf:
-    prefix_prefix: nist_csf
-    prefix_reference: https://w3id.org/lmodel/nist-csf-v2/
-  oscal_catalog:
-    prefix_prefix: oscal_catalog
-    prefix_reference: https://w3id.org/lmodel/oscal_catalog/
-  oscal_profile:
-    prefix_prefix: oscal_profile
-    prefix_reference: https://w3id.org/lmodel/oscal_profile/
-  iso27001:
-    prefix_prefix: iso27001
-    prefix_reference: https://w3id.org/lmodel/iso27001/
-  iso29100:
-    prefix_prefix: iso29100
-    prefix_reference: https://w3id.org/lmodel/iso29100/
-  gist_linkml:
-    prefix_prefix: gist_linkml
-    prefix_reference: https://w3id.org/lmodel/gist/
-  stix:
-    prefix_prefix: stix
-    prefix_reference: https://w3id.org/lmodel/stix/
-  owasp_asi:
-    prefix_prefix: owasp_asi
-    prefix_reference: https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-
-  doi:
-    prefix_prefix: doi
-    prefix_reference: https://doi.org/
+  nist_ai_100_1:
+    prefix_prefix: nist_ai_100_1
+    prefix_reference: https://w3id.org/lmodel/nist-ai-100-1/
+  nist_ai_600_1:
+    prefix_prefix: nist_ai_600_1
+    prefix_reference: https://w3id.org/lmodel/nist-ai-600-1/
 default_prefix: nist_ai_600_1
 default_range: string
-subsets:
-  gai_base:
-    name: gai_base
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiBase
-    description: 'GAI-specific base vocabulary defined locally: the divergent
-
-      lifecycle and actor-task enums (`GaiLifecycleStageEnum`,
-
-      `GaiActorTaskEnum`). The shared base scaffolding (`NamedThing`,
-
-      identifier slots, `SubcategoryCode`, `TrustworthinessCharacteristicEnum`)
-
-      is imported from `nist_ai_rmf_common`; see `*_mappings` for
-
-      cross-references to NIST AI 100-1.'
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-  gai_core:
-    name: gai_core
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiCore
-    description: 'Foundational GAI Profile concepts - the 12 risks and their
-
-      dimensions (Section 2).'
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-  gai_actions:
-    name: gai_actions
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActions
-    description: Suggested Actions organised by AI RMF subcategory (Section 3).
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-  gai_considerations:
-    name: gai_considerations
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiConsiderations
-    description: 'Primary GAI Considerations (Appendix A): Governance,
-
-      Pre-Deployment Testing, Content Provenance, Incident Disclosure.'
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-  gai_feedback:
-    name: gai_feedback
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiFeedback
-    description: 'Structured Public Feedback methods and AI Red-teaming
-
-      (Appendix A.1.5).'
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-  base:
-    name: base
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Base
-    description: 'Schema-infrastructure elements shared across the framework:
-
-      identifier slots and the abstract `NamedThing` root.'
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-  trustworthiness:
-    name: trustworthiness
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/Trustworthiness
-    description: "Characteristics of trustworthy AI systems (NIST AI 100-1 Part 1,\n\
-      \xA73): Valid and Reliable, Safe, Secure and Resilient, Accountable\nand Transparent,\
-      \ Explainable and Interpretable, Privacy-Enhanced,\nand Fair with Harmful Bias\
-      \ Managed."
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
 types:
-  GaiActionId:
-    name: GaiActionId
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActionId
-    description: 'Action identifier used in NIST AI 600-1 Section 3, of the form
-
-      "<prefix>-<category>.<subcategory>-<seq>" - e.g., "GV-1.1-001".
-
-      Prefixes: GV (Govern), MP (Map), MS (Measure), MG (Manage).'
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    typeof: string
-    base: str
-    uri: xsd:string
-    pattern: ^(GV|MP|MS|MG)-[0-9]+\.[0-9]+-[0-9]{3}$
   string:
     name: string
     definition_uri: https://w3id.org/linkml/String
@@ -425,1392 +317,1532 @@ types:
     base: str
     uri: xsd:string
     repr: str
-  SubcategoryCode:
-    name: SubcategoryCode
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/SubcategoryCode
-    description: Identifier for a Core subcategory (e.g., "GOVERN 1.1").
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+  ai_rmf_function_identifier:
+    name: ai_rmf_function_identifier
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfFunctionIdentifier
+    description: The name of one of the four Core functions, written in capitals,
+      such as GOVERN.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
     typeof: string
     base: str
     uri: xsd:string
-    pattern: ^(GOVERN|MAP|MEASURE|MANAGE) [0-9]+\.[0-9]+$
+    pattern: ^(GOVERN|MAP|MEASURE|MANAGE)$
+  ai_rmf_category_identifier:
+    name: ai_rmf_category_identifier
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfCategoryIdentifier
+    description: A category's identifier, its function's name and a number, such as
+      GOVERN 1.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])$
+  ai_rmf_subcategory_identifier:
+    name: ai_rmf_subcategory_identifier
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfSubcategoryIdentifier
+    description: A subcategory's identifier, its category's identifier, a dot and
+      a number, such as GOVERN 1.1.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\.[1-9][0-9]?$
+  gai_action_identifier:
+    name: gai_action_identifier
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActionIdentifier
+    description: 'An Action ID: the function''s two letters, its subcategory''s numbers
+      and a three-digit number, such as GV-1.1-001 for the first action of GOVERN
+      1.1.'
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    typeof: string
+    base: str
+    uri: xsd:string
+    pattern: ^(GV-[1-6]|MP-[1-5]|MS-[1-4]|MG-[1-4])\.[1-9][0-9]?-[0-9]{3}$
 enums:
-  GaiLifecycleStageEnum:
-    name: GaiLifecycleStageEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStageEnum
-    description: 'AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
-
-      "Risks can arise during design, development, deployment,
-
-      operation, and/or decommissioning." Distinct from the six-stage
-
-      `AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).'
-    in_subset:
-    - gai_base
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - nist_ai_100_1:AiLifecycleStageEnum
+  AiRmfCharacteristicName:
+    name: AiRmfCharacteristicName
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfCharacteristicName
+    description: The seven characteristics of trustworthy AI systems in section 3
+      of the publication.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
     permissible_values:
-      DESIGN:
-        text: DESIGN
-        description: Articulating system concept, objectives, requirements.
-      DEVELOPMENT:
-        text: DEVELOPMENT
-        description: Building, training, and tuning the GAI model or system.
-      DEPLOYMENT:
-        text: DEPLOYMENT
-        description: Placing the GAI system into a production environment.
-      OPERATION:
-        text: OPERATION
-        description: Running and monitoring the GAI system in use.
-      DECOMMISSIONING:
-        text: DECOMMISSIONING
-        description: Retiring or phasing out the GAI system.
-  GaiActorTaskEnum:
-    name: GaiActorTaskEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActorTaskEnum
-    description: 'AI Actor Tasks referenced by the Suggested Actions tables in
-
-      NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
-
-      Appendix A).'
-    in_subset:
-    - gai_base
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - nist_ai_100_1:AiActorTaskEnum
+      valid_and_reliable:
+        text: valid_and_reliable
+        description: Shown by evidence to meet the needs of its intended use, and
+          works without failure over time. Figure 4 makes it a necessary condition
+          for the others.
+        title: Valid and Reliable
+      safe:
+        text: safe
+        description: Keeps people, property and the environment out of danger under
+          defined conditions.
+        title: Safe
+      secure_and_resilient:
+        text: secure_and_resilient
+        description: Withstands adverse events and recovers from them, and keeps confidentiality,
+          integrity and availability through protections against attack.
+        title: Secure and Resilient
+      accountable_and_transparent:
+        text: accountable_and_transparent
+        description: Answerable for outcomes, which rests on people being able to
+          get information about the system and its outputs. Figure 4 shows it relating
+          to all the others.
+        title: Accountable and Transparent
+      explainable_and_interpretable:
+        text: explainable_and_interpretable
+        description: Its working can be represented (how a decision was made) and
+          its output understood in context (why, and what it means for the user).
+        title: Explainable and Interpretable
+      privacy_enhanced:
+        text: privacy_enhanced
+        description: Guided by the norms and practices that protect human autonomy,
+          identity and dignity, such as anonymity, confidentiality and control.
+        title: Privacy-Enhanced
+      fair_with_harmful_bias_managed:
+        text: fair_with_harmful_bias_managed
+        description: Addresses equality and equity, including harmful bias and discrimination,
+          knowing that views of fairness differ across cultures and applications.
+        title: "Fair \u2013 with Harmful Bias Managed"
+  AiRmfActorTaskName:
+    name: AiRmfActorTaskName
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfActorTaskName
+    description: The ten AI actor tasks and five additional AI actors of Appendix
+      A.
+    comments:
+    - 'One list holds both kinds because NIST tags them together: the Playbook under
+      its AI Actors key, and AI 600-1 under AI Actor Tasks. Each alias is the spelling
+      those tags use where it differs from the title in Appendix A.'
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
     permissible_values:
-      GOVERNANCE_AND_OVERSIGHT:
-        text: GOVERNANCE_AND_OVERSIGHT
-        description: Management, fiduciary, and legal authority for the organization.
-      AI_DESIGN:
-        text: AI_DESIGN
-        description: Concept, objectives, planning, design, and data collection.
-      AI_DEVELOPMENT:
-        text: AI_DEVELOPMENT
-        description: Model building, selection, calibration, training, and testing.
-      AI_DEPLOYMENT:
-        text: AI_DEPLOYMENT
-        description: Contextual decisions on how the AI system is used and deployed.
-      AI_IMPACT_ASSESSMENT:
-        text: AI_IMPACT_ASSESSMENT
-        description: Assessing accountability, bias, impacts, safety, liability, security.
-      OPERATION_AND_MONITORING:
-        text: OPERATION_AND_MONITORING
-        description: Operating the AI system and assessing system output and impacts.
-      TEVV:
-        text: TEVV
-        description: Test, Evaluation, Verification, and Validation tasks.
-      DOMAIN_EXPERTS:
-        text: DOMAIN_EXPERTS
-        description: Multidisciplinary practitioners with sector or context expertise.
-      END_USERS:
-        text: END_USERS
-        description: Individuals or groups using the AI system for specific purposes.
-      HUMAN_FACTORS:
-        text: HUMAN_FACTORS
-        description: Human-centered design practices and end-user involvement.
-      AFFECTED_INDIVIDUALS_AND_COMMUNITIES:
-        text: AFFECTED_INDIVIDUALS_AND_COMMUNITIES
-        description: Individuals, groups, or communities directly or indirectly affected.
-      PROCUREMENT:
-        text: PROCUREMENT
-        description: Acquisition of AI models, products, or services from third parties.
-      THIRD_PARTY_ENTITIES:
-        text: THIRD_PARTY_ENTITIES
-        description: Providers, developers, vendors, and evaluators external to the
-          deploying organization.
-  GaiRiskCategoryEnum:
-    name: GaiRiskCategoryEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategoryEnum
-    description: 'The 12 risks unique to or exacerbated by Generative AI as
-
-      enumerated in NIST AI 600-1 Section 2.'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      ai_design:
+        text: ai_design
+        description: Setting what the system is for, planning and designing it, and
+          gathering and preparing its data.
+        title: AI Design
+      ai_development:
+        text: ai_development
+        description: Providing the initial infrastructure, and creating, selecting,
+          calibrating, training and testing models.
+        title: AI Development
+      ai_deployment:
+        text: ai_deployment
+        description: Deciding how the system is used and putting it into production,
+          including pilots and compliance checks.
+        title: AI Deployment
+      operation_and_monitoring:
+        text: operation_and_monitoring
+        description: Running the system and regularly assessing its output and impacts.
+        title: Operation and Monitoring
+      tevv:
+        text: tevv
+        description: Examining the system or its components and finding and fixing
+          problems, throughout the lifecycle.
+        title: Test, Evaluation, Verification, and Validation (TEVV)
+        aliases:
+        - TEVV
+      human_factors:
+        text: human_factors
+        description: Human-centered design and evaluation, involving end users and
+          bringing context-specific norms and values into design.
+        title: Human Factors
+      domain_expert:
+        text: domain_expert
+        description: Giving knowledge of the sector or setting where the system is
+          used.
+        title: Domain Expert
+        aliases:
+        - Domain Experts
+      ai_impact_assessment:
+        text: ai_impact_assessment
+        description: Assessing accountability, harmful bias, impacts, product safety,
+          liability and security.
+        title: AI Impact Assessment
+      procurement:
+        text: procurement
+        description: Acquiring AI from another party, under financial, legal or policy
+          authority.
+        title: Procurement
+      governance_and_oversight:
+        text: governance_and_oversight
+        description: Holding management, fiduciary and legal authority for the organization
+          where the system is designed, developed or deployed.
+        title: Governance and Oversight
+      third_party_entities:
+        text: third_party_entities
+        description: Outside organizations that supply or evaluate the data, models,
+          systems or services an organization acquires.
+        title: Third-party entities
+      end_users:
+        text: end_users
+        description: The people or groups who use the system, whether new to technology
+          or expert in AI.
+        title: End users
+        aliases:
+        - End-Users
+        - End Users
+      affected_individuals_and_communities:
+        text: affected_individuals_and_communities
+        description: Those directly or indirectly affected by the system or its output,
+          whether or not they interact with it.
+        title: Affected individuals/communities
+        aliases:
+        - Affected Individuals and Communities
+      other_ai_actors:
+        text: other_ai_actors
+        description: Those who may provide norms or guidance on AI risk, such as standards
+          bodies, advocacy groups and researchers.
+        title: Other AI actors
+      general_public:
+        text: general_public
+        description: Those most likely to experience the impacts directly, who may
+          motivate what other AI actors do.
+        title: General public
+  AiRmfProfileKind:
+    name: AiRmfProfileKind
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfileKind
+    description: The kinds of AI RMF profile that section 6 names.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
     permissible_values:
-      CBRN_INFORMATION_OR_CAPABILITIES:
-        text: CBRN_INFORMATION_OR_CAPABILITIES
-        description: 'Eased access to or synthesis of materially nefarious
-
-          information or design capabilities related to chemical,
-
-          biological, radiological, or nuclear (CBRN) weapons or
-
-          other dangerous materials or agents.'
-      CONFABULATION:
-        text: CONFABULATION
-        description: 'The production of confidently stated but erroneous or
-
-          false content (colloquially "hallucinations" or
-
-          "fabrications") by which users may be misled or deceived.'
-      DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT:
-        text: DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT
-        description: 'Eased production of and access to violent, inciting,
-
-          radicalizing, or threatening content as well as
-
-          recommendations to carry out self-harm or conduct illegal
-
-          activities. Includes difficulty controlling public
-
-          exposure to hateful and disparaging or stereotyping
-
-          content.'
-      DATA_PRIVACY:
-        text: DATA_PRIVACY
-        description: 'Impacts due to leakage and unauthorized use, disclosure, or
-
-          de-anonymization of biometric, health, location, or other
-
-          personally identifiable information or sensitive data.'
-      ENVIRONMENTAL_IMPACTS:
-        text: ENVIRONMENTAL_IMPACTS
-        description: 'Impacts due to high compute resource utilization in
-
-          training or operating GAI models, and related outcomes that
-
-          may adversely impact ecosystems.'
-      HARMFUL_BIAS_OR_HOMOGENIZATION:
-        text: HARMFUL_BIAS_OR_HOMOGENIZATION
-        description: 'Amplification and exacerbation of historical, societal,
-
-          and systemic biases; performance disparities between
-
-          sub-groups or languages, possibly due to non-representative
-
-          training data, resulting in discrimination, amplification
-
-          of biases, or incorrect presumptions about performance;
-
-          undesired homogeneity that skews system or model outputs.'
-      HUMAN_AI_CONFIGURATION:
-        text: HUMAN_AI_CONFIGURATION
-        description: 'Arrangements of or interactions between a human and an AI
-
-          system which can result in the human inappropriately
-
-          anthropomorphising GAI systems or experiencing algorithmic
-
-          aversion, automation bias, over-reliance, or emotional
-
-          entanglement with GAI systems.'
-        close_mappings:
-        - owasp_asi:08
-        - owasp_asi:09
-        - owasp_asi:10
-      INFORMATION_INTEGRITY:
-        text: INFORMATION_INTEGRITY
-        description: 'Lowered barrier to entry to generate and support the
-
-          exchange and consumption of content which may not
-
-          distinguish fact from opinion or fiction or acknowledge
-
-          uncertainties, or could be leveraged for large-scale
-
-          dis- and mis-information campaigns.'
-        close_mappings:
-        - owasp_asi:01
-        - owasp_asi:06
-      INFORMATION_SECURITY:
-        text: INFORMATION_SECURITY
-        description: 'Lowered barriers for offensive cyber capabilities,
-
-          including via automated discovery and exploitation of
-
-          vulnerabilities; increased attack surface for targeted
-
-          cyberattacks, which may compromise a system''s availability
-
-          or the confidentiality or integrity of training data,
-
-          code, or model weights.'
-        close_mappings:
-        - owasp_asi:02
-        - owasp_asi:03
-        - owasp_asi:05
-        - owasp_asi:07
-      INTELLECTUAL_PROPERTY:
-        text: INTELLECTUAL_PROPERTY
-        description: 'Eased production or replication of alleged copyrighted,
-
-          trademarked, or licensed content without authorization
-
-          (possibly outside fair use); eased exposure of trade
-
-          secrets; or plagiarism or illegal replication.'
-      OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT:
-        text: OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT
-        description: 'Eased production of and access to obscene, degrading,
-
-          and/or abusive imagery which can cause harm, including
-
-          synthetic child sexual abuse material (CSAM) and
-
-          nonconsensual intimate images (NCII) of adults.'
-      VALUE_CHAIN_AND_COMPONENT_INTEGRATION:
-        text: VALUE_CHAIN_AND_COMPONENT_INTEGRATION
-        description: 'Non-transparent or untraceable integration of upstream
-
-          third-party components, including data that has been
-
-          improperly obtained or not processed and cleaned due to
-
-          increased automation from GAI; improper supplier vetting
-
-          across the AI lifecycle; or other issues that diminish
-
-          transparency or accountability for downstream users.'
-        close_mappings:
-        - owasp_asi:04
-  GaiRiskCategorizationEnum:
-    name: GaiRiskCategorizationEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskCategorizationEnum
-    description: 'Higher-level grouping of GAI risks, derived from the UK''s
-
-      International Scientific Report on the Safety of Advanced AI
-
-      (NIST AI 600-1 Section 2, footnote 5).'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      use_case:
+        text: use_case
+        description: The Core implemented for a specific setting or application.
+        title: Use-case profile
+      current:
+        text: current
+        description: A temporal profile saying how AI is managed today and the related
+          risks, in terms of current outcomes.
+        title: Current Profile
+      target:
+        text: target
+        description: A temporal profile saying which outcomes the desired risk management
+          goals need.
+        title: Target Profile
+      cross_sectoral:
+        text: cross_sectoral
+        description: Covers risks of models or applications used across use cases
+          or sectors, or activities common to them, such as using large language models.
+        title: Cross-sectoral profile
+  GaiRiskName:
+    name: GaiRiskName
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName
+    description: The 12 risks of section 2.
+    comments:
+    - The tables of section 3 tag actions with these risks, in slightly different
+      spellings from the definitions in section 2. Each alias is a spelling the tables
+      use.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      TECHNICAL_OR_MODEL_RISKS:
-        text: TECHNICAL_OR_MODEL_RISKS
-        description: 'Risks from malfunction. Examples include confabulation;
-
-          dangerous or violent recommendations; data privacy; value
-
-          chain and component integration; harmful bias and
-
-          homogenization.'
-      MISUSE_BY_HUMANS:
-        text: MISUSE_BY_HUMANS
-        description: 'Risks from malicious use. Examples include CBRN information
-
-          or capabilities; data privacy; human-AI configuration;
-
-          obscene, degrading, and/or abusive content; information
-
-          integrity; information security.'
-      ECOSYSTEM_OR_SOCIETAL_RISKS:
-        text: ECOSYSTEM_OR_SOCIETAL_RISKS
-        description: 'Systemic risks. Examples include data privacy;
-
-          environmental impacts; intellectual property.'
-  GaiRiskScopeEnum:
-    name: GaiRiskScopeEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScopeEnum
-    description: The scope at which a GAI risk may manifest (Section 2).
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      cbrn_information_or_capabilities:
+        text: cbrn_information_or_capabilities
+        description: Easier access to dangerous information or design abilities for
+          chemical, biological, radiological or nuclear weapons.
+        title: CBRN Information or Capabilities
+        aliases:
+        - CBRN Information and Capability
+      confabulation:
+        text: confabulation
+        description: Confident but wrong output that can mislead users.
+        title: Confabulation
+      dangerous_violent_or_hateful_content:
+        text: dangerous_violent_or_hateful_content
+        description: Easier production of content that incites or threatens, recommends
+          harm, or disparages.
+        title: Dangerous, Violent, or Hateful Content
+      data_privacy:
+        text: data_privacy
+        description: Leaks, misuse or de-anonymization of personal or sensitive data.
+        title: Data Privacy
+      environmental_impacts:
+        text: environmental_impacts
+        description: Effects on ecosystems from the heavy computing that training
+          and operating models need.
+        title: Environmental Impacts
+        aliases:
+        - Environmental
+      harmful_bias_or_homogenization:
+        text: harmful_bias_or_homogenization
+        description: Worse systemic bias, unequal performance across groups or languages,
+          and output skewed by sameness.
+        title: Harmful Bias or Homogenization
+        aliases:
+        - Harmful Bias and Homogenization
+      human_ai_configuration:
+        text: human_ai_configuration
+        description: Interaction that leads people to over-rely on, anthropomorphize
+          or become entangled with a system, or to distrust it.
+        title: Human-AI Configuration
+        aliases:
+        - Human AI Configuration
+      information_integrity:
+        text: information_integrity
+        description: Easier creation and spread of content that blurs fact and opinion,
+          or that can drive large disinformation campaigns.
+        title: Information Integrity
+      information_security:
+        text: information_security
+        description: Easier offensive cyber activity, and a larger attack surface
+          on a system, its data, code or weights.
+        title: Information Security
+      intellectual_property:
+        text: intellectual_property
+        description: Easier unauthorized copying of protected content, exposure of
+          trade secrets, and plagiarism.
+        title: Intellectual Property
+      obscene_degrading_or_abusive_content:
+        text: obscene_degrading_or_abusive_content
+        description: Easier production of harmful imagery, including synthetic abuse
+          material and intimate images without consent.
+        title: Obscene, Degrading, and/or Abusive Content
+      value_chain_and_component_integration:
+        text: value_chain_and_component_integration
+        description: Opaque use of third-party components and data, and poor supplier
+          vetting, that weaken accountability downstream.
+        title: Value Chain and Component Integration
+  GaiRiskGrouping:
+    name: GaiRiskGrouping
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping
+    description: The three groups into which footnote 5 says an organization could
+      sort the risks, as one possible way.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      MODEL_OR_SYSTEM:
-        text: MODEL_OR_SYSTEM
-        description: Individual GAI model or system level.
-      APPLICATION_OR_IMPLEMENTATION:
-        text: APPLICATION_OR_IMPLEMENTATION
-        description: 'Specific application or implementation - i.e., a particular
-
-          use case.'
-      ECOSYSTEM:
-        text: ECOSYSTEM
-        description: 'Beyond a single system or organizational context - e.g.,
-
-          algorithmic monocultures, labor-market impacts, creative
-
-          economies.'
-  GaiRiskSourceEnum:
-    name: GaiRiskSourceEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSourceEnum
-    description: The source(s) from which a GAI risk may emerge (Section 2).
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      technical_or_model:
+        text: technical_or_model
+        description: Risks from malfunction.
+        title: Technical / Model risks
+      misuse_by_humans:
+        text: misuse_by_humans
+        description: Risks from malicious use.
+        title: Misuse by humans
+      ecosystem_or_societal:
+        text: ecosystem_or_societal
+        description: Systemic risks.
+        title: Ecosystem / societal risks
+  GaiLifecycleStage:
+    name: GaiLifecycleStage
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage
+    description: The lifecycle stages section 2 names for GAI. They differ from the
+      seven stages of the AI RMF's Figure 3.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      DESIGN:
-        text: DESIGN
-        description: From decisions made during model or system design.
-      TRAINING:
-        text: TRAINING
-        description: From the training data or training process.
-      OPERATION:
-        text: OPERATION
-        description: From operating the GAI model or system.
-      MODEL_INPUTS:
-        text: MODEL_INPUTS
-        description: From inputs supplied to the model at inference time.
-      MODEL_OUTPUTS:
-        text: MODEL_OUTPUTS
-        description: From the GAI system's generated outputs.
-      HUMAN_BEHAVIOR:
-        text: HUMAN_BEHAVIOR
-        description: 'From human behaviour - abuse, misuse, or unsafe repurposing
-
-          by humans (adversarial or not).'
-      HUMAN_AI_INTERACTION:
-        text: HUMAN_AI_INTERACTION
-        description: From interactions between a human and the AI system.
-  GaiRiskTimeScaleEnum:
-    name: GaiRiskTimeScaleEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScaleEnum
-    description: 'The time scale over which a GAI risk may materialise
-
-      (Section 2).'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      design:
+        text: design
+        description: Setting out the system before it is built.
+        title: Design
+      development:
+        text: development
+        description: Building and training it.
+        title: Development
+      deployment:
+        text: deployment
+        description: Putting it into use.
+        title: Deployment
+      operation:
+        text: operation
+        description: Running it.
+        title: Operation
+      decommissioning:
+        text: decommissioning
+        description: Retiring it.
+        title: Decommissioning
+  GaiRiskScope:
+    name: GaiRiskScope
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope
+    description: The levels where section 2 says a risk may exist.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      IMMEDIATE:
-        text: IMMEDIATE
-        description: Materialises abruptly (e.g., distribution of deepfakes).
-      PROLONGED:
-        text: PROLONGED
-        description: 'Materialises across extended periods (e.g., long-term
-
-          effect of disinformation on societal trust).'
-  GaiActionFunctionPrefixEnum:
-    name: GaiActionFunctionPrefixEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiActionFunctionPrefixEnum
-    description: Two-letter function prefix used in GAI Action IDs.
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      model_or_system:
+        text: model_or_system
+        description: The level of one model or system.
+        title: Model or system
+      application_or_implementation:
+        text: application_or_implementation
+        description: The level of one specific use case.
+        title: Application or implementation
+      ecosystem:
+        text: ecosystem
+        description: Beyond one system or organization, such as algorithmic monocultures
+          or effects on labor markets.
+        title: Ecosystem
+  GaiRiskSource:
+    name: GaiRiskSource
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource
+    description: Where section 2 says a risk may come from.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      GV:
-        text: GV
-        description: Govern function.
-      MP:
-        text: MP
-        description: Map function.
-      MS:
-        text: MS
-        description: Measure function.
-      MG:
-        text: MG
-        description: Manage function.
-  PrimaryConsiderationEnum:
-    name: PrimaryConsiderationEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsiderationEnum
-    description: 'The four overarching themes derived from the GAI PWG
-
-      consultation process (Appendix A).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      design:
+        text: design
+        description: The design of the model itself.
+        title: Design
+      training:
+        text: training
+        description: The training of the model.
+        title: Training
+      operation:
+        text: operation
+        description: The operation of the model.
+        title: Operation
+      inputs:
+        text: inputs
+        description: What goes into the model or system.
+        title: Inputs
+      outputs:
+        text: outputs
+        description: What the system produces.
+        title: Outputs
+      human_behavior:
+        text: human_behavior
+        description: Abuse, misuse or unsafe repurposing by people, whether adversarial
+          or not.
+        title: Human behavior
+      human_ai_interaction:
+        text: human_ai_interaction
+        description: How a person and a system act on each other.
+        title: Human-AI interaction
+  GaiRiskTimeScale:
+    name: GaiRiskTimeScale
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale
+    description: How section 2 says a risk may materialize over time.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
     permissible_values:
-      GOVERNANCE:
-        text: GOVERNANCE
-        description: 'How organizational governance regimes may be re-evaluated
-
-          and adjusted for GAI contexts (A.1).'
-      PRE_DEPLOYMENT_TESTING:
-        text: PRE_DEPLOYMENT_TESTING
-        description: 'Test, evaluation, validation, and verification practices
-
-          appropriate for GAI prior to deployment (A.1.4).'
-      CONTENT_PROVENANCE:
-        text: CONTENT_PROVENANCE
-        description: 'Digital transparency mechanisms (provenance data tracking,
-
-          watermarking, synthetic content detection) for tracing
-
-          origin and history of content (A.1.6 - A.1.7).'
-      INCIDENT_DISCLOSURE:
-        text: INCIDENT_DISCLOSURE
-        description: 'Documenting, reporting, and sharing information about AI
-
-          incidents to mitigate harm and improve risk management
-
-          (A.1.8).'
-  StructuredFeedbackMethodEnum:
-    name: StructuredFeedbackMethodEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedbackMethodEnum
-    description: 'Categories of structured public feedback for GAI risk
-
-      management (Appendix A.1.5).'
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      abrupt:
+        text: abrupt
+        description: All at once, such as immediate emotional harm from a harmful
+          deepfake image.
+        title: Abruptly
+      extended:
+        text: extended
+        description: Slowly, such as the long-term effect of disinformation on trust
+          in institutions.
+        title: Across extended periods
+  GaiGovernancePlan:
+    name: GaiGovernancePlan
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan
+    description: The plans and actions that section A.1.2 says apply to GAI from other
+      AI governance.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
     permissible_values:
-      PARTICIPATORY_ENGAGEMENT_METHODS:
-        text: PARTICIPATORY_ENGAGEMENT_METHODS
-        description: 'Methods used to solicit feedback from civil society groups,
-
-          affected communities, and users (focus groups, small user
-
-          studies, surveys).'
-      FIELD_TESTING:
-        text: FIELD_TESTING
-        description: 'Methods used to determine how people interact with,
-
-          consume, use, and make sense of AI-generated information
-
-          (UX, usability, randomised experiments).'
-      AI_RED_TEAMING:
-        text: AI_RED_TEAMING
-        description: 'A structured testing exercise used to probe an AI system
-
-          to find flaws and vulnerabilities such as inaccurate,
-
-          harmful, or discriminatory outputs.'
-  RedTeamingTypeEnum:
-    name: RedTeamingTypeEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/RedTeamingTypeEnum
-    description: Types of AI red-teaming exercises (Appendix A.1.5).
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      accessibility_and_reasonable_accommodations:
+        text: accessibility_and_reasonable_accommodations
+        title: Accessibility and reasonable accommodations
+      ai_actor_credentials_and_qualifications:
+        text: ai_actor_credentials_and_qualifications
+        title: AI actor credentials and qualifications
+      alignment_to_organizational_values:
+        text: alignment_to_organizational_values
+        title: Alignment to organizational values
+      auditing_and_assessment:
+        text: auditing_and_assessment
+        title: Auditing and assessment
+      change_management_controls:
+        text: change_management_controls
+        title: Change-management controls
+      commercial_use:
+        text: commercial_use
+        title: Commercial use
+      data_provenance:
+        text: data_provenance
+        title: Data provenance
+      data_protection:
+        text: data_protection
+        title: Data protection
+      data_retention:
+        text: data_retention
+        title: Data retention
+      consistency_in_use_of_defining_key_terms:
+        text: consistency_in_use_of_defining_key_terms
+        title: Consistency in use of defining key terms
+      decommissioning:
+        text: decommissioning
+        title: Decommissioning
+      discouraging_anonymous_use:
+        text: discouraging_anonymous_use
+        title: Discouraging anonymous use
+      education:
+        text: education
+        title: Education
+      impact_assessments:
+        text: impact_assessments
+        title: Impact assessments
+      incident_response:
+        text: incident_response
+        title: Incident response
+      monitoring:
+        text: monitoring
+        title: Monitoring
+      opt_outs:
+        text: opt_outs
+        title: Opt-outs
+      risk_based_controls:
+        text: risk_based_controls
+        title: Risk-based controls
+      risk_mapping_and_measurement:
+        text: risk_mapping_and_measurement
+        title: Risk mapping and measurement
+      science_backed_tevv_practices:
+        text: science_backed_tevv_practices
+        title: Science-backed TEVV practices
+      secure_software_development_practices:
+        text: secure_software_development_practices
+        title: Secure software development practices
+      stakeholder_engagement:
+        text: stakeholder_engagement
+        title: Stakeholder engagement
+      synthetic_content_detection_and_labeling_tools_and_techniques:
+        text: synthetic_content_detection_and_labeling_tools_and_techniques
+        title: Synthetic content detection and labeling tools and techniques
+      whistleblower_protections:
+        text: whistleblower_protections
+        title: Whistleblower protections
+      workforce_diversity_and_interdisciplinary_teams:
+        text: workforce_diversity_and_interdisciplinary_teams
+        title: Workforce diversity and interdisciplinary teams
+  GaiThirdPartyControl:
+    name: GaiThirdPartyControl
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl
+    description: The existing controls that section A.1.3 says can apply to third-party
+      GAI.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
     permissible_values:
-      GENERAL_PUBLIC:
-        text: GENERAL_PUBLIC
-        description: 'Performed by general users not necessarily having AI or
-
-          technical expertise.'
-      EXPERT:
-        text: EXPERT
-        description: 'Performed by specialists with expertise in the domain or
-
-          specific red-teaming context (medicine, biotech,
-
-          cybersecurity).'
-      COMBINATION:
-        text: COMBINATION
-        description: 'Hybrid exercises using both expert and general-public
-
-          participants.'
-      HUMAN_AND_AI:
-        text: HUMAN_AND_AI
-        description: 'Performed by GAI in combination with specialist or
-
-          non-specialist human teams.'
-  ProvenanceTechniqueEnum:
-    name: ProvenanceTechniqueEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/ProvenanceTechniqueEnum
-    description: 'Provenance data tracking techniques for GAI content
-
-      (Appendix A.1.6). "Some well-known techniques for provenance
-
-      data tracking include digital watermarking, metadata
-
-      recording, digital fingerprinting, and human authentication,
-
-      among others."'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      acquisition_and_procurement_due_diligence:
+        text: acquisition_and_procurement_due_diligence
+        description: Checking a provider before acquiring its GAI technology or data.
+        title: Acquisition and procurement due diligence
+      software_bills_of_materials:
+        text: software_bills_of_materials
+        description: Asking a provider what its software is made of.
+        title: Requests for software bills of materials
+        related_mappings:
+        - spdx_software:Sbom
+      service_level_agreements:
+        text: service_level_agreements
+        description: Holding a provider to agreed levels of service.
+        title: Application of service level agreements
+      ssae_reports:
+        text: ssae_reports
+        description: Asking for a provider's attestation reports.
+        title: Statement on standards for attestation engagement reports
+  GaiRedTeamingType:
+    name: GaiRedTeamingType
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType
+    description: The types of AI red-teaming in section A.1.5.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
     permissible_values:
-      DIGITAL_WATERMARKING:
-        text: DIGITAL_WATERMARKING
-        description: 'Overt or covert digital watermarks embedded in content to
-
-          allow downstream verification of origin.'
-      METADATA_RECORDING:
-        text: METADATA_RECORDING
-        description: 'Recording metadata about content (creator, date/time,
-
-          location, modifications, sources) for text, image, video,
-
-          audio, or underlying datasets.'
-      DIGITAL_FINGERPRINTING:
-        text: DIGITAL_FINGERPRINTING
-        description: 'Computing a content-derived identifier that can be matched
-
-          against a reference store to detect known content.'
-      HUMAN_AUTHENTICATION:
-        text: HUMAN_AUTHENTICATION
-        description: 'Human-mediated verification of content origin or
-
-          authenticity.'
-  GovernancePracticeEnum:
-    name: GovernancePracticeEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GovernancePracticeEnum
-    description: 'Governance plans and actions for GAI systems enumerated in
-
-      NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+      general_public:
+        text: general_public
+        description: By general users who are not necessarily AI or technical experts.
+        title: General Public
+      expert:
+        text: expert
+        description: By specialists in the domain or the context of use.
+        title: Expert
+      combination:
+        text: combination
+        description: By both experts and general public participants.
+        title: Combination
+      human_ai:
+        text: human_ai
+        description: By GAI together with human teams, specialist or not.
+        title: Human / AI
+  GaiProvenanceTechnique:
+    name: GaiProvenanceTechnique
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique
+    description: The techniques for provenance data tracking in section A.1.6.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
     permissible_values:
-      ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS:
-        text: ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS
-        description: Accessibility and reasonable accommodations.
-      AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS:
-        text: AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS
-        description: AI actor credentials and qualifications.
-      ALIGNMENT_TO_ORGANIZATIONAL_VALUES:
-        text: ALIGNMENT_TO_ORGANIZATIONAL_VALUES
-        description: Alignment to organizational values.
-      AUDITING_AND_ASSESSMENT:
-        text: AUDITING_AND_ASSESSMENT
-        description: Auditing and assessment.
-      CHANGE_MANAGEMENT_CONTROLS:
-        text: CHANGE_MANAGEMENT_CONTROLS
-        description: Change-management controls.
-      COMMERCIAL_USE:
-        text: COMMERCIAL_USE
-        description: Commercial use governance.
-      DATA_PROVENANCE:
-        text: DATA_PROVENANCE
-        description: Data provenance.
-      DATA_PROTECTION:
-        text: DATA_PROTECTION
-        description: Data protection.
-      DATA_RETENTION:
-        text: DATA_RETENTION
-        description: Data retention.
-      CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS:
-        text: CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS
-        description: Consistency in use of defining key terms.
-      DECOMMISSIONING:
-        text: DECOMMISSIONING
-        description: Decommissioning practices.
-      DISCOURAGING_ANONYMOUS_USE:
-        text: DISCOURAGING_ANONYMOUS_USE
-        description: Discouraging anonymous use.
-      EDUCATION:
-        text: EDUCATION
-        description: Education on GAI risks and responsible use.
-      IMPACT_ASSESSMENTS:
-        text: IMPACT_ASSESSMENTS
-        description: Impact assessments.
-      INCIDENT_RESPONSE:
-        text: INCIDENT_RESPONSE
-        description: Incident response procedures.
-      MONITORING:
-        text: MONITORING
-        description: Ongoing monitoring of GAI systems.
-      OPT_OUTS:
-        text: OPT_OUTS
-        description: User opt-out mechanisms.
-      RISK_BASED_CONTROLS:
-        text: RISK_BASED_CONTROLS
-        description: Risk-based controls.
-      RISK_MAPPING_AND_MEASUREMENT:
-        text: RISK_MAPPING_AND_MEASUREMENT
-        description: Risk mapping and measurement.
-      SCIENCE_BACKED_TEVV_PRACTICES:
-        text: SCIENCE_BACKED_TEVV_PRACTICES
-        description: Science-backed test, evaluation, validation, and verification
-          practices.
-      SECURE_SOFTWARE_DEVELOPMENT_PRACTICES:
-        text: SECURE_SOFTWARE_DEVELOPMENT_PRACTICES
-        description: Secure software development practices.
-      STAKEHOLDER_ENGAGEMENT:
-        text: STAKEHOLDER_ENGAGEMENT
-        description: Stakeholder engagement.
-      SYNTHETIC_CONTENT_DETECTION_AND_LABELING:
-        text: SYNTHETIC_CONTENT_DETECTION_AND_LABELING
-        description: Synthetic content detection and labeling tools and techniques.
-      WHISTLEBLOWER_PROTECTIONS:
-        text: WHISTLEBLOWER_PROTECTIONS
-        description: Whistleblower protections.
-      WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS:
-        text: WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS
-        description: Workforce diversity and interdisciplinary teams.
-  TrustworthinessCharacteristicEnum:
-    name: TrustworthinessCharacteristicEnum
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/TrustworthinessCharacteristicEnum
-    description: "The seven characteristics of trustworthy AI systems described in\n\
-      Figure 4 and Part 1 \xA73."
-    in_subset:
-    - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+      digital_watermarking:
+        text: digital_watermarking
+        description: Placing visible or hidden marks on content.
+        title: Digital watermarking
+      metadata_recording:
+        text: metadata_recording
+        description: Recording facts about the content, such as its creator, date
+          and sources.
+        title: Metadata recording
+      digital_fingerprinting:
+        text: digital_fingerprinting
+        description: Identifying content from its own characteristics.
+        title: Digital fingerprinting
+      human_authentication:
+        text: human_authentication
+        description: Having people confirm where content came from.
+        title: Human authentication
+  GaiIncidentHarm:
+    name: GaiIncidentHarm
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm
+    description: The kinds of harm that section A.1.8's definition of an AI incident
+      names.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
     permissible_values:
-      VALID_AND_RELIABLE:
-        text: VALID_AND_RELIABLE
-        description: 'Confirmation that requirements for a specific intended use have
-
-          been fulfilled (validation) and that the system performs as
-
-          required without failure (reliability). A necessary condition of
-
-          trustworthiness and the base for other characteristics.'
-      SAFE:
-        text: SAFE
-        description: 'The system does not, under defined conditions, lead to a state
-
-          in which human life, health, property, or the environment is
-
-          endangered.'
-      SECURE_AND_RESILIENT:
-        text: SECURE_AND_RESILIENT
-        description: 'The system can withstand unexpected adverse events or changes
-
-          (resilient) and maintain confidentiality, integrity, and
-
-          availability through protection mechanisms (secure).'
-      ACCOUNTABLE_AND_TRANSPARENT:
-        text: ACCOUNTABLE_AND_TRANSPARENT
-        description: 'Trustworthy AI depends on accountability, which presupposes
-
-          transparency - the extent to which information about an AI
-
-          system and its outputs is available to those interacting with
-
-          it.'
-      EXPLAINABLE_AND_INTERPRETABLE:
-        text: EXPLAINABLE_AND_INTERPRETABLE
-        description: 'Explainability concerns the mechanisms underlying an AI system''s
-
-          operation; interpretability concerns the meaning of its output
-
-          in context.'
-      PRIVACY_ENHANCED:
-        text: PRIVACY_ENHANCED
-        description: 'Norms and practices that help safeguard human autonomy,
-
-          identity, and dignity - including anonymity, confidentiality,
-
-          and control over personal information.'
-      FAIR_WITH_HARMFUL_BIAS_MANAGED:
-        text: FAIR_WITH_HARMFUL_BIAS_MANAGED
-        description: 'Concerns for equality and equity by addressing issues such as
-
-          harmful bias and discrimination, and recognising that
-
-          perceptions of fairness differ across cultures and
-
-          applications.'
+      injury_or_harm_to_health:
+        text: injury_or_harm_to_health
+        description: To a person or group, including psychological harm and harm to
+          mental health.
+        title: Injury or harm to health
+      critical_infrastructure_disruption:
+        text: critical_infrastructure_disruption
+        description: To its management and operation.
+        title: Disruption of critical infrastructure
+      rights_violations:
+        text: rights_violations
+        description: Of human rights, or of obligations under law that protects fundamental,
+          labor and intellectual property rights.
+        title: Violations of rights or legal obligations
+      harm_to_property_communities_or_environment:
+        text: harm_to_property_communities_or_environment
+        description: To things and groups beyond the individual.
+        title: Harm to property, communities, or the environment
 slots:
-  gai_risk_kind:
-    name: gai_risk_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_risk_kind
-    description: The GAI risk category this element represents.
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:gai_risk_kind
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiRiskCategoryEnum
-  gai_risks:
-    name: gai_risks
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_risks
-    description: 'GAI risk categories addressed by a suggested action or
-
-      considered by a primary consideration.'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:gai_risks
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    range: GaiRiskCategoryEnum
-    multivalued: true
-  risk_categorization:
-    name: risk_categorization
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_categorization
-    description: 'Higher-level categorisation - technical/model, misuse, or
-
-      ecosystem/societal.'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:risk_categorization
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiRiskCategorizationEnum
-  risk_scope:
-    name: risk_scope
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_scope
-    description: Scope levels at which the risk may manifest.
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:risk_scope
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiRiskScopeEnum
-    multivalued: true
-  risk_sources:
-    name: risk_sources
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/risk_sources
-    description: Sources from which the risk may emerge.
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:risk_sources
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiRiskSourceEnum
-    multivalued: true
-  time_scale:
-    name: time_scale
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/time_scale
-    description: Time scales over which the risk may materialise.
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:time_scale
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiRiskTimeScaleEnum
-    multivalued: true
-  action_id:
-    name: action_id
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/action_id
-    description: Identifier of a Suggested Action.
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:action_id
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    range: GaiActionId
-    required: true
-  function_prefix:
-    name: function_prefix
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/function_prefix
-    description: Two-letter function prefix of the action's subcategory.
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:function_prefix
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    range: GaiActionFunctionPrefixEnum
-  applies_to_subcategory:
-    name: applies_to_subcategory
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/applies_to_subcategory
-    description: Identifier of the AI RMF subcategory the action applies to.
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    close_mappings:
-    - oscal_profile:Profile
-    slot_uri: nist_ai_600_1:applies_to_subcategory
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    range: SubcategoryCode
-  consideration_kind:
-    name: consideration_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/consideration_kind
-    description: Which primary consideration this element represents.
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:consideration_kind
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: PrimaryConsiderationEnum
-    required: true
-  feedback_method_kind:
-    name: feedback_method_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind
-    description: Which structured feedback method this element represents.
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:feedback_method_kind
-    owner: StructuredPublicFeedback
-    domain_of:
-    - StructuredPublicFeedback
-    range: StructuredFeedbackMethodEnum
-    required: true
-  red_team_type:
-    name: red_team_type
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/red_team_type
-    description: The type of AI red-teaming exercise.
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:red_team_type
-    owner: AiRedTeaming
-    domain_of:
-    - AiRedTeaming
-    range: RedTeamingTypeEnum
-  addressed_by_actions:
-    name: addressed_by_actions
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/addressed_by_actions
-    description: 'Suggested actions that address a GAI risk (back-reference
-
-      derived from `SuggestedAction.gai_risks`).'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:addressed_by_actions
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: SuggestedAction
-    multivalued: true
-  governance_practices:
-    name: governance_practices
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/governance_practices
-    description: 'Governance plans and actions enumerated in NIST AI 600-1
-
-      Appendix A.1.2 (Organizational Governance).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:governance_practices
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: GovernancePracticeEnum
-    multivalued: true
-  third_party_considerations:
-    name: third_party_considerations
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/third_party_considerations
-    description: 'Considerations for third-party GAI integrations, procurement,
-
-      SBOMs, SLAs, and SSAE reports (Appendix A.1.3).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:third_party_considerations
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: string
-  limitations_of_current_approaches:
-    name: limitations_of_current_approaches
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/limitations_of_current_approaches
-    description: 'For Pre-Deployment Testing: free-text discussion of why
-
-      current TEVV approaches may be inadequate (Appendix A.1.4).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:limitations_of_current_approaches
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: string
-  provenance_techniques:
-    name: provenance_techniques
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/provenance_techniques
-    description: 'For Content Provenance: provenance data tracking techniques
-
-      such as digital watermarking, metadata recording, digital
-
-      fingerprinting, and human authentication (Appendix A.1.6).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:provenance_techniques
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: ProvenanceTechniqueEnum
-    multivalued: true
-  ai_incident_definition:
-    name: ai_incident_definition
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/ai_incident_definition
-    description: 'For Incident Disclosure: the definition of AI incident used
-
-      by the organisation (Appendix A.1.8).'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:ai_incident_definition
-    owner: PrimaryGaiConsideration
-    domain_of:
-    - PrimaryGaiConsideration
-    range: string
-  gai_risk_catalog:
-    name: gai_risk_catalog
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_risk_catalog
-    description: The catalog of GAI risks (Section 2).
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:gai_risk_catalog
-    owner: GaiProfile
-    domain_of:
-    - GaiProfile
-    range: GaiRisk
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  suggested_actions:
-    name: suggested_actions
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/suggested_actions
-    description: Suggested actions to manage GAI risks (Section 3).
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:suggested_actions
-    owner: GaiProfile
-    domain_of:
-    - GaiProfile
-    range: SuggestedAction
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  primary_considerations:
-    name: primary_considerations
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/primary_considerations
-    description: 'The primary GAI considerations from Appendix A (Governance,
-
-      Pre-Deployment Testing, Content Provenance, Incident
-
-      Disclosure). Discriminated by `consideration_kind`.'
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:primary_considerations
-    owner: GaiProfile
-    domain_of:
-    - GaiProfile
-    range: PrimaryGaiConsideration
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  structured_feedback_methods:
-    name: structured_feedback_methods
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/structured_feedback_methods
-    description: 'Structured public feedback methods relevant to the profile
-
-      (Appendix A.1.5).'
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    slot_uri: nist_ai_600_1:structured_feedback_methods
-    owner: GaiProfile
-    domain_of:
-    - GaiProfile
-    range: StructuredPublicFeedback
-    multivalued: true
-    inlined: true
-    inlined_as_list: true
-  id:
-    name: id
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/id
-    description: A unique identifier for an element.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - schema:identifier
-    slot_uri: schema:identifier
+  ai_rmf_id:
+    name: ai_rmf_id
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_id
+    description: The identifier an adopter gives a record of its own.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    slot_uri: nist_ai_100_1:ai_rmf_id
     identifier: true
-    owner: NamedThing
+    owner: AiRmfRecord
     domain_of:
-    - NamedThing
+    - AiRmfRecord
     range: uriorcurie
     required: true
-  name:
-    name: name
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/name
-    description: A short human-readable name.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - rdfs:label
-    slot_uri: rdfs:label
-    owner: NamedThing
+  ai_rmf_subcategory_id:
+    name: ai_rmf_subcategory_id
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_subcategory_id
+    description: The subcategory's identifier, such as GOVERN 1.1.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    slot_uri: nist_ai_100_1:ai_rmf_subcategory_id
+    owner: GaiSubcategory
     domain_of:
-    - NamedThing
-    range: string
+    - GaiSubcategory
+    range: ai_rmf_subcategory_identifier
+    required: true
   title:
     name: title
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/title
-    description: A human-readable title.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    description: The element's name.
+    comments:
+    - It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot
+      and a knowledge bundle reads one title key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
     mappings:
-    - dcterms:title
-    slot_uri: dcterms:title
-    owner: NamedThing
+    - schema:name
+    slot_uri: schema:name
+    owner: GaiStructuredFeedback
     domain_of:
-    - NamedThing
+    - AiRmfRecord
+    - GaiPrimaryConsideration
+    - GaiStructuredFeedback
     range: string
   description:
     name: description
     definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
-    description: A human-readable description.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
+    description: What the element says or is.
+    comments:
+    - It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's
+      slot and a knowledge bundle reads one description key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
     mappings:
-    - dcterms:description
-    slot_uri: dcterms:description
-    owner: NamedThing
+    - schema:description
+    slot_uri: schema:description
+    owner: GaiStructuredFeedback
     domain_of:
-    - NamedThing
+    - AiRmfRecord
+    - GaiRisk
+    - GaiSubcategory
+    - GaiSuggestedAction
+    - GaiPrimaryConsideration
+    - GaiStructuredFeedback
     range: string
-  see_also:
-    name: see_also
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/see_also
-    description: Related references.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - rdfs:seeAlso
-    slot_uri: rdfs:seeAlso
-    owner: NamedThing
+  gai_action_id:
+    name: gai_action_id
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_action_id
+    description: The action's identifier, such as GV-1.1-001.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    slot_uri: nist_ai_600_1:gai_action_id
+    owner: GaiSuggestedAction
     domain_of:
-    - NamedThing
-    range: uriorcurie
-    multivalued: true
-  trustworthiness_characteristic:
-    name: trustworthiness_characteristic
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/trustworthiness_characteristic
-    description: Trustworthiness characteristic(s) the element pertains to.
-    in_subset:
-    - trustworthiness
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    slot_uri: nist_ai_100_1:trustworthiness_characteristic
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: TrustworthinessCharacteristicEnum
-    multivalued: true
-  gaiRisk__lifecycle_stage:
-    name: gaiRisk__lifecycle_stage
-    description: 'AI lifecycle stage(s) at which the GAI risk may arise
-
-      (NIST AI 600-1 Section 2). Uses the GAI five-stage
-
-      lifecycle (`GaiLifecycleStageEnum`).'
-    in_subset:
-    - gai_base
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - nist_ai_100_1:lifecycle_stage
-    slot_uri: nist_ai_600_1:lifecycle_stage
-    alias: lifecycle_stage
-    owner: GaiRisk
-    domain_of:
-    - GaiRisk
-    range: GaiLifecycleStageEnum
-    multivalued: true
-  suggestedAction__actor_task:
-    name: suggestedAction__actor_task
-    description: 'Pertinent AI Actor Task(s) for the suggested action - i.e.,
-
-      the "AI Actor Tasks" row at the bottom of each Section 3
-
-      table.'
-    in_subset:
-    - gai_base
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - nist_ai_100_1:actor_task
-    slot_uri: nist_ai_600_1:actor_task
-    alias: actor_task
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    range: GaiActorTaskEnum
-    multivalued: true
-  SuggestedAction_id:
-    name: SuggestedAction_id
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/id
-    description: 'Identifier for the action - typically the same as the
-
-      `action_id` (e.g., "GV-1.1-001").'
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - schema:identifier
-    is_a: id
-    domain: SuggestedAction
-    slot_uri: schema:identifier
-    identifier: true
-    alias: id
-    owner: SuggestedAction
-    domain_of:
-    - SuggestedAction
-    is_usage_slot: true
-    usage_slot_name: id
-    range: uriorcurie
+    - GaiSuggestedAction
+    range: gai_action_identifier
     required: true
-  SuggestedAction_description:
-    name: SuggestedAction_description
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
-    description: The suggested-action text itself.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - dcterms:description
-    is_a: description
-    domain: SuggestedAction
-    slot_uri: dcterms:description
-    alias: description
-    owner: SuggestedAction
+  gai_consideration_type:
+    name: gai_consideration_type
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type
+    description: Which of the four classes this record is.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_consideration_type
+    designates_type: true
+    owner: GaiPrimaryConsideration
     domain_of:
-    - SuggestedAction
+    - GaiPrimaryConsideration
+    range: string
+    required: true
+  gai_feedback_type:
+    name: gai_feedback_type
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type
+    description: Which of the three classes this record is.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_feedback_type
+    designates_type: true
+    owner: GaiStructuredFeedback
+    domain_of:
+    - GaiStructuredFeedback
+    range: string
+    required: true
+  gaiProfile__gai_risks:
+    name: gaiProfile__gai_risks
+    description: The 12 risks of section 2.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_risks
+    alias: gai_risks
+    owner: GaiProfile
+    domain_of:
+    - GaiProfile
+    range: GaiRisk
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    minimum_cardinality: 1
+  gaiProfile__gai_subcategories:
+    name: gaiProfile__gai_subcategories
+    description: The tables of section 3, in the publication's order.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_subcategories
+    alias: gai_subcategories
+    owner: GaiProfile
+    domain_of:
+    - GaiProfile
+    range: GaiSubcategory
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    minimum_cardinality: 1
+  gaiProfile__gai_primary_considerations:
+    name: gaiProfile__gai_primary_considerations
+    description: The four primary considerations of Appendix A.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1
+    slot_uri: nist_ai_600_1:gai_primary_considerations
+    alias: gai_primary_considerations
+    owner: GaiProfile
+    domain_of:
+    - GaiProfile
+    range: GaiPrimaryConsideration
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  aiRmfProfile__ai_rmf_profile_kinds:
+    name: aiRmfProfile__ai_rmf_profile_kinds
+    description: Which of the publication's kinds of profile this is. A current profile
+      for one use case is both.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
+    slot_uri: nist_ai_100_1:ai_rmf_profile_kinds
+    alias: ai_rmf_profile_kinds
+    owner: AiRmfProfile
+    domain_of:
+    - AiRmfProfile
+    range: AiRmfProfileKind
+    required: true
+    multivalued: true
+    minimum_cardinality: 1
+  aiRmfProfile__ai_rmf_profile_setting:
+    name: aiRmfProfile__ai_rmf_profile_setting
+    description: The sector, industry, technology, organization or end use the profile
+      covers, such as hiring.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
+    slot_uri: nist_ai_100_1:ai_rmf_profile_setting
+    alias: ai_rmf_profile_setting
+    owner: AiRmfProfile
+    domain_of:
+    - AiRmfProfile
+    range: string
+  aiRmfProfile__ai_rmf_profile_subcategories:
+    name: aiRmfProfile__ai_rmf_profile_subcategories
+    description: The subcategories the profile selects. An adopter may select from
+      them rather than apply all.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
+    slot_uri: nist_ai_100_1:ai_rmf_profile_subcategories
+    alias: ai_rmf_profile_subcategories
+    owner: AiRmfProfile
+    domain_of:
+    - AiRmfProfile
+    range: ai_rmf_subcategory_identifier
+    multivalued: true
+  gaiRisk__gai_risk_name:
+    name: gaiRisk__gai_risk_name
+    description: Which of the 12 risks this is.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_name
+    alias: gai_risk_name
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiRiskName
+    required: true
+  gaiRisk__gai_risk_section:
+    name: gaiRisk__gai_risk_section
+    description: The subsection of section 2 that discusses the risk, such as 2.1.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_section
+    alias: gai_risk_section
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: string
+    required: true
+    pattern: ^2\.([1-9]|1[0-2])$
+  gaiRisk__gai_risk_characteristics:
+    name: gaiRisk__gai_risk_characteristics
+    description: The AI RMF's trustworthiness characteristics that the subsection
+      names for the risk.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_characteristics
+    alias: gai_risk_characteristics
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: AiRmfCharacteristicName
+    multivalued: true
+  gaiRisk__gai_risk_groupings:
+    name: gaiRisk__gai_risk_groupings
+    description: The groups footnote 5 suggests for the risk. The footnote lists Data
+      Privacy under all three.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_groupings
+    alias: gai_risk_groupings
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiRiskGrouping
+    multivalued: true
+  gaiRisk__gai_risk_lifecycle_stages:
+    name: gaiRisk__gai_risk_lifecycle_stages
+    description: The lifecycle stages where the risk can arise for the adopter's model,
+      system or use case.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_lifecycle_stages
+    alias: gai_risk_lifecycle_stages
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiLifecycleStage
+    multivalued: true
+  gaiRisk__gai_risk_scopes:
+    name: gaiRisk__gai_risk_scopes
+    description: The levels where the risk exists for the adopter's model, system
+      or use case.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_scopes
+    alias: gai_risk_scopes
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiRiskScope
+    multivalued: true
+  gaiRisk__gai_risk_sources:
+    name: gaiRisk__gai_risk_sources
+    description: Where the risk comes from for the adopter's model, system or use
+      case.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_sources
+    alias: gai_risk_sources
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiRiskSource
+    multivalued: true
+  gaiRisk__gai_risk_time_scales:
+    name: gaiRisk__gai_risk_time_scales
+    description: How the risk materializes over time for the adopter's model, system
+      or use case.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    slot_uri: nist_ai_600_1:gai_risk_time_scales
+    alias: gai_risk_time_scales
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
+    range: GaiRiskTimeScale
+    multivalued: true
+  gaiSubcategory__gai_subcategory_actions:
+    name: gaiSubcategory__gai_subcategory_actions
+    description: The suggested actions the table lists.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    slot_uri: nist_ai_600_1:gai_subcategory_actions
+    alias: gai_subcategory_actions
+    owner: GaiSubcategory
+    domain_of:
+    - GaiSubcategory
+    range: GaiSuggestedAction
+    required: true
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+    minimum_cardinality: 1
+  gaiSubcategory__gai_subcategory_actor_tasks:
+    name: gaiSubcategory__gai_subcategory_actor_tasks
+    description: 'The AI actor tasks the table names. They belong to the table and
+      not to one action: the publication says not every task applies to every action.'
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    slot_uri: nist_ai_600_1:gai_subcategory_actor_tasks
+    alias: gai_subcategory_actor_tasks
+    owner: GaiSubcategory
+    domain_of:
+    - GaiSubcategory
+    range: AiRmfActorTaskName
+    multivalued: true
+  gaiSuggestedAction__gai_action_risks:
+    name: gaiSuggestedAction__gai_action_risks
+    description: The GAI risks the row tags the action with.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    slot_uri: nist_ai_600_1:gai_action_risks
+    alias: gai_action_risks
+    owner: GaiSuggestedAction
+    domain_of:
+    - GaiSuggestedAction
+    range: GaiRiskName
+    multivalued: true
+  gaiPrimaryConsideration__gai_consideration_sections:
+    name: gaiPrimaryConsideration__gai_consideration_sections
+    description: The subsections of Appendix A that discuss the consideration, such
+      as A.1.2.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_consideration_sections
+    alias: gai_consideration_sections
+    owner: GaiPrimaryConsideration
+    domain_of:
+    - GaiPrimaryConsideration
+    range: string
+    multivalued: true
+    pattern: ^A\.1(\.[1-8])?$
+  gaiGovernanceConsideration__gai_governance_plans:
+    name: gaiGovernanceConsideration__gai_governance_plans
+    description: The plans and actions that section A.1.2 lists from other AI governance.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_governance_plans
+    alias: gai_governance_plans
+    owner: GaiGovernanceConsideration
+    domain_of:
+    - GaiGovernanceConsideration
+    range: GaiGovernancePlan
+    multivalued: true
+  gaiGovernanceConsideration__gai_third_party_controls:
+    name: gaiGovernanceConsideration__gai_third_party_controls
+    description: The existing controls that section A.1.3 says can apply to third-party
+      GAI.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_third_party_controls
+    alias: gai_third_party_controls
+    owner: GaiGovernanceConsideration
+    domain_of:
+    - GaiGovernanceConsideration
+    range: GaiThirdPartyControl
+    multivalued: true
+  gaiPreDeploymentTestingConsideration__gai_structured_feedback:
+    name: gaiPreDeploymentTestingConsideration__gai_structured_feedback
+    description: The kinds of structured public feedback section A.1.5 gives as examples.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_structured_feedback
+    alias: gai_structured_feedback
+    owner: GaiPreDeploymentTestingConsideration
+    domain_of:
+    - GaiPreDeploymentTestingConsideration
+    range: GaiStructuredFeedback
+    multivalued: true
+    inlined: true
+    inlined_as_list: true
+  gaiContentProvenanceConsideration__gai_provenance_techniques:
+    name: gaiContentProvenanceConsideration__gai_provenance_techniques
+    description: The well-known techniques for provenance data tracking that section
+      A.1.6 names.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_provenance_techniques
+    alias: gai_provenance_techniques
+    owner: GaiContentProvenanceConsideration
+    domain_of:
+    - GaiContentProvenanceConsideration
+    range: GaiProvenanceTechnique
+    multivalued: true
+  gaiIncidentDisclosureConsideration__gai_incident_harms:
+    name: gaiIncidentDisclosureConsideration__gai_incident_harms
+    description: The kinds of harm that section A.1.8's definition of an AI incident
+      names.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_incident_harms
+    alias: gai_incident_harms
+    owner: GaiIncidentDisclosureConsideration
+    domain_of:
+    - GaiIncidentDisclosureConsideration
+    range: GaiIncidentHarm
+    multivalued: true
+  gaiAiRedTeaming__gai_red_teaming_types:
+    name: gaiAiRedTeaming__gai_red_teaming_types
+    description: The kinds of AI red-teaming that may suit the use case.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    slot_uri: nist_ai_600_1:gai_red_teaming_types
+    alias: gai_red_teaming_types
+    owner: GaiAiRedTeaming
+    domain_of:
+    - GaiAiRedTeaming
+    range: GaiRedTeamingType
+    multivalued: true
+  GaiRisk_description:
+    name: GaiRisk_description
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
+    description: The risk's definition in section 2.
+    comments:
+    - It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's
+      slot and a knowledge bundle reads one description key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    mappings:
+    - schema:description
+    is_a: description
+    domain: GaiRisk
+    slot_uri: schema:description
+    alias: description
+    owner: GaiRisk
+    domain_of:
+    - GaiRisk
     is_usage_slot: true
     usage_slot_name: description
     range: string
-  AiRedTeaming_feedback_method_kind:
-    name: AiRedTeaming_feedback_method_kind
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/feedback_method_kind
-    description: Which structured feedback method this element represents.
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    is_a: feedback_method_kind
-    domain: AiRedTeaming
-    slot_uri: nist_ai_600_1:feedback_method_kind
-    ifabsent: StructuredFeedbackMethodEnum(AI_RED_TEAMING)
-    alias: feedback_method_kind
-    owner: AiRedTeaming
+  GaiSubcategory_description:
+    name: GaiSubcategory_description
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
+    description: The subcategory's statement as the table restates it.
+    comments:
+    - It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's
+      slot and a knowledge bundle reads one description key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    mappings:
+    - schema:description
+    is_a: description
+    domain: GaiSubcategory
+    slot_uri: schema:description
+    alias: description
+    owner: GaiSubcategory
     domain_of:
-    - AiRedTeaming
+    - GaiSubcategory
     is_usage_slot: true
-    usage_slot_name: feedback_method_kind
-    range: StructuredFeedbackMethodEnum
+    usage_slot_name: description
+    range: string
+    required: true
+    pattern: ^\s*\S
+  GaiSuggestedAction_description:
+    name: GaiSuggestedAction_description
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/description
+    description: The action's text in the table.
+    comments:
+    - It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's
+      slot and a knowledge bundle reads one description key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    mappings:
+    - schema:description
+    is_a: description
+    domain: GaiSuggestedAction
+    slot_uri: schema:description
+    alias: description
+    owner: GaiSuggestedAction
+    domain_of:
+    - GaiSuggestedAction
+    is_usage_slot: true
+    usage_slot_name: description
+    range: string
+    required: true
+    pattern: ^\s*\S
+  GaiPrimaryConsideration_title:
+    name: GaiPrimaryConsideration_title
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/title
+    description: The element's name.
+    comments:
+    - It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot
+      and a knowledge bundle reads one title key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    mappings:
+    - schema:name
+    is_a: title
+    domain: GaiPrimaryConsideration
+    slot_uri: schema:name
+    alias: title
+    owner: GaiPrimaryConsideration
+    domain_of:
+    - GaiPrimaryConsideration
+    is_usage_slot: true
+    usage_slot_name: title
+    range: string
+    required: true
+  GaiStructuredFeedback_title:
+    name: GaiStructuredFeedback_title
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/title
+    description: The element's name.
+    comments:
+    - It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot
+      and a knowledge bundle reads one title key.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    mappings:
+    - schema:name
+    is_a: title
+    domain: GaiStructuredFeedback
+    slot_uri: schema:name
+    alias: title
+    owner: GaiStructuredFeedback
+    domain_of:
+    - GaiStructuredFeedback
+    is_usage_slot: true
+    usage_slot_name: title
+    range: string
     required: true
 classes:
-  GaiRisk:
-    name: GaiRisk
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRisk
-    description: 'A risk that is novel to or exacerbated by Generative AI.
-
-      Each instance corresponds to one of the 12 risk categories
-
-      enumerated in NIST AI 600-1 Section 2.'
-    in_subset:
-    - gai_core
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    close_mappings:
-    - nist_ai_100_1:AiSpecificRisk
-    related_mappings:
-    - iso29100:PrivacyRisk
-    broad_mappings:
-    - iso27001:Risk
-    is_a: NamedThing
-    slots:
-    - id
-    - name
-    - title
-    - description
-    - see_also
-    - gai_risk_kind
-    - risk_categorization
-    - risk_scope
-    - risk_sources
-    - time_scale
-    - trustworthiness_characteristic
-    - addressed_by_actions
-    - gaiRisk__lifecycle_stage
-    attributes:
-      lifecycle_stage:
-        name: lifecycle_stage
-        description: 'AI lifecycle stage(s) at which the GAI risk may arise
-
-          (NIST AI 600-1 Section 2). Uses the GAI five-stage
-
-          lifecycle (`GaiLifecycleStageEnum`).'
-        in_subset:
-        - gai_base
-        related_mappings:
-        - nist_ai_100_1:lifecycle_stage
-        range: GaiLifecycleStageEnum
-        multivalued: true
-    class_uri: nist_ai_600_1:GaiRisk
-  SuggestedAction:
-    name: SuggestedAction
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/SuggestedAction
-    description: 'A suggested action an organisation can take to manage GAI
-
-      risks. Each action is identified by an Action ID, linked to an
-
-      AI RMF subcategory, and may be relevant to one or more GAI
-
-      risks and AI actor tasks (NIST AI 600-1 Section 3).'
-    in_subset:
-    - gai_actions
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    close_mappings:
-    - stix:CourseOfAction
-    related_mappings:
-    - oscal_catalog:Control
-    - gist_linkml:Task
-    is_a: NamedThing
-    slots:
-    - name
-    - title
-    - see_also
-    - action_id
-    - function_prefix
-    - applies_to_subcategory
-    - gai_risks
-    - suggestedAction__actor_task
-    - SuggestedAction_id
-    - SuggestedAction_description
-    slot_usage:
-      id:
-        name: id
-        description: 'Identifier for the action - typically the same as the
-
-          `action_id` (e.g., "GV-1.1-001").'
-      description:
-        name: description
-        description: The suggested-action text itself.
-    attributes:
-      actor_task:
-        name: actor_task
-        description: 'Pertinent AI Actor Task(s) for the suggested action - i.e.,
-
-          the "AI Actor Tasks" row at the bottom of each Section 3
-
-          table.'
-        in_subset:
-        - gai_base
-        related_mappings:
-        - nist_ai_100_1:actor_task
-        range: GaiActorTaskEnum
-        multivalued: true
-    class_uri: nist_ai_600_1:SuggestedAction
-  PrimaryGaiConsideration:
-    name: PrimaryGaiConsideration
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/PrimaryGaiConsideration
-    description: "An overarching consideration derived from the NIST GAI PWG\nconsultation\
-      \ process (Appendix A). The `consideration_kind`\nattribute discriminates between\
-      \ the four primary\nconsiderations: Governance, Pre-Deployment Testing, Content\n\
-      Provenance, and Incident Disclosure.\n\nAll consideration-specific attributes\
-      \ are optional and apply\nto the appropriate `consideration_kind`:\n  * GOVERNANCE:\
-      \ governance_practices, third_party_considerations\n  * PRE_DEPLOYMENT_TESTING:\
-      \ limitations_of_current_approaches\n  * CONTENT_PROVENANCE: provenance_techniques\n\
-      \  * INCIDENT_DISCLOSURE: ai_incident_definition"
-    in_subset:
-    - gai_considerations
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - nist_csf:CSFProperty
-    is_a: NamedThing
-    slots:
-    - id
-    - name
-    - title
-    - description
-    - see_also
-    - consideration_kind
-    - governance_practices
-    - third_party_considerations
-    - limitations_of_current_approaches
-    - provenance_techniques
-    - ai_incident_definition
-    class_uri: nist_ai_600_1:PrimaryGaiConsideration
-  StructuredPublicFeedback:
-    name: StructuredPublicFeedback
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/StructuredPublicFeedback
-    description: 'Methods used to evaluate whether GAI systems are performing as
-
-      intended and to calibrate and verify traditional measurement
-
-      methods (A.1.5).'
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - iso27001:InterestedParty
-    is_a: NamedThing
-    slots:
-    - id
-    - name
-    - title
-    - description
-    - see_also
-    - feedback_method_kind
-    class_uri: nist_ai_600_1:StructuredPublicFeedback
-  AiRedTeaming:
-    name: AiRedTeaming
-    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/AiRedTeaming
-    description: 'A structured testing exercise used to probe an AI system to
-
-      find flaws and vulnerabilities such as inaccurate, harmful, or
-
-      discriminatory outputs, often in a controlled environment and
-
-      in collaboration with system developers (A.1.5).'
-    in_subset:
-    - gai_feedback
-    from_schema: https://w3id.org/lmodel/nist-ai-600-1
-    related_mappings:
-    - stix:AttackPattern
-    is_a: StructuredPublicFeedback
-    slots:
-    - id
-    - name
-    - title
-    - description
-    - see_also
-    - red_team_type
-    - AiRedTeaming_feedback_method_kind
-    slot_usage:
-      feedback_method_kind:
-        name: feedback_method_kind
-        ifabsent: StructuredFeedbackMethodEnum(AI_RED_TEAMING)
-    class_uri: nist_ai_600_1:AiRedTeaming
   GaiProfile:
     name: GaiProfile
     definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiProfile
-    description: 'Root container that bundles the NIST AI 600-1 Generative AI
-
-      Profile: GAI risks (Section 2), suggested actions (Section 3),
-
-      and primary considerations (Appendix A). The GAI Profile is a
-
-      *cross-sectoral* AI RMF profile (Section 1).'
-    in_subset:
-    - gai_core
+    description: The Generative AI Profile as a whole, a cross-sectoral profile of
+      the AI RMF and a companion resource to it.
+    comments:
+    - It holds actions for only some subcategories, and the publication says more
+      may be added later.
     from_schema: https://w3id.org/lmodel/nist-ai-600-1
     exact_mappings:
-    - oscal_profile:Profile
-    close_mappings:
-    - nist_csf:CSFDocument
-    related_mappings:
-    - nist_ai_100_1:AiRmfProfile
-    is_a: NamedThing
+    - nist_ai_600_1:Profile
+    is_a: AiRmfProfile
     slots:
-    - id
-    - name
+    - ai_rmf_id
     - title
     - description
-    - see_also
-    - gai_risk_catalog
-    - suggested_actions
-    - primary_considerations
-    - structured_feedback_methods
-    class_uri: nist_ai_600_1:GaiProfile
+    - aiRmfProfile__ai_rmf_profile_kinds
+    - aiRmfProfile__ai_rmf_profile_setting
+    - aiRmfProfile__ai_rmf_profile_subcategories
+    - gaiProfile__gai_risks
+    - gaiProfile__gai_subcategories
+    - gaiProfile__gai_primary_considerations
+    attributes:
+      gai_risks:
+        name: gai_risks
+        description: The 12 risks of section 2.
+        range: GaiRisk
+        required: true
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+      gai_subcategories:
+        name: gai_subcategories
+        description: The tables of section 3, in the publication's order.
+        range: GaiSubcategory
+        required: true
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+      gai_primary_considerations:
+        name: gai_primary_considerations
+        description: The four primary considerations of Appendix A.
+        range: GaiPrimaryConsideration
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    class_uri: nist_ai_600_1:Profile
     tree_root: true
-  NamedThing:
-    name: NamedThing
-    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/NamedThing
-    description: A generic grouping for any identifiable AI RMF element.
-    in_subset:
-    - base
-    from_schema: https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common
-    mappings:
-    - schema:Thing
-    close_mappings:
-    - schema:Thing
+  AiRmfRecord:
+    name: AiRmfRecord
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfRecord
+    description: The base of the classes that record an adopter's own facts, such
+      as one of its AI systems or risks, as distinct from what the publication itself
+      lists.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base
+    exact_mappings:
+    - nist_ai_100_1:Record
     abstract: true
     slots:
-    - id
-    - name
+    - ai_rmf_id
     - title
     - description
-    - see_also
-    class_uri: schema:Thing
-metamodel_version: 1.11.0
+    class_uri: nist_ai_100_1:Record
+  AiRmfProfile:
+    name: AiRmfProfile
+    definition_uri: https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfile
+    description: An implementation of the Core's functions, categories and subcategories
+      for a setting, application or technology, based on the adopter's requirements,
+      risk tolerance and resources.
+    comments:
+    - The publication prescribes no profile template, so only the kinds and the subcategories
+      are structured.
+    from_schema: https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles
+    exact_mappings:
+    - nist_ai_100_1:Profile
+    related_mappings:
+    - oscal:Profile
+    is_a: AiRmfRecord
+    slots:
+    - ai_rmf_id
+    - title
+    - description
+    - aiRmfProfile__ai_rmf_profile_kinds
+    - aiRmfProfile__ai_rmf_profile_setting
+    - aiRmfProfile__ai_rmf_profile_subcategories
+    attributes:
+      ai_rmf_profile_kinds:
+        name: ai_rmf_profile_kinds
+        description: Which of the publication's kinds of profile this is. A current
+          profile for one use case is both.
+        range: AiRmfProfileKind
+        required: true
+        multivalued: true
+        minimum_cardinality: 1
+      ai_rmf_profile_setting:
+        name: ai_rmf_profile_setting
+        description: The sector, industry, technology, organization or end use the
+          profile covers, such as hiring.
+      ai_rmf_profile_subcategories:
+        name: ai_rmf_profile_subcategories
+        description: The subcategories the profile selects. An adopter may select
+          from them rather than apply all.
+        range: ai_rmf_subcategory_identifier
+        multivalued: true
+    class_uri: nist_ai_100_1:Profile
+  GaiRisk:
+    name: GaiRisk
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiRisk
+    description: A risk that section 2 defines as unique to or made worse by the development
+      and use of GAI.
+    comments:
+    - The publication gives a risk its section, its definition, its trustworthiness
+      characteristics and, in a footnote, its groupings. It assigns no lifecycle stage,
+      scope, source or time scale to a risk, since those depend on the model, system
+      or use case. An adopter fills them in.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks
+    exact_mappings:
+    - nist_ai_600_1:Risk
+    related_mappings:
+    - nist_ai_100_1:Risk
+    slots:
+    - GaiRisk_description
+    - gaiRisk__gai_risk_name
+    - gaiRisk__gai_risk_section
+    - gaiRisk__gai_risk_characteristics
+    - gaiRisk__gai_risk_groupings
+    - gaiRisk__gai_risk_lifecycle_stages
+    - gaiRisk__gai_risk_scopes
+    - gaiRisk__gai_risk_sources
+    - gaiRisk__gai_risk_time_scales
+    slot_usage:
+      description:
+        name: description
+        description: The risk's definition in section 2.
+    attributes:
+      gai_risk_name:
+        name: gai_risk_name
+        description: Which of the 12 risks this is.
+        range: GaiRiskName
+        required: true
+      gai_risk_section:
+        name: gai_risk_section
+        description: The subsection of section 2 that discusses the risk, such as
+          2.1.
+        required: true
+        pattern: ^2\.([1-9]|1[0-2])$
+      gai_risk_characteristics:
+        name: gai_risk_characteristics
+        description: The AI RMF's trustworthiness characteristics that the subsection
+          names for the risk.
+        range: AiRmfCharacteristicName
+        multivalued: true
+      gai_risk_groupings:
+        name: gai_risk_groupings
+        description: The groups footnote 5 suggests for the risk. The footnote lists
+          Data Privacy under all three.
+        range: GaiRiskGrouping
+        multivalued: true
+      gai_risk_lifecycle_stages:
+        name: gai_risk_lifecycle_stages
+        description: The lifecycle stages where the risk can arise for the adopter's
+          model, system or use case.
+        range: GaiLifecycleStage
+        multivalued: true
+      gai_risk_scopes:
+        name: gai_risk_scopes
+        description: The levels where the risk exists for the adopter's model, system
+          or use case.
+        range: GaiRiskScope
+        multivalued: true
+      gai_risk_sources:
+        name: gai_risk_sources
+        description: Where the risk comes from for the adopter's model, system or
+          use case.
+        range: GaiRiskSource
+        multivalued: true
+      gai_risk_time_scales:
+        name: gai_risk_time_scales
+        description: How the risk materializes over time for the adopter's model,
+          system or use case.
+        range: GaiRiskTimeScale
+        multivalued: true
+    class_uri: nist_ai_600_1:Risk
+  GaiSubcategory:
+    name: GaiSubcategory
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory
+    description: An AI RMF subcategory as one table of section 3 addresses it. The
+      Profile covers only some of the 72.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    exact_mappings:
+    - nist_ai_600_1:Subcategory
+    related_mappings:
+    - nist_ai_100_1:Subcategory
+    slots:
+    - ai_rmf_subcategory_id
+    - GaiSubcategory_description
+    - gaiSubcategory__gai_subcategory_actions
+    - gaiSubcategory__gai_subcategory_actor_tasks
+    slot_usage:
+      description:
+        name: description
+        description: The subcategory's statement as the table restates it.
+        required: true
+        pattern: ^\s*\S
+    attributes:
+      gai_subcategory_actions:
+        name: gai_subcategory_actions
+        description: The suggested actions the table lists.
+        range: GaiSuggestedAction
+        required: true
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+        minimum_cardinality: 1
+      gai_subcategory_actor_tasks:
+        name: gai_subcategory_actor_tasks
+        description: 'The AI actor tasks the table names. They belong to the table
+          and not to one action: the publication says not every task applies to every
+          action.'
+        range: AiRmfActorTaskName
+        multivalued: true
+    class_uri: nist_ai_600_1:Subcategory
+  GaiSuggestedAction:
+    name: GaiSuggestedAction
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction
+    description: A step an organization or AI actor can take to manage GAI risks,
+      which one row of a table states.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions
+    exact_mappings:
+    - nist_ai_600_1:SuggestedAction
+    related_mappings:
+    - nist_ai_100_1:SuggestedAction
+    - stix:StixCourseOfAction
+    broad_mappings:
+    - oscal:Part
+    slots:
+    - gai_action_id
+    - GaiSuggestedAction_description
+    - gaiSuggestedAction__gai_action_risks
+    slot_usage:
+      description:
+        name: description
+        description: The action's text in the table.
+        required: true
+        pattern: ^\s*\S
+    attributes:
+      gai_action_risks:
+        name: gai_action_risks
+        description: The GAI risks the row tags the action with.
+        range: GaiRiskName
+        multivalued: true
+    class_uri: nist_ai_600_1:SuggestedAction
+  GaiPrimaryConsideration:
+    name: GaiPrimaryConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration
+    description: One of the four primary considerations of Appendix A, which also
+      inform the suggested actions.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:PrimaryConsideration
+    abstract: true
+    slots:
+    - gai_consideration_type
+    - GaiPrimaryConsideration_title
+    - description
+    - gaiPrimaryConsideration__gai_consideration_sections
+    slot_usage:
+      title:
+        name: title
+        required: true
+    attributes:
+      gai_consideration_sections:
+        name: gai_consideration_sections
+        description: The subsections of Appendix A that discuss the consideration,
+          such as A.1.2.
+        multivalued: true
+        pattern: ^A\.1(\.[1-8])?$
+    class_uri: nist_ai_600_1:PrimaryConsideration
+  GaiGovernanceConsideration:
+    name: GaiGovernanceConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration
+    description: How an organization's governance can be revisited for GAI, including
+      across the AI value chain.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:GovernanceConsideration
+    is_a: GaiPrimaryConsideration
+    slots:
+    - gai_consideration_type
+    - GaiPrimaryConsideration_title
+    - description
+    - gaiPrimaryConsideration__gai_consideration_sections
+    - gaiGovernanceConsideration__gai_governance_plans
+    - gaiGovernanceConsideration__gai_third_party_controls
+    attributes:
+      gai_governance_plans:
+        name: gai_governance_plans
+        description: The plans and actions that section A.1.2 lists from other AI
+          governance.
+        range: GaiGovernancePlan
+        multivalued: true
+      gai_third_party_controls:
+        name: gai_third_party_controls
+        description: The existing controls that section A.1.3 says can apply to third-party
+          GAI.
+        range: GaiThirdPartyControl
+        multivalued: true
+    class_uri: nist_ai_600_1:GovernanceConsideration
+  GaiPreDeploymentTestingConsideration:
+    name: GaiPreDeploymentTestingConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration
+    description: How GAI can be tested before deployment while better approaches mature,
+      and where current tests fall short.
+    comments:
+    - Section A.1.7 calls the feedback approaches of section A.1.5 part of this consideration.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:PreDeploymentTestingConsideration
+    is_a: GaiPrimaryConsideration
+    slots:
+    - gai_consideration_type
+    - GaiPrimaryConsideration_title
+    - description
+    - gaiPrimaryConsideration__gai_consideration_sections
+    - gaiPreDeploymentTestingConsideration__gai_structured_feedback
+    attributes:
+      gai_structured_feedback:
+        name: gai_structured_feedback
+        description: The kinds of structured public feedback section A.1.5 gives as
+          examples.
+        range: GaiStructuredFeedback
+        multivalued: true
+        inlined: true
+        inlined_as_list: true
+    class_uri: nist_ai_600_1:PreDeploymentTestingConsideration
+  GaiContentProvenanceConsideration:
+    name: GaiContentProvenanceConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration
+    description: How tracking the origin and history of content helps tell authentic
+      content from synthetic content.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:ContentProvenanceConsideration
+    is_a: GaiPrimaryConsideration
+    slots:
+    - gai_consideration_type
+    - GaiPrimaryConsideration_title
+    - description
+    - gaiPrimaryConsideration__gai_consideration_sections
+    - gaiContentProvenanceConsideration__gai_provenance_techniques
+    attributes:
+      gai_provenance_techniques:
+        name: gai_provenance_techniques
+        description: The well-known techniques for provenance data tracking that section
+          A.1.6 names.
+        range: GaiProvenanceTechnique
+        multivalued: true
+    class_uri: nist_ai_600_1:ContentProvenanceConsideration
+  GaiIncidentDisclosureConsideration:
+    name: GaiIncidentDisclosureConsideration
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration
+    description: How documenting, reporting and sharing AI incidents helps prevent
+      harm, though no formal channels exist.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:IncidentDisclosureConsideration
+    is_a: GaiPrimaryConsideration
+    slots:
+    - gai_consideration_type
+    - GaiPrimaryConsideration_title
+    - description
+    - gaiPrimaryConsideration__gai_consideration_sections
+    - gaiIncidentDisclosureConsideration__gai_incident_harms
+    attributes:
+      gai_incident_harms:
+        name: gai_incident_harms
+        description: The kinds of harm that section A.1.8's definition of an AI incident
+          names.
+        range: GaiIncidentHarm
+        multivalued: true
+    class_uri: nist_ai_600_1:IncidentDisclosureConsideration
+  GaiStructuredFeedback:
+    name: GaiStructuredFeedback
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback
+    description: A way of using structured public feedback to evaluate whether GAI
+      systems perform as intended.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:StructuredFeedback
+    abstract: true
+    slots:
+    - gai_feedback_type
+    - GaiStructuredFeedback_title
+    - description
+    slot_usage:
+      title:
+        name: title
+        required: true
+    class_uri: nist_ai_600_1:StructuredFeedback
+  GaiParticipatoryEngagement:
+    name: GaiParticipatoryEngagement
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiParticipatoryEngagement
+    description: Asking civil society groups, affected communities and users for feedback,
+      such as through focus groups or surveys.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:ParticipatoryEngagement
+    is_a: GaiStructuredFeedback
+    slots:
+    - gai_feedback_type
+    - GaiStructuredFeedback_title
+    - description
+    class_uri: nist_ai_600_1:ParticipatoryEngagement
+  GaiFieldTesting:
+    name: GaiFieldTesting
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiFieldTesting
+    description: Structured settings that show how people interact with and use AI-generated
+      information.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:FieldTesting
+    is_a: GaiStructuredFeedback
+    slots:
+    - gai_feedback_type
+    - GaiStructuredFeedback_title
+    - description
+    class_uri: nist_ai_600_1:FieldTesting
+  GaiAiRedTeaming:
+    name: GaiAiRedTeaming
+    definition_uri: https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming
+    description: A structured exercise that probes an AI system for flaws and vulnerabilities,
+      often with its developers.
+    from_schema: https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations
+    exact_mappings:
+    - nist_ai_600_1:AiRedTeaming
+    is_a: GaiStructuredFeedback
+    slots:
+    - gai_feedback_type
+    - GaiStructuredFeedback_title
+    - description
+    - gaiAiRedTeaming__gai_red_teaming_types
+    attributes:
+      gai_red_teaming_types:
+        name: gai_red_teaming_types
+        description: The kinds of AI red-teaming that may suit the use case.
+        range: GaiRedTeamingType
+        multivalued: true
+    class_uri: nist_ai_600_1:AiRedTeaming
+metamodel_version: 1.12.0
 source_file: nist_ai_600_1.yaml
-source_file_date: '2026-05-31T16:26:14'
-source_file_size: 33955
-generation_date: '2026-05-31T16:34:51'
+source_file_date: '2026-11-05T02:43:42'
+source_file_size: 2859
 
