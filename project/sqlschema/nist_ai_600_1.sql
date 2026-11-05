@@ -289,8 +289,8 @@ CREATE TABLE "GaiProfile_ai_rmf_profile_subcategories" (
 	PRIMARY KEY ("GaiProfile_ai_rmf_id", ai_rmf_profile_subcategories),
 	FOREIGN KEY("GaiProfile_ai_rmf_id") REFERENCES "GaiProfile" (ai_rmf_id)
 );
-CREATE INDEX "ix_GaiProfile_ai_rmf_profile_subcategories_ai_rmf_profile_subcategories" ON "GaiProfile_ai_rmf_profile_subcategories" (ai_rmf_profile_subcategories);
 CREATE INDEX "ix_GaiProfile_ai_rmf_profile_subcategories_GaiProfile_ai_rmf_id" ON "GaiProfile_ai_rmf_profile_subcategories" ("GaiProfile_ai_rmf_id");
+CREATE INDEX "ix_GaiProfile_ai_rmf_profile_subcategories_ai_rmf_profile_subcategories" ON "GaiProfile_ai_rmf_profile_subcategories" (ai_rmf_profile_subcategories);
 
 CREATE TABLE "AiRmfProfile_ai_rmf_profile_kinds" (
 	"AiRmfProfile_ai_rmf_id" TEXT,
@@ -316,8 +316,8 @@ CREATE TABLE "GaiGovernanceConsideration_gai_governance_plans" (
 	PRIMARY KEY ("GaiGovernanceConsideration_id", gai_governance_plans),
 	FOREIGN KEY("GaiGovernanceConsideration_id") REFERENCES "GaiGovernanceConsideration" (id)
 );
-CREATE INDEX "ix_GaiGovernanceConsideration_gai_governance_plans_gai_governance_plans" ON "GaiGovernanceConsideration_gai_governance_plans" (gai_governance_plans);
 CREATE INDEX "ix_GaiGovernanceConsideration_gai_governance_plans_GaiGovernanceConsideration_id" ON "GaiGovernanceConsideration_gai_governance_plans" ("GaiGovernanceConsideration_id");
+CREATE INDEX "ix_GaiGovernanceConsideration_gai_governance_plans_gai_governance_plans" ON "GaiGovernanceConsideration_gai_governance_plans" (gai_governance_plans);
 
 CREATE TABLE "GaiGovernanceConsideration_gai_third_party_controls" (
 	"GaiGovernanceConsideration_id" INTEGER,
@@ -334,8 +334,8 @@ CREATE TABLE "GaiGovernanceConsideration_gai_consideration_sections" (
 	PRIMARY KEY ("GaiGovernanceConsideration_id", gai_consideration_sections),
 	FOREIGN KEY("GaiGovernanceConsideration_id") REFERENCES "GaiGovernanceConsideration" (id)
 );
-CREATE INDEX "ix_GaiGovernanceConsideration_gai_consideration_sections_gai_consideration_sections" ON "GaiGovernanceConsideration_gai_consideration_sections" (gai_consideration_sections);
 CREATE INDEX "ix_GaiGovernanceConsideration_gai_consideration_sections_GaiGovernanceConsideration_id" ON "GaiGovernanceConsideration_gai_consideration_sections" ("GaiGovernanceConsideration_id");
+CREATE INDEX "ix_GaiGovernanceConsideration_gai_consideration_sections_gai_consideration_sections" ON "GaiGovernanceConsideration_gai_consideration_sections" (gai_consideration_sections);
 
 CREATE TABLE "GaiPreDeploymentTestingConsideration_gai_consideration_sections" (
 	"GaiPreDeploymentTestingConsideration_id" INTEGER,
@@ -343,8 +343,8 @@ CREATE TABLE "GaiPreDeploymentTestingConsideration_gai_consideration_sections" (
 	PRIMARY KEY ("GaiPreDeploymentTestingConsideration_id", gai_consideration_sections),
 	FOREIGN KEY("GaiPreDeploymentTestingConsideration_id") REFERENCES "GaiPreDeploymentTestingConsideration" (id)
 );
-CREATE INDEX "ix_GaiPreDeploymentTestingConsideration_gai_consideration_sections_GaiPreDeploymentTestingConsideration_id" ON "GaiPreDeploymentTestingConsideration_gai_consideration_sections" ("GaiPreDeploymentTestingConsideration_id");
 CREATE INDEX "ix_GaiPreDeploymentTestingConsideration_gai_consideration_sections_gai_consideration_sections" ON "GaiPreDeploymentTestingConsideration_gai_consideration_sections" (gai_consideration_sections);
+CREATE INDEX "ix_GaiPreDeploymentTestingConsideration_gai_consideration_sections_GaiPreDeploymentTestingConsideration_id" ON "GaiPreDeploymentTestingConsideration_gai_consideration_sections" ("GaiPreDeploymentTestingConsideration_id");
 
 CREATE TABLE "GaiContentProvenanceConsideration_gai_provenance_techniques" (
 	"GaiContentProvenanceConsideration_id" INTEGER,
@@ -352,8 +352,8 @@ CREATE TABLE "GaiContentProvenanceConsideration_gai_provenance_techniques" (
 	PRIMARY KEY ("GaiContentProvenanceConsideration_id", gai_provenance_techniques),
 	FOREIGN KEY("GaiContentProvenanceConsideration_id") REFERENCES "GaiContentProvenanceConsideration" (id)
 );
-CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_provenance_techniques_gai_provenance_techniques" ON "GaiContentProvenanceConsideration_gai_provenance_techniques" (gai_provenance_techniques);
 CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_provenance_techniques_GaiContentProvenanceConsideration_id" ON "GaiContentProvenanceConsideration_gai_provenance_techniques" ("GaiContentProvenanceConsideration_id");
+CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_provenance_techniques_gai_provenance_techniques" ON "GaiContentProvenanceConsideration_gai_provenance_techniques" (gai_provenance_techniques);
 
 CREATE TABLE "GaiContentProvenanceConsideration_gai_consideration_sections" (
 	"GaiContentProvenanceConsideration_id" INTEGER,
@@ -361,8 +361,8 @@ CREATE TABLE "GaiContentProvenanceConsideration_gai_consideration_sections" (
 	PRIMARY KEY ("GaiContentProvenanceConsideration_id", gai_consideration_sections),
 	FOREIGN KEY("GaiContentProvenanceConsideration_id") REFERENCES "GaiContentProvenanceConsideration" (id)
 );
-CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_consideration_sections_GaiContentProvenanceConsideration_id" ON "GaiContentProvenanceConsideration_gai_consideration_sections" ("GaiContentProvenanceConsideration_id");
 CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_consideration_sections_gai_consideration_sections" ON "GaiContentProvenanceConsideration_gai_consideration_sections" (gai_consideration_sections);
+CREATE INDEX "ix_GaiContentProvenanceConsideration_gai_consideration_sections_GaiContentProvenanceConsideration_id" ON "GaiContentProvenanceConsideration_gai_consideration_sections" ("GaiContentProvenanceConsideration_id");
 
 CREATE TABLE "GaiIncidentDisclosureConsideration_gai_incident_harms" (
 	"GaiIncidentDisclosureConsideration_id" INTEGER,
@@ -370,8 +370,8 @@ CREATE TABLE "GaiIncidentDisclosureConsideration_gai_incident_harms" (
 	PRIMARY KEY ("GaiIncidentDisclosureConsideration_id", gai_incident_harms),
 	FOREIGN KEY("GaiIncidentDisclosureConsideration_id") REFERENCES "GaiIncidentDisclosureConsideration" (id)
 );
-CREATE INDEX "ix_GaiIncidentDisclosureConsideration_gai_incident_harms_gai_incident_harms" ON "GaiIncidentDisclosureConsideration_gai_incident_harms" (gai_incident_harms);
 CREATE INDEX "ix_GaiIncidentDisclosureConsideration_gai_incident_harms_GaiIncidentDisclosureConsideration_id" ON "GaiIncidentDisclosureConsideration_gai_incident_harms" ("GaiIncidentDisclosureConsideration_id");
+CREATE INDEX "ix_GaiIncidentDisclosureConsideration_gai_incident_harms_gai_incident_harms" ON "GaiIncidentDisclosureConsideration_gai_incident_harms" (gai_incident_harms);
 
 CREATE TABLE "GaiIncidentDisclosureConsideration_gai_consideration_sections" (
 	"GaiIncidentDisclosureConsideration_id" INTEGER,
@@ -388,8 +388,8 @@ CREATE TABLE "GaiAiRedTeaming_gai_red_teaming_types" (
 	PRIMARY KEY ("GaiAiRedTeaming_id", gai_red_teaming_types),
 	FOREIGN KEY("GaiAiRedTeaming_id") REFERENCES "GaiAiRedTeaming" (id)
 );
-CREATE INDEX "ix_GaiAiRedTeaming_gai_red_teaming_types_gai_red_teaming_types" ON "GaiAiRedTeaming_gai_red_teaming_types" (gai_red_teaming_types);
 CREATE INDEX "ix_GaiAiRedTeaming_gai_red_teaming_types_GaiAiRedTeaming_id" ON "GaiAiRedTeaming_gai_red_teaming_types" ("GaiAiRedTeaming_id");
+CREATE INDEX "ix_GaiAiRedTeaming_gai_red_teaming_types_gai_red_teaming_types" ON "GaiAiRedTeaming_gai_red_teaming_types" (gai_red_teaming_types);
 
 CREATE TABLE "GaiSuggestedAction" (
 	id INTEGER NOT NULL,
@@ -407,8 +407,8 @@ CREATE TABLE "GaiRisk_gai_risk_characteristics" (
 	PRIMARY KEY ("GaiRisk_id", gai_risk_characteristics),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_gai_risk_characteristics_gai_risk_characteristics" ON "GaiRisk_gai_risk_characteristics" (gai_risk_characteristics);
 CREATE INDEX "ix_GaiRisk_gai_risk_characteristics_GaiRisk_id" ON "GaiRisk_gai_risk_characteristics" ("GaiRisk_id");
+CREATE INDEX "ix_GaiRisk_gai_risk_characteristics_gai_risk_characteristics" ON "GaiRisk_gai_risk_characteristics" (gai_risk_characteristics);
 
 CREATE TABLE "GaiRisk_gai_risk_groupings" (
 	"GaiRisk_id" INTEGER,
@@ -425,8 +425,8 @@ CREATE TABLE "GaiRisk_gai_risk_lifecycle_stages" (
 	PRIMARY KEY ("GaiRisk_id", gai_risk_lifecycle_stages),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_gai_risk_lifecycle_stages_gai_risk_lifecycle_stages" ON "GaiRisk_gai_risk_lifecycle_stages" (gai_risk_lifecycle_stages);
 CREATE INDEX "ix_GaiRisk_gai_risk_lifecycle_stages_GaiRisk_id" ON "GaiRisk_gai_risk_lifecycle_stages" ("GaiRisk_id");
+CREATE INDEX "ix_GaiRisk_gai_risk_lifecycle_stages_gai_risk_lifecycle_stages" ON "GaiRisk_gai_risk_lifecycle_stages" (gai_risk_lifecycle_stages);
 
 CREATE TABLE "GaiRisk_gai_risk_scopes" (
 	"GaiRisk_id" INTEGER,
@@ -434,8 +434,8 @@ CREATE TABLE "GaiRisk_gai_risk_scopes" (
 	PRIMARY KEY ("GaiRisk_id", gai_risk_scopes),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_gai_risk_scopes_gai_risk_scopes" ON "GaiRisk_gai_risk_scopes" (gai_risk_scopes);
 CREATE INDEX "ix_GaiRisk_gai_risk_scopes_GaiRisk_id" ON "GaiRisk_gai_risk_scopes" ("GaiRisk_id");
+CREATE INDEX "ix_GaiRisk_gai_risk_scopes_gai_risk_scopes" ON "GaiRisk_gai_risk_scopes" (gai_risk_scopes);
 
 CREATE TABLE "GaiRisk_gai_risk_sources" (
 	"GaiRisk_id" INTEGER,
@@ -443,8 +443,8 @@ CREATE TABLE "GaiRisk_gai_risk_sources" (
 	PRIMARY KEY ("GaiRisk_id", gai_risk_sources),
 	FOREIGN KEY("GaiRisk_id") REFERENCES "GaiRisk" (id)
 );
-CREATE INDEX "ix_GaiRisk_gai_risk_sources_GaiRisk_id" ON "GaiRisk_gai_risk_sources" ("GaiRisk_id");
 CREATE INDEX "ix_GaiRisk_gai_risk_sources_gai_risk_sources" ON "GaiRisk_gai_risk_sources" (gai_risk_sources);
+CREATE INDEX "ix_GaiRisk_gai_risk_sources_GaiRisk_id" ON "GaiRisk_gai_risk_sources" ("GaiRisk_id");
 
 CREATE TABLE "GaiRisk_gai_risk_time_scales" (
 	"GaiRisk_id" INTEGER,
@@ -461,8 +461,8 @@ CREATE TABLE "GaiSubcategory_gai_subcategory_actor_tasks" (
 	PRIMARY KEY ("GaiSubcategory_id", gai_subcategory_actor_tasks),
 	FOREIGN KEY("GaiSubcategory_id") REFERENCES "GaiSubcategory" (id)
 );
-CREATE INDEX "ix_GaiSubcategory_gai_subcategory_actor_tasks_GaiSubcategory_id" ON "GaiSubcategory_gai_subcategory_actor_tasks" ("GaiSubcategory_id");
 CREATE INDEX "ix_GaiSubcategory_gai_subcategory_actor_tasks_gai_subcategory_actor_tasks" ON "GaiSubcategory_gai_subcategory_actor_tasks" (gai_subcategory_actor_tasks);
+CREATE INDEX "ix_GaiSubcategory_gai_subcategory_actor_tasks_GaiSubcategory_id" ON "GaiSubcategory_gai_subcategory_actor_tasks" ("GaiSubcategory_id");
 
 CREATE TABLE "GaiPrimaryConsideration_gai_consideration_sections" (
 	"GaiPrimaryConsideration_id" INTEGER,
