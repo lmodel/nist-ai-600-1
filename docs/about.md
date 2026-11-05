@@ -1,63 +1,53 @@
 # About nist-ai-600-1
 
-NIST Artificial Intelligence Risk Management Framework (AI RMF 1.0), Generative Artificial Intelligence Profile (NIST AI 600-1, July 2024) - LinkML Schema.
+This page is for anyone reading the [LinkML](https://linkml.io) schema's elements: it says how they fit together, where each part comes from and what the model leaves out.
 
-## Project status
+## How the classes fit together
 
-Active development, tracking the published NIST AI 600-1 document.
+`GaiProfile` holds the Profile. It is an `AiRmfProfile` of the kind `cross_sectoral`, the class lmodel/nist-ai-100-1 defines for section 6 of the AI RMF.
 
-### Design
+- **`GaiRisk`** is one of the 12 risks of section 2.
+- **`GaiSubcategory`** is one table of section 3. It names an AI RMF subcategory, restates it, lists `GaiSuggestedAction` records and ends with the table's AI actor tasks.
+- **`GaiSuggestedAction`** is one row, with its identifier, its text and the risks it is tagged with.
+- **`GaiPrimaryConsideration`** is the abstract class of the four themes of Appendix A, each with a class of its own and the lists its section gives. Pre-Deployment Testing holds the kinds of `GaiStructuredFeedback`.
 
-The schema imports the shared **`nist_ai_rmf_common`** module (hosted in [`nist-ai-100-1`](https://github.com/lmodel/nist-ai-100-1)) for the framework base — the `NamedThing` root, identifier/title/description slots, `SubcategoryCode`, and `TrustworthinessCharacteristicEnum` — so those have one canonical definition shared with NIST AI 100-1 and the
-`nist-ai-rmf` umbrella. The GAI lifecycle and actor-task vocabularies genuinely diverge from AI RMF 1.0, so they are defined locally as `GaiLifecycleStageEnum` / `GaiActorTaskEnum` and attached as **class-local attributes** (`lifecycle_stage` on `GaiRisk`, `actor_task` on `SuggestedAction`) — keeping them out of the merged global slot namespace so they never collide with the 100-1 enums in the umbrella.
+Lifecycle stage, scope, source and time scale sit on `GaiRisk`, but the publication assigns none of them to a risk, since they depend on the model, system or use case. The catalogue leaves them empty for an adopter to fill.
 
-### Schema coverage
+## Where each part comes from
 
-The single source schema [src/nist_ai_600_1/schema/nist_ai_600_1.yaml](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/schema/nist_ai_600_1.yaml) currently defines:
+NIST publishes no machine-readable form of the Profile, so the publication is the only source, and `upstream/` holds it unchanged. `scripts/build_catalogue.py` reads the tables of section 3 from it. Section 2's definitions and Appendix A's lists are written by hand, and tests hold them to the publication's words.
 
-- **6 classes** - `GaiRisk`, `SuggestedAction`,
-  `PrimaryGaiConsideration`, `StructuredPublicFeedback`,
-  `AiRedTeaming`, and the top-level `GaiProfile` container (all derive
-  from the imported `NamedThing`).
-- **13 enums** covering GAI lifecycle stages (`GaiLifecycleStageEnum`)
-  and actor tasks (`GaiActorTaskEnum`), GAI risk categories /
-  categorization / scope / sources / time scale, the
-  GOVERN/MAP/MEASURE/MANAGE action function prefixes, primary
-  considerations, structured-feedback methods, red-teaming types,
-  provenance techniques, and governance practices. The shared
-  `TrustworthinessCharacteristicEnum` is imported from common.
-- **1 type** - `GaiActionId` (`SubcategoryCode` is imported from common).
+The schema imports the base and profiles modules of lmodel/nist-ai-100-1, vendored under `src/nist_ai_600_1/schema/nist_ai_100_1/`. They give a subcategory's identifier form, the trustworthiness characteristics, the AI actor tasks and the profile.
 
-### Cross-vocabulary mappings
+The schema's descriptions are this project's own words. The catalogue's definitions, statements and actions are NIST's. [NOTICE](https://github.com/lmodel/nist-ai-600-1/blob/main/NOTICE) says on what terms.
 
-Two SSSOM TSVs live under `src/nist_ai_600_1/mappings/`:
+## What the publication gets wrong, and what the catalogue does
 
-- **[`nist_ai_600_1.sssom.tsv`](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_600_1.sssom.tsv)** (17 mappings) — the schema's own cross-references to NIST AI 100-1, NIST CSF v2, OSCAL, ISO 27001 / 29100, gist, and STIX.
-- **[`nist_ai_rmf.sssom.tsv`](https://github.com/lmodel/nist-ai-600-1/blob/main/src/nist_ai_600_1/mappings/nist_ai_rmf.sssom.tsv)** — the cross-framework alignment set shared with the `nist-ai-rmf` umbrella. Its `nist_ai_600_1`-owned rows bind the OWASP Agentic AI (ASI) Top 10 onto the `GaiRiskCategoryEnum` permissible values; rows whose subject belongs to a sibling schema (`nist_ai_100_1` / `nist_ai_rmf`) are reported and skipped.
+The builder corrects three things in the tables and tests list each, so a change in a later edition fails a test.
 
-The [scripts/verify_mappings.py](https://github.com/lmodel/nist-ai-600-1/blob/main/scripts/verify_mappings.py)
-checker keeps every TSV row in sync with the matching schema element — top-level classes / slots / enums / types, enum permissible values, and class-local attributes — and reports `missing=0 extra=0 unknown=0` (20 sibling-schema subjects skipped). It runs as part of `just test` (and is also available as
-`just verify-mappings`).
+- **GV4.3--001** is the first action of GOVERN 4.3, and the numbering of the actions around it shows it. The catalogue writes `GV-4.3-001`.
+- **GV-1.4-002** carries the tag Civil Rights violations, which is not one of the 12 risks. The catalogue leaves that tag out.
+- **One row** runs Human-AI Configuration and Dangerous, Violent, or Hateful Content together without a semicolon. The catalogue holds them as two tags.
 
-### Test corpus
+The tables also spell some risks differently from section 2, such as Environmental for Environmental Impacts, and Harmful Bias and Homogenization for Harmful Bias or Homogenization. The enum carries the section 2 name as its title and each table spelling as an alias.
 
-- **12 valid** fixtures under `tests/data/valid/` exercising each top-level class.
-- **8 invalid** fixtures under `tests/data/invalid/` covering unknown slots and out-of-range enum values.
-- Loader-level tests live in `tests/test_data.py`; structural /
- attern rules are intended for a future `linkml-validate`-based suite.
+Two further faults are left as they are:
 
-### Generated artefacts
+- GOVERN 1.5's restatement differs from AI 100-1's Table 1 in its wording, and a test lists it. The catalogue keeps this publication's wording.
+- Section 2 says each risk is mapped to trustworthiness characteristics in section 3 and in tables in Appendix B. In fact each subsection of section 2 names them, and Appendix B holds the references. The catalogue takes them from section 2.
 
-`just gen-project` produces the standard LinkML targets (Python dataclasses + Pydantic, JSON Schema, JSON-LD context, OWL, SHACL, ShEx, SQL DDL, GraphQL, Protobuf, Excel, TypeScript) under [project/](https://github.com/lmodel/nist-ai-600-1/tree/main/project), and `just gen-doc` produces the per-element Markdown under [docs/elements/](elements/index.md) that backs this documentation
-site.
+## Choices worth knowing
 
-## Roadmap
+- **AI actor tasks belong to a table, not an action.** The publication says not every task listed applies to every action.
+- **A risk's groupings are a list.** Footnote 5 offers them as one possible way to sort the risks, and it lists Data Privacy under all three.
+- **Pre-Deployment Testing holds structured feedback.** Section A.1.7 calls those approaches part of that section, although A.1.5 has a heading of its own.
 
-- Expand the SSSOM mapping set as sibling lmodel schemas (NIST AI 100-1, NIST CSF v2, OSCAL catalog / profile) stabilise.
-- Add `linkml-validate`-based structural tests for cardinality and pattern rules.
-- Grow the valid / invalid fixture corpus to cover every enum value and slot.
+## What is left out
 
-## References
+The schema holds none of the publication's running prose: the discussion of each risk in sections 2.1 to 2.12, or the discussion in Appendix A. It holds no definition quoted from a third party, and leaves out the references of Appendix B. The AI RMF itself is lmodel/nist-ai-100-1.
 
-- NIST AI 600-1: *Artificial Intelligence Risk Management Framework: Generative Artificial Intelligence Profile* (NIST AI 600-1, July 2024).
-- NIST AI 100-1: *Artificial Intelligence Risk Management Framework (AI RMF 1.0)*.
+## Reference
+
+- [NIST AI 600-1](https://doi.org/10.6028/NIST.AI.600-1)
+- [NIST's Trustworthy and Responsible AI Resource Center](https://airc.nist.gov/Home)
+- [NIST AI 100-1](https://doi.org/10.6028/NIST.AI.100-1)
