@@ -23,11 +23,12 @@ The schema's descriptions are this project's own words. The catalogue's definiti
 
 ## What the publication gets wrong, and what the catalogue does
 
-The builder corrects three things in the tables and tests list each, so a change in a later edition fails a test.
+The builder corrects four things in the tables and tests list each, so a change in a later edition fails a test.
 
 - **GV4.3--001** is the first action of GOVERN 4.3, and the numbering of the actions around it shows it. The catalogue writes `GV-4.3-001`.
 - **GV-1.4-002** carries the tag Civil Rights violations, which is not one of the 12 risks. The catalogue leaves that tag out.
 - **One row** runs Human-AI Configuration and Dangerous, Violent, or Hateful Content together without a semicolon. The catalogue holds them as two tags.
+- **One action** runs a footnote's number into the word before it, as Winogender Schemas15. The catalogue drops the number.
 
 The tables also spell some risks differently from section 2, such as Environmental for Environmental Impacts, and Harmful Bias and Homogenization for Harmful Bias or Homogenization. The enum carries the section 2 name as its title and each table spelling as an alias.
 
