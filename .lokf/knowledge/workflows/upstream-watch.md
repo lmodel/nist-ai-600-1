@@ -20,7 +20,7 @@ sources:
     title: how the issue is opened
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:42Z"
+  at: "2026-11-05T03:30:01Z"
 status: draft
 ---
 
@@ -28,7 +28,7 @@ status: draft
 
 The workflow runs every Monday, and a failing check opens an issue or comments on the one already open.[^upstream-watch.yaml]
 
-The script downloads the publication with no token, following a redirect only over https, and compares its SHA-256.[^watch]
+The script downloads the publication with no token, following a redirect only over https to that host and reading at most 20 MB, and compares its SHA-256.[^watch]
 
 `tests/test_watch.py` runs it against stubbed downloads.[^test_watch.py]
 
