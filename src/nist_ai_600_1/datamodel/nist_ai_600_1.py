@@ -1117,7 +1117,7 @@ class GaiProvenanceTechnique(EnumDefinitionImpl):
     digital_watermarking = PermissibleValue(
         text="digital_watermarking",
         title="Digital watermarking",
-        description="Placing overt or covert marks on content.")
+        description="Placing visible or hidden marks on content.")
     metadata_recording = PermissibleValue(
         text="metadata_recording",
         title="Metadata recording",

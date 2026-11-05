@@ -448,7 +448,7 @@ nist_ai_600_1:GaiProvenanceTechnique\#digital_watermarking dcterms:title "Digita
 	a owl:Class ;
 	rdfs:label "digital_watermarking" ;
 	rdfs:subClassOf nist_ai_600_1:GaiProvenanceTechnique ;
-	skos:definition "Placing overt or covert marks on content." .
+	skos:definition "Placing visible or hidden marks on content." .
 nist_ai_600_1:GaiProvenanceTechnique\#human_authentication dcterms:title "Human authentication" ;
 	a owl:Class ;
 	rdfs:label "human_authentication" ;

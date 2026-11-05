@@ -851,7 +851,7 @@ enums:
     permissible_values:
       digital_watermarking:
         text: digital_watermarking
-        description: Placing overt or covert marks on content.
+        description: Placing visible or hidden marks on content.
         title: Digital watermarking
       metadata_recording:
         text: metadata_recording

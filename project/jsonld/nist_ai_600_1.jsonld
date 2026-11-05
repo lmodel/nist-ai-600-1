@@ -974,7 +974,7 @@
       "permissible_values": [
         {
           "text": "digital_watermarking",
-          "description": "Placing overt or covert marks on content.",
+          "description": "Placing visible or hidden marks on content.",
           "title": "Digital watermarking"
         },
         {

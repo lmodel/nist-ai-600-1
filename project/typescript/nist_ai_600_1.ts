@@ -235,7 +235,7 @@ export enum GaiRedTeamingType {
 */
 export enum GaiProvenanceTechnique {
     
-    /** Placing overt or covert marks on content. */
+    /** Placing visible or hidden marks on content. */
     Digital_watermarking = "digital_watermarking",
     /** Recording facts about the content, such as its creator, date and sources. */
     Metadata_recording = "metadata_recording",

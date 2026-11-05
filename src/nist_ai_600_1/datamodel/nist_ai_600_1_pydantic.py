@@ -479,7 +479,7 @@ class GaiProvenanceTechnique(str, Enum):
     """
     Digital_watermarking = "digital_watermarking"
     """
-    Placing overt or covert marks on content.
+    Placing visible or hidden marks on content.
     """
     Metadata_recording = "metadata_recording"
     """
