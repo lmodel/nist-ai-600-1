@@ -244,9 +244,22 @@ classes:
     description: A machine-based system that produces outputs such as predictions or decisions for given
       objectives, with varying autonomy.
     attributes:
+      ai_rmf_system_intended_purposes:
+        description: What the system is for, and its potentially beneficial uses, which MAP 1.1 asks an
+          adopter to document.
+        multivalued: true
+      ai_rmf_system_deployment_settings:
+        description: The settings the system is or will be deployed in, which MAP 1.1 asks an adopter
+          to document.
+        multivalued: true
       ai_rmf_system_lifecycle_stages:
         description: The lifecycle stages the record covers.
         range: AiRmfLifecycleStageName
+        multivalued: true
+      ai_rmf_system_actors:
+        description: The AI actors with a role in the system's lifecycle, such as those MAP 1.6 says elicit
+          its requirements.
+        range: AiRmfActor
         multivalued: true
   AiRmfActor:
     is_a: AiRmfRecord
@@ -297,6 +310,16 @@ classes:
         description: The responses chosen for the risk.
         range: AiRmfRiskResponse
         multivalued: true
+      ai_rmf_risk_priority:
+        description: The priority the adopter gives the risk's treatment, on whatever scale it uses, as
+          MANAGE 1.2 asks.
+        comments:
+        - MANAGE 1.3 speaks of risks deemed high priority and the publication sets no scale, so this is
+          text.
+      ai_rmf_risk_tolerance:
+        description: The risk tolerance the risk is judged against, which GOVERN 1.3 and MAP 1.5 ask an
+          adopter to document.
+        range: AiRmfRiskTolerance
   AiRmfResidualRisk:
     is_a: AiRmfRisk
     class_uri: nist_ai_100_1:ResidualRisk
