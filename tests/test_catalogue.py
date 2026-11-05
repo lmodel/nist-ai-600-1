@@ -173,6 +173,17 @@ def test_corrections_to_the_tables_are_the_listed_ones():
     assert any("Civil Rights violations" in tag for tag in tags)
     for joined in builder.JOINED_TAGS:
         assert any(joined in tag for tag in tags)
+    texts = [builder.text_of(cells[1]) for cells in rows if len(cells) > 1]
+    for marked in builder.FOOTNOTE_MARKS:
+        assert any(marked in text for text in texts)
+
+
+def test_no_footnote_mark_stays_in_an_action():
+    """A number run into the word before it is a footnote mark, not the publication's text."""
+    for action in _actions():
+        assert not re.search(r"[A-Za-z]\d{1,2}\b", action["description"]), action[
+            "gai_action_id"
+        ]
 
 
 def test_subcategories_are_the_ai_rmfs():

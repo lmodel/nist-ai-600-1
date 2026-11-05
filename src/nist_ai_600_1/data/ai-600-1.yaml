@@ -1454,10 +1454,9 @@ gai_subcategories:
   gai_subcategory_actions:
   - gai_action_id: MS-2.11-001
     description: Apply use-case appropriate benchmarks (e.g., Bias Benchmark Questions, Real Hateful or
-      Harmful Prompts, Winogender Schemas15) to quantify systemic bias, stereotyping, denigration, and
-      hateful content in GAI system outputs; Document assumptions and limitations of benchmarks, including
-      any actual or possible training/test data cross contamination, relative to in-context deployment
-      environment.
+      Harmful Prompts, Winogender Schemas) to quantify systemic bias, stereotyping, denigration, and hateful
+      content in GAI system outputs; Document assumptions and limitations of benchmarks, including any
+      actual or possible training/test data cross contamination, relative to in-context deployment environment.
     gai_action_risks:
     - harmful_bias_or_homogenization
   - gai_action_id: MS-2.11-002

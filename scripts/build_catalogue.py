@@ -7,7 +7,7 @@
 
 Each table of section 3 begins with an AI RMF subcategory, lists suggested actions with
 their risk tags, and ends with the AI Actor Tasks. This script reads those tables from
-upstream/NIST.AI.600-1.pdf and corrects only what KNOWN_DEPARTURES lists. The rest of
+upstream/NIST.AI.600-1.pdf and corrects only what the constants below list. The rest of
 the catalogue file is written by hand and stays as it is. With --check the script writes
 nothing and exits 1 when the file differs from what the publication gives.
 """
@@ -35,6 +35,8 @@ LIGATURES = str.maketrans({"ﬀ": "ff", "ﬁ": "fi", "ﬂ": "fl", "ﬃ": "ffi", 
 ID_TYPOS = {"GV4.3--001": "GV-4.3-001"}
 # A tag that is none of the 12 risks, on the action that carries it. It is left out.
 NOT_A_RISK = {("GV-1.4-002", "Civil Rights violations")}
+# A footnote's number that the table's text runs into the word before it.
+FOOTNOTE_MARKS = {"Winogender Schemas15": "Winogender Schemas"}
 # Tags the tables run together without their semicolon.
 JOINED_TAGS = {
     "Human-AI Configuration, Dangerous, Violent, or Hateful Content": [
@@ -117,7 +119,10 @@ def section_three() -> list[dict]:
             current["description"] += " " + first
         elif ACTION_ID.fullmatch(first) or first in ID_TYPOS:
             action_id = ID_TYPOS.get(first, first)
-            action = {"gai_action_id": action_id, "description": text_of(cells[1])}
+            text = text_of(cells[1])
+            for marked, plain in FOOTNOTE_MARKS.items():
+                text = text.replace(marked, plain)
+            action = {"gai_action_id": action_id, "description": text}
             tags = split_tags(cells[2], action_id, risks) if len(cells) > 2 else []
             if tags:
                 action["gai_action_risks"] = tags
