@@ -61,4 +61,35 @@ def test_a_redirect_to_plain_http_is_refused(watch):
     """A file is followed only over https."""
     handler = watch._HttpsOnly()
     with pytest.raises(urllib.error.URLError):
-        handler.redirect_request(None, None, 302, "Found", {}, "http://example.org/x")
+        handler.redirect_request(
+            None, None, 302, "Found", {}, "http://nvlpubs.nist.gov/x"
+        )
+
+
+def test_a_redirect_to_another_host_is_refused(watch):
+    """A file is followed only to a host the script reads from."""
+    handler = watch._HttpsOnly()
+    with pytest.raises(urllib.error.URLError):
+        handler.redirect_request(None, None, 302, "Found", {}, "https://example.org/x")
+
+
+def test_an_oversized_answer_is_refused(watch):
+    """An answer past the cap is not read to its end."""
+
+    class Answer:
+        def __enter__(self):
+            return self
+
+        def __exit__(self, *_):
+            return False
+
+        def read(self, size):
+            return b"x" * size
+
+    class Opener:
+        def open(self, req, timeout):
+            return Answer()
+
+    watch.urllib.request.build_opener = lambda *_: Opener()
+    with pytest.raises(urllib.error.URLError, match="more than"):
+        watch._download("https://nvlpubs.nist.gov/x")

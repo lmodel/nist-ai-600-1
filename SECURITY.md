@@ -14,7 +14,7 @@ Use GitHub's [private vulnerability reporting](https://github.com/lmodel/nist-ai
 
 It releases a LinkML schema and the Python datamodel generated from it. Nothing is published to PyPI. When the bundle or the schema has changed, `knowledge-release.yaml` attaches three assets to the release, each with its `.sha256` and a build-provenance attestation: the schema's `lokf adapt` copy, the knowledge bundle as a zip, and a Microsoft 365 Copilot skill zip. A schema is data: loading one from an untrusted source with any LinkML tool is that tool's risk, not this repository's.
 
-`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It downloads the publication from NIST's public address with no token, following a redirect only over https, and writes nothing but its report. `scripts/build_catalogue.py` reads `upstream/` and writes the catalogue; it runs no network. A test holds the file under `upstream/` to its hash.
+`scripts/check_upstream_release.py` runs only in `upstream-watch.yaml`. It downloads the publication from NIST's public address with no token, following a redirect only over https to that host and reading at most 20 MB, and writes nothing but its report. `scripts/build_catalogue.py` reads `upstream/` and writes the catalogue; it runs no network. A test holds the file under `upstream/` to its hash.
 
 The catalogue's text is NIST's, and this repository treats it as data: tests validate it and nothing executes or renders it. Some suggested actions name harmful content such as CBRN information as a risk to manage; the schema describes the Profile's shape and takes no position on whether a practice is sufficient.
 
