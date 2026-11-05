@@ -8,13 +8,13 @@
 # - just works fine with quoted variables of dot-env files like this one
 LINKML_SCHEMA_NAME="nist_ai_600_1"
 LINKML_SCHEMA_AUTHOR="Noel McLoughlin <noel.mcloughlin@gmail.com>"
-LINKML_SCHEMA_DESCRIPTION="NIST AI RMF - Generative AI Profile - LinkML Schema"
+LINKML_SCHEMA_DESCRIPTION="NIST AI 600-1 AI RMF Generative AI Profile (LinkML)"
 LINKML_SCHEMA_SOURCE_DIR="src/nist_ai_600_1/schema"
 
 ###### linkml generator variables, used by justfile
 
 ## gen-project configuration file
-LINKML_GENERATORS_CONFIG_YAML=config.yaml
+LINKML_GENERATORS_CONFIG_YAML=.linkml/generators.yaml
 
 ## pass args if gendoc ignores config.yaml (i.e. --no-mergeimports)
 LINKML_GENERATORS_DOC_ARGS=
