@@ -1,4 +1,3 @@
 # Services
 
-* [Example Service A](example-service-a.md) - Placeholder service; replace with a real service of nist-ai-600-1.
-* [Example Service B](example-service-b.md) - Placeholder service; replace with a real service of nist-ai-600-1.
+* [Documentation site](documentation-site.md) - The knowledge website in `website/`, an Astro Starlight site that the Knowledge website workflow publishes to GitHub Pages at `https://lmodel.github.io/nist-ai-600-1`, built from the README, `docs/`, the schema's pages and the bundle. It replaces the mkdocs site.
