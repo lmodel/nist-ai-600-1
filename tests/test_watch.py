@@ -73,6 +73,14 @@ def test_a_redirect_to_another_host_is_refused(watch):
         handler.redirect_request(None, None, 302, "Found", {}, "https://example.org/x")
 
 
+def test_an_address_off_the_list_is_refused(watch):
+    """A pinned address is read only over https and only from a listed host, so a
+    changed constant cannot send the watch elsewhere."""
+    for url in ("http://nvlpubs.nist.gov/x", "https://example.org/x"):
+        with pytest.raises(urllib.error.URLError, match="refused"):
+            watch._download(url)
+
+
 def test_an_oversized_answer_is_refused(watch):
     """An answer past the cap is not read to its end."""
 

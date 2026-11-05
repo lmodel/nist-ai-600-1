@@ -62,7 +62,11 @@ class _HttpsOnly(urllib.request.HTTPRedirectHandler):
 
 
 def _download(url: str) -> bytes:
-    """A public file from NIST. It carries no token."""
+    """A public file from NIST. It carries no token, and the address it starts from is
+    held to the same rule as a redirect."""
+    parts = urllib.parse.urlsplit(url)
+    if parts.scheme != "https" or parts.hostname not in ALLOWED_HOSTS:
+        raise urllib.error.URLError(f"refused to read {url}")
     opener = urllib.request.build_opener(_HttpsOnly)
     req = urllib.request.Request(url, headers={"User-Agent": USER_AGENT})
     with opener.open(req, timeout=120) as resp:
