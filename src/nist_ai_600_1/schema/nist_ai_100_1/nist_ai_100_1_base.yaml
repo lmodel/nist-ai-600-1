@@ -162,7 +162,7 @@ enums:
         description: Assessing accountability, harmful bias, impacts, product safety, liability and security.
       procurement:
         title: Procurement
-        description: Buying AI from another party, under financial, legal or policy authority.
+        description: Acquiring AI from another party, under financial, legal or policy authority.
       governance_and_oversight:
         title: Governance and Oversight
         description: Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed.
@@ -182,7 +182,7 @@ enums:
         description: Those directly or indirectly affected by the system or its output, whether or not they interact with it.
       other_ai_actors:
         title: Other AI actors
-        description: Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.
+        description: Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.
       general_public:
         title: General public
         description: Those most likely to experience the impacts directly, who may motivate what other AI actors do.

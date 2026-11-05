@@ -728,7 +728,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     procurement = PermissibleValue(
         text="procurement",
         title="Procurement",
-        description="Buying AI from another party, under financial, legal or policy authority.")
+        description="Acquiring AI from another party, under financial, legal or policy authority.")
     governance_and_oversight = PermissibleValue(
         text="governance_and_oversight",
         title="Governance and Oversight",
@@ -748,7 +748,7 @@ class AiRmfActorTaskName(EnumDefinitionImpl):
     other_ai_actors = PermissibleValue(
         text="other_ai_actors",
         title="Other AI actors",
-        description="""Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.""")
+        description="""Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.""")
     general_public = PermissibleValue(
         text="general_public",
         title="General public",

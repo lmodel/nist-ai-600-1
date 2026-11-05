@@ -129,12 +129,12 @@ nist_ai_600_1:AiRmfActorTaskName\#other_ai_actors dcterms:title "Other AI actors
 	a owl:Class ;
 	rdfs:label "other_ai_actors" ;
 	rdfs:subClassOf nist_ai_600_1:AiRmfActorTaskName ;
-	skos:definition "Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers." .
+	skos:definition "Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers." .
 nist_ai_600_1:AiRmfActorTaskName\#procurement dcterms:title "Procurement" ;
 	a owl:Class ;
 	rdfs:label "procurement" ;
 	rdfs:subClassOf nist_ai_600_1:AiRmfActorTaskName ;
-	skos:definition "Buying AI from another party, under financial, legal or policy authority." .
+	skos:definition "Acquiring AI from another party, under financial, legal or policy authority." .
 nist_ai_600_1:AiRmfActorTaskName\#tevv dcterms:title "Test, Evaluation, Verification, and Validation (TEVV)" ;
 	a owl:Class ;
 	rdfs:label "tevv" ;

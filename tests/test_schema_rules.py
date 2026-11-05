@@ -15,10 +15,10 @@ ROOT = Path(__file__).parent.parent
 # by that checksum.
 COPY = ROOT / ".lokf" / "nist-ai-600-1.yaml"
 LOKF = ROOT / ".lokf" / "lokf.yaml"
-# lmodel/nist-ai-100-1's copy, from its feat/first-release branch at commit 1ab8412,
+# lmodel/nist-ai-100-1's copy, from its feat/first-release branch at commit 64b373e,
 # until its first release. Then the file becomes the release's asset, with its checksum.
 AI_RMF_COPY = "nist-ai-100-1.yaml"
-AI_RMF_SHA256 = "5c48d360bd2c7665d215fac8f4cc49ef639f40994e22b42b49f63300e92a88b0"
+AI_RMF_SHA256 = "f7a835a37bc67f43731ee02ae098b681a5219915a756942fd3a7220540b85d3e"
 NEIGHBOURS = {
     # lmodel/slsa v0.10.0, schema-v0.10.0-slsa.yaml
     "slsa.yaml": "9eeb68decc918565886794fe4eb6e32e1fee0620688cc699961c227242a2f4c2",

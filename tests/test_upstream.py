@@ -15,9 +15,9 @@ WATCH = ROOT / "scripts" / "check_upstream_release.py"
 VENDORED = SCHEMA.parent / "nist_ai_100_1"
 
 # Each module of lmodel/nist-ai-100-1 this schema imports, as of its commit
-# 1ab8412cda9332bcd4a5eb9c48d166913e85aa3a. Vendor from its release, then move the pins.
+# 64b373eb797f85d3ceaa56ec9a879b316ab91278. Vendor from its release, then move the pins.
 VENDORED_PINS = {
-    "nist_ai_100_1_base.yaml": "bcf21f56b1698d4b08dee1334c071c003859abdef6aa0c59fd803732418c1408",
+    "nist_ai_100_1_base.yaml": "6334c56f4481dfa531aa16d2b166410fc5e23103504c3c56dea36e8ac992f86b",
     "nist_ai_100_1_profiles.yaml": "7a9844bcbe191ee309296bb2c2936b9831152bb7d36b90a367708ba93d3b3e65",
 }
 

@@ -459,7 +459,7 @@ enums:
         title: AI Impact Assessment
       procurement:
         text: procurement
-        description: Buying AI from another party, under financial, legal or policy
+        description: Acquiring AI from another party, under financial, legal or policy
           authority.
         title: Procurement
       governance_and_oversight:
@@ -489,7 +489,7 @@ enums:
         - Affected Individuals and Communities
       other_ai_actors:
         text: other_ai_actors
-        description: Those who set norms or guidance on AI risk, such as standards
+        description: Those who may provide norms or guidance on AI risk, such as standards
           bodies, advocacy groups and researchers.
         title: Other AI actors
       general_public:

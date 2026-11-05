@@ -755,7 +755,7 @@ enums:
         description: Assessing accountability, harmful bias, impacts, product safety, liability and security.
       procurement:
         title: Procurement
-        description: Buying AI from another party, under financial, legal or policy authority.
+        description: Acquiring AI from another party, under financial, legal or policy authority.
       governance_and_oversight:
         title: Governance and Oversight
         description: Holding management, fiduciary and legal authority for the organization where the
@@ -778,8 +778,8 @@ enums:
           they interact with it.
       other_ai_actors:
         title: Other AI actors
-        description: Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups
-          and researchers.
+        description: Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy
+          groups and researchers.
       general_public:
         title: General public
         description: Those most likely to experience the impacts directly, who may motivate what other
@@ -801,7 +801,7 @@ enums:
         description: What the system does and produces once deployed.
       people_and_planet:
         title: People and Planet
-        description: People's rights and the well-being of society and the planet, at the center of Figure
+        description: Human rights and the well-being of society and the planet, at the center of Figure
           2.
   AiRmfLifecycleStageName:
     description: The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.

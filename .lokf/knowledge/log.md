@@ -2,6 +2,7 @@
 
 ## 2026-11-05
 
+* **Changed**: lmodel/nist-ai-100-1. The vendored modules and copies now come from its branch's latest commit.
 * **Changed**: lmodel/nist-ai-100-1. The vendored modules and copies now come from a later commit of its branch.
 * **Removal**: the sidecar's first example service.
 * **Removal**: the sidecar's second example service.

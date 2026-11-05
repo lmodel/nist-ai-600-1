@@ -506,7 +506,7 @@
         },
         {
           "text": "procurement",
-          "description": "Buying AI from another party, under financial, legal or policy authority.",
+          "description": "Acquiring AI from another party, under financial, legal or policy authority.",
           "title": "Procurement"
         },
         {
@@ -538,7 +538,7 @@
         },
         {
           "text": "other_ai_actors",
-          "description": "Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.",
+          "description": "Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.",
           "title": "Other AI actors"
         },
         {
