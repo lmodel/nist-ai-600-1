@@ -69,7 +69,9 @@ def table_rows(path: Path = PDF) -> list[list[str]]:
 
 def enum_names(module: Path, enum: str) -> dict[str, str]:
     """Each spelling of an enum's values, with the permissible value it names."""
-    values = yaml.safe_load(module.read_text(encoding="utf-8"))["enums"][enum]["permissible_values"]
+    values = yaml.safe_load(module.read_text(encoding="utf-8"))["enums"][enum][
+        "permissible_values"
+    ]
     names = {}
     for value, entry in values.items():
         names[entry["title"]] = value
@@ -92,7 +94,9 @@ def split_tags(cell: str, action_id: str, names: dict[str, str]) -> list[str]:
 def section_three() -> list[dict]:
     """Each table of section 3 as one subcategory record."""
     risks = enum_names(SCHEMA_DIR / "nist_ai_600_1_risks.yaml", "GaiRiskName")
-    tasks = enum_names(SCHEMA_DIR / "nist_ai_100_1" / "nist_ai_100_1_base.yaml", "AiRmfActorTaskName")
+    tasks = enum_names(
+        SCHEMA_DIR / "nist_ai_100_1" / "nist_ai_100_1_base.yaml", "AiRmfActorTaskName"
+    )
     records: list[dict] = []
     current: dict | None = None
     in_head = False
@@ -120,7 +124,9 @@ def section_three() -> list[dict]:
             current["gai_subcategory_actions"].append(action)
         elif first.startswith(("AI Actor Tasks:", "AI Actors:")):
             names = first.split(":", 1)[1].split(",")
-            current["gai_subcategory_actor_tasks"] = [tasks[name.strip()] for name in names]
+            current["gai_subcategory_actor_tasks"] = [
+                tasks[name.strip()] for name in names
+            ]
         else:
             raise ValueError(f"a row the tables should not hold: {cells}")
     return records
@@ -128,13 +134,17 @@ def section_three() -> list[dict]:
 
 def main() -> int:
     parser = argparse.ArgumentParser(description=__doc__.splitlines()[0])
-    parser.add_argument("--check", action="store_true", help="compare, and write nothing")
+    parser.add_argument(
+        "--check", action="store_true", help="compare, and write nothing"
+    )
     args = parser.parse_args()
     document = yaml.safe_load(CATALOGUE.read_text(encoding="utf-8"))
     built = section_three()
     if args.check:
         if document["gai_subcategories"] != built:
-            print(f"{CATALOGUE} differs from what the publication gives", file=sys.stderr)
+            print(
+                f"{CATALOGUE} differs from what the publication gives", file=sys.stderr
+            )
             return 1
         return 0
     document["gai_subcategories"] = built
@@ -142,7 +152,8 @@ def main() -> int:
         record["ai_rmf_subcategory_id"] for record in built
     ]
     CATALOGUE.write_text(
-        yaml.safe_dump(document, sort_keys=False, allow_unicode=True, width=100), encoding="utf-8"
+        yaml.safe_dump(document, sort_keys=False, allow_unicode=True, width=100),
+        encoding="utf-8",
     )
     return 0
 

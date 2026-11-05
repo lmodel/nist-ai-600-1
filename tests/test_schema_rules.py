@@ -215,7 +215,6 @@ def test_the_ai_rmf_copy_differs_only_where_the_vendored_modules_do():
     mine = yaml.safe_load(COPY.read_text())
     theirs = yaml.safe_load((NEIGHBOUR_DIR / AI_RMF_COPY).read_text())
 
-
     def same(entry, name):
         """The element without the IRI this copy writes out, which must be the other's."""
         entry = dict(entry)
@@ -226,5 +225,8 @@ def test_the_ai_rmf_copy_differs_only_where_the_vendored_modules_do():
     for kind in ("types", "enums"):
         for name in set(mine.get(kind) or {}) & set(theirs.get(kind) or {}):
             assert same(mine[kind][name], name) == same(theirs[kind][name], name), name
-    assert set(mine["classes"]) & set(theirs["classes"]) == {"AiRmfRecord", "AiRmfProfile"}
+    assert set(mine["classes"]) & set(theirs["classes"]) == {
+        "AiRmfRecord",
+        "AiRmfProfile",
+    }
     assert mine["classes"]["AiRmfProfile"] == theirs["classes"]["AiRmfProfile"]

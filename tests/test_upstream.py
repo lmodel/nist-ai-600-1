@@ -64,4 +64,6 @@ def test_vendored_modules_are_the_pinned_ones():
     """The vendored modules are byte for byte the pinned files, and no others."""
     assert {p.name for p in VENDORED.iterdir()} == set(VENDORED_PINS)
     for name, sha256 in VENDORED_PINS.items():
-        assert hashlib.sha256((VENDORED / name).read_bytes()).hexdigest() == sha256, name
+        assert hashlib.sha256((VENDORED / name).read_bytes()).hexdigest() == sha256, (
+            name
+        )

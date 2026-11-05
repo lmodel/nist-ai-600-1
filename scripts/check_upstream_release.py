@@ -68,7 +68,9 @@ def check_downloads() -> tuple[list[str], bool]:
     for name, (url, pinned) in sorted(PINNED_DOWNLOADS.items()):
         if hashlib.sha256((UPSTREAM / name).read_bytes()).hexdigest() != pinned:
             attention = True
-            report.append(f"- **`upstream/{name}` is not the pinned file.** Restore it.")
+            report.append(
+                f"- **`upstream/{name}` is not the pinned file.** Restore it."
+            )
         if hashlib.sha256(_download(url)).hexdigest() == pinned:
             report.append(f"- `upstream/{name}` matches {url} byte for byte.")
         else:

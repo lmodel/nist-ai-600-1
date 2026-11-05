@@ -19,7 +19,11 @@ VALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_VALID, "*.yaml"))
 INVALID_EXAMPLE_FILES = glob.glob(os.path.join(DATA_DIR_INVALID, "*.yaml"))
 
 SCHEMA = (
-    Path(__file__).parent.parent / "src" / "nist_ai_600_1" / "schema" / "nist_ai_600_1.yaml"
+    Path(__file__).parent.parent
+    / "src"
+    / "nist_ai_600_1"
+    / "schema"
+    / "nist_ai_600_1.yaml"
 )
 
 

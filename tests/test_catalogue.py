@@ -88,7 +88,9 @@ def test_catalogue_passes_the_committed_json_schema():
 
 def test_generated_models_load_the_catalogue():
     """The generated dataclasses and Pydantic models load all of it."""
-    profile = yaml_loader.load(str(CATALOGUE), target_class=dataclasses_model.GaiProfile)
+    profile = yaml_loader.load(
+        str(CATALOGUE), target_class=dataclasses_model.GaiProfile
+    )
     assert len(profile.gai_subcategories) == 49
     assert len(pydantic_model.GaiProfile.model_validate(_doc()).gai_subcategories) == 49
 
@@ -130,7 +132,9 @@ def test_action_identifiers_name_their_subcategory_and_run_in_order():
 def test_each_table_has_its_actor_tasks():
     """Every table ends with its AI actor tasks."""
     for record in _doc()["gai_subcategories"]:
-        assert record.get("gai_subcategory_actor_tasks"), record["ai_rmf_subcategory_id"]
+        assert record.get("gai_subcategory_actor_tasks"), record[
+            "ai_rmf_subcategory_id"
+        ]
 
 
 def test_each_action_has_risks_and_each_risk_an_action():
@@ -219,14 +223,18 @@ def test_governance_plans_are_the_publications():
     """Section A.1.2 sets the plans in two columns, so a wrapped title is not contiguous
     in the page's text. Each of its words must still be there."""
     letters = _publication_letters()
-    for value, entry in _view().get_enum("GaiGovernancePlan").permissible_values.items():
+    for value, entry in (
+        _view().get_enum("GaiGovernancePlan").permissible_values.items()
+    ):
         for word in entry.title.split():
             assert _letters(word) in letters, (value, word)
 
 
 def test_lists_of_appendix_a_are_complete():
     """25 plans, 4 techniques, 4 types of red-teaming and 3 kinds of feedback."""
-    records = {r["gai_consideration_type"]: r for r in _doc()["gai_primary_considerations"]}
+    records = {
+        r["gai_consideration_type"]: r for r in _doc()["gai_primary_considerations"]
+    }
     governance = records["GaiGovernanceConsideration"]
     assert len(set(governance["gai_governance_plans"])) == 25
     assert len(governance["gai_third_party_controls"]) == 4
