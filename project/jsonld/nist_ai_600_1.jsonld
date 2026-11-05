@@ -414,12 +414,12 @@
       "permissible_values": [
         {
           "text": "valid_and_reliable",
-          "description": "Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others.",
+          "description": "Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others.",
           "title": "Valid and Reliable"
         },
         {
           "text": "safe",
-          "description": "Does not endanger human life, health, property or the environment under defined conditions.",
+          "description": "Keeps people, property and the environment out of danger under defined conditions.",
           "title": "Safe"
         },
         {
@@ -445,7 +445,7 @@
         {
           "text": "fair_with_harmful_bias_managed",
           "description": "Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications.",
-          "title": "Fair - with Harmful Bias Managed"
+          "title": "Fair \u2013 with Harmful Bias Managed"
         }
       ]
     },
@@ -460,7 +460,7 @@
       "permissible_values": [
         {
           "text": "ai_design",
-          "description": "Setting the system's concept and objectives, planning and design, and gathering and preparing its data.",
+          "description": "Setting what the system is for, planning and designing it, and gathering and preparing its data.",
           "title": "AI Design"
         },
         {
@@ -493,7 +493,7 @@
         },
         {
           "text": "domain_expert",
-          "description": "Giving knowledge of the sector, context or application area where the system is used.",
+          "description": "Giving knowledge of the sector or setting where the system is used.",
           "title": "Domain Expert",
           "aliases": [
             "Domain Experts"
@@ -506,7 +506,7 @@
         },
         {
           "text": "procurement",
-          "description": "Acquiring AI models, products or services from another party, under financial, legal or policy authority.",
+          "description": "Buying AI from another party, under financial, legal or policy authority.",
           "title": "Procurement"
         },
         {
@@ -516,12 +516,12 @@
         },
         {
           "text": "third_party_entities",
-          "description": "External providers, developers, vendors and evaluators of data, algorithms, models, systems or services.",
+          "description": "Outside organizations that supply or evaluate the data, models, systems or services an organization acquires.",
           "title": "Third-party entities"
         },
         {
           "text": "end_users",
-          "description": "The individuals or groups that use the system for specific purposes, from AI experts to first-time users.",
+          "description": "The people or groups who use the system, whether new to technology or expert in AI.",
           "title": "End users",
           "aliases": [
             "End-Users",
@@ -538,7 +538,7 @@
         },
         {
           "text": "other_ai_actors",
-          "description": "Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers.",
+          "description": "Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.",
           "title": "Other AI actors"
         },
         {

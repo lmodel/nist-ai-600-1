@@ -241,8 +241,8 @@ classes:
   AiRmfSystem:
     is_a: AiRmfRecord
     class_uri: nist_ai_100_1:AiSystem
-    description: An engineered or machine-based system that generates outputs such as predictions or decisions
-      for given objectives, with varying autonomy.
+    description: A machine-based system that produces outputs such as predictions or decisions for given
+      objectives, with varying autonomy.
     attributes:
       ai_rmf_system_lifecycle_stages:
         description: The lifecycle stages the record covers.
@@ -269,7 +269,7 @@ classes:
   AiRmfRisk:
     is_a: AiRmfRecord
     class_uri: nist_ai_100_1:Risk
-    description: The composite measure of an event's probability and the magnitude of its consequences.
+    description: How likely an event is, combined with how severe its consequences are.
     related_mappings:
     - iso27001:IsmsRisk
     slots:
@@ -688,11 +688,11 @@ enums:
     permissible_values:
       valid_and_reliable:
         title: Valid and Reliable
-        description: Meets the requirements of its intended use, shown by objective evidence, and performs
-          without failure over time. Figure 4 makes it a necessary condition for the others.
+        description: Shown by evidence to meet the needs of its intended use, and works without failure
+          over time. Figure 4 makes it a necessary condition for the others.
       safe:
         title: Safe
-        description: Does not endanger human life, health, property or the environment under defined conditions.
+        description: Keeps people, property and the environment out of danger under defined conditions.
       secure_and_resilient:
         title: Secure and Resilient
         description: Withstands adverse events and recovers from them, and keeps confidentiality, integrity
@@ -710,7 +710,7 @@ enums:
         description: Guided by the norms and practices that protect human autonomy, identity and dignity,
           such as anonymity, confidentiality and control.
       fair_with_harmful_bias_managed:
-        title: Fair - with Harmful Bias Managed
+        title: Fair – with Harmful Bias Managed
         description: Addresses equality and equity, including harmful bias and discrimination, knowing
           that views of fairness differ across cultures and applications.
   AiRmfActorTaskName:
@@ -722,8 +722,8 @@ enums:
     permissible_values:
       ai_design:
         title: AI Design
-        description: Setting the system's concept and objectives, planning and design, and gathering and
-          preparing its data.
+        description: Setting what the system is for, planning and designing it, and gathering and preparing
+          its data.
       ai_development:
         title: AI Development
         description: Providing the initial infrastructure, and creating, selecting, calibrating, training
@@ -749,29 +749,27 @@ enums:
         title: Domain Expert
         aliases:
         - Domain Experts
-        description: Giving knowledge of the sector, context or application area where the system is used.
+        description: Giving knowledge of the sector or setting where the system is used.
       ai_impact_assessment:
         title: AI Impact Assessment
         description: Assessing accountability, harmful bias, impacts, product safety, liability and security.
       procurement:
         title: Procurement
-        description: Acquiring AI models, products or services from another party, under financial, legal
-          or policy authority.
+        description: Buying AI from another party, under financial, legal or policy authority.
       governance_and_oversight:
         title: Governance and Oversight
         description: Holding management, fiduciary and legal authority for the organization where the
           system is designed, developed or deployed.
       third_party_entities:
         title: Third-party entities
-        description: External providers, developers, vendors and evaluators of data, algorithms, models,
-          systems or services.
+        description: Outside organizations that supply or evaluate the data, models, systems or services
+          an organization acquires.
       end_users:
         title: End users
         aliases:
         - End-Users
         - End Users
-        description: The individuals or groups that use the system for specific purposes, from AI experts
-          to first-time users.
+        description: The people or groups who use the system, whether new to technology or expert in AI.
       affected_individuals_and_communities:
         title: Affected individuals/communities
         aliases:
@@ -780,8 +778,8 @@ enums:
           they interact with it.
       other_ai_actors:
         title: Other AI actors
-        description: Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy
-          groups and researchers.
+        description: Those who set norms or guidance on AI risk, such as standards bodies, advocacy groups
+          and researchers.
       general_public:
         title: General public
         description: Those most likely to experience the impacts directly, who may motivate what other
@@ -803,8 +801,8 @@ enums:
         description: What the system does and produces once deployed.
       people_and_planet:
         title: People and Planet
-        description: Human rights and the broader well-being of society and the planet, at the center
-          of Figure 2.
+        description: People's rights and the well-being of society and the planet, at the center of Figure
+          2.
   AiRmfLifecycleStageName:
     description: The AI lifecycle stages in Figure 3, of which Figure 2 shows the first six.
     permissible_values:
@@ -813,7 +811,7 @@ enums:
         description: Documenting the concept, objectives, assumptions, context and requirements.
       collect_and_process_data:
         title: Collect and Process Data
-        description: Gathering, validating and cleaning data and documenting the dataset.
+        description: Gathering, validating and cleaning data, and recording what it holds.
       build_and_use_model:
         title: Build and Use Model
         description: Creating or selecting algorithms and training models.
@@ -836,8 +834,7 @@ enums:
     permissible_values:
       primary:
         title: Primary audience
-        description: AI actors who perform or manage design, development, deployment, evaluation and use,
-          and drive risk management.
+        description: AI actors who carry out or manage work on AI systems and drive their risk management.
       informing:
         title: Informing audience
         description: AI actors in the People and Planet dimension, who inform the primary audience.

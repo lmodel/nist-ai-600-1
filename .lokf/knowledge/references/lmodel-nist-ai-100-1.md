@@ -15,13 +15,13 @@ source:
   - https://github.com/lmodel/nist-ai-100-1
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:42Z"
+  at: "2026-11-05T03:00:36Z"
 status: draft
 ---
 
 # lmodel/nist-ai-100-1
 
-This schema imports two of its modules, and `GaiProfile` is an `AiRmfProfile`.[^schema] Until that repository releases, the vendored files, its adapt copy and its list of subcategories come from its `feat/first-release` branch at commit `b409f95`.[^test_upstream.py]
+This schema imports two of its modules, and `GaiProfile` is an `AiRmfProfile`.[^schema] Until that repository releases, the vendored files, its adapt copy and its list of subcategories come from its `feat/first-release` branch at commit `1ab8412`.[^test_upstream.py]
 
 [^schema]: src/nist_ai_600_1/schema/nist_ai_600_1.yaml, the comments
 [^test_upstream.py]: tests/test_upstream.py, VENDORED_PINS

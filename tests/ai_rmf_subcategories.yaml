@@ -1,5 +1,5 @@
 # The AI RMF's 72 subcategories, as src/nist_ai_100_1/data/ai-rmf-1.0.yaml of
-# lmodel/nist-ai-100-1 states them at commit b409f952510398ff06fc64e9b76d77b70f8f9205.
+# lmodel/nist-ai-100-1 states them at commit 1ab8412cda9332bcd4a5eb9c48d166913e85aa3a.
 GOVERN 1.1: Legal and regulatory requirements involving AI are understood, managed, and documented.
 GOVERN 1.2: The characteristics of trustworthy AI are integrated into organizational policies, processes,
   procedures, and practices.
