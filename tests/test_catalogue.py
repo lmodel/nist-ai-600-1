@@ -236,14 +236,27 @@ def test_titles_are_the_publications(enum):
 
 
 def test_governance_plans_are_the_publications():
-    """Section A.1.2 sets the plans in two columns, so a wrapped title is not contiguous
-    in the page's text. Each of its words must still be there."""
-    letters = _publication_letters()
+    """Section A.1.2 sets the plans in two columns across two pages, so each column is read
+    on its own, and each title must stand whole in one of them."""
+    import pdfplumber
+
+    columns = []
+    with pdfplumber.open(PDF) as pdf:
+        for page in pdf.pages:
+            text = page.extract_text() or ""
+            if "Whistleblower protections" in text or "Auditing and assessment" in text:
+                middle = page.width / 2
+                top = 0
+                for box in (
+                    (0, top, middle, page.height),
+                    (middle, top, page.width, page.height),
+                ):
+                    columns.append(page.crop(box).extract_text() or "")
+    words = _words("\n".join(columns))
     for value, entry in (
         _view().get_enum("GaiGovernancePlan").permissible_values.items()
     ):
-        for word in entry.title.split():
-            assert _letters(word) in letters, (value, word)
+        assert _words(entry.title) in words, value
 
 
 def test_lists_of_appendix_a_are_complete():
