@@ -1,6 +1,6 @@
-package None;
+package example;
 
-/* metamodel_version: 1.11.0 */
+/* metamodel_version: 1.12.0 */
 /* version: 1.0.0 */
 import java.net.URI;
 import java.time.LocalDate;
@@ -10,19 +10,15 @@ import java.util.List;
 import lombok.*;
 
 /**
-  Root container that bundles the NIST AI 600-1 Generative AI
-Profile: GAI risks (Section 2), suggested actions (Section 3),
-and primary considerations (Appendix A). The GAI Profile is a
-*cross-sectoral* AI RMF profile (Section 1).
+  The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.
 **/
 @Data
 @EqualsAndHashCode(callSuper=false)
-public class GaiProfile extends NamedThing {
+public class GaiProfile extends AiRmfProfile {
 
-  private List<GaiRisk> gaiRiskCatalog;
-  private List<SuggestedAction> suggestedActions;
-  private List<PrimaryGaiConsideration> primaryConsiderations;
-  private List<StructuredPublicFeedback> structuredFeedbackMethods;
+  private List<GaiRisk> gaiRisks;
+  private List<GaiSubcategory> gaiSubcategories;
+  private List<GaiPrimaryConsideration> gaiPrimaryConsiderations;
 
 
 }

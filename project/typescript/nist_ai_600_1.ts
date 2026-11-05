@@ -1,545 +1,443 @@
-export type NamedThingId = string;
-export type GaiRiskId = string;
-export type SuggestedActionId = string;
-export type PrimaryGaiConsiderationId = string;
-export type StructuredPublicFeedbackId = string;
-export type AiRedTeamingId = string;
-export type GaiProfileId = string;
+export type AiRmfRecordAiRmfId = string;
+export type AiRmfProfileAiRmfId = string;
+export type GaiProfileAiRmfId = string;
 /**
-* The seven characteristics of trustworthy AI systems described in
-Figure 4 and Part 1 §3.
+* The seven characteristics of trustworthy AI systems in section 3 of the publication.
 */
-export enum TrustworthinessCharacteristicEnum {
+export enum AiRmfCharacteristicName {
     
-    /** Confirmation that requirements for a specific intended use have
-been fulfilled (validation) and that the system performs as
-required without failure (reliability). A necessary condition of
-trustworthiness and the base for other characteristics. */
-    VALID_AND_RELIABLE = "VALID_AND_RELIABLE",
-    /** The system does not, under defined conditions, lead to a state
-in which human life, health, property, or the environment is
-endangered. */
-    SAFE = "SAFE",
-    /** The system can withstand unexpected adverse events or changes
-(resilient) and maintain confidentiality, integrity, and
-availability through protection mechanisms (secure). */
-    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT",
-    /** Trustworthy AI depends on accountability, which presupposes
-transparency - the extent to which information about an AI
-system and its outputs is available to those interacting with
-it. */
-    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT",
-    /** Explainability concerns the mechanisms underlying an AI system's
-operation; interpretability concerns the meaning of its output
-in context. */
-    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE",
-    /** Norms and practices that help safeguard human autonomy,
-identity, and dignity - including anonymity, confidentiality,
-and control over personal information. */
-    PRIVACY_ENHANCED = "PRIVACY_ENHANCED",
-    /** Concerns for equality and equity by addressing issues such as
-harmful bias and discrimination, and recognising that
-perceptions of fairness differ across cultures and
-applications. */
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED",
+    /** Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others. */
+    Valid_and_Reliable = "valid_and_reliable",
+    /** Does not endanger human life, health, property or the environment under defined conditions. */
+    Safe = "safe",
+    /** Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack. */
+    Secure_and_Resilient = "secure_and_resilient",
+    /** Answerable for outcomes, which rests on people being able to get information about the system and its outputs. Figure 4 shows it relating to all the others. */
+    Accountable_and_Transparent = "accountable_and_transparent",
+    /** Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user). */
+    Explainable_and_Interpretable = "explainable_and_interpretable",
+    /** Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control. */
+    Privacy_Enhanced = "privacy_enhanced",
+    /** Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications. */
+    Fair___with_Harmful_Bias_Managed = "fair_with_harmful_bias_managed",
 };
 /**
-* AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
-"Risks can arise during design, development, deployment,
-operation, and/or decommissioning." Distinct from the six-stage
-`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
+* The ten AI actor tasks and five additional AI actors of Appendix A.
 */
-export enum GaiLifecycleStageEnum {
+export enum AiRmfActorTaskName {
     
-    /** Articulating system concept, objectives, requirements. */
-    DESIGN = "DESIGN",
-    /** Building, training, and tuning the GAI model or system. */
-    DEVELOPMENT = "DEVELOPMENT",
-    /** Placing the GAI system into a production environment. */
-    DEPLOYMENT = "DEPLOYMENT",
-    /** Running and monitoring the GAI system in use. */
-    OPERATION = "OPERATION",
-    /** Retiring or phasing out the GAI system. */
-    DECOMMISSIONING = "DECOMMISSIONING",
+    /** Setting the system's concept and objectives, planning and design, and gathering and preparing its data. */
+    AI_Design = "ai_design",
+    /** Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models. */
+    AI_Development = "ai_development",
+    /** Deciding how the system is used and putting it into production, including pilots and compliance checks. */
+    AI_Deployment = "ai_deployment",
+    /** Running the system and regularly assessing its output and impacts. */
+    Operation_and_Monitoring = "operation_and_monitoring",
+    /** Examining the system or its components and finding and fixing problems, throughout the lifecycle. */
+    Test_Evaluation_Verification_and_Validation_LEFT_PARENTHESISTEVVRIGHT_PARENTHESIS = "tevv",
+    /** Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design. */
+    Human_Factors = "human_factors",
+    /** Giving knowledge of the sector, context or application area where the system is used. */
+    Domain_Expert = "domain_expert",
+    /** Assessing accountability, harmful bias, impacts, product safety, liability and security. */
+    AI_Impact_Assessment = "ai_impact_assessment",
+    /** Acquiring AI models, products or services from another party, under financial, legal or policy authority. */
+    Procurement = "procurement",
+    /** Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed. */
+    Governance_and_Oversight = "governance_and_oversight",
+    /** External providers, developers, vendors and evaluators of data, algorithms, models, systems or services. */
+    Third_party_entities = "third_party_entities",
+    /** The individuals or groups that use the system for specific purposes, from AI experts to first-time users. */
+    End_users = "end_users",
+    /** Those directly or indirectly affected by the system or its output, whether or not they interact with it. */
+    Affected_individualsSOLIDUScommunities = "affected_individuals_and_communities",
+    /** Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers. */
+    Other_AI_actors = "other_ai_actors",
+    /** Those most likely to experience the impacts directly, who may motivate what other AI actors do. */
+    General_public = "general_public",
 };
 /**
-* AI Actor Tasks referenced by the Suggested Actions tables in
-NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
-Appendix A).
+* The kinds of AI RMF profile that section 6 names.
 */
-export enum GaiActorTaskEnum {
+export enum AiRmfProfileKind {
     
-    /** Management, fiduciary, and legal authority for the organization. */
-    GOVERNANCE_AND_OVERSIGHT = "GOVERNANCE_AND_OVERSIGHT",
-    /** Concept, objectives, planning, design, and data collection. */
-    AI_DESIGN = "AI_DESIGN",
-    /** Model building, selection, calibration, training, and testing. */
-    AI_DEVELOPMENT = "AI_DEVELOPMENT",
-    /** Contextual decisions on how the AI system is used and deployed. */
-    AI_DEPLOYMENT = "AI_DEPLOYMENT",
-    /** Assessing accountability, bias, impacts, safety, liability, security. */
-    AI_IMPACT_ASSESSMENT = "AI_IMPACT_ASSESSMENT",
-    /** Operating the AI system and assessing system output and impacts. */
-    OPERATION_AND_MONITORING = "OPERATION_AND_MONITORING",
-    /** Test, Evaluation, Verification, and Validation tasks. */
-    TEVV = "TEVV",
-    /** Multidisciplinary practitioners with sector or context expertise. */
-    DOMAIN_EXPERTS = "DOMAIN_EXPERTS",
-    /** Individuals or groups using the AI system for specific purposes. */
-    END_USERS = "END_USERS",
-    /** Human-centered design practices and end-user involvement. */
-    HUMAN_FACTORS = "HUMAN_FACTORS",
-    /** Individuals, groups, or communities directly or indirectly affected. */
-    AFFECTED_INDIVIDUALS_AND_COMMUNITIES = "AFFECTED_INDIVIDUALS_AND_COMMUNITIES",
-    /** Acquisition of AI models, products, or services from third parties. */
-    PROCUREMENT = "PROCUREMENT",
-    /** Providers, developers, vendors, and evaluators external to the deploying organization. */
-    THIRD_PARTY_ENTITIES = "THIRD_PARTY_ENTITIES",
+    /** The Core implemented for a specific setting or application. */
+    Use_case_profile = "use_case",
+    /** A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes. */
+    Current_Profile = "current",
+    /** A temporal profile saying which outcomes the desired risk management goals need. */
+    Target_Profile = "target",
+    /** Covers risks of models or applications used across use cases or sectors, or activities common to them, such as using large language models. */
+    Cross_sectoral_profile = "cross_sectoral",
 };
 /**
-* The 12 risks unique to or exacerbated by Generative AI as
-enumerated in NIST AI 600-1 Section 2.
+* The 12 risks of section 2.
 */
-export enum GaiRiskCategoryEnum {
+export enum GaiRiskName {
     
-    /** Eased access to or synthesis of materially nefarious
-information or design capabilities related to chemical,
-biological, radiological, or nuclear (CBRN) weapons or
-other dangerous materials or agents. */
-    CBRN_INFORMATION_OR_CAPABILITIES = "CBRN_INFORMATION_OR_CAPABILITIES",
-    /** The production of confidently stated but erroneous or
-false content (colloquially "hallucinations" or
-"fabrications") by which users may be misled or deceived. */
-    CONFABULATION = "CONFABULATION",
-    /** Eased production of and access to violent, inciting,
-radicalizing, or threatening content as well as
-recommendations to carry out self-harm or conduct illegal
-activities. Includes difficulty controlling public
-exposure to hateful and disparaging or stereotyping
-content. */
-    DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT = "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT",
-    /** Impacts due to leakage and unauthorized use, disclosure, or
-de-anonymization of biometric, health, location, or other
-personally identifiable information or sensitive data. */
-    DATA_PRIVACY = "DATA_PRIVACY",
-    /** Impacts due to high compute resource utilization in
-training or operating GAI models, and related outcomes that
-may adversely impact ecosystems. */
-    ENVIRONMENTAL_IMPACTS = "ENVIRONMENTAL_IMPACTS",
-    /** Amplification and exacerbation of historical, societal,
-and systemic biases; performance disparities between
-sub-groups or languages, possibly due to non-representative
-training data, resulting in discrimination, amplification
-of biases, or incorrect presumptions about performance;
-undesired homogeneity that skews system or model outputs. */
-    HARMFUL_BIAS_OR_HOMOGENIZATION = "HARMFUL_BIAS_OR_HOMOGENIZATION",
-    /** Arrangements of or interactions between a human and an AI
-system which can result in the human inappropriately
-anthropomorphising GAI systems or experiencing algorithmic
-aversion, automation bias, over-reliance, or emotional
-entanglement with GAI systems. */
-    HUMAN_AI_CONFIGURATION = "HUMAN_AI_CONFIGURATION",
-    /** Lowered barrier to entry to generate and support the
-exchange and consumption of content which may not
-distinguish fact from opinion or fiction or acknowledge
-uncertainties, or could be leveraged for large-scale
-dis- and mis-information campaigns. */
-    INFORMATION_INTEGRITY = "INFORMATION_INTEGRITY",
-    /** Lowered barriers for offensive cyber capabilities,
-including via automated discovery and exploitation of
-vulnerabilities; increased attack surface for targeted
-cyberattacks, which may compromise a system's availability
-or the confidentiality or integrity of training data,
-code, or model weights. */
-    INFORMATION_SECURITY = "INFORMATION_SECURITY",
-    /** Eased production or replication of alleged copyrighted,
-trademarked, or licensed content without authorization
-(possibly outside fair use); eased exposure of trade
-secrets; or plagiarism or illegal replication. */
-    INTELLECTUAL_PROPERTY = "INTELLECTUAL_PROPERTY",
-    /** Eased production of and access to obscene, degrading,
-and/or abusive imagery which can cause harm, including
-synthetic child sexual abuse material (CSAM) and
-nonconsensual intimate images (NCII) of adults. */
-    OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT = "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT",
-    /** Non-transparent or untraceable integration of upstream
-third-party components, including data that has been
-improperly obtained or not processed and cleaned due to
-increased automation from GAI; improper supplier vetting
-across the AI lifecycle; or other issues that diminish
-transparency or accountability for downstream users. */
-    VALUE_CHAIN_AND_COMPONENT_INTEGRATION = "VALUE_CHAIN_AND_COMPONENT_INTEGRATION",
+    /** Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons. */
+    CBRN_Information_or_Capabilities = "cbrn_information_or_capabilities",
+    /** Confident but wrong output that can mislead users. */
+    Confabulation = "confabulation",
+    /** Easier production of content that incites or threatens, recommends harm, or disparages. */
+    Dangerous_Violent_or_Hateful_Content = "dangerous_violent_or_hateful_content",
+    /** Leaks, misuse or de-anonymization of personal or sensitive data. */
+    Data_Privacy = "data_privacy",
+    /** Effects on ecosystems from the heavy computing that training and operating models need. */
+    Environmental_Impacts = "environmental_impacts",
+    /** Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness. */
+    Harmful_Bias_or_Homogenization = "harmful_bias_or_homogenization",
+    /** Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it. */
+    Human_AI_Configuration = "human_ai_configuration",
+    /** Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns. */
+    Information_Integrity = "information_integrity",
+    /** Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights. */
+    Information_Security = "information_security",
+    /** Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism. */
+    Intellectual_Property = "intellectual_property",
+    /** Easier production of harmful imagery, including synthetic abuse material and intimate images without consent. */
+    Obscene_Degrading_andSOLIDUSor_Abusive_Content = "obscene_degrading_or_abusive_content",
+    /** Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream. */
+    Value_Chain_and_Component_Integration = "value_chain_and_component_integration",
 };
 /**
-* Higher-level grouping of GAI risks, derived from the UK's
-International Scientific Report on the Safety of Advanced AI
-(NIST AI 600-1 Section 2, footnote 5).
+* The three groups into which footnote 5 says an organization could sort the risks, as one possible way.
 */
-export enum GaiRiskCategorizationEnum {
+export enum GaiRiskGrouping {
     
-    /** Risks from malfunction. Examples include confabulation;
-dangerous or violent recommendations; data privacy; value
-chain and component integration; harmful bias and
-homogenization. */
-    TECHNICAL_OR_MODEL_RISKS = "TECHNICAL_OR_MODEL_RISKS",
-    /** Risks from malicious use. Examples include CBRN information
-or capabilities; data privacy; human-AI configuration;
-obscene, degrading, and/or abusive content; information
-integrity; information security. */
-    MISUSE_BY_HUMANS = "MISUSE_BY_HUMANS",
-    /** Systemic risks. Examples include data privacy;
-environmental impacts; intellectual property. */
-    ECOSYSTEM_OR_SOCIETAL_RISKS = "ECOSYSTEM_OR_SOCIETAL_RISKS",
+    /** Risks from malfunction. */
+    Technical_SOLIDUS_Model_risks = "technical_or_model",
+    /** Risks from malicious use. */
+    Misuse_by_humans = "misuse_by_humans",
+    /** Systemic risks. */
+    Ecosystem_SOLIDUS_societal_risks = "ecosystem_or_societal",
 };
 /**
-* The scope at which a GAI risk may manifest (Section 2).
+* The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.
 */
-export enum GaiRiskScopeEnum {
+export enum GaiLifecycleStage {
     
-    /** Individual GAI model or system level. */
-    MODEL_OR_SYSTEM = "MODEL_OR_SYSTEM",
-    /** Specific application or implementation - i.e., a particular
-use case. */
-    APPLICATION_OR_IMPLEMENTATION = "APPLICATION_OR_IMPLEMENTATION",
-    /** Beyond a single system or organizational context - e.g.,
-algorithmic monocultures, labor-market impacts, creative
-economies. */
-    ECOSYSTEM = "ECOSYSTEM",
+    /** Setting out the system before it is built. */
+    Design = "design",
+    /** Building and training it. */
+    Development = "development",
+    /** Putting it into use. */
+    Deployment = "deployment",
+    /** Running it. */
+    Operation = "operation",
+    /** Retiring it. */
+    Decommissioning = "decommissioning",
 };
 /**
-* The source(s) from which a GAI risk may emerge (Section 2).
+* The levels where section 2 says a risk may exist.
 */
-export enum GaiRiskSourceEnum {
+export enum GaiRiskScope {
     
-    /** From decisions made during model or system design. */
-    DESIGN = "DESIGN",
-    /** From the training data or training process. */
-    TRAINING = "TRAINING",
-    /** From operating the GAI model or system. */
-    OPERATION = "OPERATION",
-    /** From inputs supplied to the model at inference time. */
-    MODEL_INPUTS = "MODEL_INPUTS",
-    /** From the GAI system's generated outputs. */
-    MODEL_OUTPUTS = "MODEL_OUTPUTS",
-    /** From human behaviour - abuse, misuse, or unsafe repurposing
-by humans (adversarial or not). */
-    HUMAN_BEHAVIOR = "HUMAN_BEHAVIOR",
-    /** From interactions between a human and the AI system. */
-    HUMAN_AI_INTERACTION = "HUMAN_AI_INTERACTION",
+    /** The level of one model or system. */
+    Model_or_system = "model_or_system",
+    /** The level of one specific use case. */
+    Application_or_implementation = "application_or_implementation",
+    /** Beyond one system or organization, such as algorithmic monocultures or effects on labor markets. */
+    Ecosystem = "ecosystem",
 };
 /**
-* The time scale over which a GAI risk may materialise
-(Section 2).
+* Where section 2 says a risk may come from.
 */
-export enum GaiRiskTimeScaleEnum {
+export enum GaiRiskSource {
     
-    /** Materialises abruptly (e.g., distribution of deepfakes). */
-    IMMEDIATE = "IMMEDIATE",
-    /** Materialises across extended periods (e.g., long-term
-effect of disinformation on societal trust). */
-    PROLONGED = "PROLONGED",
+    /** The design of the model itself. */
+    Design = "design",
+    /** The training of the model. */
+    Training = "training",
+    /** The operation of the model. */
+    Operation = "operation",
+    /** What goes into the model or system. */
+    Inputs = "inputs",
+    /** What the system produces. */
+    Outputs = "outputs",
+    /** Abuse, misuse or unsafe repurposing by people, whether adversarial or not. */
+    Human_behavior = "human_behavior",
+    /** How a person and a system act on each other. */
+    Human_AI_interaction = "human_ai_interaction",
 };
 /**
-* Two-letter function prefix used in GAI Action IDs.
+* How section 2 says a risk may materialize over time.
 */
-export enum GaiActionFunctionPrefixEnum {
+export enum GaiRiskTimeScale {
     
-    /** Govern function. */
-    GV = "GV",
-    /** Map function. */
-    MP = "MP",
-    /** Measure function. */
-    MS = "MS",
-    /** Manage function. */
-    MG = "MG",
+    /** All at once, such as immediate emotional harm from a harmful deepfake image. */
+    Abruptly = "abrupt",
+    /** Slowly, such as the long-term effect of disinformation on trust in institutions. */
+    Across_extended_periods = "extended",
 };
 /**
-* The four overarching themes derived from the GAI PWG
-consultation process (Appendix A).
+* The plans and actions that section A.1.2 says apply to GAI from other AI governance.
 */
-export enum PrimaryConsiderationEnum {
+export enum GaiGovernancePlan {
     
-    /** How organizational governance regimes may be re-evaluated
-and adjusted for GAI contexts (A.1). */
-    GOVERNANCE = "GOVERNANCE",
-    /** Test, evaluation, validation, and verification practices
-appropriate for GAI prior to deployment (A.1.4). */
-    PRE_DEPLOYMENT_TESTING = "PRE_DEPLOYMENT_TESTING",
-    /** Digital transparency mechanisms (provenance data tracking,
-watermarking, synthetic content detection) for tracing
-origin and history of content (A.1.6 - A.1.7). */
-    CONTENT_PROVENANCE = "CONTENT_PROVENANCE",
-    /** Documenting, reporting, and sharing information about AI
-incidents to mitigate harm and improve risk management
-(A.1.8). */
-    INCIDENT_DISCLOSURE = "INCIDENT_DISCLOSURE",
+    Accessibility_and_reasonable_accommodations = "accessibility_and_reasonable_accommodations",
+    AI_actor_credentials_and_qualifications = "ai_actor_credentials_and_qualifications",
+    Alignment_to_organizational_values = "alignment_to_organizational_values",
+    Auditing_and_assessment = "auditing_and_assessment",
+    Change_management_controls = "change_management_controls",
+    Commercial_use = "commercial_use",
+    Data_provenance = "data_provenance",
+    Data_protection = "data_protection",
+    Data_retention = "data_retention",
+    Consistency_in_use_of_defining_key_terms = "consistency_in_use_of_defining_key_terms",
+    Decommissioning = "decommissioning",
+    Discouraging_anonymous_use = "discouraging_anonymous_use",
+    Education = "education",
+    Impact_assessments = "impact_assessments",
+    Incident_response = "incident_response",
+    Monitoring = "monitoring",
+    Opt_outs = "opt_outs",
+    Risk_based_controls = "risk_based_controls",
+    Risk_mapping_and_measurement = "risk_mapping_and_measurement",
+    Science_backed_TEVV_practices = "science_backed_tevv_practices",
+    Secure_software_development_practices = "secure_software_development_practices",
+    Stakeholder_engagement = "stakeholder_engagement",
+    Synthetic_content_detection_and_labeling_tools_and_techniques = "synthetic_content_detection_and_labeling_tools_and_techniques",
+    Whistleblower_protections = "whistleblower_protections",
+    Workforce_diversity_and_interdisciplinary_teams = "workforce_diversity_and_interdisciplinary_teams",
 };
 /**
-* Categories of structured public feedback for GAI risk
-management (Appendix A.1.5).
+* The existing controls that section A.1.3 says can apply to third-party GAI.
 */
-export enum StructuredFeedbackMethodEnum {
+export enum GaiThirdPartyControl {
     
-    /** Methods used to solicit feedback from civil society groups,
-affected communities, and users (focus groups, small user
-studies, surveys). */
-    PARTICIPATORY_ENGAGEMENT_METHODS = "PARTICIPATORY_ENGAGEMENT_METHODS",
-    /** Methods used to determine how people interact with,
-consume, use, and make sense of AI-generated information
-(UX, usability, randomised experiments). */
-    FIELD_TESTING = "FIELD_TESTING",
-    /** A structured testing exercise used to probe an AI system
-to find flaws and vulnerabilities such as inaccurate,
-harmful, or discriminatory outputs. */
-    AI_RED_TEAMING = "AI_RED_TEAMING",
+    /** Checking a provider before acquiring its GAI technology or data. */
+    Acquisition_and_procurement_due_diligence = "acquisition_and_procurement_due_diligence",
+    /** Asking a provider what its software is made of. */
+    Requests_for_software_bills_of_materials = "software_bills_of_materials",
+    /** Holding a provider to agreed levels of service. */
+    Application_of_service_level_agreements = "service_level_agreements",
+    /** Asking for a provider's attestation reports. */
+    Statement_on_standards_for_attestation_engagement_reports = "ssae_reports",
 };
 /**
-* Types of AI red-teaming exercises (Appendix A.1.5).
+* The types of AI red-teaming in section A.1.5.
 */
-export enum RedTeamingTypeEnum {
+export enum GaiRedTeamingType {
     
-    /** Performed by general users not necessarily having AI or
-technical expertise. */
-    GENERAL_PUBLIC = "GENERAL_PUBLIC",
-    /** Performed by specialists with expertise in the domain or
-specific red-teaming context (medicine, biotech,
-cybersecurity). */
-    EXPERT = "EXPERT",
-    /** Hybrid exercises using both expert and general-public
-participants. */
-    COMBINATION = "COMBINATION",
-    /** Performed by GAI in combination with specialist or
-non-specialist human teams. */
-    HUMAN_AND_AI = "HUMAN_AND_AI",
+    /** By general users who are not necessarily AI or technical experts. */
+    General_Public = "general_public",
+    /** By specialists in the domain or the context of use. */
+    Expert = "expert",
+    /** By both experts and general public participants. */
+    Combination = "combination",
+    /** By GAI together with human teams, specialist or not. */
+    Human_SOLIDUS_AI = "human_ai",
 };
 /**
-* Provenance data tracking techniques for GAI content
-(Appendix A.1.6). "Some well-known techniques for provenance
-data tracking include digital watermarking, metadata
-recording, digital fingerprinting, and human authentication,
-among others."
+* The techniques for provenance data tracking in section A.1.6.
 */
-export enum ProvenanceTechniqueEnum {
+export enum GaiProvenanceTechnique {
     
-    /** Overt or covert digital watermarks embedded in content to
-allow downstream verification of origin. */
-    DIGITAL_WATERMARKING = "DIGITAL_WATERMARKING",
-    /** Recording metadata about content (creator, date/time,
-location, modifications, sources) for text, image, video,
-audio, or underlying datasets. */
-    METADATA_RECORDING = "METADATA_RECORDING",
-    /** Computing a content-derived identifier that can be matched
-against a reference store to detect known content. */
-    DIGITAL_FINGERPRINTING = "DIGITAL_FINGERPRINTING",
-    /** Human-mediated verification of content origin or
-authenticity. */
-    HUMAN_AUTHENTICATION = "HUMAN_AUTHENTICATION",
+    /** Placing overt or covert marks on content. */
+    Digital_watermarking = "digital_watermarking",
+    /** Recording facts about the content, such as its creator, date and sources. */
+    Metadata_recording = "metadata_recording",
+    /** Identifying content from its own characteristics. */
+    Digital_fingerprinting = "digital_fingerprinting",
+    /** Having people confirm where content came from. */
+    Human_authentication = "human_authentication",
 };
 /**
-* Governance plans and actions for GAI systems enumerated in
-NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").
+* The kinds of harm that section A.1.8's definition of an AI incident names.
 */
-export enum GovernancePracticeEnum {
+export enum GaiIncidentHarm {
     
-    /** Accessibility and reasonable accommodations. */
-    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS = "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS",
-    /** AI actor credentials and qualifications. */
-    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS = "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS",
-    /** Alignment to organizational values. */
-    ALIGNMENT_TO_ORGANIZATIONAL_VALUES = "ALIGNMENT_TO_ORGANIZATIONAL_VALUES",
-    /** Auditing and assessment. */
-    AUDITING_AND_ASSESSMENT = "AUDITING_AND_ASSESSMENT",
-    /** Change-management controls. */
-    CHANGE_MANAGEMENT_CONTROLS = "CHANGE_MANAGEMENT_CONTROLS",
-    /** Commercial use governance. */
-    COMMERCIAL_USE = "COMMERCIAL_USE",
-    /** Data provenance. */
-    DATA_PROVENANCE = "DATA_PROVENANCE",
-    /** Data protection. */
-    DATA_PROTECTION = "DATA_PROTECTION",
-    /** Data retention. */
-    DATA_RETENTION = "DATA_RETENTION",
-    /** Consistency in use of defining key terms. */
-    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS = "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS",
-    /** Decommissioning practices. */
-    DECOMMISSIONING = "DECOMMISSIONING",
-    /** Discouraging anonymous use. */
-    DISCOURAGING_ANONYMOUS_USE = "DISCOURAGING_ANONYMOUS_USE",
-    /** Education on GAI risks and responsible use. */
-    EDUCATION = "EDUCATION",
-    /** Impact assessments. */
-    IMPACT_ASSESSMENTS = "IMPACT_ASSESSMENTS",
-    /** Incident response procedures. */
-    INCIDENT_RESPONSE = "INCIDENT_RESPONSE",
-    /** Ongoing monitoring of GAI systems. */
-    MONITORING = "MONITORING",
-    /** User opt-out mechanisms. */
-    OPT_OUTS = "OPT_OUTS",
-    /** Risk-based controls. */
-    RISK_BASED_CONTROLS = "RISK_BASED_CONTROLS",
-    /** Risk mapping and measurement. */
-    RISK_MAPPING_AND_MEASUREMENT = "RISK_MAPPING_AND_MEASUREMENT",
-    /** Science-backed test, evaluation, validation, and verification practices. */
-    SCIENCE_BACKED_TEVV_PRACTICES = "SCIENCE_BACKED_TEVV_PRACTICES",
-    /** Secure software development practices. */
-    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES = "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES",
-    /** Stakeholder engagement. */
-    STAKEHOLDER_ENGAGEMENT = "STAKEHOLDER_ENGAGEMENT",
-    /** Synthetic content detection and labeling tools and techniques. */
-    SYNTHETIC_CONTENT_DETECTION_AND_LABELING = "SYNTHETIC_CONTENT_DETECTION_AND_LABELING",
-    /** Whistleblower protections. */
-    WHISTLEBLOWER_PROTECTIONS = "WHISTLEBLOWER_PROTECTIONS",
-    /** Workforce diversity and interdisciplinary teams. */
-    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS = "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS",
+    /** To a person or group, including psychological harm and harm to mental health. */
+    Injury_or_harm_to_health = "injury_or_harm_to_health",
+    /** To its management and operation. */
+    Disruption_of_critical_infrastructure = "critical_infrastructure_disruption",
+    /** Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights. */
+    Violations_of_rights_or_legal_obligations = "rights_violations",
+    /** To things and groups beyond the individual. */
+    Harm_to_property_communities_or_the_environment = "harm_to_property_communities_or_environment",
 };
 
 
 /**
- * A generic grouping for any identifiable AI RMF element.
+ * The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.
  */
-export interface NamedThing {
-    /** A unique identifier for an element. */
-    id: string,
-    /** A short human-readable name. */
-    name?: string,
-    /** A human-readable title. */
+export interface AiRmfRecord {
+    /** The identifier an adopter gives a record of its own. */
+    ai_rmf_id: string,
+    /** The element's name. */
     title?: string,
-    /** A human-readable description. */
+    /** What the element says or is. */
     description?: string,
-    /** Related references. */
-    see_also?: string[],
 }
 
 
 /**
- * A risk that is novel to or exacerbated by Generative AI.
-Each instance corresponds to one of the 12 risk categories
-enumerated in NIST AI 600-1 Section 2.
+ * An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.
  */
-export interface GaiRisk extends NamedThing {
-    /** The GAI risk category this element represents. */
-    gai_risk_kind?: string,
-    /** Higher-level categorisation - technical/model, misuse, or
-ecosystem/societal. */
-    risk_categorization?: string,
-    /** Scope levels at which the risk may manifest. */
-    risk_scope?: string,
-    /** Sources from which the risk may emerge. */
-    risk_sources?: string,
-    /** Time scales over which the risk may materialise. */
-    time_scale?: string,
-    /** Trustworthiness characteristic(s) the element pertains to. */
-    trustworthiness_characteristic?: string,
-    /** Suggested actions that address a GAI risk (back-reference
-derived from `SuggestedAction.gai_risks`). */
-    addressed_by_actions?: SuggestedActionId[],
-    /** AI lifecycle stage(s) at which the GAI risk may arise
-(NIST AI 600-1 Section 2). Uses the GAI five-stage
-lifecycle (`GaiLifecycleStageEnum`). */
-    lifecycle_stage?: string,
+export interface AiRmfProfile extends AiRmfRecord {
+    /** Which of the publication's kinds of profile this is. A current profile for one use case is both. */
+    ai_rmf_profile_kinds: string,
+    /** The sector, industry, technology, organization or end use the profile covers, such as hiring. */
+    ai_rmf_profile_setting?: string,
+    /** The subcategories the profile selects. An adopter may select from them rather than apply all. */
+    ai_rmf_profile_subcategories?: string[],
 }
 
 
 /**
- * A suggested action an organisation can take to manage GAI
-risks. Each action is identified by an Action ID, linked to an
-AI RMF subcategory, and may be relevant to one or more GAI
-risks and AI actor tasks (NIST AI 600-1 Section 3).
+ * A risk that section 2 defines as unique to or made worse by the development and use of GAI.
  */
-export interface SuggestedAction extends NamedThing {
-    /** Identifier of a Suggested Action. */
-    action_id: string,
-    /** Two-letter function prefix of the action's subcategory. */
-    function_prefix?: string,
-    /** Identifier of the AI RMF subcategory the action applies to. */
-    applies_to_subcategory?: string,
-    /** GAI risk categories addressed by a suggested action or
-considered by a primary consideration. */
-    gai_risks?: string,
-    /** Pertinent AI Actor Task(s) for the suggested action - i.e.,
-the "AI Actor Tasks" row at the bottom of each Section 3
-table. */
-    actor_task?: string,
+export interface GaiRisk {
+    /** The risk's definition in section 2. */
+    description?: string,
+    /** Which of the 12 risks this is. */
+    gai_risk_name: string,
+    /** The subsection of section 2 that discusses the risk, such as 2.1. */
+    gai_risk_section: string,
+    /** The AI RMF's trustworthiness characteristics that the subsection names for the risk. */
+    gai_risk_characteristics?: string,
+    /** The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three. */
+    gai_risk_groupings?: string,
+    /** The lifecycle stages where the risk can arise for the adopter's model, system or use case. */
+    gai_risk_lifecycle_stages?: string,
+    /** The levels where the risk exists for the adopter's model, system or use case. */
+    gai_risk_scopes?: string,
+    /** Where the risk comes from for the adopter's model, system or use case. */
+    gai_risk_sources?: string,
+    /** How the risk materializes over time for the adopter's model, system or use case. */
+    gai_risk_time_scales?: string,
 }
 
 
 /**
- * An overarching consideration derived from the NIST GAI PWG
-consultation process (Appendix A). The `consideration_kind`
-attribute discriminates between the four primary
-considerations: Governance, Pre-Deployment Testing, Content
-Provenance, and Incident Disclosure.
-
-All consideration-specific attributes are optional and apply
-to the appropriate `consideration_kind`:
-  * GOVERNANCE: governance_practices, third_party_considerations
-  * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
-  * CONTENT_PROVENANCE: provenance_techniques
-  * INCIDENT_DISCLOSURE: ai_incident_definition
+ * An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
  */
-export interface PrimaryGaiConsideration extends NamedThing {
-    /** Which primary consideration this element represents. */
-    consideration_kind: string,
-    /** Governance plans and actions enumerated in NIST AI 600-1
-Appendix A.1.2 (Organizational Governance). */
-    governance_practices?: string,
-    /** Considerations for third-party GAI integrations, procurement,
-SBOMs, SLAs, and SSAE reports (Appendix A.1.3). */
-    third_party_considerations?: string,
-    /** For Pre-Deployment Testing: free-text discussion of why
-current TEVV approaches may be inadequate (Appendix A.1.4). */
-    limitations_of_current_approaches?: string,
-    /** For Content Provenance: provenance data tracking techniques
-such as digital watermarking, metadata recording, digital
-fingerprinting, and human authentication (Appendix A.1.6). */
-    provenance_techniques?: string,
-    /** For Incident Disclosure: the definition of AI incident used
-by the organisation (Appendix A.1.8). */
-    ai_incident_definition?: string,
+export interface GaiSubcategory {
+    /** The subcategory's identifier, such as GOVERN 1.1. */
+    ai_rmf_subcategory_id: string,
+    /** The subcategory's statement as the table restates it. */
+    description: string,
+    /** The suggested actions the table lists. */
+    gai_subcategory_actions: GaiSuggestedAction[],
+    /** The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action. */
+    gai_subcategory_actor_tasks?: string,
 }
 
 
 /**
- * Methods used to evaluate whether GAI systems are performing as
-intended and to calibrate and verify traditional measurement
-methods (A.1.5).
+ * A step an organization or AI actor can take to manage GAI risks, which one row of a table states.
  */
-export interface StructuredPublicFeedback extends NamedThing {
-    /** Which structured feedback method this element represents. */
-    feedback_method_kind: string,
+export interface GaiSuggestedAction {
+    /** The action's identifier, such as GV-1.1-001. */
+    gai_action_id: string,
+    /** The action's text in the table. */
+    description: string,
+    /** The GAI risks the row tags the action with. */
+    gai_action_risks?: string,
 }
 
 
 /**
- * A structured testing exercise used to probe an AI system to
-find flaws and vulnerabilities such as inaccurate, harmful, or
-discriminatory outputs, often in a controlled environment and
-in collaboration with system developers (A.1.5).
+ * One of the four primary considerations of Appendix A, which also inform the suggested actions.
  */
-export interface AiRedTeaming extends StructuredPublicFeedback {
-    /** The type of AI red-teaming exercise. */
-    red_team_type?: string,
+export interface GaiPrimaryConsideration {
+    /** Which of the four classes this record is. */
+    gai_consideration_type: string,
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+    /** The subsections of Appendix A that discuss the consideration, such as A.1.2. */
+    gai_consideration_sections?: string[],
 }
 
 
 /**
- * Root container that bundles the NIST AI 600-1 Generative AI
-Profile: GAI risks (Section 2), suggested actions (Section 3),
-and primary considerations (Appendix A). The GAI Profile is a
-*cross-sectoral* AI RMF profile (Section 1).
+ * How an organization's governance can be revisited for GAI, including across the AI value chain.
  */
-export interface GaiProfile extends NamedThing {
-    /** The catalog of GAI risks (Section 2). */
-    gai_risk_catalog?: GaiRisk[],
-    /** Suggested actions to manage GAI risks (Section 3). */
-    suggested_actions?: SuggestedAction[],
-    /** The primary GAI considerations from Appendix A (Governance,
-Pre-Deployment Testing, Content Provenance, Incident
-Disclosure). Discriminated by `consideration_kind`. */
-    primary_considerations?: PrimaryGaiConsideration[],
-    /** Structured public feedback methods relevant to the profile
-(Appendix A.1.5). */
-    structured_feedback_methods?: StructuredPublicFeedback[],
+export interface GaiGovernanceConsideration extends GaiPrimaryConsideration {
+    /** The plans and actions that section A.1.2 lists from other AI governance. */
+    gai_governance_plans?: string,
+    /** The existing controls that section A.1.3 says can apply to third-party GAI. */
+    gai_third_party_controls?: string,
+}
+
+
+/**
+ * How GAI can be tested before deployment while better approaches mature, and where current tests fall short.
+ */
+export interface GaiPreDeploymentTestingConsideration extends GaiPrimaryConsideration {
+    /** The kinds of structured public feedback section A.1.5 gives as examples. */
+    gai_structured_feedback?: GaiStructuredFeedback[],
+}
+
+
+/**
+ * How tracking the origin and history of content helps tell authentic content from synthetic content.
+ */
+export interface GaiContentProvenanceConsideration extends GaiPrimaryConsideration {
+    /** The well-known techniques for provenance data tracking that section A.1.6 names. */
+    gai_provenance_techniques?: string,
+}
+
+
+/**
+ * How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.
+ */
+export interface GaiIncidentDisclosureConsideration extends GaiPrimaryConsideration {
+    /** The kinds of harm that section A.1.8's definition of an AI incident names. */
+    gai_incident_harms?: string,
+}
+
+
+/**
+ * A way of using structured public feedback to evaluate whether GAI systems perform as intended.
+ */
+export interface GaiStructuredFeedback {
+    /** Which of the three classes this record is. */
+    gai_feedback_type: string,
+    /** The element's name. */
+    title: string,
+    /** What the element says or is. */
+    description?: string,
+}
+
+
+/**
+ * Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.
+ */
+export interface GaiParticipatoryEngagement extends GaiStructuredFeedback {
+}
+
+
+/**
+ * Structured settings that show how people interact with and use AI-generated information.
+ */
+export interface GaiFieldTesting extends GaiStructuredFeedback {
+}
+
+
+/**
+ * A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.
+ */
+export interface GaiAiRedTeaming extends GaiStructuredFeedback {
+    /** The kinds of AI red-teaming that may suit the use case. */
+    gai_red_teaming_types?: string,
+}
+
+
+/**
+ * The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.
+ */
+export interface GaiProfile extends AiRmfProfile {
+    /** The 12 risks of section 2. */
+    gai_risks: GaiRisk[],
+    /** The tables of section 3, in the publication's order. */
+    gai_subcategories: GaiSubcategory[],
+    /** The four primary considerations of Appendix A. */
+    gai_primary_considerations?: GaiPrimaryConsideration[],
 }
 
 

@@ -29,7 +29,7 @@ from pydantic import (
 )
 
 
-metamodel_version = "1.11.0"
+metamodel_version = "1.12.0"
 version = "1.0.0"
 
 
@@ -66,971 +66,1012 @@ class LinkMLMeta(RootModel):
         return key in self.root
 
 
-linkml_meta = LinkMLMeta({'default_prefix': 'nist_ai_600_1',
+linkml_meta = LinkMLMeta({'annotations': {'publication_approved': {'tag': 'publication_approved',
+                                              'value': '2024-07-25'},
+                     'publication_date': {'tag': 'publication_date',
+                                          'value': '2024-07'}},
+     'comments': ['The publication has no version number of its own, so the '
+                  'version is the 1.0.0 of the AI RMF it profiles, and source is '
+                  "the publication's digital object identifier. The release tags "
+                  "are the schema's own versions, and "
+                  'scripts/check_upstream_release.py reports when NIST changes the '
+                  'file.',
+                  'It imports the base and profiles modules of '
+                  'lmodel/nist-ai-100-1, vendored under nist_ai_100_1/, so it '
+                  'needs no network. tests/test_schema_rules.py holds them to '
+                  'their hashes.',
+                  'The publication is a work of the United States Government. '
+                  "NOTICE says what it allows. The schema's descriptions are this "
+                  "project's own words; NIST's text is in "
+                  'src/nist_ai_600_1/data/.'],
+     'default_prefix': 'nist_ai_600_1',
      'default_range': 'string',
-     'description': 'LinkML schema for NIST AI 600-1, the Generative Artificial '
-                    'Intelligence\n'
-                    'Profile of the AI Risk Management Framework (July 2024).\n'
-                    '\n'
-                    'This is a **cross-sectoral profile** and a *companion '
-                    'resource* to\n'
-                    'NIST AI 100-1 (AI RMF 1.0). It defines risks that are novel '
-                    'to or\n'
-                    'exacerbated by the use of Generative AI (GAI) and provides a '
-                    'set of\n'
-                    'suggested actions, organised by AI RMF subcategory, that\n'
-                    'organisations can take to govern, map, measure, and manage '
-                    'those\n'
-                    'risks.\n'
-                    '\n'
-                    'Shared AI RMF base scaffolding (the abstract `NamedThing` '
-                    'root,\n'
-                    'identifier/title/description slots, the `SubcategoryCode` '
-                    'type, and\n'
-                    'the `TrustworthinessCharacteristicEnum`) is imported from '
-                    'the\n'
-                    '`nist_ai_rmf_common` module so it has a single canonical '
-                    'definition\n'
-                    'across the framework. GAI-specific lifecycle and actor-task\n'
-                    'vocabularies (`GaiLifecycleStageEnum`, `GaiActorTaskEnum`) '
-                    'are\n'
-                    'defined locally because they diverge from the NIST AI 100-1 '
-                    'enums;\n'
-                    'cross-references to AI RMF 1.0 elements are recorded as '
-                    '`*_mappings`\n'
-                    'for traceability.\n'
-                    '\n'
-                    'The schema covers:\n'
-                    '  * 12 GAI risk categories (Section 2)\n'
-                    '  * Risk dimensions (lifecycle stage, scope, source, time '
-                    'scale)\n'
-                    '  * `SuggestedAction` entries (Section 3 tables) linked to AI '
-                    'RMF\n'
-                    '    subcategories\n'
-                    '  * Primary GAI Considerations (Appendix A): Governance,\n'
-                    '    Pre-Deployment Testing, Content Provenance, Incident '
-                    'Disclosure\n'
-                    '  * Structured Public Feedback methods and AI Red-teaming '
-                    'types',
+     'description': 'A LinkML model of NIST AI 600-1, the Generative Artificial '
+                    'Intelligence Profile of the AI Risk Management Framework: its '
+                    '12 risks, the suggested actions its tables list under AI RMF '
+                    'subcategories, and its four primary considerations.',
      'id': 'https://w3id.org/lmodel/nist-ai-600-1',
-     'imports': ['linkml:types', 'nist_ai_100_1:schema/nist_ai_rmf_common'],
+     'imports': ['linkml:types',
+                 './nist_ai_100_1/nist_ai_100_1_base',
+                 './nist_ai_100_1/nist_ai_100_1_profiles',
+                 './nist_ai_600_1_risks',
+                 './nist_ai_600_1_actions',
+                 './nist_ai_600_1_considerations'],
      'license': 'Apache-2.0',
-     'name': 'nist-ai-600-1',
-     'prefixes': {'dcterms': {'prefix_prefix': 'dcterms',
-                              'prefix_reference': 'http://purl.org/dc/terms/'},
-                  'doi': {'prefix_prefix': 'doi',
-                          'prefix_reference': 'https://doi.org/'},
-                  'gist_linkml': {'prefix_prefix': 'gist_linkml',
-                                  'prefix_reference': 'https://w3id.org/lmodel/gist/'},
-                  'iso27001': {'prefix_prefix': 'iso27001',
-                               'prefix_reference': 'https://w3id.org/lmodel/iso27001/'},
-                  'iso29100': {'prefix_prefix': 'iso29100',
-                               'prefix_reference': 'https://w3id.org/lmodel/iso29100/'},
-                  'linkml': {'prefix_prefix': 'linkml',
+     'name': 'nist_ai_600_1',
+     'prefixes': {'linkml': {'prefix_prefix': 'linkml',
                              'prefix_reference': 'https://w3id.org/linkml/'},
                   'nist_ai_100_1': {'prefix_prefix': 'nist_ai_100_1',
                                     'prefix_reference': 'https://w3id.org/lmodel/nist-ai-100-1/'},
                   'nist_ai_600_1': {'prefix_prefix': 'nist_ai_600_1',
-                                    'prefix_reference': 'https://w3id.org/lmodel/nist-ai-600-1/'},
-                  'nist_csf': {'prefix_prefix': 'nist_csf',
-                               'prefix_reference': 'https://w3id.org/lmodel/nist-csf-v2/'},
-                  'oscal_catalog': {'prefix_prefix': 'oscal_catalog',
-                                    'prefix_reference': 'https://w3id.org/lmodel/oscal_catalog/'},
-                  'oscal_profile': {'prefix_prefix': 'oscal_profile',
-                                    'prefix_reference': 'https://w3id.org/lmodel/oscal_profile/'},
-                  'owasp_asi': {'prefix_prefix': 'owasp_asi',
-                                'prefix_reference': 'https://genai.owasp.org/resource/owasp-top-10-for-agentic-applications-for-2026/asi-'},
-                  'rdf': {'prefix_prefix': 'rdf',
-                          'prefix_reference': 'http://www.w3.org/1999/02/22-rdf-syntax-ns#'},
-                  'rdfs': {'prefix_prefix': 'rdfs',
-                           'prefix_reference': 'http://www.w3.org/2000/01/rdf-schema#'},
-                  'schema': {'prefix_prefix': 'schema',
-                             'prefix_reference': 'http://schema.org/'},
-                  'skos': {'prefix_prefix': 'skos',
-                           'prefix_reference': 'http://www.w3.org/2004/02/skos/core#'},
-                  'stix': {'prefix_prefix': 'stix',
-                           'prefix_reference': 'https://w3id.org/lmodel/stix/'},
-                  'xsd': {'prefix_prefix': 'xsd',
-                          'prefix_reference': 'http://www.w3.org/2001/XMLSchema#'}},
-     'see_also': ['https://doi.org/10.6028/NIST.AI.600-1',
+                                    'prefix_reference': 'https://w3id.org/lmodel/nist-ai-600-1/'}},
+     'see_also': ['https://lmodel.github.io/nist-ai-600-1',
                   'https://airc.nist.gov/Home',
                   'https://doi.org/10.6028/NIST.AI.100-1'],
      'source': 'https://doi.org/10.6028/NIST.AI.600-1',
      'source_file': 'src/nist_ai_600_1/schema/nist_ai_600_1.yaml',
-     'subsets': {'gai_actions': {'description': 'Suggested Actions organised by AI '
-                                                'RMF subcategory (Section 3).',
-                                 'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                                 'name': 'gai_actions'},
-                 'gai_base': {'description': 'GAI-specific base vocabulary defined '
-                                             'locally: the divergent\n'
-                                             'lifecycle and actor-task enums '
-                                             '(`GaiLifecycleStageEnum`,\n'
-                                             '`GaiActorTaskEnum`). The shared base '
-                                             'scaffolding (`NamedThing`,\n'
-                                             'identifier slots, `SubcategoryCode`, '
-                                             '`TrustworthinessCharacteristicEnum`)\n'
-                                             'is imported from '
-                                             '`nist_ai_rmf_common`; see '
-                                             '`*_mappings` for\n'
-                                             'cross-references to NIST AI 100-1.',
-                              'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                              'name': 'gai_base'},
-                 'gai_considerations': {'description': 'Primary GAI Considerations '
-                                                       '(Appendix A): Governance,\n'
-                                                       'Pre-Deployment Testing, '
-                                                       'Content Provenance, '
-                                                       'Incident Disclosure.',
-                                        'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                                        'name': 'gai_considerations'},
-                 'gai_core': {'description': 'Foundational GAI Profile concepts - '
-                                             'the 12 risks and their\n'
-                                             'dimensions (Section 2).',
-                              'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                              'name': 'gai_core'},
-                 'gai_feedback': {'description': 'Structured Public Feedback '
-                                                 'methods and AI Red-teaming\n'
-                                                 '(Appendix A.1.5).',
-                                  'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                                  'name': 'gai_feedback'}},
-     'title': 'NIST AI RMF Generative AI Profile (NIST AI 600-1)',
-     'types': {'GaiActionId': {'base': 'str',
-                               'description': 'Action identifier used in NIST AI '
-                                              '600-1 Section 3, of the form\n'
-                                              '"<prefix>-<category>.<subcategory>-<seq>" '
-                                              '- e.g., "GV-1.1-001".\n'
-                                              'Prefixes: GV (Govern), MP (Map), MS '
-                                              '(Measure), MG (Manage).',
-                               'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-                               'name': 'GaiActionId',
-                               'pattern': '^(GV|MP|MS|MG)-[0-9]+\\.[0-9]+-[0-9]{3}$',
-                               'typeof': 'string',
-                               'uri': 'xsd:string'}}} )
+     'title': 'NIST AI RMF Generative AI Profile (NIST AI 600-1)'} )
 
-class TrustworthinessCharacteristicEnum(str, Enum):
+class AiRmfCharacteristicName(str, Enum):
     """
-    The seven characteristics of trustworthy AI systems described in
-Figure 4 and Part 1 §3.
+    The seven characteristics of trustworthy AI systems in section 3 of the publication.
     """
-    VALID_AND_RELIABLE = "VALID_AND_RELIABLE"
+    Valid_and_Reliable = "valid_and_reliable"
     """
-    Confirmation that requirements for a specific intended use have
-    been fulfilled (validation) and that the system performs as
-    required without failure (reliability). A necessary condition of
-    trustworthiness and the base for other characteristics.
+    Meets the requirements of its intended use, shown by objective evidence, and performs without failure over time. Figure 4 makes it a necessary condition for the others.
     """
-    SAFE = "SAFE"
+    Safe = "safe"
     """
-    The system does not, under defined conditions, lead to a state
-    in which human life, health, property, or the environment is
-    endangered.
+    Does not endanger human life, health, property or the environment under defined conditions.
     """
-    SECURE_AND_RESILIENT = "SECURE_AND_RESILIENT"
+    Secure_and_Resilient = "secure_and_resilient"
     """
-    The system can withstand unexpected adverse events or changes
-    (resilient) and maintain confidentiality, integrity, and
-    availability through protection mechanisms (secure).
+    Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack.
     """
-    ACCOUNTABLE_AND_TRANSPARENT = "ACCOUNTABLE_AND_TRANSPARENT"
+    Accountable_and_Transparent = "accountable_and_transparent"
     """
-    Trustworthy AI depends on accountability, which presupposes
-    transparency - the extent to which information about an AI
-    system and its outputs is available to those interacting with
-    it.
+    Answerable for outcomes, which rests on people being able to get information about the system and its outputs. Figure 4 shows it relating to all the others.
     """
-    EXPLAINABLE_AND_INTERPRETABLE = "EXPLAINABLE_AND_INTERPRETABLE"
+    Explainable_and_Interpretable = "explainable_and_interpretable"
     """
-    Explainability concerns the mechanisms underlying an AI system's
-    operation; interpretability concerns the meaning of its output
-    in context.
+    Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user).
     """
-    PRIVACY_ENHANCED = "PRIVACY_ENHANCED"
+    Privacy_Enhanced = "privacy_enhanced"
     """
-    Norms and practices that help safeguard human autonomy,
-    identity, and dignity - including anonymity, confidentiality,
-    and control over personal information.
+    Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control.
     """
-    FAIR_WITH_HARMFUL_BIAS_MANAGED = "FAIR_WITH_HARMFUL_BIAS_MANAGED"
+    Fair___with_Harmful_Bias_Managed = "fair_with_harmful_bias_managed"
     """
-    Concerns for equality and equity by addressing issues such as
-    harmful bias and discrimination, and recognising that
-    perceptions of fairness differ across cultures and
-    applications.
+    Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications.
     """
 
 
-class GaiLifecycleStageEnum(str, Enum):
+class AiRmfActorTaskName(str, Enum):
     """
-    AI lifecycle stages enumerated in NIST AI 600-1 Section 2:
-"Risks can arise during design, development, deployment,
-operation, and/or decommissioning." Distinct from the six-stage
-`AiLifecycleStageEnum` of NIST AI 100-1 (see `related_mappings`).
+    The ten AI actor tasks and five additional AI actors of Appendix A.
     """
-    DESIGN = "DESIGN"
+    AI_Design = "ai_design"
     """
-    Articulating system concept, objectives, requirements.
+    Setting the system's concept and objectives, planning and design, and gathering and preparing its data.
     """
-    DEVELOPMENT = "DEVELOPMENT"
+    AI_Development = "ai_development"
     """
-    Building, training, and tuning the GAI model or system.
+    Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models.
     """
-    DEPLOYMENT = "DEPLOYMENT"
+    AI_Deployment = "ai_deployment"
     """
-    Placing the GAI system into a production environment.
+    Deciding how the system is used and putting it into production, including pilots and compliance checks.
     """
-    OPERATION = "OPERATION"
+    Operation_and_Monitoring = "operation_and_monitoring"
     """
-    Running and monitoring the GAI system in use.
+    Running the system and regularly assessing its output and impacts.
     """
-    DECOMMISSIONING = "DECOMMISSIONING"
+    Test_Evaluation_Verification_and_Validation_LEFT_PARENTHESISTEVVRIGHT_PARENTHESIS = "tevv"
     """
-    Retiring or phasing out the GAI system.
+    Examining the system or its components and finding and fixing problems, throughout the lifecycle.
     """
-
-
-class GaiActorTaskEnum(str, Enum):
+    Human_Factors = "human_factors"
     """
-    AI Actor Tasks referenced by the Suggested Actions tables in
-NIST AI 600-1 Section 3 (and defined in NIST AI 100-1
-Appendix A).
+    Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design.
     """
-    GOVERNANCE_AND_OVERSIGHT = "GOVERNANCE_AND_OVERSIGHT"
+    Domain_Expert = "domain_expert"
     """
-    Management, fiduciary, and legal authority for the organization.
+    Giving knowledge of the sector, context or application area where the system is used.
     """
-    AI_DESIGN = "AI_DESIGN"
+    AI_Impact_Assessment = "ai_impact_assessment"
     """
-    Concept, objectives, planning, design, and data collection.
+    Assessing accountability, harmful bias, impacts, product safety, liability and security.
     """
-    AI_DEVELOPMENT = "AI_DEVELOPMENT"
+    Procurement = "procurement"
     """
-    Model building, selection, calibration, training, and testing.
+    Acquiring AI models, products or services from another party, under financial, legal or policy authority.
     """
-    AI_DEPLOYMENT = "AI_DEPLOYMENT"
+    Governance_and_Oversight = "governance_and_oversight"
     """
-    Contextual decisions on how the AI system is used and deployed.
+    Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed.
     """
-    AI_IMPACT_ASSESSMENT = "AI_IMPACT_ASSESSMENT"
+    Third_party_entities = "third_party_entities"
     """
-    Assessing accountability, bias, impacts, safety, liability, security.
+    External providers, developers, vendors and evaluators of data, algorithms, models, systems or services.
     """
-    OPERATION_AND_MONITORING = "OPERATION_AND_MONITORING"
+    End_users = "end_users"
     """
-    Operating the AI system and assessing system output and impacts.
+    The individuals or groups that use the system for specific purposes, from AI experts to first-time users.
     """
-    TEVV = "TEVV"
+    Affected_individualsSOLIDUScommunities = "affected_individuals_and_communities"
     """
-    Test, Evaluation, Verification, and Validation tasks.
+    Those directly or indirectly affected by the system or its output, whether or not they interact with it.
     """
-    DOMAIN_EXPERTS = "DOMAIN_EXPERTS"
+    Other_AI_actors = "other_ai_actors"
     """
-    Multidisciplinary practitioners with sector or context expertise.
+    Sources of formal or quasi-formal norms or guidance, such as standards bodies, advocacy groups and researchers.
     """
-    END_USERS = "END_USERS"
+    General_public = "general_public"
     """
-    Individuals or groups using the AI system for specific purposes.
-    """
-    HUMAN_FACTORS = "HUMAN_FACTORS"
-    """
-    Human-centered design practices and end-user involvement.
-    """
-    AFFECTED_INDIVIDUALS_AND_COMMUNITIES = "AFFECTED_INDIVIDUALS_AND_COMMUNITIES"
-    """
-    Individuals, groups, or communities directly or indirectly affected.
-    """
-    PROCUREMENT = "PROCUREMENT"
-    """
-    Acquisition of AI models, products, or services from third parties.
-    """
-    THIRD_PARTY_ENTITIES = "THIRD_PARTY_ENTITIES"
-    """
-    Providers, developers, vendors, and evaluators external to the deploying organization.
+    Those most likely to experience the impacts directly, who may motivate what other AI actors do.
     """
 
 
-class GaiRiskCategoryEnum(str, Enum):
+class AiRmfProfileKind(str, Enum):
     """
-    The 12 risks unique to or exacerbated by Generative AI as
-enumerated in NIST AI 600-1 Section 2.
+    The kinds of AI RMF profile that section 6 names.
     """
-    CBRN_INFORMATION_OR_CAPABILITIES = "CBRN_INFORMATION_OR_CAPABILITIES"
+    Use_case_profile = "use_case"
     """
-    Eased access to or synthesis of materially nefarious
-    information or design capabilities related to chemical,
-    biological, radiological, or nuclear (CBRN) weapons or
-    other dangerous materials or agents.
+    The Core implemented for a specific setting or application.
     """
-    CONFABULATION = "CONFABULATION"
+    Current_Profile = "current"
     """
-    The production of confidently stated but erroneous or
-    false content (colloquially "hallucinations" or
-    "fabrications") by which users may be misled or deceived.
+    A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes.
     """
-    DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT = "DANGEROUS_VIOLENT_OR_HATEFUL_CONTENT"
+    Target_Profile = "target"
     """
-    Eased production of and access to violent, inciting,
-    radicalizing, or threatening content as well as
-    recommendations to carry out self-harm or conduct illegal
-    activities. Includes difficulty controlling public
-    exposure to hateful and disparaging or stereotyping
-    content.
+    A temporal profile saying which outcomes the desired risk management goals need.
     """
-    DATA_PRIVACY = "DATA_PRIVACY"
+    Cross_sectoral_profile = "cross_sectoral"
     """
-    Impacts due to leakage and unauthorized use, disclosure, or
-    de-anonymization of biometric, health, location, or other
-    personally identifiable information or sensitive data.
-    """
-    ENVIRONMENTAL_IMPACTS = "ENVIRONMENTAL_IMPACTS"
-    """
-    Impacts due to high compute resource utilization in
-    training or operating GAI models, and related outcomes that
-    may adversely impact ecosystems.
-    """
-    HARMFUL_BIAS_OR_HOMOGENIZATION = "HARMFUL_BIAS_OR_HOMOGENIZATION"
-    """
-    Amplification and exacerbation of historical, societal,
-    and systemic biases; performance disparities between
-    sub-groups or languages, possibly due to non-representative
-    training data, resulting in discrimination, amplification
-    of biases, or incorrect presumptions about performance;
-    undesired homogeneity that skews system or model outputs.
-    """
-    HUMAN_AI_CONFIGURATION = "HUMAN_AI_CONFIGURATION"
-    """
-    Arrangements of or interactions between a human and an AI
-    system which can result in the human inappropriately
-    anthropomorphising GAI systems or experiencing algorithmic
-    aversion, automation bias, over-reliance, or emotional
-    entanglement with GAI systems.
-    """
-    INFORMATION_INTEGRITY = "INFORMATION_INTEGRITY"
-    """
-    Lowered barrier to entry to generate and support the
-    exchange and consumption of content which may not
-    distinguish fact from opinion or fiction or acknowledge
-    uncertainties, or could be leveraged for large-scale
-    dis- and mis-information campaigns.
-    """
-    INFORMATION_SECURITY = "INFORMATION_SECURITY"
-    """
-    Lowered barriers for offensive cyber capabilities,
-    including via automated discovery and exploitation of
-    vulnerabilities; increased attack surface for targeted
-    cyberattacks, which may compromise a system's availability
-    or the confidentiality or integrity of training data,
-    code, or model weights.
-    """
-    INTELLECTUAL_PROPERTY = "INTELLECTUAL_PROPERTY"
-    """
-    Eased production or replication of alleged copyrighted,
-    trademarked, or licensed content without authorization
-    (possibly outside fair use); eased exposure of trade
-    secrets; or plagiarism or illegal replication.
-    """
-    OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT = "OBSCENE_DEGRADING_OR_ABUSIVE_CONTENT"
-    """
-    Eased production of and access to obscene, degrading,
-    and/or abusive imagery which can cause harm, including
-    synthetic child sexual abuse material (CSAM) and
-    nonconsensual intimate images (NCII) of adults.
-    """
-    VALUE_CHAIN_AND_COMPONENT_INTEGRATION = "VALUE_CHAIN_AND_COMPONENT_INTEGRATION"
-    """
-    Non-transparent or untraceable integration of upstream
-    third-party components, including data that has been
-    improperly obtained or not processed and cleaned due to
-    increased automation from GAI; improper supplier vetting
-    across the AI lifecycle; or other issues that diminish
-    transparency or accountability for downstream users.
+    Covers risks of models or applications used across use cases or sectors, or activities common to them, such as using large language models.
     """
 
 
-class GaiRiskCategorizationEnum(str, Enum):
+class GaiRiskName(str, Enum):
     """
-    Higher-level grouping of GAI risks, derived from the UK's
-International Scientific Report on the Safety of Advanced AI
-(NIST AI 600-1 Section 2, footnote 5).
+    The 12 risks of section 2.
     """
-    TECHNICAL_OR_MODEL_RISKS = "TECHNICAL_OR_MODEL_RISKS"
+    CBRN_Information_or_Capabilities = "cbrn_information_or_capabilities"
     """
-    Risks from malfunction. Examples include confabulation;
-    dangerous or violent recommendations; data privacy; value
-    chain and component integration; harmful bias and
-    homogenization.
+    Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons.
     """
-    MISUSE_BY_HUMANS = "MISUSE_BY_HUMANS"
+    Confabulation = "confabulation"
     """
-    Risks from malicious use. Examples include CBRN information
-    or capabilities; data privacy; human-AI configuration;
-    obscene, degrading, and/or abusive content; information
-    integrity; information security.
+    Confident but wrong output that can mislead users.
     """
-    ECOSYSTEM_OR_SOCIETAL_RISKS = "ECOSYSTEM_OR_SOCIETAL_RISKS"
+    Dangerous_Violent_or_Hateful_Content = "dangerous_violent_or_hateful_content"
     """
-    Systemic risks. Examples include data privacy;
-    environmental impacts; intellectual property.
+    Easier production of content that incites or threatens, recommends harm, or disparages.
     """
-
-
-class GaiRiskScopeEnum(str, Enum):
+    Data_Privacy = "data_privacy"
     """
-    The scope at which a GAI risk may manifest (Section 2).
+    Leaks, misuse or de-anonymization of personal or sensitive data.
     """
-    MODEL_OR_SYSTEM = "MODEL_OR_SYSTEM"
+    Environmental_Impacts = "environmental_impacts"
     """
-    Individual GAI model or system level.
+    Effects on ecosystems from the heavy computing that training and operating models need.
     """
-    APPLICATION_OR_IMPLEMENTATION = "APPLICATION_OR_IMPLEMENTATION"
+    Harmful_Bias_or_Homogenization = "harmful_bias_or_homogenization"
     """
-    Specific application or implementation - i.e., a particular
-    use case.
+    Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness.
     """
-    ECOSYSTEM = "ECOSYSTEM"
+    Human_AI_Configuration = "human_ai_configuration"
     """
-    Beyond a single system or organizational context - e.g.,
-    algorithmic monocultures, labor-market impacts, creative
-    economies.
+    Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it.
     """
-
-
-class GaiRiskSourceEnum(str, Enum):
+    Information_Integrity = "information_integrity"
     """
-    The source(s) from which a GAI risk may emerge (Section 2).
+    Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns.
     """
-    DESIGN = "DESIGN"
+    Information_Security = "information_security"
     """
-    From decisions made during model or system design.
+    Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights.
     """
-    TRAINING = "TRAINING"
+    Intellectual_Property = "intellectual_property"
     """
-    From the training data or training process.
+    Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism.
     """
-    OPERATION = "OPERATION"
+    Obscene_Degrading_andSOLIDUSor_Abusive_Content = "obscene_degrading_or_abusive_content"
     """
-    From operating the GAI model or system.
+    Easier production of harmful imagery, including synthetic abuse material and intimate images without consent.
     """
-    MODEL_INPUTS = "MODEL_INPUTS"
+    Value_Chain_and_Component_Integration = "value_chain_and_component_integration"
     """
-    From inputs supplied to the model at inference time.
-    """
-    MODEL_OUTPUTS = "MODEL_OUTPUTS"
-    """
-    From the GAI system's generated outputs.
-    """
-    HUMAN_BEHAVIOR = "HUMAN_BEHAVIOR"
-    """
-    From human behaviour - abuse, misuse, or unsafe repurposing
-    by humans (adversarial or not).
-    """
-    HUMAN_AI_INTERACTION = "HUMAN_AI_INTERACTION"
-    """
-    From interactions between a human and the AI system.
+    Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream.
     """
 
 
-class GaiRiskTimeScaleEnum(str, Enum):
+class GaiRiskGrouping(str, Enum):
     """
-    The time scale over which a GAI risk may materialise
-(Section 2).
+    The three groups into which footnote 5 says an organization could sort the risks, as one possible way.
     """
-    IMMEDIATE = "IMMEDIATE"
+    Technical_SOLIDUS_Model_risks = "technical_or_model"
     """
-    Materialises abruptly (e.g., distribution of deepfakes).
+    Risks from malfunction.
     """
-    PROLONGED = "PROLONGED"
+    Misuse_by_humans = "misuse_by_humans"
     """
-    Materialises across extended periods (e.g., long-term
-    effect of disinformation on societal trust).
+    Risks from malicious use.
     """
-
-
-class GaiActionFunctionPrefixEnum(str, Enum):
+    Ecosystem_SOLIDUS_societal_risks = "ecosystem_or_societal"
     """
-    Two-letter function prefix used in GAI Action IDs.
-    """
-    GV = "GV"
-    """
-    Govern function.
-    """
-    MP = "MP"
-    """
-    Map function.
-    """
-    MS = "MS"
-    """
-    Measure function.
-    """
-    MG = "MG"
-    """
-    Manage function.
+    Systemic risks.
     """
 
 
-class PrimaryConsiderationEnum(str, Enum):
+class GaiLifecycleStage(str, Enum):
     """
-    The four overarching themes derived from the GAI PWG
-consultation process (Appendix A).
+    The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.
     """
-    GOVERNANCE = "GOVERNANCE"
+    Design = "design"
     """
-    How organizational governance regimes may be re-evaluated
-    and adjusted for GAI contexts (A.1).
+    Setting out the system before it is built.
     """
-    PRE_DEPLOYMENT_TESTING = "PRE_DEPLOYMENT_TESTING"
+    Development = "development"
     """
-    Test, evaluation, validation, and verification practices
-    appropriate for GAI prior to deployment (A.1.4).
+    Building and training it.
     """
-    CONTENT_PROVENANCE = "CONTENT_PROVENANCE"
+    Deployment = "deployment"
     """
-    Digital transparency mechanisms (provenance data tracking,
-    watermarking, synthetic content detection) for tracing
-    origin and history of content (A.1.6 - A.1.7).
+    Putting it into use.
     """
-    INCIDENT_DISCLOSURE = "INCIDENT_DISCLOSURE"
+    Operation = "operation"
     """
-    Documenting, reporting, and sharing information about AI
-    incidents to mitigate harm and improve risk management
-    (A.1.8).
+    Running it.
+    """
+    Decommissioning = "decommissioning"
+    """
+    Retiring it.
     """
 
 
-class StructuredFeedbackMethodEnum(str, Enum):
+class GaiRiskScope(str, Enum):
     """
-    Categories of structured public feedback for GAI risk
-management (Appendix A.1.5).
+    The levels where section 2 says a risk may exist.
     """
-    PARTICIPATORY_ENGAGEMENT_METHODS = "PARTICIPATORY_ENGAGEMENT_METHODS"
+    Model_or_system = "model_or_system"
     """
-    Methods used to solicit feedback from civil society groups,
-    affected communities, and users (focus groups, small user
-    studies, surveys).
+    The level of one model or system.
     """
-    FIELD_TESTING = "FIELD_TESTING"
+    Application_or_implementation = "application_or_implementation"
     """
-    Methods used to determine how people interact with,
-    consume, use, and make sense of AI-generated information
-    (UX, usability, randomised experiments).
+    The level of one specific use case.
     """
-    AI_RED_TEAMING = "AI_RED_TEAMING"
+    Ecosystem = "ecosystem"
     """
-    A structured testing exercise used to probe an AI system
-    to find flaws and vulnerabilities such as inaccurate,
-    harmful, or discriminatory outputs.
+    Beyond one system or organization, such as algorithmic monocultures or effects on labor markets.
     """
 
 
-class RedTeamingTypeEnum(str, Enum):
+class GaiRiskSource(str, Enum):
     """
-    Types of AI red-teaming exercises (Appendix A.1.5).
+    Where section 2 says a risk may come from.
     """
-    GENERAL_PUBLIC = "GENERAL_PUBLIC"
+    Design = "design"
     """
-    Performed by general users not necessarily having AI or
-    technical expertise.
+    The design of the model itself.
     """
-    EXPERT = "EXPERT"
+    Training = "training"
     """
-    Performed by specialists with expertise in the domain or
-    specific red-teaming context (medicine, biotech,
-    cybersecurity).
+    The training of the model.
     """
-    COMBINATION = "COMBINATION"
+    Operation = "operation"
     """
-    Hybrid exercises using both expert and general-public
-    participants.
+    The operation of the model.
     """
-    HUMAN_AND_AI = "HUMAN_AND_AI"
+    Inputs = "inputs"
     """
-    Performed by GAI in combination with specialist or
-    non-specialist human teams.
+    What goes into the model or system.
     """
-
-
-class ProvenanceTechniqueEnum(str, Enum):
+    Outputs = "outputs"
     """
-    Provenance data tracking techniques for GAI content
-(Appendix A.1.6). "Some well-known techniques for provenance
-data tracking include digital watermarking, metadata
-recording, digital fingerprinting, and human authentication,
-among others."
+    What the system produces.
     """
-    DIGITAL_WATERMARKING = "DIGITAL_WATERMARKING"
+    Human_behavior = "human_behavior"
     """
-    Overt or covert digital watermarks embedded in content to
-    allow downstream verification of origin.
+    Abuse, misuse or unsafe repurposing by people, whether adversarial or not.
     """
-    METADATA_RECORDING = "METADATA_RECORDING"
+    Human_AI_interaction = "human_ai_interaction"
     """
-    Recording metadata about content (creator, date/time,
-    location, modifications, sources) for text, image, video,
-    audio, or underlying datasets.
-    """
-    DIGITAL_FINGERPRINTING = "DIGITAL_FINGERPRINTING"
-    """
-    Computing a content-derived identifier that can be matched
-    against a reference store to detect known content.
-    """
-    HUMAN_AUTHENTICATION = "HUMAN_AUTHENTICATION"
-    """
-    Human-mediated verification of content origin or
-    authenticity.
+    How a person and a system act on each other.
     """
 
 
-class GovernancePracticeEnum(str, Enum):
+class GaiRiskTimeScale(str, Enum):
     """
-    Governance plans and actions for GAI systems enumerated in
-NIST AI 600-1 Appendix A.1.2 ("Organizational Governance").
+    How section 2 says a risk may materialize over time.
     """
-    ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS = "ACCESSIBILITY_AND_REASONABLE_ACCOMMODATIONS"
+    Abruptly = "abrupt"
     """
-    Accessibility and reasonable accommodations.
+    All at once, such as immediate emotional harm from a harmful deepfake image.
     """
-    AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS = "AI_ACTOR_CREDENTIALS_AND_QUALIFICATIONS"
+    Across_extended_periods = "extended"
     """
-    AI actor credentials and qualifications.
+    Slowly, such as the long-term effect of disinformation on trust in institutions.
     """
-    ALIGNMENT_TO_ORGANIZATIONAL_VALUES = "ALIGNMENT_TO_ORGANIZATIONAL_VALUES"
+
+
+class GaiGovernancePlan(str, Enum):
     """
-    Alignment to organizational values.
+    The plans and actions that section A.1.2 says apply to GAI from other AI governance.
     """
-    AUDITING_AND_ASSESSMENT = "AUDITING_AND_ASSESSMENT"
+    Accessibility_and_reasonable_accommodations = "accessibility_and_reasonable_accommodations"
+    AI_actor_credentials_and_qualifications = "ai_actor_credentials_and_qualifications"
+    Alignment_to_organizational_values = "alignment_to_organizational_values"
+    Auditing_and_assessment = "auditing_and_assessment"
+    Change_management_controls = "change_management_controls"
+    Commercial_use = "commercial_use"
+    Data_provenance = "data_provenance"
+    Data_protection = "data_protection"
+    Data_retention = "data_retention"
+    Consistency_in_use_of_defining_key_terms = "consistency_in_use_of_defining_key_terms"
+    Decommissioning = "decommissioning"
+    Discouraging_anonymous_use = "discouraging_anonymous_use"
+    Education = "education"
+    Impact_assessments = "impact_assessments"
+    Incident_response = "incident_response"
+    Monitoring = "monitoring"
+    Opt_outs = "opt_outs"
+    Risk_based_controls = "risk_based_controls"
+    Risk_mapping_and_measurement = "risk_mapping_and_measurement"
+    Science_backed_TEVV_practices = "science_backed_tevv_practices"
+    Secure_software_development_practices = "secure_software_development_practices"
+    Stakeholder_engagement = "stakeholder_engagement"
+    Synthetic_content_detection_and_labeling_tools_and_techniques = "synthetic_content_detection_and_labeling_tools_and_techniques"
+    Whistleblower_protections = "whistleblower_protections"
+    Workforce_diversity_and_interdisciplinary_teams = "workforce_diversity_and_interdisciplinary_teams"
+
+
+class GaiThirdPartyControl(str, Enum):
     """
-    Auditing and assessment.
+    The existing controls that section A.1.3 says can apply to third-party GAI.
     """
-    CHANGE_MANAGEMENT_CONTROLS = "CHANGE_MANAGEMENT_CONTROLS"
+    Acquisition_and_procurement_due_diligence = "acquisition_and_procurement_due_diligence"
     """
-    Change-management controls.
+    Checking a provider before acquiring its GAI technology or data.
     """
-    COMMERCIAL_USE = "COMMERCIAL_USE"
+    Requests_for_software_bills_of_materials = "software_bills_of_materials"
     """
-    Commercial use governance.
+    Asking a provider what its software is made of.
     """
-    DATA_PROVENANCE = "DATA_PROVENANCE"
+    Application_of_service_level_agreements = "service_level_agreements"
     """
-    Data provenance.
+    Holding a provider to agreed levels of service.
     """
-    DATA_PROTECTION = "DATA_PROTECTION"
+    Statement_on_standards_for_attestation_engagement_reports = "ssae_reports"
     """
-    Data protection.
+    Asking for a provider's attestation reports.
     """
-    DATA_RETENTION = "DATA_RETENTION"
+
+
+class GaiRedTeamingType(str, Enum):
     """
-    Data retention.
+    The types of AI red-teaming in section A.1.5.
     """
-    CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS = "CONSISTENCY_IN_USE_OF_DEFINING_KEY_TERMS"
+    General_Public = "general_public"
     """
-    Consistency in use of defining key terms.
+    By general users who are not necessarily AI or technical experts.
     """
-    DECOMMISSIONING = "DECOMMISSIONING"
+    Expert = "expert"
     """
-    Decommissioning practices.
+    By specialists in the domain or the context of use.
     """
-    DISCOURAGING_ANONYMOUS_USE = "DISCOURAGING_ANONYMOUS_USE"
+    Combination = "combination"
     """
-    Discouraging anonymous use.
+    By both experts and general public participants.
     """
-    EDUCATION = "EDUCATION"
+    Human_SOLIDUS_AI = "human_ai"
     """
-    Education on GAI risks and responsible use.
+    By GAI together with human teams, specialist or not.
     """
-    IMPACT_ASSESSMENTS = "IMPACT_ASSESSMENTS"
+
+
+class GaiProvenanceTechnique(str, Enum):
     """
-    Impact assessments.
+    The techniques for provenance data tracking in section A.1.6.
     """
-    INCIDENT_RESPONSE = "INCIDENT_RESPONSE"
+    Digital_watermarking = "digital_watermarking"
     """
-    Incident response procedures.
+    Placing overt or covert marks on content.
     """
-    MONITORING = "MONITORING"
+    Metadata_recording = "metadata_recording"
     """
-    Ongoing monitoring of GAI systems.
+    Recording facts about the content, such as its creator, date and sources.
     """
-    OPT_OUTS = "OPT_OUTS"
+    Digital_fingerprinting = "digital_fingerprinting"
     """
-    User opt-out mechanisms.
+    Identifying content from its own characteristics.
     """
-    RISK_BASED_CONTROLS = "RISK_BASED_CONTROLS"
+    Human_authentication = "human_authentication"
     """
-    Risk-based controls.
+    Having people confirm where content came from.
     """
-    RISK_MAPPING_AND_MEASUREMENT = "RISK_MAPPING_AND_MEASUREMENT"
+
+
+class GaiIncidentHarm(str, Enum):
     """
-    Risk mapping and measurement.
+    The kinds of harm that section A.1.8's definition of an AI incident names.
     """
-    SCIENCE_BACKED_TEVV_PRACTICES = "SCIENCE_BACKED_TEVV_PRACTICES"
+    Injury_or_harm_to_health = "injury_or_harm_to_health"
     """
-    Science-backed test, evaluation, validation, and verification practices.
+    To a person or group, including psychological harm and harm to mental health.
     """
-    SECURE_SOFTWARE_DEVELOPMENT_PRACTICES = "SECURE_SOFTWARE_DEVELOPMENT_PRACTICES"
+    Disruption_of_critical_infrastructure = "critical_infrastructure_disruption"
     """
-    Secure software development practices.
+    To its management and operation.
     """
-    STAKEHOLDER_ENGAGEMENT = "STAKEHOLDER_ENGAGEMENT"
+    Violations_of_rights_or_legal_obligations = "rights_violations"
     """
-    Stakeholder engagement.
+    Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights.
     """
-    SYNTHETIC_CONTENT_DETECTION_AND_LABELING = "SYNTHETIC_CONTENT_DETECTION_AND_LABELING"
+    Harm_to_property_communities_or_the_environment = "harm_to_property_communities_or_environment"
     """
-    Synthetic content detection and labeling tools and techniques.
-    """
-    WHISTLEBLOWER_PROTECTIONS = "WHISTLEBLOWER_PROTECTIONS"
-    """
-    Whistleblower protections.
-    """
-    WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS = "WORKFORCE_DIVERSITY_AND_INTERDISCIPLINARY_TEAMS"
-    """
-    Workforce diversity and interdisciplinary teams.
+    To things and groups beyond the individual.
     """
 
 
 
-class NamedThing(ConfiguredBaseModel):
+class AiRmfRecord(ConfiguredBaseModel):
     """
-    A generic grouping for any identifiable AI RMF element.
+    The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.
     """
     linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
-         'class_uri': 'schema:Thing',
-         'close_mappings': ['schema:Thing'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/schema/nist_ai_rmf_common',
-         'in_subset': ['base']})
+         'class_uri': 'nist_ai_100_1:Record',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base'})
 
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
+    title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
 
 
-class GaiRisk(NamedThing):
+class AiRmfProfile(AiRmfRecord):
     """
-    A risk that is novel to or exacerbated by Generative AI.
-    Each instance corresponds to one of the 12 risk categories
-    enumerated in NIST AI 600-1 Section 2.
+    An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.
     """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['iso27001:Risk'],
-         'close_mappings': ['nist_ai_100_1:AiSpecificRisk'],
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_100_1:Profile',
+         'comments': ['The publication prescribes no profile template, so only the '
+                      'kinds and the subcategories are structured.'],
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles',
+         'related_mappings': ['oscal:Profile']})
+
+    ai_rmf_profile_kinds: list[AiRmfProfileKind] = Field(default=..., description="""Which of the publication's kinds of profile this is. A current profile for one use case is both.""", min_length=1, json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_profile_setting: Optional[str] = Field(default=None, description="""The sector, industry, technology, organization or end use the profile covers, such as hiring.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_profile_subcategories: Optional[list[str]] = Field(default=None, description="""The subcategories the profile selects. An adopter may select from them rather than apply all.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
+    title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+
+
+class GaiRisk(ConfiguredBaseModel):
+    """
+    A risk that section 2 defines as unique to or made worse by the development and use of GAI.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:Risk',
+         'comments': ['The publication gives a risk its section, its definition, its '
+                      'trustworthiness characteristics and, in a footnote, its '
+                      'groupings. It assigns no lifecycle stage, scope, source or time '
+                      'scale to a risk, since those depend on the model, system or use '
+                      'case. An adopter fills them in.'],
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks',
+         'related_mappings': ['nist_ai_100_1:Risk'],
+         'slot_usage': {'description': {'description': "The risk's definition in "
+                                                       'section 2.',
+                                        'name': 'description'}}})
+
+    description: Optional[str] = Field(default=None, description="""The risk's definition in section 2.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_risk_name: GaiRiskName = Field(default=..., description="""Which of the 12 risks this is.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_section: str = Field(default=..., description="""The subsection of section 2 that discusses the risk, such as 2.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_characteristics: Optional[list[AiRmfCharacteristicName]] = Field(default=None, description="""The AI RMF's trustworthiness characteristics that the subsection names for the risk.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_groupings: Optional[list[GaiRiskGrouping]] = Field(default=None, description="""The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_lifecycle_stages: Optional[list[GaiLifecycleStage]] = Field(default=None, description="""The lifecycle stages where the risk can arise for the adopter's model, system or use case.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_scopes: Optional[list[GaiRiskScope]] = Field(default=None, description="""The levels where the risk exists for the adopter's model, system or use case.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_sources: Optional[list[GaiRiskSource]] = Field(default=None, description="""Where the risk comes from for the adopter's model, system or use case.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+    gai_risk_time_scales: Optional[list[GaiRiskTimeScale]] = Field(default=None, description="""How the risk materializes over time for the adopter's model, system or use case.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk']} })
+
+    @field_validator('gai_risk_section')
+    def pattern_gai_risk_section(cls, v):
+        pattern=re.compile(r"^2\.([1-9]|1[0-2])$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_risk_section format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_risk_section format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiSubcategory(ConfiguredBaseModel):
+    """
+    An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:Subcategory',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions',
+         'slot_usage': {'description': {'description': "The subcategory's statement as "
+                                                       'the table restates it.',
+                                        'name': 'description',
+                                        'pattern': '^\\s*\\S',
+                                        'required': True}}})
+
+    ai_rmf_subcategory_id: str = Field(default=..., description="""The subcategory's identifier, such as GOVERN 1.1.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiSubcategory']} })
+    description: str = Field(default=..., description="""The subcategory's statement as the table restates it.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_subcategory_actions: list[GaiSuggestedAction] = Field(default=..., description="""The suggested actions the table lists.""", min_length=1, json_schema_extra = { "linkml_meta": {'domain_of': ['GaiSubcategory']} })
+    gai_subcategory_actor_tasks: Optional[list[AiRmfActorTaskName]] = Field(default=None, description="""The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiSubcategory']} })
+
+    @field_validator('description')
+    def pattern_description(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid description format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid description format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiSuggestedAction(ConfiguredBaseModel):
+    """
+    A step an organization or AI actor can take to manage GAI risks, which one row of a table states.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'broad_mappings': ['oscal:Part'],
+         'class_uri': 'nist_ai_600_1:SuggestedAction',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions',
+         'related_mappings': ['stix:StixCourseOfAction'],
+         'slot_usage': {'description': {'description': "The action's text in the "
+                                                       'table.',
+                                        'name': 'description',
+                                        'pattern': '^\\s*\\S',
+                                        'required': True}}})
+
+    gai_action_id: str = Field(default=..., description="""The action's identifier, such as GV-1.1-001.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiSuggestedAction']} })
+    description: str = Field(default=..., description="""The action's text in the table.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_action_risks: Optional[list[GaiRiskName]] = Field(default=None, description="""The GAI risks the row tags the action with.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiSuggestedAction']} })
+
+    @field_validator('description')
+    def pattern_description(cls, v):
+        pattern=re.compile(r"^\s*\S")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid description format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid description format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiPrimaryConsideration(ConfiguredBaseModel):
+    """
+    One of the four primary considerations of Appendix A, which also inform the suggested actions.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'class_uri': 'nist_ai_600_1:PrimaryConsideration',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations',
+         'slot_usage': {'title': {'name': 'title', 'required': True}}})
+
+    gai_consideration_type: Literal["GaiPrimaryConsideration"] = Field(default="GaiPrimaryConsideration", description="""Which of the four classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiPrimaryConsideration']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_consideration_sections: Optional[list[str]] = Field(default=None, description="""The subsections of Appendix A that discuss the consideration, such as A.1.2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPrimaryConsideration']} })
+
+    @field_validator('gai_consideration_sections')
+    def pattern_gai_consideration_sections(cls, v):
+        pattern=re.compile(r"^A\.1(\.[1-8])?$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_consideration_sections format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_consideration_sections format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiGovernanceConsideration(GaiPrimaryConsideration):
+    """
+    How an organization's governance can be revisited for GAI, including across the AI value chain.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:GovernanceConsideration',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_governance_plans: Optional[list[GaiGovernancePlan]] = Field(default=None, description="""The plans and actions that section A.1.2 lists from other AI governance.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiGovernanceConsideration']} })
+    gai_third_party_controls: Optional[list[GaiThirdPartyControl]] = Field(default=None, description="""The existing controls that section A.1.3 says can apply to third-party GAI.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiGovernanceConsideration']} })
+    gai_consideration_type: Literal["GaiGovernanceConsideration"] = Field(default="GaiGovernanceConsideration", description="""Which of the four classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiPrimaryConsideration']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_consideration_sections: Optional[list[str]] = Field(default=None, description="""The subsections of Appendix A that discuss the consideration, such as A.1.2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPrimaryConsideration']} })
+
+    @field_validator('gai_consideration_sections')
+    def pattern_gai_consideration_sections(cls, v):
+        pattern=re.compile(r"^A\.1(\.[1-8])?$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_consideration_sections format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_consideration_sections format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiPreDeploymentTestingConsideration(GaiPrimaryConsideration):
+    """
+    How GAI can be tested before deployment while better approaches mature, and where current tests fall short.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:PreDeploymentTestingConsideration',
+         'comments': ['Section A.1.7 calls the feedback approaches of section A.1.5 '
+                      'part of this consideration.'],
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_structured_feedback: Optional[list[Union[GaiParticipatoryEngagement,GaiFieldTesting,GaiAiRedTeaming]]] = Field(default=None, description="""The kinds of structured public feedback section A.1.5 gives as examples.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPreDeploymentTestingConsideration']} })
+    gai_consideration_type: Literal["GaiPreDeploymentTestingConsideration"] = Field(default="GaiPreDeploymentTestingConsideration", description="""Which of the four classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiPrimaryConsideration']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_consideration_sections: Optional[list[str]] = Field(default=None, description="""The subsections of Appendix A that discuss the consideration, such as A.1.2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPrimaryConsideration']} })
+
+    @field_validator('gai_consideration_sections')
+    def pattern_gai_consideration_sections(cls, v):
+        pattern=re.compile(r"^A\.1(\.[1-8])?$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_consideration_sections format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_consideration_sections format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiContentProvenanceConsideration(GaiPrimaryConsideration):
+    """
+    How tracking the origin and history of content helps tell authentic content from synthetic content.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:ContentProvenanceConsideration',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_provenance_techniques: Optional[list[GaiProvenanceTechnique]] = Field(default=None, description="""The well-known techniques for provenance data tracking that section A.1.6 names.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiContentProvenanceConsideration']} })
+    gai_consideration_type: Literal["GaiContentProvenanceConsideration"] = Field(default="GaiContentProvenanceConsideration", description="""Which of the four classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiPrimaryConsideration']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_consideration_sections: Optional[list[str]] = Field(default=None, description="""The subsections of Appendix A that discuss the consideration, such as A.1.2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPrimaryConsideration']} })
+
+    @field_validator('gai_consideration_sections')
+    def pattern_gai_consideration_sections(cls, v):
+        pattern=re.compile(r"^A\.1(\.[1-8])?$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_consideration_sections format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_consideration_sections format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiIncidentDisclosureConsideration(GaiPrimaryConsideration):
+    """
+    How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:IncidentDisclosureConsideration',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_incident_harms: Optional[list[GaiIncidentHarm]] = Field(default=None, description="""The kinds of harm that section A.1.8's definition of an AI incident names.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiIncidentDisclosureConsideration']} })
+    gai_consideration_type: Literal["GaiIncidentDisclosureConsideration"] = Field(default="GaiIncidentDisclosureConsideration", description="""Which of the four classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiPrimaryConsideration']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+    gai_consideration_sections: Optional[list[str]] = Field(default=None, description="""The subsections of Appendix A that discuss the consideration, such as A.1.2.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiPrimaryConsideration']} })
+
+    @field_validator('gai_consideration_sections')
+    def pattern_gai_consideration_sections(cls, v):
+        pattern=re.compile(r"^A\.1(\.[1-8])?$")
+        if isinstance(v, list):
+            for element in v:
+                if isinstance(element, str) and not pattern.search(element):
+                    err_msg = f"Invalid gai_consideration_sections format: {element}"
+                    raise ValueError(err_msg)
+        elif isinstance(v, str) and not pattern.search(v):
+            err_msg = f"Invalid gai_consideration_sections format: {v}"
+            raise ValueError(err_msg)
+        return v
+
+
+class GaiStructuredFeedback(ConfiguredBaseModel):
+    """
+    A way of using structured public feedback to evaluate whether GAI systems perform as intended.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'abstract': True,
+         'class_uri': 'nist_ai_600_1:StructuredFeedback',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations',
+         'slot_usage': {'title': {'name': 'title', 'required': True}}})
+
+    gai_feedback_type: Literal["GaiStructuredFeedback"] = Field(default="GaiStructuredFeedback", description="""Which of the three classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiStructuredFeedback']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+
+
+class GaiParticipatoryEngagement(GaiStructuredFeedback):
+    """
+    Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:ParticipatoryEngagement',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_feedback_type: Literal["GaiParticipatoryEngagement"] = Field(default="GaiParticipatoryEngagement", description="""Which of the three classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiStructuredFeedback']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+
+
+class GaiFieldTesting(GaiStructuredFeedback):
+    """
+    Structured settings that show how people interact with and use AI-generated information.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:FieldTesting',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_feedback_type: Literal["GaiFieldTesting"] = Field(default="GaiFieldTesting", description="""Which of the three classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiStructuredFeedback']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+
+
+class GaiAiRedTeaming(GaiStructuredFeedback):
+    """
+    A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:AiRedTeaming',
+         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations'})
+
+    gai_red_teaming_types: Optional[list[GaiRedTeamingType]] = Field(default=None, description="""The kinds of AI red-teaming that may suit the use case.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiAiRedTeaming']} })
+    gai_feedback_type: Literal["GaiAiRedTeaming"] = Field(default="GaiAiRedTeaming", description="""Which of the three classes this record is.""", json_schema_extra = { "linkml_meta": {'designates_type': True, 'domain_of': ['GaiStructuredFeedback']} })
+    title: str = Field(default=..., description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
+
+
+class GaiProfile(AiRmfProfile):
+    """
+    The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.
+    """
+    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'class_uri': 'nist_ai_600_1:Profile',
+         'comments': ['It holds actions for only some subcategories, and the '
+                      'publication says more may be added later.'],
          'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_core'],
-         'related_mappings': ['iso29100:PrivacyRisk']})
-
-    gai_risk_kind: Optional[GaiRiskCategoryEnum] = Field(default=None, description="""The GAI risk category this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    risk_categorization: Optional[GaiRiskCategorizationEnum] = Field(default=None, description="""Higher-level categorisation - technical/model, misuse, or
-ecosystem/societal.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    risk_scope: Optional[list[GaiRiskScopeEnum]] = Field(default=None, description="""Scope levels at which the risk may manifest.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    risk_sources: Optional[list[GaiRiskSourceEnum]] = Field(default=None, description="""Sources from which the risk may emerge.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    time_scale: Optional[list[GaiRiskTimeScaleEnum]] = Field(default=None, description="""Time scales over which the risk may materialise.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    trustworthiness_characteristic: Optional[list[TrustworthinessCharacteristicEnum]] = Field(default=None, description="""Trustworthiness characteristic(s) the element pertains to.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['trustworthiness']} })
-    addressed_by_actions: Optional[list[str]] = Field(default=None, description="""Suggested actions that address a GAI risk (back-reference
-derived from `SuggestedAction.gai_risks`).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'], 'in_subset': ['gai_core']} })
-    lifecycle_stage: Optional[list[GaiLifecycleStageEnum]] = Field(default=None, description="""AI lifecycle stage(s) at which the GAI risk may arise
-(NIST AI 600-1 Section 2). Uses the GAI five-stage
-lifecycle (`GaiLifecycleStageEnum`).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiRisk'],
-         'in_subset': ['gai_base'],
-         'related_mappings': ['nist_ai_100_1:lifecycle_stage']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
-
-
-class SuggestedAction(NamedThing):
-    """
-    A suggested action an organisation can take to manage GAI
-    risks. Each action is identified by an Action ID, linked to an
-    AI RMF subcategory, and may be relevant to one or more GAI
-    risks and AI actor tasks (NIST AI 600-1 Section 3).
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['stix:CourseOfAction'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_actions'],
-         'related_mappings': ['oscal_catalog:Control', 'gist_linkml:Task'],
-         'slot_usage': {'description': {'description': 'The suggested-action text '
-                                                       'itself.',
-                                        'name': 'description'},
-                        'id': {'description': 'Identifier for the action - typically '
-                                              'the same as the\n'
-                                              '`action_id` (e.g., "GV-1.1-001").',
-                               'name': 'id'}}})
-
-    action_id: str = Field(default=..., description="""Identifier of a Suggested Action.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'], 'in_subset': ['gai_actions']} })
-    function_prefix: Optional[GaiActionFunctionPrefixEnum] = Field(default=None, description="""Two-letter function prefix of the action's subcategory.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'], 'in_subset': ['gai_actions']} })
-    applies_to_subcategory: Optional[str] = Field(default=None, description="""Identifier of the AI RMF subcategory the action applies to.""", json_schema_extra = { "linkml_meta": {'close_mappings': ['oscal_profile:Profile'],
-         'domain_of': ['SuggestedAction'],
-         'in_subset': ['gai_actions']} })
-    gai_risks: Optional[list[GaiRiskCategoryEnum]] = Field(default=None, description="""GAI risk categories addressed by a suggested action or
-considered by a primary consideration.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'], 'in_subset': ['gai_core']} })
-    actor_task: Optional[list[GaiActorTaskEnum]] = Field(default=None, description="""Pertinent AI Actor Task(s) for the suggested action - i.e.,
-the \"AI Actor Tasks\" row at the bottom of each Section 3
-table.""", json_schema_extra = { "linkml_meta": {'domain_of': ['SuggestedAction'],
-         'in_subset': ['gai_base'],
-         'related_mappings': ['nist_ai_100_1:actor_task']} })
-    id: str = Field(default=..., description="""Identifier for the action - typically the same as the
-`action_id` (e.g., \"GV-1.1-001\").""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""The suggested-action text itself.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
-
-
-class PrimaryGaiConsideration(NamedThing):
-    """
-    An overarching consideration derived from the NIST GAI PWG
-    consultation process (Appendix A). The `consideration_kind`
-    attribute discriminates between the four primary
-    considerations: Governance, Pre-Deployment Testing, Content
-    Provenance, and Incident Disclosure.
-
-    All consideration-specific attributes are optional and apply
-    to the appropriate `consideration_kind`:
-      * GOVERNANCE: governance_practices, third_party_considerations
-      * PRE_DEPLOYMENT_TESTING: limitations_of_current_approaches
-      * CONTENT_PROVENANCE: provenance_techniques
-      * INCIDENT_DISCLOSURE: ai_incident_definition
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_considerations'],
-         'related_mappings': ['nist_csf:CSFProperty']})
-
-    consideration_kind: PrimaryConsiderationEnum = Field(default=..., description="""Which primary consideration this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    governance_practices: Optional[list[GovernancePracticeEnum]] = Field(default=None, description="""Governance plans and actions enumerated in NIST AI 600-1
-Appendix A.1.2 (Organizational Governance).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    third_party_considerations: Optional[str] = Field(default=None, description="""Considerations for third-party GAI integrations, procurement,
-SBOMs, SLAs, and SSAE reports (Appendix A.1.3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    limitations_of_current_approaches: Optional[str] = Field(default=None, description="""For Pre-Deployment Testing: free-text discussion of why
-current TEVV approaches may be inadequate (Appendix A.1.4).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    provenance_techniques: Optional[list[ProvenanceTechniqueEnum]] = Field(default=None, description="""For Content Provenance: provenance data tracking techniques
-such as digital watermarking, metadata recording, digital
-fingerprinting, and human authentication (Appendix A.1.6).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    ai_incident_definition: Optional[str] = Field(default=None, description="""For Incident Disclosure: the definition of AI incident used
-by the organisation (Appendix A.1.8).""", json_schema_extra = { "linkml_meta": {'domain_of': ['PrimaryGaiConsideration'], 'in_subset': ['gai_considerations']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
-
-
-class StructuredPublicFeedback(NamedThing):
-    """
-    Methods used to evaluate whether GAI systems are performing as
-    intended and to calibrate and verify traditional measurement
-    methods (A.1.5).
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_feedback'],
-         'related_mappings': ['iso27001:InterestedParty']})
-
-    feedback_method_kind: StructuredFeedbackMethodEnum = Field(default=..., description="""Which structured feedback method this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StructuredPublicFeedback'], 'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
-
-
-class AiRedTeaming(StructuredPublicFeedback):
-    """
-    A structured testing exercise used to probe an AI system to
-    find flaws and vulnerabilities such as inaccurate, harmful, or
-    discriminatory outputs, often in a controlled environment and
-    in collaboration with system developers (A.1.5).
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_feedback'],
-         'related_mappings': ['stix:AttackPattern'],
-         'slot_usage': {'feedback_method_kind': {'ifabsent': 'StructuredFeedbackMethodEnum(AI_RED_TEAMING)',
-                                                 'name': 'feedback_method_kind'}}})
-
-    red_team_type: Optional[RedTeamingTypeEnum] = Field(default=None, description="""The type of AI red-teaming exercise.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRedTeaming'], 'in_subset': ['gai_feedback']} })
-    feedback_method_kind: StructuredFeedbackMethodEnum = Field(default=StructuredFeedbackMethodEnum.AI_RED_TEAMING, description="""Which structured feedback method this element represents.""", json_schema_extra = { "linkml_meta": {'domain_of': ['StructuredPublicFeedback'],
-         'ifabsent': 'StructuredFeedbackMethodEnum(AI_RED_TEAMING)',
-         'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
-
-
-class GaiProfile(NamedThing):
-    """
-    Root container that bundles the NIST AI 600-1 Generative AI
-    Profile: GAI risks (Section 2), suggested actions (Section 3),
-    and primary considerations (Appendix A). The GAI Profile is a
-    *cross-sectoral* AI RMF profile (Section 1).
-    """
-    linkml_meta: ClassVar[LinkMLMeta] = LinkMLMeta({'close_mappings': ['nist_csf:CSFDocument'],
-         'exact_mappings': ['oscal_profile:Profile'],
-         'from_schema': 'https://w3id.org/lmodel/nist-ai-600-1',
-         'in_subset': ['gai_core'],
-         'related_mappings': ['nist_ai_100_1:AiRmfProfile'],
          'tree_root': True})
 
-    gai_risk_catalog: Optional[list[GaiRisk]] = Field(default=None, description="""The catalog of GAI risks (Section 2).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_core']} })
-    suggested_actions: Optional[list[SuggestedAction]] = Field(default=None, description="""Suggested actions to manage GAI risks (Section 3).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_actions']} })
-    primary_considerations: Optional[list[PrimaryGaiConsideration]] = Field(default=None, description="""The primary GAI considerations from Appendix A (Governance,
-Pre-Deployment Testing, Content Provenance, Incident
-Disclosure). Discriminated by `consideration_kind`.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_considerations']} })
-    structured_feedback_methods: Optional[list[StructuredPublicFeedback]] = Field(default=None, description="""Structured public feedback methods relevant to the profile
-(Appendix A.1.5).""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile'], 'in_subset': ['gai_feedback']} })
-    id: str = Field(default=..., description="""A unique identifier for an element.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'schema:identifier'} })
-    name: Optional[str] = Field(default=None, description="""A short human-readable name.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:label'} })
-    title: Optional[str] = Field(default=None, description="""A human-readable title.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:title'} })
-    description: Optional[str] = Field(default=None, description="""A human-readable description.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'],
-         'in_subset': ['base'],
-         'slot_uri': 'dcterms:description'} })
-    see_also: Optional[list[str]] = Field(default=None, description="""Related references.""", json_schema_extra = { "linkml_meta": {'domain_of': ['NamedThing'], 'in_subset': ['base'], 'slot_uri': 'rdfs:seeAlso'} })
+    gai_risks: list[GaiRisk] = Field(default=..., description="""The 12 risks of section 2.""", min_length=1, json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile']} })
+    gai_subcategories: list[GaiSubcategory] = Field(default=..., description="""The tables of section 3, in the publication's order.""", min_length=1, json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile']} })
+    gai_primary_considerations: Optional[list[Union[GaiGovernanceConsideration,GaiPreDeploymentTestingConsideration,GaiContentProvenanceConsideration,GaiIncidentDisclosureConsideration]]] = Field(default=None, description="""The four primary considerations of Appendix A.""", json_schema_extra = { "linkml_meta": {'domain_of': ['GaiProfile']} })
+    ai_rmf_profile_kinds: list[AiRmfProfileKind] = Field(default=..., description="""Which of the publication's kinds of profile this is. A current profile for one use case is both.""", min_length=1, json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_profile_setting: Optional[str] = Field(default=None, description="""The sector, industry, technology, organization or end use the profile covers, such as hiring.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_profile_subcategories: Optional[list[str]] = Field(default=None, description="""The subcategories the profile selects. An adopter may select from them rather than apply all.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfProfile']} })
+    ai_rmf_id: str = Field(default=..., description="""The identifier an adopter gives a record of its own.""", json_schema_extra = { "linkml_meta": {'domain_of': ['AiRmfRecord']} })
+    title: Optional[str] = Field(default=None, description="""The element's name.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's title, so lokf adapt folds it into "
+                      "LOKF's slot and a knowledge bundle reads one title key."],
+         'domain_of': ['AiRmfRecord',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:name'} })
+    description: Optional[str] = Field(default=None, description="""What the element says or is.""", json_schema_extra = { "linkml_meta": {'comments': ["It carries the IRI of LOKF's description, so lokf adapt folds "
+                      "it into LOKF's slot and a knowledge bundle reads one "
+                      'description key.'],
+         'domain_of': ['AiRmfRecord',
+                       'GaiRisk',
+                       'GaiSubcategory',
+                       'GaiSuggestedAction',
+                       'GaiPrimaryConsideration',
+                       'GaiStructuredFeedback'],
+         'slot_uri': 'schema:description'} })
 
 
 # Model rebuild
 # see https://pydantic-docs.helpmanual.io/usage/models/#rebuilding-a-model
-NamedThing.model_rebuild()
+AiRmfRecord.model_rebuild()
+AiRmfProfile.model_rebuild()
 GaiRisk.model_rebuild()
-SuggestedAction.model_rebuild()
-PrimaryGaiConsideration.model_rebuild()
-StructuredPublicFeedback.model_rebuild()
-AiRedTeaming.model_rebuild()
+GaiSubcategory.model_rebuild()
+GaiSuggestedAction.model_rebuild()
+GaiPrimaryConsideration.model_rebuild()
+GaiGovernanceConsideration.model_rebuild()
+GaiPreDeploymentTestingConsideration.model_rebuild()
+GaiContentProvenanceConsideration.model_rebuild()
+GaiIncidentDisclosureConsideration.model_rebuild()
+GaiStructuredFeedback.model_rebuild()
+GaiParticipatoryEngagement.model_rebuild()
+GaiFieldTesting.model_rebuild()
+GaiAiRedTeaming.model_rebuild()
 GaiProfile.model_rebuild()
