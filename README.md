@@ -53,7 +53,7 @@ The copy roots `GaiRisk`, `GaiSubcategory`, `GaiPrimaryConsideration`, `GaiStruc
 GaiRisk, GaiSubcategory, GaiGovernanceConsideration, GaiPreDeploymentTestingConsideration, GaiContentProvenanceConsideration, GaiIncidentDisclosureConsideration, GaiParticipatoryEngagement, GaiFieldTesting, GaiAiRedTeaming, AiRmfProfile, GaiProfile
 ```
 
-The copy drops `ai_rmf_id` for LOKF's `id`, folds `title` and `description` into LOKF's, and demotes the two designators, since a concept's `type` already names its class. Every other key starts with `gai_` or `ai_rmf_`. The copy shares `AiRmfProfile` and the vendored names with lmodel/nist-ai-100-1's copy, each spelled alike, so a host importing both gets one definition of each. `tests/test_schema_rules.py` holds all this.
+The copy drops `ai_rmf_id` for LOKF's `id`, folds `title` and `description` into LOKF's, and demotes the two designators, since a concept's `type` already names its class. Every other key starts with `gai_` or `ai_rmf_`. The copy shares `AiRmfProfile` and the vendored names with lmodel/nist-ai-100-1's copy, each spelled alike. The two validate side by side, but `lokf convert` stops on the shared names, so a host that needs both imports [lmodel/nist-ai-rmf](https://github.com/lmodel/nist-ai-rmf)'s copy instead. `tests/test_schema_rules.py` holds all this.
 
 ## License
 

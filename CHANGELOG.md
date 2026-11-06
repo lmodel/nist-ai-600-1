@@ -10,6 +10,12 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 - **The bundle's schema files sit in `.lokf/schema/`**: `lokf.yaml` and the `lokf adapt` copy `nist-ai-600-1.yaml`, as KTL v0.62.0 lays them out.
 
+## [0.1.1] - 2026-11-06
+
+### Fixed
+
+- **The README's claim about importing both copies.** They validate side by side, but `lokf convert` stops on their shared names, so a host that needs both uses lmodel/nist-ai-rmf's copy.
+
 ## [0.1.0] - 2026-11-05
 
 ### Added
