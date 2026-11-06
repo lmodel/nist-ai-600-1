@@ -19,7 +19,7 @@ sources:
     title: the test recipe
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:42Z"
+  at: "2026-11-06T21:22:15Z"
 status: draft
 ---
 
@@ -29,7 +29,7 @@ status: draft
 2. Run `just lint`. A warning fails it.[^main.yaml]
 3. Run `just gen-project` and `just gen-doc`, then `just lokf-adapt`.[^contributing.md]
 4. Run `just test`, which generates into `tmp/`, runs `pytest` and runs the example runner.[^justfile]
-5. Commit the output. `project/`, `src/nist_ai_600_1/datamodel/`, `docs/schema/` and `.lokf/nist-ai-600-1.yaml` are generated.[^contributing.md]
+5. Commit the output. `project/`, `src/nist_ai_600_1/datamodel/`, `docs/schema/` and `.lokf/schema/nist-ai-600-1.yaml` are generated.[^contributing.md]
 
 [^contributing.md]: CONTRIBUTING.md, Before opening a pull request
 [^main.yaml]: .github/workflows/main.yaml, the lint step

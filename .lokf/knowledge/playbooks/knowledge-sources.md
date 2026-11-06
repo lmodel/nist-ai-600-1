@@ -23,7 +23,7 @@ sources:
   - resource: .linkml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
-  - resource: .lokf/nist-ai-600-1.yaml
+  - resource: .lokf/schema/nist-ai-600-1.yaml
   - resource: project
   - resource: project.justfile
   - resource: justfile
@@ -86,7 +86,7 @@ exclusions:
     reason: The sidecar's link to the bundle.
   - resource: .github/PULL_REQUEST_TEMPLATE
     reason: The sidecar sync's pull request template.
-  - resource: .lokf/lokf.yaml
+  - resource: .lokf/schema/lokf.yaml
     reason: LOKF's schema, pinned by the sidecar.
   - resource: .lokf/scripts
     reason: The sidecar's scripts, which the weekly sync replaces.
@@ -106,7 +106,7 @@ exclusions:
     reason: The sidecar's lock file.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-05T02:56:42Z"
+  at: "2026-11-06T21:22:15Z"
 status: draft
 ---
 
