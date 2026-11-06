@@ -40,7 +40,7 @@ npx skills add noelmcloughlin/knowledge-trust-ladder --skill ktl-curator --yes  
 
 ## Before opening a pull request
 
-- **Edit the schema, then regenerate.** Edit `src/nist_ai_600_1/schema/`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/nist_ai_600_1/datamodel/`, `docs/schema/` and `.lokf/nist-ai-600-1.yaml` are generated.
+- **Edit the schema, then regenerate.** Edit `src/nist_ai_600_1/schema/`, run `just gen-project`, `just gen-doc` and `just lokf-adapt`, and commit the output. `project/`, `src/nist_ai_600_1/datamodel/`, `docs/schema/` and `.lokf/schema/nist-ai-600-1.yaml` are generated.
 - **The publication's words stay in the data.** A suggested action's text is the publication's, through `scripts/build_catalogue.py`. The constants at the top of that script list each correction the tables needed, and `tests/test_catalogue.py` holds each to the publication.
 - **A list follows the publication.** Each enum value has a record or a use in the tables, and `tests/test_catalogue.py` holds both to the publication. No bound or rule of your own.
 - **A mapping is read at its source.** `tests/test_schema_rules.py` holds each one to a released neighbour copy. A term with no sure match stays unmapped.

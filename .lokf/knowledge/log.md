@@ -1,5 +1,9 @@
 # Change Log
 
+## 2026-11-06
+
+* **Changed**: `lokf.yaml` and `nist-ai-600-1.yaml` moved into `.lokf/schema/`, where KTL v0.62.0 keeps a sidecar's schema files, and the concepts that name them follow.
+
 ## 2026-11-05
 
 * **Changed**: Upstream watch (upstream-watch.yaml). The script now limits a redirect's host and the size of a download.

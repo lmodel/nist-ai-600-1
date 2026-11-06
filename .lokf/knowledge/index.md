@@ -69,7 +69,7 @@ A [LOKF](https://lokf.nolan-nichols.com) knowledge base for nist-ai-600-1. Every
 * [Vendored AI RMF modules](datasets/vendored-modules.md) - `src/nist_ai_600_1/schema/nist_ai_100_1/`: the base and profiles modules of lmodel/nist-ai-100-1, unchanged and pinned by SHA-256 in `tests/test_upstream.py`, so the schema needs no network.
 * [The catalogue](datasets/catalogue.md) - `src/nist_ai_600_1/data/ai-600-1.yaml`, the whole Profile as one `GaiProfile` record: 12 risks, 49 tables, 212 suggested actions and four primary considerations.
 * [Copy of the upstream](datasets/upstream-copy.md) - `upstream/NIST.AI.600-1.pdf`: the publication, unchanged, which `scripts/check_upstream_release.py` pins by SHA-256 and `tests/test_upstream.py` compares offline.
-* [The schema's adapt copy](datasets/adapt-copy.md) - `.lokf/nist-ai-600-1.yaml`, the copy `just lokf-adapt` writes from the schema so that it sits beside LOKF's `lokf.yaml`: five classes rooted on `Concept`, `ai_rmf_id` dropped for LOKF's `id`, `title` and `description` folded into LOKF's, and two designators demoted.
+* [The schema's adapt copy](datasets/adapt-copy.md) - `.lokf/schema/nist-ai-600-1.yaml`, the copy `just lokf-adapt` writes from the schema so that it sits beside LOKF's `lokf.yaml`: five classes rooted on `Concept`, `ai_rmf_id` dropped for LOKF's `id`, `title` and `description` folded into LOKF's, and two designators demoted.
 * [Confabulation](datasets/example-risk.md) - The risk of confabulation, written as a concept of type `GaiRisk` in the adapt copy's keys. It shows that the domain schema admits a risk as a concept, with the keys an adopter fills in.
 
 # References
