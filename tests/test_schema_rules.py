@@ -211,7 +211,7 @@ def test_every_mapping_prefix_is_checked():
 
 def test_the_ai_rmf_copy_differs_only_where_the_vendored_modules_do():
     """What this copy shares with lmodel/nist-ai-100-1's copy is what it vendors, spelled
-    alike, so a host importing both gets one definition of each."""
+    alike, so lmodel/nist-ai-rmf's copy can hold each of them once."""
     mine = yaml.safe_load(COPY.read_text())
     theirs = yaml.safe_load((NEIGHBOUR_DIR / AI_RMF_COPY).read_text())
 
