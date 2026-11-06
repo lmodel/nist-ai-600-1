@@ -6,6 +6,8 @@ The `v0.0.0` tag is a baseline, not a release: it marks where versioning starts 
 
 ## [Unreleased]
 
+## [0.1.1] - 2026-11-06
+
 ### Fixed
 
 - **The README's claim about importing both copies.** They validate side by side, but `lokf convert` stops on their shared names, so a host that needs both uses lmodel/nist-ai-rmf's copy.
