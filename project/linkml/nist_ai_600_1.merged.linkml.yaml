@@ -1,0 +1,2295 @@
+{
+  "name": "nist_ai_600_1",
+  "annotations": {
+    "publication_date": {
+      "tag": "publication_date",
+      "value": "2024-07"
+    },
+    "publication_approved": {
+      "tag": "publication_approved",
+      "value": "2024-07-25"
+    }
+  },
+  "description": "A LinkML model of NIST AI 600-1, the Generative Artificial Intelligence Profile of the AI Risk Management Framework: its 12 risks, the suggested actions its tables list under AI RMF subcategories, and its four primary considerations.",
+  "title": "NIST AI RMF Generative AI Profile (NIST AI 600-1)",
+  "comments": [
+    "The publication has no version number of its own, so the version is the 1.0.0 of the AI RMF it profiles, and source is the publication's digital object identifier. The release tags are the schema's own versions, and scripts/check_upstream_release.py reports when NIST changes the file.",
+    "It imports the base and profiles modules of lmodel/nist-ai-100-1, vendored under nist_ai_100_1/, so it needs no network. tests/test_schema_rules.py holds them to their hashes.",
+    "The publication is a work of the United States Government. NOTICE says what it allows. The schema's descriptions are this project's own words; NIST's text is in src/nist_ai_600_1/data/."
+  ],
+  "source": "https://doi.org/10.6028/NIST.AI.600-1",
+  "see_also": [
+    "https://lmodel.github.io/nist-ai-600-1",
+    "https://airc.nist.gov/Home",
+    "https://doi.org/10.6028/NIST.AI.100-1"
+  ],
+  "id": "https://w3id.org/lmodel/nist-ai-600-1",
+  "version": "1.0.0",
+  "license": "Apache-2.0",
+  "prefixes": {
+    "linkml": {
+      "prefix_prefix": "linkml",
+      "prefix_reference": "https://w3id.org/linkml/"
+    },
+    "nist_ai_100_1": {
+      "prefix_prefix": "nist_ai_100_1",
+      "prefix_reference": "https://w3id.org/lmodel/nist-ai-100-1/"
+    },
+    "nist_ai_600_1": {
+      "prefix_prefix": "nist_ai_600_1",
+      "prefix_reference": "https://w3id.org/lmodel/nist-ai-600-1/"
+    },
+    "xsd": {
+      "prefix_prefix": "xsd",
+      "prefix_reference": "http://www.w3.org/2001/XMLSchema#"
+    },
+    "shex": {
+      "prefix_prefix": "shex",
+      "prefix_reference": "http://www.w3.org/ns/shex#"
+    },
+    "schema": {
+      "prefix_prefix": "schema",
+      "prefix_reference": "http://schema.org/"
+    },
+    "oscal": {
+      "prefix_prefix": "oscal",
+      "prefix_reference": "https://w3id.org/lmodel/oscal/"
+    },
+    "stix": {
+      "prefix_prefix": "stix",
+      "prefix_reference": "https://w3id.org/lmodel/stix/"
+    },
+    "spdx_software": {
+      "prefix_prefix": "spdx_software",
+      "prefix_reference": "https://spdx.org/rdf/3.0.1/terms/Software/"
+    }
+  },
+  "default_prefix": "nist_ai_600_1",
+  "default_range": "string",
+  "types": {
+    "string": {
+      "name": "string",
+      "description": "A character string",
+      "notes": [
+        "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Text"
+      ],
+      "base": "str",
+      "uri": "xsd:string"
+    },
+    "integer": {
+      "name": "integer",
+      "description": "An integer",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Integer"
+      ],
+      "base": "int",
+      "uri": "xsd:integer"
+    },
+    "boolean": {
+      "name": "boolean",
+      "description": "A binary (true or false) value",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Boolean"
+      ],
+      "base": "Bool",
+      "uri": "xsd:boolean",
+      "repr": "bool"
+    },
+    "float": {
+      "name": "float",
+      "description": "A real number that conforms to the xsd:float specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:float"
+    },
+    "double": {
+      "name": "double",
+      "description": "A real number that conforms to the xsd:double specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "close_mappings": [
+        "schema:Float"
+      ],
+      "base": "float",
+      "uri": "xsd:double"
+    },
+    "decimal": {
+      "name": "decimal",
+      "description": "A real number with arbitrary precision that conforms to the xsd:decimal specification",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "broad_mappings": [
+        "schema:Number"
+      ],
+      "base": "Decimal",
+      "uri": "xsd:decimal"
+    },
+    "time": {
+      "name": "time",
+      "description": "A time object represents a (local) time of day, independent of any particular day",
+      "notes": [
+        "URI is dateTime because OWL reasoners do not work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Time"
+      ],
+      "base": "XSDTime",
+      "uri": "xsd:time",
+      "repr": "str"
+    },
+    "date": {
+      "name": "date",
+      "description": "a date (year, month and day) in an idealized calendar",
+      "notes": [
+        "URI is dateTime because OWL reasoners don't work with straight date or time",
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:Date"
+      ],
+      "base": "XSDDate",
+      "uri": "xsd:date",
+      "repr": "str"
+    },
+    "datetime": {
+      "name": "datetime",
+      "description": "The combination of a date and time",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "exact_mappings": [
+        "schema:DateTime"
+      ],
+      "base": "XSDDateTime",
+      "uri": "xsd:dateTime",
+      "repr": "str"
+    },
+    "date_or_datetime": {
+      "name": "date_or_datetime",
+      "description": "Either a date or a datetime",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "str",
+      "uri": "linkml:DateOrDatetime",
+      "repr": "str"
+    },
+    "uriorcurie": {
+      "name": "uriorcurie",
+      "description": "a URI or a CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "URIorCURIE",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "curie": {
+      "name": "curie",
+      "conforms_to": "https://www.w3.org/TR/curie/",
+      "description": "a compact URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"."
+      ],
+      "comments": [
+        "in RDF serializations this MUST be expanded to a URI",
+        "in non-RDF serializations MAY be serialized as the compact representation"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "Curie",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "uri": {
+      "name": "uri",
+      "conforms_to": "https://www.ietf.org/rfc/rfc3987.txt",
+      "description": "a complete URI",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"."
+      ],
+      "comments": [
+        "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "close_mappings": [
+        "schema:URL"
+      ],
+      "base": "URI",
+      "uri": "xsd:anyURI",
+      "repr": "str"
+    },
+    "ncname": {
+      "name": "ncname",
+      "description": "Prefix part of CURIE",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "NCName",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "objectidentifier": {
+      "name": "objectidentifier",
+      "description": "A URI or CURIE that represents an object in the model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"."
+      ],
+      "comments": [
+        "Used for inheritance and type checking"
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "ElementIdentifier",
+      "uri": "shex:iri",
+      "repr": "str"
+    },
+    "nodeidentifier": {
+      "name": "nodeidentifier",
+      "description": "A URI, CURIE or BNODE that represents a node in a model.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "NodeIdentifier",
+      "uri": "shex:nonLiteral",
+      "repr": "str"
+    },
+    "jsonpointer": {
+      "name": "jsonpointer",
+      "conforms_to": "https://datatracker.ietf.org/doc/html/rfc6901",
+      "description": "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "jsonpath": {
+      "name": "jsonpath",
+      "conforms_to": "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html",
+      "description": "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "sparqlpath": {
+      "name": "sparqlpath",
+      "conforms_to": "https://www.w3.org/TR/sparql11-query/#propertypaths",
+      "description": "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF.",
+      "notes": [
+        "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "base": "str",
+      "uri": "xsd:string",
+      "repr": "str"
+    },
+    "ai_rmf_function_identifier": {
+      "name": "ai_rmf_function_identifier",
+      "description": "The name of one of the four Core functions, written in capitals, such as GOVERN.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:string",
+      "pattern": "^(GOVERN|MAP|MEASURE|MANAGE)$"
+    },
+    "ai_rmf_category_identifier": {
+      "name": "ai_rmf_category_identifier",
+      "description": "A category's identifier, its function's name and a number, such as GOVERN 1.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:string",
+      "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])$"
+    },
+    "ai_rmf_subcategory_identifier": {
+      "name": "ai_rmf_subcategory_identifier",
+      "description": "A subcategory's identifier, its category's identifier, a dot and a number, such as GOVERN 1.1.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:string",
+      "pattern": "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$"
+    },
+    "gai_action_identifier": {
+      "name": "gai_action_identifier",
+      "description": "An Action ID: the function's two letters, its subcategory's numbers and a three-digit number, such as GV-1.1-001 for the first action of GOVERN 1.1.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "typeof": "string",
+      "base": "str",
+      "uri": "xsd:string",
+      "pattern": "^(GV-[1-6]|MP-[1-5]|MS-[1-4]|MG-[1-4])\\.[1-9][0-9]?-[0-9]{3}$"
+    }
+  },
+  "enums": {
+    "AiRmfCharacteristicName": {
+      "name": "AiRmfCharacteristicName",
+      "description": "The seven characteristics of trustworthy AI systems in section 3 of the publication.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "valid_and_reliable": {
+          "text": "valid_and_reliable",
+          "description": "Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others.",
+          "title": "Valid and Reliable"
+        },
+        "safe": {
+          "text": "safe",
+          "description": "Keeps people, property and the environment out of danger under defined conditions.",
+          "title": "Safe"
+        },
+        "secure_and_resilient": {
+          "text": "secure_and_resilient",
+          "description": "Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack.",
+          "title": "Secure and Resilient"
+        },
+        "accountable_and_transparent": {
+          "text": "accountable_and_transparent",
+          "description": "Answerable for outcomes, which rests on people being able to get information about the system and its outputs. Figure 4 shows it relating to all the others.",
+          "title": "Accountable and Transparent"
+        },
+        "explainable_and_interpretable": {
+          "text": "explainable_and_interpretable",
+          "description": "Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user).",
+          "title": "Explainable and Interpretable"
+        },
+        "privacy_enhanced": {
+          "text": "privacy_enhanced",
+          "description": "Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control.",
+          "title": "Privacy-Enhanced"
+        },
+        "fair_with_harmful_bias_managed": {
+          "text": "fair_with_harmful_bias_managed",
+          "description": "Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications.",
+          "title": "Fair – with Harmful Bias Managed"
+        }
+      }
+    },
+    "AiRmfActorTaskName": {
+      "name": "AiRmfActorTaskName",
+      "description": "The ten AI actor tasks and five additional AI actors of Appendix A.",
+      "comments": [
+        "One list holds both kinds because NIST tags them together: the Playbook under its AI Actors key, and AI 600-1 under AI Actor Tasks. Each alias is the spelling those tags use where it differs from the title in Appendix A."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "ai_design": {
+          "text": "ai_design",
+          "description": "Setting what the system is for, planning and designing it, and gathering and preparing its data.",
+          "title": "AI Design"
+        },
+        "ai_development": {
+          "text": "ai_development",
+          "description": "Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models.",
+          "title": "AI Development"
+        },
+        "ai_deployment": {
+          "text": "ai_deployment",
+          "description": "Deciding how the system is used and putting it into production, including pilots and compliance checks.",
+          "title": "AI Deployment"
+        },
+        "operation_and_monitoring": {
+          "text": "operation_and_monitoring",
+          "description": "Running the system and regularly assessing its output and impacts.",
+          "title": "Operation and Monitoring"
+        },
+        "tevv": {
+          "text": "tevv",
+          "description": "Examining the system or its components and finding and fixing problems, throughout the lifecycle.",
+          "title": "Test, Evaluation, Verification, and Validation (TEVV)",
+          "aliases": [
+            "TEVV"
+          ]
+        },
+        "human_factors": {
+          "text": "human_factors",
+          "description": "Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design.",
+          "title": "Human Factors"
+        },
+        "domain_expert": {
+          "text": "domain_expert",
+          "description": "Giving knowledge of the sector or setting where the system is used.",
+          "title": "Domain Expert",
+          "aliases": [
+            "Domain Experts"
+          ]
+        },
+        "ai_impact_assessment": {
+          "text": "ai_impact_assessment",
+          "description": "Assessing accountability, harmful bias, impacts, product safety, liability and security.",
+          "title": "AI Impact Assessment"
+        },
+        "procurement": {
+          "text": "procurement",
+          "description": "Acquiring AI from another party, under financial, legal or policy authority.",
+          "title": "Procurement"
+        },
+        "governance_and_oversight": {
+          "text": "governance_and_oversight",
+          "description": "Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed.",
+          "title": "Governance and Oversight"
+        },
+        "third_party_entities": {
+          "text": "third_party_entities",
+          "description": "Outside organizations that supply or evaluate the data, models, systems or services an organization acquires.",
+          "title": "Third-party entities"
+        },
+        "end_users": {
+          "text": "end_users",
+          "description": "The people or groups who use the system, whether new to technology or expert in AI.",
+          "title": "End users",
+          "aliases": [
+            "End-Users",
+            "End Users"
+          ]
+        },
+        "affected_individuals_and_communities": {
+          "text": "affected_individuals_and_communities",
+          "description": "Those directly or indirectly affected by the system or its output, whether or not they interact with it.",
+          "title": "Affected individuals/communities",
+          "aliases": [
+            "Affected Individuals and Communities"
+          ]
+        },
+        "other_ai_actors": {
+          "text": "other_ai_actors",
+          "description": "Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers.",
+          "title": "Other AI actors"
+        },
+        "general_public": {
+          "text": "general_public",
+          "description": "Those most likely to experience the impacts directly, who may motivate what other AI actors do.",
+          "title": "General public"
+        }
+      }
+    },
+    "AiRmfProfileKind": {
+      "name": "AiRmfProfileKind",
+      "description": "The kinds of AI RMF profile that section 6 names.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "use_case": {
+          "text": "use_case",
+          "description": "The Core implemented for a specific setting or application.",
+          "title": "Use-case profile"
+        },
+        "current": {
+          "text": "current",
+          "description": "A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes.",
+          "title": "Current Profile"
+        },
+        "target": {
+          "text": "target",
+          "description": "A temporal profile saying which outcomes the desired risk management goals need.",
+          "title": "Target Profile"
+        },
+        "cross_sectoral": {
+          "text": "cross_sectoral",
+          "description": "Covers risks of models or applications used across use cases or sectors, or activities common to them, such as using large language models.",
+          "title": "Cross-sectoral profile"
+        }
+      }
+    },
+    "GaiRiskName": {
+      "name": "GaiRiskName",
+      "description": "The 12 risks of section 2.",
+      "comments": [
+        "The tables of section 3 tag actions with these risks, in slightly different spellings from the definitions in section 2. Each alias is a spelling the tables use."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "cbrn_information_or_capabilities": {
+          "text": "cbrn_information_or_capabilities",
+          "description": "Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons.",
+          "title": "CBRN Information or Capabilities",
+          "aliases": [
+            "CBRN Information and Capability"
+          ]
+        },
+        "confabulation": {
+          "text": "confabulation",
+          "description": "Confident but wrong output that can mislead users.",
+          "title": "Confabulation"
+        },
+        "dangerous_violent_or_hateful_content": {
+          "text": "dangerous_violent_or_hateful_content",
+          "description": "Easier production of content that incites or threatens, recommends harm, or disparages.",
+          "title": "Dangerous, Violent, or Hateful Content"
+        },
+        "data_privacy": {
+          "text": "data_privacy",
+          "description": "Leaks, misuse or de-anonymization of personal or sensitive data.",
+          "title": "Data Privacy"
+        },
+        "environmental_impacts": {
+          "text": "environmental_impacts",
+          "description": "Effects on ecosystems from the heavy computing that training and operating models need.",
+          "title": "Environmental Impacts",
+          "aliases": [
+            "Environmental"
+          ]
+        },
+        "harmful_bias_or_homogenization": {
+          "text": "harmful_bias_or_homogenization",
+          "description": "Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness.",
+          "title": "Harmful Bias or Homogenization",
+          "aliases": [
+            "Harmful Bias and Homogenization"
+          ]
+        },
+        "human_ai_configuration": {
+          "text": "human_ai_configuration",
+          "description": "Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it.",
+          "title": "Human-AI Configuration",
+          "aliases": [
+            "Human AI Configuration"
+          ]
+        },
+        "information_integrity": {
+          "text": "information_integrity",
+          "description": "Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns.",
+          "title": "Information Integrity"
+        },
+        "information_security": {
+          "text": "information_security",
+          "description": "Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights.",
+          "title": "Information Security"
+        },
+        "intellectual_property": {
+          "text": "intellectual_property",
+          "description": "Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism.",
+          "title": "Intellectual Property"
+        },
+        "obscene_degrading_or_abusive_content": {
+          "text": "obscene_degrading_or_abusive_content",
+          "description": "Easier production of harmful imagery, including synthetic abuse material and intimate images without consent.",
+          "title": "Obscene, Degrading, and/or Abusive Content"
+        },
+        "value_chain_and_component_integration": {
+          "text": "value_chain_and_component_integration",
+          "description": "Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream.",
+          "title": "Value Chain and Component Integration"
+        }
+      }
+    },
+    "GaiRiskGrouping": {
+      "name": "GaiRiskGrouping",
+      "description": "The three groups into which footnote 5 says an organization could sort the risks, as one possible way.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "technical_or_model": {
+          "text": "technical_or_model",
+          "description": "Risks from malfunction.",
+          "title": "Technical / Model risks"
+        },
+        "misuse_by_humans": {
+          "text": "misuse_by_humans",
+          "description": "Risks from malicious use.",
+          "title": "Misuse by humans"
+        },
+        "ecosystem_or_societal": {
+          "text": "ecosystem_or_societal",
+          "description": "Systemic risks.",
+          "title": "Ecosystem / societal risks"
+        }
+      }
+    },
+    "GaiLifecycleStage": {
+      "name": "GaiLifecycleStage",
+      "description": "The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "design": {
+          "text": "design",
+          "description": "Setting out the system before it is built.",
+          "title": "Design"
+        },
+        "development": {
+          "text": "development",
+          "description": "Building and training it.",
+          "title": "Development"
+        },
+        "deployment": {
+          "text": "deployment",
+          "description": "Putting it into use.",
+          "title": "Deployment"
+        },
+        "operation": {
+          "text": "operation",
+          "description": "Running it.",
+          "title": "Operation"
+        },
+        "decommissioning": {
+          "text": "decommissioning",
+          "description": "Retiring it.",
+          "title": "Decommissioning"
+        }
+      }
+    },
+    "GaiRiskScope": {
+      "name": "GaiRiskScope",
+      "description": "The levels where section 2 says a risk may exist.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "model_or_system": {
+          "text": "model_or_system",
+          "description": "The level of one model or system.",
+          "title": "Model or system"
+        },
+        "application_or_implementation": {
+          "text": "application_or_implementation",
+          "description": "The level of one specific use case.",
+          "title": "Application or implementation"
+        },
+        "ecosystem": {
+          "text": "ecosystem",
+          "description": "Beyond one system or organization, such as algorithmic monocultures or effects on labor markets.",
+          "title": "Ecosystem"
+        }
+      }
+    },
+    "GaiRiskSource": {
+      "name": "GaiRiskSource",
+      "description": "Where section 2 says a risk may come from.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "design": {
+          "text": "design",
+          "description": "The design of the model itself.",
+          "title": "Design"
+        },
+        "training": {
+          "text": "training",
+          "description": "The training of the model.",
+          "title": "Training"
+        },
+        "operation": {
+          "text": "operation",
+          "description": "The operation of the model.",
+          "title": "Operation"
+        },
+        "inputs": {
+          "text": "inputs",
+          "description": "What goes into the model or system.",
+          "title": "Inputs"
+        },
+        "outputs": {
+          "text": "outputs",
+          "description": "What the system produces.",
+          "title": "Outputs"
+        },
+        "human_behavior": {
+          "text": "human_behavior",
+          "description": "Abuse, misuse or unsafe repurposing by people, whether adversarial or not.",
+          "title": "Human behavior"
+        },
+        "human_ai_interaction": {
+          "text": "human_ai_interaction",
+          "description": "How a person and a system act on each other.",
+          "title": "Human-AI interaction"
+        }
+      }
+    },
+    "GaiRiskTimeScale": {
+      "name": "GaiRiskTimeScale",
+      "description": "How section 2 says a risk may materialize over time.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "abrupt": {
+          "text": "abrupt",
+          "description": "All at once, such as immediate emotional harm from a harmful deepfake image.",
+          "title": "Abruptly"
+        },
+        "extended": {
+          "text": "extended",
+          "description": "Slowly, such as the long-term effect of disinformation on trust in institutions.",
+          "title": "Across extended periods"
+        }
+      }
+    },
+    "GaiGovernancePlan": {
+      "name": "GaiGovernancePlan",
+      "description": "The plans and actions that section A.1.2 says apply to GAI from other AI governance.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "accessibility_and_reasonable_accommodations": {
+          "text": "accessibility_and_reasonable_accommodations",
+          "title": "Accessibility and reasonable accommodations"
+        },
+        "ai_actor_credentials_and_qualifications": {
+          "text": "ai_actor_credentials_and_qualifications",
+          "title": "AI actor credentials and qualifications"
+        },
+        "alignment_to_organizational_values": {
+          "text": "alignment_to_organizational_values",
+          "title": "Alignment to organizational values"
+        },
+        "auditing_and_assessment": {
+          "text": "auditing_and_assessment",
+          "title": "Auditing and assessment"
+        },
+        "change_management_controls": {
+          "text": "change_management_controls",
+          "title": "Change-management controls"
+        },
+        "commercial_use": {
+          "text": "commercial_use",
+          "title": "Commercial use"
+        },
+        "data_provenance": {
+          "text": "data_provenance",
+          "title": "Data provenance"
+        },
+        "data_protection": {
+          "text": "data_protection",
+          "title": "Data protection"
+        },
+        "data_retention": {
+          "text": "data_retention",
+          "title": "Data retention"
+        },
+        "consistency_in_use_of_defining_key_terms": {
+          "text": "consistency_in_use_of_defining_key_terms",
+          "title": "Consistency in use of defining key terms"
+        },
+        "decommissioning": {
+          "text": "decommissioning",
+          "title": "Decommissioning"
+        },
+        "discouraging_anonymous_use": {
+          "text": "discouraging_anonymous_use",
+          "title": "Discouraging anonymous use"
+        },
+        "education": {
+          "text": "education",
+          "title": "Education"
+        },
+        "impact_assessments": {
+          "text": "impact_assessments",
+          "title": "Impact assessments"
+        },
+        "incident_response": {
+          "text": "incident_response",
+          "title": "Incident response"
+        },
+        "monitoring": {
+          "text": "monitoring",
+          "title": "Monitoring"
+        },
+        "opt_outs": {
+          "text": "opt_outs",
+          "title": "Opt-outs"
+        },
+        "risk_based_controls": {
+          "text": "risk_based_controls",
+          "title": "Risk-based controls"
+        },
+        "risk_mapping_and_measurement": {
+          "text": "risk_mapping_and_measurement",
+          "title": "Risk mapping and measurement"
+        },
+        "science_backed_tevv_practices": {
+          "text": "science_backed_tevv_practices",
+          "title": "Science-backed TEVV practices"
+        },
+        "secure_software_development_practices": {
+          "text": "secure_software_development_practices",
+          "title": "Secure software development practices"
+        },
+        "stakeholder_engagement": {
+          "text": "stakeholder_engagement",
+          "title": "Stakeholder engagement"
+        },
+        "synthetic_content_detection_and_labeling_tools_and_techniques": {
+          "text": "synthetic_content_detection_and_labeling_tools_and_techniques",
+          "title": "Synthetic content detection and labeling tools and techniques"
+        },
+        "whistleblower_protections": {
+          "text": "whistleblower_protections",
+          "title": "Whistleblower protections"
+        },
+        "workforce_diversity_and_interdisciplinary_teams": {
+          "text": "workforce_diversity_and_interdisciplinary_teams",
+          "title": "Workforce diversity and interdisciplinary teams"
+        }
+      }
+    },
+    "GaiThirdPartyControl": {
+      "name": "GaiThirdPartyControl",
+      "description": "The existing controls that section A.1.3 says can apply to third-party GAI.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "acquisition_and_procurement_due_diligence": {
+          "text": "acquisition_and_procurement_due_diligence",
+          "description": "Checking a provider before acquiring its GAI technology or data.",
+          "title": "Acquisition and procurement due diligence"
+        },
+        "software_bills_of_materials": {
+          "text": "software_bills_of_materials",
+          "description": "Asking a provider what its software is made of.",
+          "title": "Requests for software bills of materials",
+          "related_mappings": [
+            "spdx_software:Sbom"
+          ]
+        },
+        "service_level_agreements": {
+          "text": "service_level_agreements",
+          "description": "Holding a provider to agreed levels of service.",
+          "title": "Application of service level agreements"
+        },
+        "ssae_reports": {
+          "text": "ssae_reports",
+          "description": "Asking for a provider's attestation reports.",
+          "title": "Statement on standards for attestation engagement reports"
+        }
+      }
+    },
+    "GaiRedTeamingType": {
+      "name": "GaiRedTeamingType",
+      "description": "The types of AI red-teaming in section A.1.5.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "general_public": {
+          "text": "general_public",
+          "description": "By general users who are not necessarily AI or technical experts.",
+          "title": "General Public"
+        },
+        "expert": {
+          "text": "expert",
+          "description": "By specialists in the domain or the context of use.",
+          "title": "Expert"
+        },
+        "combination": {
+          "text": "combination",
+          "description": "By both experts and general public participants.",
+          "title": "Combination"
+        },
+        "human_ai": {
+          "text": "human_ai",
+          "description": "By GAI together with human teams, specialist or not.",
+          "title": "Human / AI"
+        }
+      }
+    },
+    "GaiProvenanceTechnique": {
+      "name": "GaiProvenanceTechnique",
+      "description": "The techniques for provenance data tracking in section A.1.6.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "digital_watermarking": {
+          "text": "digital_watermarking",
+          "description": "Placing visible or hidden marks on content.",
+          "title": "Digital watermarking"
+        },
+        "metadata_recording": {
+          "text": "metadata_recording",
+          "description": "Recording facts about the content, such as its creator, date and sources.",
+          "title": "Metadata recording"
+        },
+        "digital_fingerprinting": {
+          "text": "digital_fingerprinting",
+          "description": "Identifying content from its own characteristics.",
+          "title": "Digital fingerprinting"
+        },
+        "human_authentication": {
+          "text": "human_authentication",
+          "description": "Having people confirm where content came from.",
+          "title": "Human authentication"
+        }
+      }
+    },
+    "GaiIncidentHarm": {
+      "name": "GaiIncidentHarm",
+      "description": "The kinds of harm that section A.1.8's definition of an AI incident names.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "permissible_values": {
+        "injury_or_harm_to_health": {
+          "text": "injury_or_harm_to_health",
+          "description": "To a person or group, including psychological harm and harm to mental health.",
+          "title": "Injury or harm to health"
+        },
+        "critical_infrastructure_disruption": {
+          "text": "critical_infrastructure_disruption",
+          "description": "To its management and operation.",
+          "title": "Disruption of critical infrastructure"
+        },
+        "rights_violations": {
+          "text": "rights_violations",
+          "description": "Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights.",
+          "title": "Violations of rights or legal obligations"
+        },
+        "harm_to_property_communities_or_environment": {
+          "text": "harm_to_property_communities_or_environment",
+          "description": "To things and groups beyond the individual.",
+          "title": "Harm to property, communities, or the environment"
+        }
+      }
+    }
+  },
+  "slots": {
+    "ai_rmf_id": {
+      "name": "ai_rmf_id",
+      "description": "The identifier an adopter gives a record of its own.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "identifier": true,
+      "domain_of": [
+        "AiRmfRecord"
+      ],
+      "range": "uriorcurie",
+      "required": true
+    },
+    "ai_rmf_subcategory_id": {
+      "name": "ai_rmf_subcategory_id",
+      "description": "The subcategory's identifier, such as GOVERN 1.1.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "domain_of": [
+        "GaiSubcategory"
+      ],
+      "range": "ai_rmf_subcategory_identifier",
+      "required": true
+    },
+    "title": {
+      "name": "title",
+      "description": "The element's name.",
+      "comments": [
+        "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "schema:name",
+      "domain_of": [
+        "AiRmfRecord",
+        "GaiPrimaryConsideration",
+        "GaiStructuredFeedback"
+      ]
+    },
+    "description": {
+      "name": "description",
+      "description": "What the element says or is.",
+      "comments": [
+        "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "slot_uri": "schema:description",
+      "domain_of": [
+        "AiRmfRecord",
+        "GaiRisk",
+        "GaiSubcategory",
+        "GaiSuggestedAction",
+        "GaiPrimaryConsideration",
+        "GaiStructuredFeedback"
+      ]
+    },
+    "gai_action_id": {
+      "name": "gai_action_id",
+      "description": "The action's identifier, such as GV-1.1-001.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "domain_of": [
+        "GaiSuggestedAction"
+      ],
+      "range": "gai_action_identifier",
+      "required": true
+    },
+    "gai_consideration_type": {
+      "name": "gai_consideration_type",
+      "description": "Which of the four classes this record is.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "designates_type": true,
+      "domain_of": [
+        "GaiPrimaryConsideration"
+      ],
+      "range": "string",
+      "required": true
+    },
+    "gai_feedback_type": {
+      "name": "gai_feedback_type",
+      "description": "Which of the three classes this record is.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "designates_type": true,
+      "domain_of": [
+        "GaiStructuredFeedback"
+      ],
+      "range": "string",
+      "required": true
+    }
+  },
+  "classes": {
+    "GaiProfile": {
+      "name": "GaiProfile",
+      "description": "The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it.",
+      "comments": [
+        "It holds actions for only some subcategories, and the publication says more may be added later."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "AiRmfProfile",
+      "attributes": {
+        "gai_risks": {
+          "name": "gai_risks",
+          "description": "The 12 risks of section 2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "GaiProfile"
+          ],
+          "range": "GaiRisk",
+          "required": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true,
+          "minimum_cardinality": 1
+        },
+        "gai_subcategories": {
+          "name": "gai_subcategories",
+          "description": "The tables of section 3, in the publication's order.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "GaiProfile"
+          ],
+          "range": "GaiSubcategory",
+          "required": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true,
+          "minimum_cardinality": 1
+        },
+        "gai_primary_considerations": {
+          "name": "gai_primary_considerations",
+          "description": "The four primary considerations of Appendix A.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "GaiProfile"
+          ],
+          "range": "GaiPrimaryConsideration",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "ai_rmf_profile_kinds": {
+          "name": "ai_rmf_profile_kinds",
+          "description": "Which of the publication's kinds of profile this is. A current profile for one use case is both.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "AiRmfProfileKind",
+          "required": true,
+          "multivalued": true,
+          "minimum_cardinality": 1
+        },
+        "ai_rmf_profile_setting": {
+          "name": "ai_rmf_profile_setting",
+          "description": "The sector, industry, technology, organization or end use the profile covers, such as hiring.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "string"
+        },
+        "ai_rmf_profile_subcategories": {
+          "name": "ai_rmf_profile_subcategories",
+          "description": "The subcategories the profile selects. An adopter may select from them rather than apply all.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "ai_rmf_subcategory_identifier",
+          "multivalued": true
+        },
+        "ai_rmf_id": {
+          "name": "ai_rmf_id",
+          "description": "The identifier an adopter gives a record of its own.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "identifier": true,
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfRecord"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiProfile",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:Profile",
+      "tree_root": true
+    },
+    "AiRmfRecord": {
+      "name": "AiRmfRecord",
+      "description": "The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "abstract": true,
+      "slots": [
+        "ai_rmf_id",
+        "title",
+        "description"
+      ],
+      "attributes": {
+        "ai_rmf_id": {
+          "name": "ai_rmf_id",
+          "description": "The identifier an adopter gives a record of its own.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "identifier": true,
+          "owner": "AiRmfRecord",
+          "domain_of": [
+            "AiRmfRecord"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "AiRmfRecord",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "AiRmfRecord",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_100_1:Record"
+    },
+    "AiRmfProfile": {
+      "name": "AiRmfProfile",
+      "description": "An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources.",
+      "comments": [
+        "The publication prescribes no profile template, so only the kinds and the subcategories are structured."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "oscal:Profile"
+      ],
+      "is_a": "AiRmfRecord",
+      "attributes": {
+        "ai_rmf_profile_kinds": {
+          "name": "ai_rmf_profile_kinds",
+          "description": "Which of the publication's kinds of profile this is. A current profile for one use case is both.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "AiRmfProfileKind",
+          "required": true,
+          "multivalued": true,
+          "minimum_cardinality": 1
+        },
+        "ai_rmf_profile_setting": {
+          "name": "ai_rmf_profile_setting",
+          "description": "The sector, industry, technology, organization or end use the profile covers, such as hiring.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "string"
+        },
+        "ai_rmf_profile_subcategories": {
+          "name": "ai_rmf_profile_subcategories",
+          "description": "The subcategories the profile selects. An adopter may select from them rather than apply all.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles",
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfProfile"
+          ],
+          "range": "ai_rmf_subcategory_identifier",
+          "multivalued": true
+        },
+        "ai_rmf_id": {
+          "name": "ai_rmf_id",
+          "description": "The identifier an adopter gives a record of its own.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "identifier": true,
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfRecord"
+          ],
+          "range": "uriorcurie",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "AiRmfProfile",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_100_1:Profile"
+    },
+    "GaiRisk": {
+      "name": "GaiRisk",
+      "description": "A risk that section 2 defines as unique to or made worse by the development and use of GAI.",
+      "comments": [
+        "The publication gives a risk its section, its definition, its trustworthiness characteristics and, in a footnote, its groupings. It assigns no lifecycle stage, scope, source or time scale to a risk, since those depend on the model, system or use case. An adopter fills them in."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "nist_ai_100_1:Risk"
+      ],
+      "slots": [
+        "description"
+      ],
+      "slot_usage": {
+        "description": {
+          "name": "description",
+          "description": "The risk's definition in section 2."
+        }
+      },
+      "attributes": {
+        "gai_risk_name": {
+          "name": "gai_risk_name",
+          "description": "Which of the 12 risks this is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiRiskName",
+          "required": true
+        },
+        "gai_risk_section": {
+          "name": "gai_risk_section",
+          "description": "The subsection of section 2 that discusses the risk, such as 2.1.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^2\\.([1-9]|1[0-2])$"
+        },
+        "gai_risk_characteristics": {
+          "name": "gai_risk_characteristics",
+          "description": "The AI RMF's trustworthiness characteristics that the subsection names for the risk.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "AiRmfCharacteristicName",
+          "multivalued": true
+        },
+        "gai_risk_groupings": {
+          "name": "gai_risk_groupings",
+          "description": "The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiRiskGrouping",
+          "multivalued": true
+        },
+        "gai_risk_lifecycle_stages": {
+          "name": "gai_risk_lifecycle_stages",
+          "description": "The lifecycle stages where the risk can arise for the adopter's model, system or use case.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiLifecycleStage",
+          "multivalued": true
+        },
+        "gai_risk_scopes": {
+          "name": "gai_risk_scopes",
+          "description": "The levels where the risk exists for the adopter's model, system or use case.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiRiskScope",
+          "multivalued": true
+        },
+        "gai_risk_sources": {
+          "name": "gai_risk_sources",
+          "description": "Where the risk comes from for the adopter's model, system or use case.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiRiskSource",
+          "multivalued": true
+        },
+        "gai_risk_time_scales": {
+          "name": "gai_risk_time_scales",
+          "description": "How the risk materializes over time for the adopter's model, system or use case.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "GaiRisk"
+          ],
+          "range": "GaiRiskTimeScale",
+          "multivalued": true
+        },
+        "description": {
+          "name": "description",
+          "description": "The risk's definition in section 2.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiRisk",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:Risk"
+    },
+    "GaiSubcategory": {
+      "name": "GaiSubcategory",
+      "description": "An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "nist_ai_100_1:Subcategory"
+      ],
+      "slots": [
+        "ai_rmf_subcategory_id",
+        "description"
+      ],
+      "slot_usage": {
+        "description": {
+          "name": "description",
+          "description": "The subcategory's statement as the table restates it.",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        }
+      },
+      "attributes": {
+        "gai_subcategory_actions": {
+          "name": "gai_subcategory_actions",
+          "description": "The suggested actions the table lists.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions",
+          "owner": "GaiSubcategory",
+          "domain_of": [
+            "GaiSubcategory"
+          ],
+          "range": "GaiSuggestedAction",
+          "required": true,
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true,
+          "minimum_cardinality": 1
+        },
+        "gai_subcategory_actor_tasks": {
+          "name": "gai_subcategory_actor_tasks",
+          "description": "The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions",
+          "owner": "GaiSubcategory",
+          "domain_of": [
+            "GaiSubcategory"
+          ],
+          "range": "AiRmfActorTaskName",
+          "multivalued": true
+        },
+        "ai_rmf_subcategory_id": {
+          "name": "ai_rmf_subcategory_id",
+          "description": "The subcategory's identifier, such as GOVERN 1.1.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "owner": "GaiSubcategory",
+          "domain_of": [
+            "GaiSubcategory"
+          ],
+          "range": "ai_rmf_subcategory_identifier",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "The subcategory's statement as the table restates it.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiSubcategory",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        }
+      },
+      "class_uri": "nist_ai_600_1:Subcategory"
+    },
+    "GaiSuggestedAction": {
+      "name": "GaiSuggestedAction",
+      "description": "A step an organization or AI actor can take to manage GAI risks, which one row of a table states.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "related_mappings": [
+        "nist_ai_100_1:SuggestedAction",
+        "stix:StixCourseOfAction"
+      ],
+      "broad_mappings": [
+        "oscal:Part"
+      ],
+      "slots": [
+        "gai_action_id",
+        "description"
+      ],
+      "slot_usage": {
+        "description": {
+          "name": "description",
+          "description": "The action's text in the table.",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        }
+      },
+      "attributes": {
+        "gai_action_risks": {
+          "name": "gai_action_risks",
+          "description": "The GAI risks the row tags the action with.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions",
+          "owner": "GaiSuggestedAction",
+          "domain_of": [
+            "GaiSuggestedAction"
+          ],
+          "range": "GaiRiskName",
+          "multivalued": true
+        },
+        "gai_action_id": {
+          "name": "gai_action_id",
+          "description": "The action's identifier, such as GV-1.1-001.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "owner": "GaiSuggestedAction",
+          "domain_of": [
+            "GaiSuggestedAction"
+          ],
+          "range": "gai_action_identifier",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "The action's text in the table.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiSuggestedAction",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true,
+          "pattern": "^\\s*\\S"
+        }
+      },
+      "class_uri": "nist_ai_600_1:SuggestedAction"
+    },
+    "GaiPrimaryConsideration": {
+      "name": "GaiPrimaryConsideration",
+      "description": "One of the four primary considerations of Appendix A, which also inform the suggested actions.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "abstract": true,
+      "slots": [
+        "gai_consideration_type",
+        "title",
+        "description"
+      ],
+      "slot_usage": {
+        "title": {
+          "name": "title",
+          "required": true
+        }
+      },
+      "attributes": {
+        "gai_consideration_sections": {
+          "name": "gai_consideration_sections",
+          "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiPrimaryConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "multivalued": true,
+          "pattern": "^A\\.1(\\.[1-8])?$"
+        },
+        "gai_consideration_type": {
+          "name": "gai_consideration_type",
+          "description": "Which of the four classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiPrimaryConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiPrimaryConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiPrimaryConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:PrimaryConsideration"
+    },
+    "GaiGovernanceConsideration": {
+      "name": "GaiGovernanceConsideration",
+      "description": "How an organization's governance can be revisited for GAI, including across the AI value chain.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiPrimaryConsideration",
+      "attributes": {
+        "gai_governance_plans": {
+          "name": "gai_governance_plans",
+          "description": "The plans and actions that section A.1.2 lists from other AI governance.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "GaiGovernanceConsideration"
+          ],
+          "range": "GaiGovernancePlan",
+          "multivalued": true
+        },
+        "gai_third_party_controls": {
+          "name": "gai_third_party_controls",
+          "description": "The existing controls that section A.1.3 says can apply to third-party GAI.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "GaiGovernanceConsideration"
+          ],
+          "range": "GaiThirdPartyControl",
+          "multivalued": true
+        },
+        "gai_consideration_type": {
+          "name": "gai_consideration_type",
+          "description": "Which of the four classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "gai_consideration_sections": {
+          "name": "gai_consideration_sections",
+          "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiGovernanceConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "multivalued": true,
+          "pattern": "^A\\.1(\\.[1-8])?$"
+        }
+      },
+      "class_uri": "nist_ai_600_1:GovernanceConsideration"
+    },
+    "GaiPreDeploymentTestingConsideration": {
+      "name": "GaiPreDeploymentTestingConsideration",
+      "description": "How GAI can be tested before deployment while better approaches mature, and where current tests fall short.",
+      "comments": [
+        "Section A.1.7 calls the feedback approaches of section A.1.5 part of this consideration."
+      ],
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiPrimaryConsideration",
+      "attributes": {
+        "gai_structured_feedback": {
+          "name": "gai_structured_feedback",
+          "description": "The kinds of structured public feedback section A.1.5 gives as examples.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiPreDeploymentTestingConsideration",
+          "domain_of": [
+            "GaiPreDeploymentTestingConsideration"
+          ],
+          "range": "GaiStructuredFeedback",
+          "multivalued": true,
+          "inlined": true,
+          "inlined_as_list": true
+        },
+        "gai_consideration_type": {
+          "name": "gai_consideration_type",
+          "description": "Which of the four classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiPreDeploymentTestingConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiPreDeploymentTestingConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiPreDeploymentTestingConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "gai_consideration_sections": {
+          "name": "gai_consideration_sections",
+          "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiPreDeploymentTestingConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "multivalued": true,
+          "pattern": "^A\\.1(\\.[1-8])?$"
+        }
+      },
+      "class_uri": "nist_ai_600_1:PreDeploymentTestingConsideration"
+    },
+    "GaiContentProvenanceConsideration": {
+      "name": "GaiContentProvenanceConsideration",
+      "description": "How tracking the origin and history of content helps tell authentic content from synthetic content.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiPrimaryConsideration",
+      "attributes": {
+        "gai_provenance_techniques": {
+          "name": "gai_provenance_techniques",
+          "description": "The well-known techniques for provenance data tracking that section A.1.6 names.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiContentProvenanceConsideration",
+          "domain_of": [
+            "GaiContentProvenanceConsideration"
+          ],
+          "range": "GaiProvenanceTechnique",
+          "multivalued": true
+        },
+        "gai_consideration_type": {
+          "name": "gai_consideration_type",
+          "description": "Which of the four classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiContentProvenanceConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiContentProvenanceConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiContentProvenanceConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "gai_consideration_sections": {
+          "name": "gai_consideration_sections",
+          "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiContentProvenanceConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "multivalued": true,
+          "pattern": "^A\\.1(\\.[1-8])?$"
+        }
+      },
+      "class_uri": "nist_ai_600_1:ContentProvenanceConsideration"
+    },
+    "GaiIncidentDisclosureConsideration": {
+      "name": "GaiIncidentDisclosureConsideration",
+      "description": "How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiPrimaryConsideration",
+      "attributes": {
+        "gai_incident_harms": {
+          "name": "gai_incident_harms",
+          "description": "The kinds of harm that section A.1.8's definition of an AI incident names.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiIncidentDisclosureConsideration",
+          "domain_of": [
+            "GaiIncidentDisclosureConsideration"
+          ],
+          "range": "GaiIncidentHarm",
+          "multivalued": true
+        },
+        "gai_consideration_type": {
+          "name": "gai_consideration_type",
+          "description": "Which of the four classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiIncidentDisclosureConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiIncidentDisclosureConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiIncidentDisclosureConsideration",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        },
+        "gai_consideration_sections": {
+          "name": "gai_consideration_sections",
+          "description": "The subsections of Appendix A that discuss the consideration, such as A.1.2.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiIncidentDisclosureConsideration",
+          "domain_of": [
+            "GaiPrimaryConsideration"
+          ],
+          "range": "string",
+          "multivalued": true,
+          "pattern": "^A\\.1(\\.[1-8])?$"
+        }
+      },
+      "class_uri": "nist_ai_600_1:IncidentDisclosureConsideration"
+    },
+    "GaiStructuredFeedback": {
+      "name": "GaiStructuredFeedback",
+      "description": "A way of using structured public feedback to evaluate whether GAI systems perform as intended.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "abstract": true,
+      "slots": [
+        "gai_feedback_type",
+        "title",
+        "description"
+      ],
+      "slot_usage": {
+        "title": {
+          "name": "title",
+          "required": true
+        }
+      },
+      "attributes": {
+        "gai_feedback_type": {
+          "name": "gai_feedback_type",
+          "description": "Which of the three classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiStructuredFeedback",
+          "domain_of": [
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiStructuredFeedback",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiStructuredFeedback",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:StructuredFeedback"
+    },
+    "GaiParticipatoryEngagement": {
+      "name": "GaiParticipatoryEngagement",
+      "description": "Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiStructuredFeedback",
+      "attributes": {
+        "gai_feedback_type": {
+          "name": "gai_feedback_type",
+          "description": "Which of the three classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiParticipatoryEngagement",
+          "domain_of": [
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiParticipatoryEngagement",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiParticipatoryEngagement",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:ParticipatoryEngagement"
+    },
+    "GaiFieldTesting": {
+      "name": "GaiFieldTesting",
+      "description": "Structured settings that show how people interact with and use AI-generated information.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiStructuredFeedback",
+      "attributes": {
+        "gai_feedback_type": {
+          "name": "gai_feedback_type",
+          "description": "Which of the three classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiFieldTesting",
+          "domain_of": [
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiFieldTesting",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiFieldTesting",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:FieldTesting"
+    },
+    "GaiAiRedTeaming": {
+      "name": "GaiAiRedTeaming",
+      "description": "A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers.",
+      "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+      "is_a": "GaiStructuredFeedback",
+      "attributes": {
+        "gai_red_teaming_types": {
+          "name": "gai_red_teaming_types",
+          "description": "The kinds of AI red-teaming that may suit the use case.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations",
+          "owner": "GaiAiRedTeaming",
+          "domain_of": [
+            "GaiAiRedTeaming"
+          ],
+          "range": "GaiRedTeamingType",
+          "multivalued": true
+        },
+        "gai_feedback_type": {
+          "name": "gai_feedback_type",
+          "description": "Which of the three classes this record is.",
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "designates_type": true,
+          "owner": "GaiAiRedTeaming",
+          "domain_of": [
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "title": {
+          "name": "title",
+          "description": "The element's name.",
+          "comments": [
+            "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:name",
+          "owner": "GaiAiRedTeaming",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string",
+          "required": true
+        },
+        "description": {
+          "name": "description",
+          "description": "What the element says or is.",
+          "comments": [
+            "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key."
+          ],
+          "from_schema": "https://w3id.org/lmodel/nist-ai-600-1",
+          "slot_uri": "schema:description",
+          "owner": "GaiAiRedTeaming",
+          "domain_of": [
+            "AiRmfRecord",
+            "GaiRisk",
+            "GaiSubcategory",
+            "GaiSuggestedAction",
+            "GaiPrimaryConsideration",
+            "GaiStructuredFeedback"
+          ],
+          "range": "string"
+        }
+      },
+      "class_uri": "nist_ai_600_1:AiRedTeaming"
+    }
+  },
+  "metamodel_version": "1.12.0",
+  "source_file": "src/nist_ai_600_1/schema/nist_ai_600_1.yaml",
+  "@type": "SchemaDefinition"
+}
