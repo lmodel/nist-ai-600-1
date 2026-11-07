@@ -1,0 +1,1139 @@
+@prefix rdf: <http://www.w3.org/1999/02/22-rdf-syntax-ns#> .
+@prefix rdfs: <http://www.w3.org/2000/01/rdf-schema#> .
+@prefix skos: <http://www.w3.org/2004/02/skos/core#> .
+@prefix xsd: <http://www.w3.org/2001/XMLSchema#> .
+@prefix sh: <http://www.w3.org/ns/shacl#> .
+@prefix dcterms: <http://purl.org/dc/terms/> .
+@prefix linkml: <https://w3id.org/linkml/> .
+@prefix pav: <http://purl.org/pav/> .
+<https://w3id.org/lmodel/nist-ai-600-1/AiRmfActorTaskName> skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:note "One list holds both kinds because NIST tags them together: the Playbook under its AI Actors key, and AI 600-1 under AI Actor Tasks. Each alias is the spelling those tags use where it differs from the title in Appendix A." ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfActorTaskName"^^xsd:anyURI ;
+	linkml:description "The ten AI actor tasks and five additional AI actors of Appendix A." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/affected_individuals_and_communities> , <https://w3id.org/lmodel/nist-ai-600-1/ai_deployment> , <https://w3id.org/lmodel/nist-ai-600-1/ai_design> , <https://w3id.org/lmodel/nist-ai-600-1/ai_development> , <https://w3id.org/lmodel/nist-ai-600-1/ai_impact_assessment> , <https://w3id.org/lmodel/nist-ai-600-1/domain_expert> , <https://w3id.org/lmodel/nist-ai-600-1/end_users> , <https://w3id.org/lmodel/nist-ai-600-1/general_public> , <https://w3id.org/lmodel/nist-ai-600-1/governance_and_oversight> , <https://w3id.org/lmodel/nist-ai-600-1/human_factors> , <https://w3id.org/lmodel/nist-ai-600-1/operation_and_monitoring> , <https://w3id.org/lmodel/nist-ai-600-1/other_ai_actors> , <https://w3id.org/lmodel/nist-ai-600-1/procurement> , <https://w3id.org/lmodel/nist-ai-600-1/tevv> , <https://w3id.org/lmodel/nist-ai-600-1/third_party_entities> .
+<https://w3id.org/lmodel/nist-ai-600-1/AiRmfCharacteristicName> skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfCharacteristicName"^^xsd:anyURI ;
+	linkml:description "The seven characteristics of trustworthy AI systems in section 3 of the publication." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/accountable_and_transparent> , <https://w3id.org/lmodel/nist-ai-600-1/explainable_and_interpretable> , <https://w3id.org/lmodel/nist-ai-600-1/fair_with_harmful_bias_managed> , <https://w3id.org/lmodel/nist-ai-600-1/privacy_enhanced> , <https://w3id.org/lmodel/nist-ai-600-1/safe> , <https://w3id.org/lmodel/nist-ai-600-1/secure_and_resilient> , <https://w3id.org/lmodel/nist-ai-600-1/valid_and_reliable> .
+<https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_100_1:Profile"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles"^^xsd:anyURI ;
+	skos:note "The publication prescribes no profile template, so only the kinds and the subcategories are structured." ;
+	skos:relatedMatch "oscal:Profile"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_kinds> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_setting> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_subcategories> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-100-1/Profile"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfile"^^xsd:anyURI ;
+	linkml:description "An implementation of the Core's functions, categories and subcategories for a setting, application or technology, based on the adopter's requirements, risk tolerance and resources." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> ;
+	linkml:slot_usage _:c14n1 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_kinds> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_setting> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_subcategories> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_id> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/title> .
+<https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfileKind> skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfProfileKind"^^xsd:anyURI ;
+	linkml:description "The kinds of AI RMF profile that section 6 names." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/cross_sectoral> , <https://w3id.org/lmodel/nist-ai-600-1/current> , <https://w3id.org/lmodel/nist-ai-600-1/target> , <https://w3id.org/lmodel/nist-ai-600-1/use_case> .
+<https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_100_1:Record"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-100-1/Record"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfRecord"^^xsd:anyURI ;
+	linkml:description "The base of the classes that record an adopter's own facts, such as one of its AI systems or risks, as distinct from what the publication itself lists." ;
+	linkml:slot_usage _:c14n19 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_id> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/title> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:AiRedTeaming"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_red_teaming_types> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/AiRedTeaming"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming"^^xsd:anyURI ;
+	linkml:description "A structured exercise that probes an AI system for flaws and vulnerabilities, often with its developers." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:slot_usage _:c14n9 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiAiRedTeaming__gai_red_teaming_types> , <https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:ContentProvenanceConsideration"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_provenance_techniques> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/ContentProvenanceConsideration"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration"^^xsd:anyURI ;
+	linkml:description "How tracking the origin and history of content helps tell authentic content from synthetic content." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:slot_usage _:c14n12 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiContentProvenanceConsideration__gai_provenance_techniques> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiFieldTesting> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:FieldTesting"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/FieldTesting"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiFieldTesting"^^xsd:anyURI ;
+	linkml:description "Structured settings that show how people interact with and use AI-generated information." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:slot_usage _:c14n4 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:GovernanceConsideration"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_governance_plans> , <https://w3id.org/lmodel/nist-ai-600-1/gai_third_party_controls> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/GovernanceConsideration"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration"^^xsd:anyURI ;
+	linkml:description "How an organization's governance can be revisited for GAI, including across the AI value chain." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:slot_usage _:c14n5 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_governance_plans> , <https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_third_party_controls> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan"^^xsd:anyURI ;
+	linkml:description "The plans and actions that section A.1.2 says apply to GAI from other AI governance." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/accessibility_and_reasonable_accommodations> , <https://w3id.org/lmodel/nist-ai-600-1/ai_actor_credentials_and_qualifications> , <https://w3id.org/lmodel/nist-ai-600-1/alignment_to_organizational_values> , <https://w3id.org/lmodel/nist-ai-600-1/auditing_and_assessment> , <https://w3id.org/lmodel/nist-ai-600-1/change_management_controls> , <https://w3id.org/lmodel/nist-ai-600-1/commercial_use> , <https://w3id.org/lmodel/nist-ai-600-1/consistency_in_use_of_defining_key_terms> , <https://w3id.org/lmodel/nist-ai-600-1/data_protection> , <https://w3id.org/lmodel/nist-ai-600-1/data_provenance> , <https://w3id.org/lmodel/nist-ai-600-1/data_retention> , <https://w3id.org/lmodel/nist-ai-600-1/decommissioning> , <https://w3id.org/lmodel/nist-ai-600-1/discouraging_anonymous_use> , <https://w3id.org/lmodel/nist-ai-600-1/education> , <https://w3id.org/lmodel/nist-ai-600-1/impact_assessments> , <https://w3id.org/lmodel/nist-ai-600-1/incident_response> , <https://w3id.org/lmodel/nist-ai-600-1/monitoring> , <https://w3id.org/lmodel/nist-ai-600-1/opt_outs> , <https://w3id.org/lmodel/nist-ai-600-1/risk_based_controls> , <https://w3id.org/lmodel/nist-ai-600-1/risk_mapping_and_measurement> , <https://w3id.org/lmodel/nist-ai-600-1/science_backed_tevv_practices> , <https://w3id.org/lmodel/nist-ai-600-1/secure_software_development_practices> , <https://w3id.org/lmodel/nist-ai-600-1/stakeholder_engagement> , <https://w3id.org/lmodel/nist-ai-600-1/synthetic_content_detection_and_labeling_tools_and_techniques> , <https://w3id.org/lmodel/nist-ai-600-1/whistleblower_protections> , <https://w3id.org/lmodel/nist-ai-600-1/workforce_diversity_and_interdisciplinary_teams> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:IncidentDisclosureConsideration"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_incident_harms> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/IncidentDisclosureConsideration"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration"^^xsd:anyURI ;
+	linkml:description "How documenting, reporting and sharing AI incidents helps prevent harm, though no formal channels exist." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:slot_usage _:c14n10 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiIncidentDisclosureConsideration__gai_incident_harms> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm"^^xsd:anyURI ;
+	linkml:description "The kinds of harm that section A.1.8's definition of an AI incident names." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/critical_infrastructure_disruption> , <https://w3id.org/lmodel/nist-ai-600-1/harm_to_property_communities_or_environment> , <https://w3id.org/lmodel/nist-ai-600-1/injury_or_harm_to_health> , <https://w3id.org/lmodel/nist-ai-600-1/rights_violations> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage"^^xsd:anyURI ;
+	linkml:description "The lifecycle stages section 2 names for GAI. They differ from the seven stages of the AI RMF's Figure 3." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/decommissioning> , <https://w3id.org/lmodel/nist-ai-600-1/deployment> , <https://w3id.org/lmodel/nist-ai-600-1/design> , <https://w3id.org/lmodel/nist-ai-600-1/development> , <https://w3id.org/lmodel/nist-ai-600-1/operation> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiParticipatoryEngagement> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:ParticipatoryEngagement"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/ParticipatoryEngagement"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiParticipatoryEngagement"^^xsd:anyURI ;
+	linkml:description "Asking civil society groups, affected communities and users for feedback, such as through focus groups or surveys." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:slot_usage _:c14n14 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:PreDeploymentTestingConsideration"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:note "Section A.1.7 calls the feedback approaches of section A.1.5 part of this consideration." ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_structured_feedback> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/PreDeploymentTestingConsideration"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration"^^xsd:anyURI ;
+	linkml:description "How GAI can be tested before deployment while better approaches mature, and where current tests fall short." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:slot_usage _:c14n11 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPreDeploymentTestingConsideration__gai_structured_feedback> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:PrimaryConsideration"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_sections> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/PrimaryConsideration"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration"^^xsd:anyURI ;
+	linkml:description "One of the four primary considerations of Appendix A, which also inform the suggested actions." ;
+	linkml:slot_usage _:c14n7 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/name"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key." ;
+	skos:prefLabel "title" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/title"^^xsd:anyURI ;
+	linkml:description "The element's name." ;
+	linkml:domain <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/title> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://schema.org/name"^^xsd:anyURI ;
+	linkml:usage_slot_name "title" .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:Profile"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1"^^xsd:anyURI ;
+	skos:note "It holds actions for only some subcategories, and the publication says more may be added later." ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_primary_considerations> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risks> , <https://w3id.org/lmodel/nist-ai-600-1/gai_subcategories> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/Profile"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiProfile"^^xsd:anyURI ;
+	linkml:description "The Generative AI Profile as a whole, a cross-sectoral profile of the AI RMF and a companion resource to it." ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:slot_usage _:c14n3 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_kinds> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_setting> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_subcategories> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_id> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_primary_considerations> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_risks> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_subcategories> , <https://w3id.org/lmodel/nist-ai-600-1/title> ;
+	linkml:tree_root true .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique"^^xsd:anyURI ;
+	linkml:description "The techniques for provenance data tracking in section A.1.6." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/digital_fingerprinting> , <https://w3id.org/lmodel/nist-ai-600-1/digital_watermarking> , <https://w3id.org/lmodel/nist-ai-600-1/human_authentication> , <https://w3id.org/lmodel/nist-ai-600-1/metadata_recording> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType"^^xsd:anyURI ;
+	linkml:description "The types of AI red-teaming in section A.1.5." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/combination> , <https://w3id.org/lmodel/nist-ai-600-1/expert> , <https://w3id.org/lmodel/nist-ai-600-1/general_public> , <https://w3id.org/lmodel/nist-ai-600-1/human_ai> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:Risk"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:note "The publication gives a risk its section, its definition, its trustworthiness characteristics and, in a footnote, its groupings. It assigns no lifecycle stage, scope, source or time scale to a risk, since those depend on the model, system or use case. An adopter fills them in." ;
+	skos:relatedMatch "nist_ai_100_1:Risk"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_characteristics> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_groupings> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_lifecycle_stages> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_name> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_scopes> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_section> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_sources> , <https://w3id.org/lmodel/nist-ai-600-1/gai_risk_time_scales> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/Risk"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRisk"^^xsd:anyURI ;
+	linkml:description "A risk that section 2 defines as unique to or made worse by the development and use of GAI." ;
+	linkml:slot_usage _:c14n15 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk_description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_characteristics> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_groupings> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_lifecycle_stages> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_name> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_scopes> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_section> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_sources> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_time_scales> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping"^^xsd:anyURI ;
+	linkml:description "The three groups into which footnote 5 says an organization could sort the risks, as one possible way." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/ecosystem_or_societal> , <https://w3id.org/lmodel/nist-ai-600-1/misuse_by_humans> , <https://w3id.org/lmodel/nist-ai-600-1/technical_or_model> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:note "The tables of section 3 tag actions with these risks, in slightly different spellings from the definitions in section 2. Each alias is a spelling the tables use." ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName"^^xsd:anyURI ;
+	linkml:description "The 12 risks of section 2." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/cbrn_information_or_capabilities> , <https://w3id.org/lmodel/nist-ai-600-1/confabulation> , <https://w3id.org/lmodel/nist-ai-600-1/dangerous_violent_or_hateful_content> , <https://w3id.org/lmodel/nist-ai-600-1/data_privacy> , <https://w3id.org/lmodel/nist-ai-600-1/environmental_impacts> , <https://w3id.org/lmodel/nist-ai-600-1/harmful_bias_or_homogenization> , <https://w3id.org/lmodel/nist-ai-600-1/human_ai_configuration> , <https://w3id.org/lmodel/nist-ai-600-1/information_integrity> , <https://w3id.org/lmodel/nist-ai-600-1/information_security> , <https://w3id.org/lmodel/nist-ai-600-1/intellectual_property> , <https://w3id.org/lmodel/nist-ai-600-1/obscene_degrading_or_abusive_content> , <https://w3id.org/lmodel/nist-ai-600-1/value_chain_and_component_integration> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope"^^xsd:anyURI ;
+	linkml:description "The levels where section 2 says a risk may exist." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/application_or_implementation> , <https://w3id.org/lmodel/nist-ai-600-1/ecosystem> , <https://w3id.org/lmodel/nist-ai-600-1/model_or_system> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource"^^xsd:anyURI ;
+	linkml:description "Where section 2 says a risk may come from." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/design> , <https://w3id.org/lmodel/nist-ai-600-1/human_ai_interaction> , <https://w3id.org/lmodel/nist-ai-600-1/human_behavior> , <https://w3id.org/lmodel/nist-ai-600-1/inputs> , <https://w3id.org/lmodel/nist-ai-600-1/operation> , <https://w3id.org/lmodel/nist-ai-600-1/outputs> , <https://w3id.org/lmodel/nist-ai-600-1/training> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale"^^xsd:anyURI ;
+	linkml:description "How section 2 says a risk may materialize over time." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/abrupt> , <https://w3id.org/lmodel/nist-ai-600-1/extended> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiRisk_description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key." ;
+	skos:prefLabel "description" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/description"^^xsd:anyURI ;
+	linkml:description "The risk's definition in section 2." ;
+	linkml:domain <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/description> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI ;
+	linkml:usage_slot_name "description" .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:StructuredFeedback"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:abstract true ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/StructuredFeedback"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback"^^xsd:anyURI ;
+	linkml:description "A way of using structured public feedback to evaluate whether GAI systems perform as intended." ;
+	linkml:slot_usage _:c14n18 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/name"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key." ;
+	skos:prefLabel "title" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/title"^^xsd:anyURI ;
+	linkml:description "The element's name." ;
+	linkml:domain <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/title> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://schema.org/name"^^xsd:anyURI ;
+	linkml:usage_slot_name "title" .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> a linkml:ClassDefinition ;
+	skos:exactMatch "nist_ai_600_1:Subcategory"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	skos:relatedMatch "nist_ai_100_1:Subcategory"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actions> , <https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actor_tasks> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/Subcategory"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory"^^xsd:anyURI ;
+	linkml:description "An AI RMF subcategory as one table of section 3 addresses it. The Profile covers only some of the 72." ;
+	linkml:slot_usage _:c14n6 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory_description> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_id> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actions> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actor_tasks> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory_description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key." ;
+	skos:prefLabel "description" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/description"^^xsd:anyURI ;
+	linkml:description "The subcategory's statement as the table restates it." ;
+	linkml:domain <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/description> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:pattern "^\\s*\\S" ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI ;
+	linkml:usage_slot_name "description" .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> a linkml:ClassDefinition ;
+	skos:broadMatch "oscal:Part"^^xsd:anyURI ;
+	skos:exactMatch "nist_ai_600_1:SuggestedAction"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	skos:relatedMatch "nist_ai_100_1:SuggestedAction"^^xsd:anyURI , "stix:StixCourseOfAction"^^xsd:anyURI ;
+	linkml:attributes <https://w3id.org/lmodel/nist-ai-600-1/gai_action_risks> ;
+	linkml:class_uri "https://w3id.org/lmodel/nist-ai-600-1/SuggestedAction"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction"^^xsd:anyURI ;
+	linkml:description "A step an organization or AI actor can take to manage GAI risks, which one row of a table states." ;
+	linkml:slot_usage _:c14n2 ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction_description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSuggestedAction__gai_action_risks> , <https://w3id.org/lmodel/nist-ai-600-1/gai_action_id> .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction_description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key." ;
+	skos:prefLabel "description" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/description"^^xsd:anyURI ;
+	linkml:description "The action's text in the table." ;
+	linkml:domain <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:is_a <https://w3id.org/lmodel/nist-ai-600-1/description> ;
+	linkml:is_usage_slot true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:pattern "^\\s*\\S" ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI ;
+	linkml:usage_slot_name "description" .
+<https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl> skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl"^^xsd:anyURI ;
+	linkml:description "The existing controls that section A.1.3 says can apply to third-party GAI." ;
+	linkml:permissible_values <https://w3id.org/lmodel/nist-ai-600-1/acquisition_and_procurement_due_diligence> , <https://w3id.org/lmodel/nist-ai-600-1/service_level_agreements> , <https://w3id.org/lmodel/nist-ai-600-1/software_bills_of_materials> , <https://w3id.org/lmodel/nist-ai-600-1/ssae_reports> .
+<https://w3id.org/lmodel/nist-ai-600-1/abrupt> dcterms:title "Abruptly" ;
+	linkml:description "All at once, such as immediate emotional harm from a harmful deepfake image." .
+<https://w3id.org/lmodel/nist-ai-600-1/accessibility_and_reasonable_accommodations> dcterms:title "Accessibility and reasonable accommodations" .
+<https://w3id.org/lmodel/nist-ai-600-1/accountable_and_transparent> dcterms:title "Accountable and Transparent" ;
+	linkml:description "Answerable for outcomes, which rests on people being able to get information about the system and its outputs. Figure 4 shows it relating to all the others." .
+<https://w3id.org/lmodel/nist-ai-600-1/acquisition_and_procurement_due_diligence> dcterms:title "Acquisition and procurement due diligence" ;
+	linkml:description "Checking a provider before acquiring its GAI technology or data." .
+<https://w3id.org/lmodel/nist-ai-600-1/affected_individuals_and_communities> dcterms:title "Affected individuals/communities" ;
+	skos:altLabel "Affected Individuals and Communities" ;
+	linkml:description "Those directly or indirectly affected by the system or its output, whether or not they interact with it." .
+<https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_kinds> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles"^^xsd:anyURI ;
+	skos:prefLabel "ai_rmf_profile_kinds" ;
+	linkml:description "Which of the publication's kinds of profile this is. A current profile for one use case is both." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfileKind> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_profile_kinds"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_setting> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles"^^xsd:anyURI ;
+	skos:prefLabel "ai_rmf_profile_setting" ;
+	linkml:description "The sector, industry, technology, organization or end use the profile covers, such as hiring." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_profile_setting"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_subcategories> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_profiles"^^xsd:anyURI ;
+	skos:prefLabel "ai_rmf_profile_subcategories" ;
+	linkml:description "The subcategories the profile selects. An adopter may select from them rather than apply all." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_identifier> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_profile_subcategories"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_actor_credentials_and_qualifications> dcterms:title "AI actor credentials and qualifications" .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_deployment> dcterms:title "AI Deployment" ;
+	linkml:description "Deciding how the system is used and putting it into production, including pilots and compliance checks." .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_design> dcterms:title "AI Design" ;
+	linkml:description "Setting what the system is for, planning and designing it, and gathering and preparing its data." .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_development> dcterms:title "AI Development" ;
+	linkml:description "Providing the initial infrastructure, and creating, selecting, calibrating, training and testing models." .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_impact_assessment> dcterms:title "AI Impact Assessment" ;
+	linkml:description "Assessing accountability, harmful bias, impacts, product safety, liability and security." .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_category_identifier> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfCategoryIdentifier"^^xsd:anyURI ;
+	linkml:description "A category's identifier, its function's name and a number, such as GOVERN 1." ;
+	linkml:pattern "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])$" ;
+	linkml:typeof <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_function_identifier> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfFunctionIdentifier"^^xsd:anyURI ;
+	linkml:description "The name of one of the four Core functions, written in capitals, such as GOVERN." ;
+	linkml:pattern "^(GOVERN|MAP|MEASURE|MANAGE)$" ;
+	linkml:typeof <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_id> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_id"^^xsd:anyURI ;
+	linkml:description "The identifier an adopter gives a record of its own." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> ;
+	linkml:identifier true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/uriorcurie> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_id"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_kinds> a linkml:SlotDefinition ;
+	linkml:description "Which of the publication's kinds of profile this is. A current profile for one use case is both." ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfileKind> ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_setting> a linkml:SlotDefinition ;
+	linkml:description "The sector, industry, technology, organization or end use the profile covers, such as hiring." .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_profile_subcategories> a linkml:SlotDefinition ;
+	linkml:description "The subcategories the profile selects. An adopter may select from them rather than apply all." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_identifier> .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_id> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_subcategory_id"^^xsd:anyURI ;
+	linkml:description "The subcategory's identifier, such as GOVERN 1.1." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_identifier> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-100-1/ai_rmf_subcategory_id"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_identifier> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/AiRmfSubcategoryIdentifier"^^xsd:anyURI ;
+	linkml:description "A subcategory's identifier, its category's identifier, a dot and a number, such as GOVERN 1.1." ;
+	linkml:pattern "^(GOVERN [1-6]|MAP [1-5]|MEASURE [1-4]|MANAGE [1-4])\\.[1-9][0-9]?$" ;
+	linkml:typeof <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/alignment_to_organizational_values> dcterms:title "Alignment to organizational values" .
+<https://w3id.org/lmodel/nist-ai-600-1/application_or_implementation> dcterms:title "Application or implementation" ;
+	linkml:description "The level of one specific use case." .
+<https://w3id.org/lmodel/nist-ai-600-1/auditing_and_assessment> dcterms:title "Auditing and assessment" .
+<https://w3id.org/lmodel/nist-ai-600-1/boolean> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"boolean\"." ;
+	skos:exactMatch "schema:Boolean"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Bool" ;
+	linkml:definition_uri "https://w3id.org/linkml/Boolean"^^xsd:anyURI ;
+	linkml:description "A binary (true or false) value" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "bool" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#boolean"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/cbrn_information_or_capabilities> dcterms:title "CBRN Information or Capabilities" ;
+	skos:altLabel "CBRN Information and Capability" ;
+	linkml:description "Easier access to dangerous information or design abilities for chemical, biological, radiological or nuclear weapons." .
+<https://w3id.org/lmodel/nist-ai-600-1/change_management_controls> dcterms:title "Change-management controls" .
+<https://w3id.org/lmodel/nist-ai-600-1/combination> dcterms:title "Combination" ;
+	linkml:description "By both experts and general public participants." .
+<https://w3id.org/lmodel/nist-ai-600-1/commercial_use> dcterms:title "Commercial use" .
+<https://w3id.org/lmodel/nist-ai-600-1/confabulation> dcterms:title "Confabulation" ;
+	linkml:description "Confident but wrong output that can mislead users." .
+<https://w3id.org/lmodel/nist-ai-600-1/consistency_in_use_of_defining_key_terms> dcterms:title "Consistency in use of defining key terms" .
+<https://w3id.org/lmodel/nist-ai-600-1/critical_infrastructure_disruption> dcterms:title "Disruption of critical infrastructure" ;
+	linkml:description "To its management and operation." .
+<https://w3id.org/lmodel/nist-ai-600-1/cross_sectoral> dcterms:title "Cross-sectoral profile" ;
+	linkml:description "Covers risks of models or applications used across use cases or sectors, or activities common to them, such as using large language models." .
+<https://w3id.org/lmodel/nist-ai-600-1/curie> dcterms:conformsTo "https://www.w3.org/TR/curie/" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"curie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations this MUST be expanded to a URI" , "in non-RDF serializations MAY be serialized as the compact representation" ;
+	linkml:base "Curie" ;
+	linkml:definition_uri "https://w3id.org/linkml/Curie"^^xsd:anyURI ;
+	linkml:description "a compact URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/current> dcterms:title "Current Profile" ;
+	linkml:description "A temporal profile saying how AI is managed today and the related risks, in terms of current outcomes." .
+<https://w3id.org/lmodel/nist-ai-600-1/dangerous_violent_or_hateful_content> dcterms:title "Dangerous, Violent, or Hateful Content" ;
+	linkml:description "Easier production of content that incites or threatens, recommends harm, or disparages." .
+<https://w3id.org/lmodel/nist-ai-600-1/data_privacy> dcterms:title "Data Privacy" ;
+	linkml:description "Leaks, misuse or de-anonymization of personal or sensitive data." .
+<https://w3id.org/lmodel/nist-ai-600-1/data_protection> dcterms:title "Data protection" .
+<https://w3id.org/lmodel/nist-ai-600-1/data_provenance> dcterms:title "Data provenance" .
+<https://w3id.org/lmodel/nist-ai-600-1/data_retention> dcterms:title "Data retention" .
+<https://w3id.org/lmodel/nist-ai-600-1/date> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date\"." , "URI is dateTime because OWL reasoners don't work with straight date or time" ;
+	skos:exactMatch "schema:Date"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDate" ;
+	linkml:definition_uri "https://w3id.org/linkml/Date"^^xsd:anyURI ;
+	linkml:description "a date (year, month and day) in an idealized calendar" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#date"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/date_or_datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"date_or_datetime\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI ;
+	linkml:description "Either a date or a datetime" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "https://w3id.org/linkml/DateOrDatetime"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/datetime> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"datetime\"." ;
+	skos:exactMatch "schema:DateTime"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDDateTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Datetime"^^xsd:anyURI ;
+	linkml:description "The combination of a date and time" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#dateTime"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/decimal> a linkml:TypeDefinition ;
+	skos:broadMatch "schema:Number"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"decimal\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "Decimal" ;
+	linkml:definition_uri "https://w3id.org/linkml/Decimal"^^xsd:anyURI ;
+	linkml:description "A real number with arbitrary precision that conforms to the xsd:decimal specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#decimal"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/decommissioning> dcterms:title "Decommissioning" ;
+	linkml:description "Retiring it." .
+<https://w3id.org/lmodel/nist-ai-600-1/deployment> dcterms:title "Deployment" ;
+	linkml:description "Putting it into use." .
+<https://w3id.org/lmodel/nist-ai-600-1/description> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/description"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's description, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one description key." ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/description"^^xsd:anyURI ;
+	linkml:description "What the element says or is." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> , <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> , <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:slot_uri "http://schema.org/description"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/design> dcterms:title "Design" ;
+	linkml:description "Setting out the system before it is built." , "The design of the model itself." .
+<https://w3id.org/lmodel/nist-ai-600-1/development> dcterms:title "Development" ;
+	linkml:description "Building and training it." .
+<https://w3id.org/lmodel/nist-ai-600-1/digital_fingerprinting> dcterms:title "Digital fingerprinting" ;
+	linkml:description "Identifying content from its own characteristics." .
+<https://w3id.org/lmodel/nist-ai-600-1/digital_watermarking> dcterms:title "Digital watermarking" ;
+	linkml:description "Placing visible or hidden marks on content." .
+<https://w3id.org/lmodel/nist-ai-600-1/discouraging_anonymous_use> dcterms:title "Discouraging anonymous use" .
+<https://w3id.org/lmodel/nist-ai-600-1/domain_expert> dcterms:title "Domain Expert" ;
+	skos:altLabel "Domain Experts" ;
+	linkml:description "Giving knowledge of the sector or setting where the system is used." .
+<https://w3id.org/lmodel/nist-ai-600-1/double> a linkml:TypeDefinition ;
+	skos:closeMatch "schema:Float"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"double\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Double"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:double specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#double"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ecosystem> dcterms:title "Ecosystem" ;
+	linkml:description "Beyond one system or organization, such as algorithmic monocultures or effects on labor markets." .
+<https://w3id.org/lmodel/nist-ai-600-1/ecosystem_or_societal> dcterms:title "Ecosystem / societal risks" ;
+	linkml:description "Systemic risks." .
+<https://w3id.org/lmodel/nist-ai-600-1/education> dcterms:title "Education" .
+<https://w3id.org/lmodel/nist-ai-600-1/end_users> dcterms:title "End users" ;
+	skos:altLabel "End Users" , "End-Users" ;
+	linkml:description "The people or groups who use the system, whether new to technology or expert in AI." .
+<https://w3id.org/lmodel/nist-ai-600-1/environmental_impacts> dcterms:title "Environmental Impacts" ;
+	skos:altLabel "Environmental" ;
+	linkml:description "Effects on ecosystems from the heavy computing that training and operating models need." .
+<https://w3id.org/lmodel/nist-ai-600-1/expert> dcterms:title "Expert" ;
+	linkml:description "By specialists in the domain or the context of use." .
+<https://w3id.org/lmodel/nist-ai-600-1/explainable_and_interpretable> dcterms:title "Explainable and Interpretable" ;
+	linkml:description "Its working can be represented (how a decision was made) and its output understood in context (why, and what it means for the user)." .
+<https://w3id.org/lmodel/nist-ai-600-1/extended> dcterms:title "Across extended periods" ;
+	linkml:description "Slowly, such as the long-term effect of disinformation on trust in institutions." .
+<https://w3id.org/lmodel/nist-ai-600-1/fair_with_harmful_bias_managed> dcterms:title "Fair – with Harmful Bias Managed" ;
+	linkml:description "Addresses equality and equity, including harmful bias and discrimination, knowing that views of fairness differ across cultures and applications." .
+<https://w3id.org/lmodel/nist-ai-600-1/float> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"float\"." ;
+	skos:exactMatch "schema:Float"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "float" ;
+	linkml:definition_uri "https://w3id.org/linkml/Float"^^xsd:anyURI ;
+	linkml:description "A real number that conforms to the xsd:float specification" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#float"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiAiRedTeaming__gai_red_teaming_types> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_red_teaming_types" ;
+	linkml:description "The kinds of AI red-teaming that may suit the use case." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_red_teaming_types"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiContentProvenanceConsideration__gai_provenance_techniques> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_provenance_techniques" ;
+	linkml:description "The well-known techniques for provenance data tracking that section A.1.6 names." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_provenance_techniques"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_governance_plans> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_governance_plans" ;
+	linkml:description "The plans and actions that section A.1.2 lists from other AI governance." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_governance_plans"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_third_party_controls> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_third_party_controls" ;
+	linkml:description "The existing controls that section A.1.3 says can apply to third-party GAI." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_third_party_controls"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiIncidentDisclosureConsideration__gai_incident_harms> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_incident_harms" ;
+	linkml:description "The kinds of harm that section A.1.8's definition of an AI incident names." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_incident_harms"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiPreDeploymentTestingConsideration__gai_structured_feedback> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_structured_feedback" ;
+	linkml:description "The kinds of structured public feedback section A.1.5 gives as examples." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_structured_feedback"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	skos:prefLabel "gai_consideration_sections" ;
+	linkml:description "The subsections of Appendix A that discuss the consideration, such as A.1.2." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:pattern "^A\\.1(\\.[1-8])?$" ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_sections"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_primary_considerations> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1"^^xsd:anyURI ;
+	skos:prefLabel "gai_primary_considerations" ;
+	linkml:description "The four primary considerations of Appendix A." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_primary_considerations"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_risks> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1"^^xsd:anyURI ;
+	skos:prefLabel "gai_risks" ;
+	linkml:description "The 12 risks of section 2." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risks"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_subcategories> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1"^^xsd:anyURI ;
+	skos:prefLabel "gai_subcategories" ;
+	linkml:description "The tables of section 3, in the publication's order." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_subcategories"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_characteristics> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_characteristics" ;
+	linkml:description "The AI RMF's trustworthiness characteristics that the subsection names for the risk." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfCharacteristicName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_characteristics"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_groupings> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_groupings" ;
+	linkml:description "The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_groupings"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_lifecycle_stages> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_lifecycle_stages" ;
+	linkml:description "The lifecycle stages where the risk can arise for the adopter's model, system or use case." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_lifecycle_stages"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_name> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_name" ;
+	linkml:description "Which of the 12 risks this is." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_name"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_scopes> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_scopes" ;
+	linkml:description "The levels where the risk exists for the adopter's model, system or use case." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_scopes"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_section> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_section" ;
+	linkml:description "The subsection of section 2 that discusses the risk, such as 2.1." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:pattern "^2\\.([1-9]|1[0-2])$" ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_section"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_sources> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_sources" ;
+	linkml:description "Where the risk comes from for the adopter's model, system or use case." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_sources"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_time_scales> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_risks"^^xsd:anyURI ;
+	skos:prefLabel "gai_risk_time_scales" ;
+	linkml:description "How the risk materializes over time for the adopter's model, system or use case." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_risk_time_scales"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actions> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	skos:prefLabel "gai_subcategory_actions" ;
+	linkml:description "The suggested actions the table lists." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actions"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actor_tasks> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	skos:prefLabel "gai_subcategory_actor_tasks" ;
+	linkml:description "The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfActorTaskName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actor_tasks"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gaiSuggestedAction__gai_action_risks> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	skos:prefLabel "gai_action_risks" ;
+	linkml:description "The GAI risks the row tags the action with." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:multivalued true ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_action_risks"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_action_id> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_action_id"^^xsd:anyURI ;
+	linkml:description "The action's identifier, such as GV-1.1-001." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/gai_action_identifier> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_action_id"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_action_identifier> a linkml:TypeDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_actions"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/GaiActionIdentifier"^^xsd:anyURI ;
+	linkml:description "An Action ID: the function's two letters, its subcategory's numbers and a three-digit number, such as GV-1.1-001 for the first action of GOVERN 1.1." ;
+	linkml:pattern "^(GV-[1-6]|MP-[1-5]|MS-[1-4]|MG-[1-4])\\.[1-9][0-9]?-[0-9]{3}$" ;
+	linkml:typeof <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_action_risks> a linkml:SlotDefinition ;
+	linkml:description "The GAI risks the row tags the action with." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_sections> a linkml:SlotDefinition ;
+	linkml:description "The subsections of Appendix A that discuss the consideration, such as A.1.2." ;
+	linkml:multivalued true ;
+	linkml:pattern "^A\\.1(\\.[1-8])?$" .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type"^^xsd:anyURI ;
+	linkml:description "Which of the four classes this record is." ;
+	linkml:designates_type true ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1_considerations"^^xsd:anyURI ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type"^^xsd:anyURI ;
+	linkml:description "Which of the three classes this record is." ;
+	linkml:designates_type true ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:required true ;
+	linkml:slot_uri "https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_governance_plans> a linkml:SlotDefinition ;
+	linkml:description "The plans and actions that section A.1.2 lists from other AI governance." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_incident_harms> a linkml:SlotDefinition ;
+	linkml:description "The kinds of harm that section A.1.8's definition of an AI incident names." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_primary_considerations> a linkml:SlotDefinition ;
+	linkml:description "The four primary considerations of Appendix A." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_provenance_techniques> a linkml:SlotDefinition ;
+	linkml:description "The well-known techniques for provenance data tracking that section A.1.6 names." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_red_teaming_types> a linkml:SlotDefinition ;
+	linkml:description "The kinds of AI red-teaming that may suit the use case." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_characteristics> a linkml:SlotDefinition ;
+	linkml:description "The AI RMF's trustworthiness characteristics that the subsection names for the risk." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfCharacteristicName> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_groupings> a linkml:SlotDefinition ;
+	linkml:description "The groups footnote 5 suggests for the risk. The footnote lists Data Privacy under all three." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_lifecycle_stages> a linkml:SlotDefinition ;
+	linkml:description "The lifecycle stages where the risk can arise for the adopter's model, system or use case." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_name> a linkml:SlotDefinition ;
+	linkml:description "Which of the 12 risks this is." ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_scopes> a linkml:SlotDefinition ;
+	linkml:description "The levels where the risk exists for the adopter's model, system or use case." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_section> a linkml:SlotDefinition ;
+	linkml:description "The subsection of section 2 that discusses the risk, such as 2.1." ;
+	linkml:pattern "^2\\.([1-9]|1[0-2])$" ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_sources> a linkml:SlotDefinition ;
+	linkml:description "Where the risk comes from for the adopter's model, system or use case." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risk_time_scales> a linkml:SlotDefinition ;
+	linkml:description "How the risk materializes over time for the adopter's model, system or use case." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_risks> a linkml:SlotDefinition ;
+	linkml:description "The 12 risks of section 2." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_structured_feedback> a linkml:SlotDefinition ;
+	linkml:description "The kinds of structured public feedback section A.1.5 gives as examples." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_subcategories> a linkml:SlotDefinition ;
+	linkml:description "The tables of section 3, in the publication's order." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actions> a linkml:SlotDefinition ;
+	linkml:description "The suggested actions the table lists." ;
+	linkml:inlined true ;
+	linkml:inlined_as_list true ;
+	linkml:minimum_cardinality 1 ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:required true .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_subcategory_actor_tasks> a linkml:SlotDefinition ;
+	linkml:description "The AI actor tasks the table names. They belong to the table and not to one action: the publication says not every task applies to every action." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/AiRmfActorTaskName> .
+<https://w3id.org/lmodel/nist-ai-600-1/gai_third_party_controls> a linkml:SlotDefinition ;
+	linkml:description "The existing controls that section A.1.3 says can apply to third-party GAI." ;
+	linkml:multivalued true ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl> .
+<https://w3id.org/lmodel/nist-ai-600-1/general_public> dcterms:title "General Public" , "General public" ;
+	linkml:description "By general users who are not necessarily AI or technical experts." , "Those most likely to experience the impacts directly, who may motivate what other AI actors do." .
+<https://w3id.org/lmodel/nist-ai-600-1/governance_and_oversight> dcterms:title "Governance and Oversight" ;
+	linkml:description "Holding management, fiduciary and legal authority for the organization where the system is designed, developed or deployed." .
+<https://w3id.org/lmodel/nist-ai-600-1/harm_to_property_communities_or_environment> dcterms:title "Harm to property, communities, or the environment" ;
+	linkml:description "To things and groups beyond the individual." .
+<https://w3id.org/lmodel/nist-ai-600-1/harmful_bias_or_homogenization> dcterms:title "Harmful Bias or Homogenization" ;
+	skos:altLabel "Harmful Bias and Homogenization" ;
+	linkml:description "Worse systemic bias, unequal performance across groups or languages, and output skewed by sameness." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_ai> dcterms:title "Human / AI" ;
+	linkml:description "By GAI together with human teams, specialist or not." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_ai_configuration> dcterms:title "Human-AI Configuration" ;
+	skos:altLabel "Human AI Configuration" ;
+	linkml:description "Interaction that leads people to over-rely on, anthropomorphize or become entangled with a system, or to distrust it." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_ai_interaction> dcterms:title "Human-AI interaction" ;
+	linkml:description "How a person and a system act on each other." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_authentication> dcterms:title "Human authentication" ;
+	linkml:description "Having people confirm where content came from." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_behavior> dcterms:title "Human behavior" ;
+	linkml:description "Abuse, misuse or unsafe repurposing by people, whether adversarial or not." .
+<https://w3id.org/lmodel/nist-ai-600-1/human_factors> dcterms:title "Human Factors" ;
+	linkml:description "Human-centered design and evaluation, involving end users and bringing context-specific norms and values into design." .
+<https://w3id.org/lmodel/nist-ai-600-1/impact_assessments> dcterms:title "Impact assessments" .
+<https://w3id.org/lmodel/nist-ai-600-1/incident_response> dcterms:title "Incident response" .
+<https://w3id.org/lmodel/nist-ai-600-1/information_integrity> dcterms:title "Information Integrity" ;
+	linkml:description "Easier creation and spread of content that blurs fact and opinion, or that can drive large disinformation campaigns." .
+<https://w3id.org/lmodel/nist-ai-600-1/information_security> dcterms:title "Information Security" ;
+	linkml:description "Easier offensive cyber activity, and a larger attack surface on a system, its data, code or weights." .
+<https://w3id.org/lmodel/nist-ai-600-1/injury_or_harm_to_health> dcterms:title "Injury or harm to health" ;
+	linkml:description "To a person or group, including psychological harm and harm to mental health." .
+<https://w3id.org/lmodel/nist-ai-600-1/inputs> dcterms:title "Inputs" ;
+	linkml:description "What goes into the model or system." .
+<https://w3id.org/lmodel/nist-ai-600-1/integer> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"integer\"." ;
+	skos:exactMatch "schema:Integer"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "int" ;
+	linkml:definition_uri "https://w3id.org/linkml/Integer"^^xsd:anyURI ;
+	linkml:description "An integer" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#integer"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/intellectual_property> dcterms:title "Intellectual Property" ;
+	linkml:description "Easier unauthorized copying of protected content, exposure of trade secrets, and plagiarism." .
+<https://w3id.org/lmodel/nist-ai-600-1/jsonpath> dcterms:conformsTo "https://www.ietf.org/archive/id/draft-goessner-dispatch-jsonpath-00.html" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Path. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/jsonpointer> dcterms:conformsTo "https://datatracker.ietf.org/doc/html/rfc6901" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"jsonpointer\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Jsonpointer"^^xsd:anyURI ;
+	linkml:description "A string encoding a JSON Pointer. The value of the string MUST conform to JSON Point syntax and SHOULD dereference to a valid object within the current instance document when encoded in tree form." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/metadata_recording> dcterms:title "Metadata recording" ;
+	linkml:description "Recording facts about the content, such as its creator, date and sources." .
+<https://w3id.org/lmodel/nist-ai-600-1/misuse_by_humans> dcterms:title "Misuse by humans" ;
+	linkml:description "Risks from malicious use." .
+<https://w3id.org/lmodel/nist-ai-600-1/model_or_system> dcterms:title "Model or system" ;
+	linkml:description "The level of one model or system." .
+<https://w3id.org/lmodel/nist-ai-600-1/monitoring> dcterms:title "Monitoring" .
+<https://w3id.org/lmodel/nist-ai-600-1/ncname> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"ncname\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NCName" ;
+	linkml:definition_uri "https://w3id.org/linkml/Ncname"^^xsd:anyURI ;
+	linkml:description "Prefix part of CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/nist_ai_600_1> dcterms:license "Apache-2.0" ;
+	dcterms:source "https://doi.org/10.6028/NIST.AI.600-1"^^xsd:anyURI ;
+	dcterms:title "NIST AI RMF Generative AI Profile (NIST AI 600-1)" ;
+	pav:version "1.0.0" ;
+	a linkml:SchemaDefinition ;
+	rdfs:seeAlso "https://airc.nist.gov/Home"^^xsd:anyURI , "https://doi.org/10.6028/NIST.AI.100-1"^^xsd:anyURI , "https://lmodel.github.io/nist-ai-600-1"^^xsd:anyURI ;
+	skos:note "It imports the base and profiles modules of lmodel/nist-ai-100-1, vendored under nist_ai_100_1/, so it needs no network. tests/test_schema_rules.py holds them to their hashes." , "The publication has no version number of its own, so the version is the 1.0.0 of the AI RMF it profiles, and source is the publication's digital object identifier. The release tags are the schema's own versions, and scripts/check_upstream_release.py reports when NIST changes the file." , "The publication is a work of the United States Government. NOTICE says what it allows. The schema's descriptions are this project's own words; NIST's text is in src/nist_ai_600_1/data/." ;
+	sh:declare _:c14n0 , _:c14n13 , _:c14n8 ;
+	linkml:annotations _:c14n16 , _:c14n17 ;
+	linkml:classes <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfile> , <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> , <https://w3id.org/lmodel/nist-ai-600-1/GaiAiRedTeaming> , <https://w3id.org/lmodel/nist-ai-600-1/GaiContentProvenanceConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiFieldTesting> , <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernanceConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentDisclosureConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiParticipatoryEngagement> , <https://w3id.org/lmodel/nist-ai-600-1/GaiPreDeploymentTestingConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiProfile> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk> , <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction> ;
+	linkml:default_prefix "nist_ai_600_1" ;
+	linkml:default_range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:description "A LinkML model of NIST AI 600-1, the Generative Artificial Intelligence Profile of the AI Risk Management Framework: its 12 risks, the suggested actions its tables list under AI RMF subcategories, and its four primary considerations." ;
+	linkml:enums <https://w3id.org/lmodel/nist-ai-600-1/AiRmfActorTaskName> , <https://w3id.org/lmodel/nist-ai-600-1/AiRmfCharacteristicName> , <https://w3id.org/lmodel/nist-ai-600-1/AiRmfProfileKind> , <https://w3id.org/lmodel/nist-ai-600-1/GaiGovernancePlan> , <https://w3id.org/lmodel/nist-ai-600-1/GaiIncidentHarm> , <https://w3id.org/lmodel/nist-ai-600-1/GaiLifecycleStage> , <https://w3id.org/lmodel/nist-ai-600-1/GaiProvenanceTechnique> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRedTeamingType> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskGrouping> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskName> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskScope> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskSource> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRiskTimeScale> , <https://w3id.org/lmodel/nist-ai-600-1/GaiThirdPartyControl> ;
+	linkml:id "https://w3id.org/lmodel/nist-ai-600-1"^^xsd:anyURI ;
+	linkml:imports "./nist_ai_100_1/nist_ai_100_1_base"^^xsd:anyURI , "./nist_ai_100_1/nist_ai_100_1_profiles"^^xsd:anyURI , "./nist_ai_600_1_actions"^^xsd:anyURI , "./nist_ai_600_1_considerations"^^xsd:anyURI , "./nist_ai_600_1_risks"^^xsd:anyURI , "linkml:types"^^xsd:anyURI , "nist_ai_100_1/nist_ai_100_1_base"^^xsd:anyURI ;
+	linkml:metamodel_version "1.12.0" ;
+	linkml:slots <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration_title> , <https://w3id.org/lmodel/nist-ai-600-1/GaiRisk_description> , <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback_title> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSubcategory_description> , <https://w3id.org/lmodel/nist-ai-600-1/GaiSuggestedAction_description> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_kinds> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_setting> , <https://w3id.org/lmodel/nist-ai-600-1/aiRmfProfile__ai_rmf_profile_subcategories> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_id> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_id> , <https://w3id.org/lmodel/nist-ai-600-1/description> , <https://w3id.org/lmodel/nist-ai-600-1/gaiAiRedTeaming__gai_red_teaming_types> , <https://w3id.org/lmodel/nist-ai-600-1/gaiContentProvenanceConsideration__gai_provenance_techniques> , <https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_governance_plans> , <https://w3id.org/lmodel/nist-ai-600-1/gaiGovernanceConsideration__gai_third_party_controls> , <https://w3id.org/lmodel/nist-ai-600-1/gaiIncidentDisclosureConsideration__gai_incident_harms> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPreDeploymentTestingConsideration__gai_structured_feedback> , <https://w3id.org/lmodel/nist-ai-600-1/gaiPrimaryConsideration__gai_consideration_sections> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_primary_considerations> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_risks> , <https://w3id.org/lmodel/nist-ai-600-1/gaiProfile__gai_subcategories> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_characteristics> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_groupings> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_lifecycle_stages> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_name> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_scopes> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_section> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_sources> , <https://w3id.org/lmodel/nist-ai-600-1/gaiRisk__gai_risk_time_scales> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actions> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSubcategory__gai_subcategory_actor_tasks> , <https://w3id.org/lmodel/nist-ai-600-1/gaiSuggestedAction__gai_action_risks> , <https://w3id.org/lmodel/nist-ai-600-1/gai_action_id> , <https://w3id.org/lmodel/nist-ai-600-1/gai_consideration_type> , <https://w3id.org/lmodel/nist-ai-600-1/gai_feedback_type> , <https://w3id.org/lmodel/nist-ai-600-1/title> ;
+	linkml:source_file "nist_ai_600_1.yaml" ;
+	linkml:source_file_date "2026-11-07T02:04:01"^^xsd:dateTime ;
+	linkml:source_file_size 2859 ;
+	linkml:types <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_category_identifier> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_function_identifier> , <https://w3id.org/lmodel/nist-ai-600-1/ai_rmf_subcategory_identifier> , <https://w3id.org/lmodel/nist-ai-600-1/boolean> , <https://w3id.org/lmodel/nist-ai-600-1/curie> , <https://w3id.org/lmodel/nist-ai-600-1/date> , <https://w3id.org/lmodel/nist-ai-600-1/date_or_datetime> , <https://w3id.org/lmodel/nist-ai-600-1/datetime> , <https://w3id.org/lmodel/nist-ai-600-1/decimal> , <https://w3id.org/lmodel/nist-ai-600-1/double> , <https://w3id.org/lmodel/nist-ai-600-1/float> , <https://w3id.org/lmodel/nist-ai-600-1/gai_action_identifier> , <https://w3id.org/lmodel/nist-ai-600-1/integer> , <https://w3id.org/lmodel/nist-ai-600-1/jsonpath> , <https://w3id.org/lmodel/nist-ai-600-1/jsonpointer> , <https://w3id.org/lmodel/nist-ai-600-1/ncname> , <https://w3id.org/lmodel/nist-ai-600-1/nodeidentifier> , <https://w3id.org/lmodel/nist-ai-600-1/objectidentifier> , <https://w3id.org/lmodel/nist-ai-600-1/sparqlpath> , <https://w3id.org/lmodel/nist-ai-600-1/string> , <https://w3id.org/lmodel/nist-ai-600-1/time> , <https://w3id.org/lmodel/nist-ai-600-1/uri> , <https://w3id.org/lmodel/nist-ai-600-1/uriorcurie> .
+<https://w3id.org/lmodel/nist-ai-600-1/nodeidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"nodeidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "NodeIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Nodeidentifier"^^xsd:anyURI ;
+	linkml:description "A URI, CURIE or BNODE that represents a node in a model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#nonLiteral"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/objectidentifier> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"objectidentifier\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "Used for inheritance and type checking" ;
+	linkml:base "ElementIdentifier" ;
+	linkml:definition_uri "https://w3id.org/linkml/Objectidentifier"^^xsd:anyURI ;
+	linkml:description "A URI or CURIE that represents an object in the model." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/ns/shex#iri"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/obscene_degrading_or_abusive_content> dcterms:title "Obscene, Degrading, and/or Abusive Content" ;
+	linkml:description "Easier production of harmful imagery, including synthetic abuse material and intimate images without consent." .
+<https://w3id.org/lmodel/nist-ai-600-1/operation> dcterms:title "Operation" ;
+	linkml:description "Running it." , "The operation of the model." .
+<https://w3id.org/lmodel/nist-ai-600-1/operation_and_monitoring> dcterms:title "Operation and Monitoring" ;
+	linkml:description "Running the system and regularly assessing its output and impacts." .
+<https://w3id.org/lmodel/nist-ai-600-1/opt_outs> dcterms:title "Opt-outs" .
+<https://w3id.org/lmodel/nist-ai-600-1/other_ai_actors> dcterms:title "Other AI actors" ;
+	linkml:description "Those who may provide norms or guidance on AI risk, such as standards bodies, advocacy groups and researchers." .
+<https://w3id.org/lmodel/nist-ai-600-1/outputs> dcterms:title "Outputs" ;
+	linkml:description "What the system produces." .
+<https://w3id.org/lmodel/nist-ai-600-1/privacy_enhanced> dcterms:title "Privacy-Enhanced" ;
+	linkml:description "Guided by the norms and practices that protect human autonomy, identity and dignity, such as anonymity, confidentiality and control." .
+<https://w3id.org/lmodel/nist-ai-600-1/procurement> dcterms:title "Procurement" ;
+	linkml:description "Acquiring AI from another party, under financial, legal or policy authority." .
+<https://w3id.org/lmodel/nist-ai-600-1/rights_violations> dcterms:title "Violations of rights or legal obligations" ;
+	linkml:description "Of human rights, or of obligations under law that protects fundamental, labor and intellectual property rights." .
+<https://w3id.org/lmodel/nist-ai-600-1/risk_based_controls> dcterms:title "Risk-based controls" .
+<https://w3id.org/lmodel/nist-ai-600-1/risk_mapping_and_measurement> dcterms:title "Risk mapping and measurement" .
+<https://w3id.org/lmodel/nist-ai-600-1/safe> dcterms:title "Safe" ;
+	linkml:description "Keeps people, property and the environment out of danger under defined conditions." .
+<https://w3id.org/lmodel/nist-ai-600-1/science_backed_tevv_practices> dcterms:title "Science-backed TEVV practices" .
+<https://w3id.org/lmodel/nist-ai-600-1/secure_and_resilient> dcterms:title "Secure and Resilient" ;
+	linkml:description "Withstands adverse events and recovers from them, and keeps confidentiality, integrity and availability through protections against attack." .
+<https://w3id.org/lmodel/nist-ai-600-1/secure_software_development_practices> dcterms:title "Secure software development practices" .
+<https://w3id.org/lmodel/nist-ai-600-1/service_level_agreements> dcterms:title "Application of service level agreements" ;
+	linkml:description "Holding a provider to agreed levels of service." .
+<https://w3id.org/lmodel/nist-ai-600-1/software_bills_of_materials> dcterms:title "Requests for software bills of materials" ;
+	skos:relatedMatch "spdx_software:Sbom"^^xsd:anyURI ;
+	linkml:description "Asking a provider what its software is made of." .
+<https://w3id.org/lmodel/nist-ai-600-1/sparqlpath> dcterms:conformsTo "https://www.w3.org/TR/sparql11-query/#propertypaths" ;
+	a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"sparqlpath\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/Sparqlpath"^^xsd:anyURI ;
+	linkml:description "A string encoding a SPARQL Property Path. The value of the string MUST conform to SPARQL syntax and SHOULD dereference to zero or more valid objects within the current instance document when encoded as RDF." ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/ssae_reports> dcterms:title "Statement on standards for attestation engagement reports" ;
+	linkml:description "Asking for a provider's attestation reports." .
+<https://w3id.org/lmodel/nist-ai-600-1/stakeholder_engagement> dcterms:title "Stakeholder engagement" .
+<https://w3id.org/lmodel/nist-ai-600-1/string> a linkml:TypeDefinition ;
+	skos:editorialNote "In RDF serializations, a slot with range of string is treated as a literal or type xsd:string. If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"string\"." ;
+	skos:exactMatch "schema:Text"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "str" ;
+	linkml:definition_uri "https://w3id.org/linkml/String"^^xsd:anyURI ;
+	linkml:description "A character string" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#string"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/synthetic_content_detection_and_labeling_tools_and_techniques> dcterms:title "Synthetic content detection and labeling tools and techniques" .
+<https://w3id.org/lmodel/nist-ai-600-1/target> dcterms:title "Target Profile" ;
+	linkml:description "A temporal profile saying which outcomes the desired risk management goals need." .
+<https://w3id.org/lmodel/nist-ai-600-1/technical_or_model> dcterms:title "Technical / Model risks" ;
+	linkml:description "Risks from malfunction." .
+<https://w3id.org/lmodel/nist-ai-600-1/tevv> dcterms:title "Test, Evaluation, Verification, and Validation (TEVV)" ;
+	skos:altLabel "TEVV" ;
+	linkml:description "Examining the system or its components and finding and fixing problems, throughout the lifecycle." .
+<https://w3id.org/lmodel/nist-ai-600-1/third_party_entities> dcterms:title "Third-party entities" ;
+	linkml:description "Outside organizations that supply or evaluate the data, models, systems or services an organization acquires." .
+<https://w3id.org/lmodel/nist-ai-600-1/time> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"time\"." , "URI is dateTime because OWL reasoners do not work with straight date or time" ;
+	skos:exactMatch "schema:Time"^^xsd:anyURI ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "XSDTime" ;
+	linkml:definition_uri "https://w3id.org/linkml/Time"^^xsd:anyURI ;
+	linkml:description "A time object represents a (local) time of day, independent of any particular day" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#time"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/title> a linkml:SlotDefinition ;
+	skos:inScheme "https://w3id.org/lmodel/nist-ai-100-1/nist_ai_100_1_base"^^xsd:anyURI ;
+	skos:mappingRelation "http://schema.org/name"^^xsd:anyURI ;
+	skos:note "It carries the IRI of LOKF's title, so lokf adapt folds it into LOKF's slot and a knowledge bundle reads one title key." ;
+	linkml:definition_uri "https://w3id.org/lmodel/nist-ai-100-1/title"^^xsd:anyURI ;
+	linkml:description "The element's name." ;
+	linkml:domain_of <https://w3id.org/lmodel/nist-ai-600-1/AiRmfRecord> , <https://w3id.org/lmodel/nist-ai-600-1/GaiPrimaryConsideration> , <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:owner <https://w3id.org/lmodel/nist-ai-600-1/GaiStructuredFeedback> ;
+	linkml:range <https://w3id.org/lmodel/nist-ai-600-1/string> ;
+	linkml:slot_uri "http://schema.org/name"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/training> dcterms:title "Training" ;
+	linkml:description "The training of the model." .
+<https://w3id.org/lmodel/nist-ai-600-1/uri> dcterms:conformsTo "https://www.ietf.org/rfc/rfc3987.txt" ;
+	a linkml:TypeDefinition ;
+	skos:closeMatch "schema:URL"^^xsd:anyURI ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uri\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	skos:note "in RDF serializations a slot with range of uri is treated as a literal or type xsd:anyURI unless it is an identifier or a reference to an identifier, in which case it is translated directly to a node" ;
+	linkml:base "URI" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uri"^^xsd:anyURI ;
+	linkml:description "a complete URI" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/uriorcurie> a linkml:TypeDefinition ;
+	skos:editorialNote "If you are authoring schemas in LinkML YAML, the type is referenced with the lower case \"uriorcurie\"." ;
+	skos:inScheme "https://w3id.org/linkml/types"^^xsd:anyURI ;
+	linkml:base "URIorCURIE" ;
+	linkml:definition_uri "https://w3id.org/linkml/Uriorcurie"^^xsd:anyURI ;
+	linkml:description "a URI or a CURIE" ;
+	linkml:imported_from "linkml:types" ;
+	linkml:repr "str" ;
+	linkml:uri "http://www.w3.org/2001/XMLSchema#anyURI"^^xsd:anyURI .
+<https://w3id.org/lmodel/nist-ai-600-1/use_case> dcterms:title "Use-case profile" ;
+	linkml:description "The Core implemented for a specific setting or application." .
+<https://w3id.org/lmodel/nist-ai-600-1/valid_and_reliable> dcterms:title "Valid and Reliable" ;
+	linkml:description "Shown by evidence to meet the needs of its intended use, and works without failure over time. Figure 4 makes it a necessary condition for the others." .
+<https://w3id.org/lmodel/nist-ai-600-1/value_chain_and_component_integration> dcterms:title "Value Chain and Component Integration" ;
+	linkml:description "Opaque use of third-party components and data, and poor supplier vetting, that weaken accountability downstream." .
+<https://w3id.org/lmodel/nist-ai-600-1/whistleblower_protections> dcterms:title "Whistleblower protections" .
+<https://w3id.org/lmodel/nist-ai-600-1/workforce_diversity_and_interdisciplinary_teams> dcterms:title "Workforce diversity and interdisciplinary teams" .
+_:c14n0 sh:namespace "https://w3id.org/lmodel/nist-ai-100-1/"^^xsd:anyURI ;
+	sh:prefix "nist_ai_100_1" .
+_:c14n13 sh:namespace "https://w3id.org/lmodel/nist-ai-600-1/"^^xsd:anyURI ;
+	sh:prefix "nist_ai_600_1" .
+_:c14n16 skos:example "2024-07" ;
+	linkml:tag "publication_date"^^xsd:anyURI .
+_:c14n17 skos:example "2024-07-25" ;
+	linkml:tag "publication_approved"^^xsd:anyURI .
+_:c14n8 sh:namespace "https://w3id.org/linkml/"^^xsd:anyURI ;
+	sh:prefix "linkml" .
+
