@@ -2,6 +2,11 @@
 
 # nist-ai-600-1
 
+[![Build and test](https://github.com/lmodel/nist-ai-600-1/actions/workflows/main.yaml/badge.svg)](https://github.com/lmodel/nist-ai-600-1/actions/workflows/main.yaml)
+[![Licence](https://img.shields.io/github/license/lmodel/nist-ai-600-1?label=licence)](LICENSE)
+[![OpenSSF Scorecard](https://api.scorecard.dev/projects/github.com/lmodel/nist-ai-600-1/badge)](https://scorecard.dev/viewer/?uri=github.com/lmodel/nist-ai-600-1)
+[![KTL scorecard](https://img.shields.io/endpoint?url=https://lmodel.github.io/nist-ai-600-1/badge.json)](https://lmodel.github.io/nist-ai-600-1/health/)
+
 NIST AI 600-1 AI RMF Generative AI Profile (LinkML)
 
 > **Only want to ask?** Install `ktl-docent` into any agent you use, by a route from [the install page](https://w3id.org/ktl/docs/install/), and ask it about this project. It answers from the bundle and says how far each answer has been checked.
@@ -37,7 +42,7 @@ The schema is the one home for mappings. The hand-kept SSSOM sets are gone, sinc
 * [src/nist_ai_600_1/datamodel/](src/nist_ai_600_1/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): the publication, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 

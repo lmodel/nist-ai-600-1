@@ -1,6 +1,6 @@
 #!/usr/bin/env python3
 # /// script
-# requires-python = ">=3.10"
+# requires-python = ">=3.11"
 # dependencies = ["pdfplumber>=0.11.7", "pyyaml>=6"]
 # ///
 """Write section 3 of NIST AI 600-1 into src/nist_ai_600_1/data/ai-600-1.yaml.
