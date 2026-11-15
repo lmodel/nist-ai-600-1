@@ -19,7 +19,7 @@ sources:
   - resource: website
   - resource: .github/workflows
   - resource: .github/scripts
-  - resource: .github/release
+  - resource: .release
   - resource: .linkml
   - resource: .lokf/justfile
   - resource: .lokf/pyproject.toml
@@ -106,7 +106,7 @@ exclusions:
     reason: The sidecar's lock file.
 generated:
   by: process:ktl-librarian
-  at: "2026-11-15T03:06:02Z"
+  at: "2026-11-15T20:58:49Z"
 status: draft
 ---
 
