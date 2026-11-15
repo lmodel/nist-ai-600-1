@@ -37,7 +37,7 @@ The schema is the one home for mappings. The hand-kept SSSOM sets are gone, sinc
 * [src/nist_ai_600_1/datamodel/](src/nist_ai_600_1/datamodel): the generated Python datamodel
 * [tests/](tests/): Python tests, with example data in [data/](tests/data) and the neighbours' adapt copies in [neighbours/](tests/neighbours)
 * [upstream/](upstream/): the publication, unchanged
-* [website/](website/): the Astro Starlight site built from the README, `docs/`, the schema's pages and the knowledge bundle
+* [website/](website/): the Hugo site built from the README, `docs/`, the schema's pages and the knowledge bundle
 
 ## Developer Tools
 
